@@ -2,7 +2,7 @@
 
 The public repository is being built out. The tracker source and an open-source license have not yet been published.
 
-The proposed license is Apache-2.0 for the cleared tracker contribution, including original documentation and synthetic examples, with third-party notices preserved. The final license must identify the actual licensor and match the reviewed release scope. License adoption is pending; this document is not a license grant.
+Apache-2.0 is the approved licensing plan for the cleared tracker contribution, including original documentation and synthetic examples, with third-party notices preserved. The final license must identify the actual licensor and match the reviewed release scope. Source publication and the license grant remain pending clearance; this document is not a license grant.
 
 The proposal permits companies, vendors and developers to use and extend the tracker. Product names and endorsement rights are handled separately. UCU methodology is a secondary release-scope consideration. EloCoin is a separate product pursuit and is not part of the tracker launch.
 
