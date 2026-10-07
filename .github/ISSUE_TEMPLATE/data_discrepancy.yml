@@ -1,0 +1,23 @@
+name: Data discrepancy
+description: Explain a count, cost or coverage mismatch for the same scope.
+labels: [data-accuracy]
+body:
+  - type: markdown
+    attributes:
+      value: Use fabricated records. API-equivalent pricing is not a vendor invoice. Do not post credentials, raw transcripts or an unreviewed export.
+  - type: input
+    id: source
+    attributes: {label: Source tool/version and Tokenelo version}
+    validations: {required: true}
+  - type: input
+    id: scope
+    attributes: {label: Range and time zone of both comparisons}
+    validations: {required: true}
+  - type: textarea
+    id: discrepancy
+    attributes: {label: Components and qualifications that differ}
+    validations: {required: true}
+  - type: textarea
+    id: evidence
+    attributes: {label: Minimal synthetic example and comparison method}
+    validations: {required: true}

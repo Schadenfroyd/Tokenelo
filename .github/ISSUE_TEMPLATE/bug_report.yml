@@ -1,0 +1,23 @@
+name: Bug report
+description: Report a reproducible product problem using sanitized data.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Never attach raw usage logs, databases, credentials or private project paths. Security findings belong in private vulnerability reporting.
+  - type: input
+    id: version
+    attributes: {label: Tokenelo version or commit}
+    validations: {required: true}
+  - type: input
+    id: platform
+    attributes: {label: Operating system and source tool/version}
+    validations: {required: true}
+  - type: textarea
+    id: reproduction
+    attributes: {label: Steps and synthetic reproduction}
+    validations: {required: true}
+  - type: textarea
+    id: result
+    attributes: {label: Expected and observed result}
+    validations: {required: true}
