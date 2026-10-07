@@ -1,0 +1,15 @@
+name: Feature request
+description: Propose an improvement to tracking, reporting or evidence.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: workflow
+    attributes: {label: Workflow and problem to solve}
+    validations: {required: true}
+  - type: textarea
+    id: value
+    attributes: {label: Who benefits and what would improve}
+    validations: {required: true}
+  - type: textarea
+    id: constraints
+    attributes: {label: Data, privacy or compatibility constraints}
