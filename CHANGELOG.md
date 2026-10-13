@@ -1,5 +1,14 @@
 # Changelog
 
+## October 12, 2026 — public project documentation
+
+- Added the branded overview, product contract, FAQ, and dated internal status snapshot.
+- Clarified the approved Apache 2.0 plan and pending exact source/binary clearance.
+- Added maintainer ownership and stronger public-scope, link, and anchor checks.
+- Focused public project content on token tracking, reporting, and vendor accountability.
+
+This is a documentation update, not a product release.
+
 ## Unreleased — public release preparation
 
 - Established the free token-tracking and vendor-accountability positioning.

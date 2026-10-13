@@ -18,7 +18,7 @@ Zero means a known value of zero. Blank, unknown, unavailable, incomplete, estim
 
 API-equivalent cost compares recorded usage against the configured price table and its version. It does not establish an invoice, subscription allocation, refund entitlement, negotiated price or actual cash savings. Local inference comparison is also not a paid amount. Electricity estimates require explicit assumptions.
 
-UCU has a separate definition/rate identity and calibration qualification. Count completeness, pricing status and UCU calibration are separate questions.
+Count completeness and pricing status are separate questions.
 
 ## Reporting and sharing
 

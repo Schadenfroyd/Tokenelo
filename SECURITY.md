@@ -6,7 +6,7 @@ No public source or binary release is currently supported. The project is prepar
 
 ## Report a vulnerability privately
 
-Use the repository's **Security → Report a vulnerability** flow. If it is unavailable, open a public issue containing only a request for a private reporting channel, with no vulnerability details or sensitive attachments.
+Use the repository's **Security â†’ Report a vulnerability** flow. If it is unavailable, open a public issue containing only a request for a private reporting channel, with no vulnerability details or sensitive attachments.
 
 Include affected versions, impact and a minimal synthetic reproduction in the private report. Do not send credentials, raw session logs or a production database. Maintainers will assess reports as capacity permits; no remediation SLA is promised.
 

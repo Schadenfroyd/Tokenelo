@@ -1,47 +1,64 @@
+<p align="center">
+  <img src="assets/tokenelo-banner.svg" alt="Tokenelo by Elo AI — Know your AI usage. Bring the evidence." width="100%">
+</p>
+
 # Tokenelo
 
-**Free AI token tracking and reporting, built for vendor accountability.**
+**Free AI token tracking and reporting for vendor accountability.**
 
-Tokenelo helps engineering, procurement, and FinOps teams understand recorded AI usage: which tools and models were used, how token counts were reported, and what evidence supports a total.
+[![Documentation checks](https://github.com/Schadenfroyd/Tokenelo/actions/workflows/docs.yml/badge.svg)](https://github.com/Schadenfroyd/Tokenelo/actions/workflows/docs.yml)
 
-Track locally. Inspect the breakdown. Take a clear report into your next vendor conversation.
+Understand which tools and models were used, inspect the records behind a total, and bring a clear report into your next vendor conversation. Built by **Elo AI** for engineering, procurement, and FinOps teams.
 
-> **Release status:** internal alpha; public source release is being prepared. This repository currently hosts the project overview and release plan. An open-source license and downloadable release have not yet been issued. The free tracker is the primary product; UCU is a secondary measurement feature.
+[Project status](docs/status.md) · [Product overview](docs/product.md) · [Data accuracy](docs/data-accuracy.md) · [Privacy](docs/privacy.md) · [FAQ](docs/faq.md)
 
-## What the tracker is being built to deliver
+> **Internal alpha · public release in preparation.** This repository contains the public project documentation and repository tooling. Product source and installers are not available here yet. Apache 2.0 is the approved source-release plan; publication and the exact license grant remain pending counsel clearance. [Release and licensing details →](docs/licensing.md)
 
-| Need | Tokenelo approach | What to check |
-| --- | --- | --- |
-| Understand usage | Recorded token components by source, model and session | Supported source formats and missing coverage |
-| Explain a total | Drill into the normalized records behind it | Range, capture time, count quality and subagent inclusion |
-| Evaluate cost | Versioned API-equivalent price comparisons | List-price assumptions, unpriced models and discounts |
-| Take evidence with you | Local JSON and CSV reporting | Identifiers, export schema and sharing permissions |
-| Spot blind spots | Coverage and diagnostic views | A running app does not prove captured usage |
+## Know the usage. Explain the number.
 
-**Recorded usage is evidence, not an invoice.** Plan quotas, negotiated rates, discounts, rounding, and activity outside the captured sources can differ from a vendor bill. Unknown or missing data must stay visible.
+| Your question | What Tokenelo is being built to show |
+| --- | --- |
+| Where are our tokens going? | Usage by source, model, and session, with the recorded token components. |
+| What is behind this total? | Drill-downs into the underlying records, selected range, and capture coverage. |
+| How does this compare with a rate card? | Versioned **Standard API-equivalent** comparisons, with pricing assumptions and unpriced models visible. |
+| What did we miss? | Coverage, freshness, diagnostics, and incomplete-count qualifications. |
+| Can we take the evidence with us? | Local CSV and JSON reports, with explicit sharing and privacy guidance. |
 
-## Designed for useful, free adoption
+**Recorded usage is evidence, not an invoice.** Subscription quotas, served tiers, negotiated rates, discounts, rounding, and uncaptured activity can differ from a vendor bill. Missing data must stay visible.
 
-The planned local tracker requires no Tokenelo account, paid subscription, crypto wallet, or reward mechanism. It is intended to remain useful on its own. Optional future hosted services would have separate terms; no paid service is announced here.
+## Built for useful, free adoption
 
-Tokenelo's internal implementation includes adapters for Claude Code, Codex, and configured local inference, plus selected tool metadata. Availability depends on source records and configuration. Public platform/build instructions and the exact supported-source matrix will accompany the cleared source release.
+The planned tracker requires no Tokenelo account, paid subscription or central upload. Local tracking and reporting must be useful on their own.
 
-## Privacy and trust
+The internal implementation includes adapters for Claude Code, Codex, and configured local inference. Supported formats and coverage vary. Windows, macOS, and Linux are under internal verification; the public release will carry an exact compatibility matrix and installation instructions.
 
-The tracker is designed to store usage metadata and counts rather than prompt/response bodies. Metadata still deserves protection: session identifiers, host names, timestamps and project paths can reveal activity. Raw exports are not anonymous. Share only reviewed, sanitized examples in issues.
+### The accountability workflow
 
-Fleet sharing is optional. Future central analytics would require an explicit policy and user choice. [Read the privacy model](docs/privacy.md) and [report a security concern](SECURITY.md).
+1. Confirm the captured tools, time range, and coverage.
+2. Inspect model and session records, including count qualifications.
+3. Export a reviewed report and compare the same scope with vendor reporting.
+4. Document assumptions and unresolved discrepancies before drawing a conclusion.
 
-## UCU, in context
+[Explore the product contract →](docs/product.md)
 
-UCU is a secondary, versioned compute-measurement feature under review. Its uncertainty and calibration status must be visible. It does not establish output quality, a cash balance, token issuance, redemption, or a financial return. Public methodology/source scope is still being reviewed.
+## Trust is part of the product
 
-## Follow the release
+- **Local records.** Normalized counts and metadata are stored locally. Optional proxies process traffic in memory to obtain counters; configured fleet sharing is a separate choice.
+- **Honest numbers.** Unknown, incomplete, unpriced, and measured zero have different meanings. API-equivalent comparisons do not establish actual spending or savings.
+- **Careful sharing.** Metadata and raw exports can expose project identity and activity. Review them before sharing; public issues should use fabricated examples.
+- **Visible limitations.** Passing internal tests does not establish complete capture, invoice reconciliation, public platform support, or an external security audit.
 
-- [Roadmap and acceptance criteria](docs/roadmap.md)
-- [How to interpret usage data](docs/data-accuracy.md)
-- [Release and license status](docs/licensing.md)
-- [Contributing](CONTRIBUTING.md) and [community conduct](CODE_OF_CONDUCT.md)
-- [Project questions](https://github.com/Schadenfroyd/Tokenelo/issues)
+[Privacy model](docs/privacy.md) · [Security reporting](SECURITY.md) · [Interpreting the data](docs/data-accuracy.md)
 
-Built by Elo AI. Vendor and product names identify supported sources; they do not imply endorsement.
+## Follow or contribute
+
+| Start here | Purpose |
+| --- | --- |
+| [Current status](docs/status.md) | Dated progress and what remains before release. |
+| [Roadmap](docs/roadmap.md) | Acceptance work and proposed reporting improvements. |
+| [FAQ](docs/faq.md) | Availability, licensing, billing comparisons, and privacy. |
+| [Contributing](CONTRIBUTING.md) | Documentation, product feedback, and sanitized reproductions. |
+| [Issues](https://github.com/Schadenfroyd/Tokenelo/issues/new/choose) | Report a problem or propose a useful improvement. |
+| [Private vulnerability report](https://github.com/Schadenfroyd/Tokenelo/security/advisories/new) | Report security findings confidentially. |
+
+No public installer is available yet. Star or watch the repository to follow release progress. Vendor and product names identify sources; they do not imply endorsement.

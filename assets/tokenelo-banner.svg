@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-labelledby="title desc">
+  <title id="title">Tokenelo by Elo AI</title>
+  <desc id="desc">Know your AI usage. Bring the evidence. Free token tracking and reporting.</desc>
+  <defs><linearGradient id="bg" x1="0" x2="1" y2="1"><stop stop-color="#111b34"/><stop offset="1" stop-color="#172b45"/></linearGradient></defs>
+  <rect width="1280" height="360" rx="24" fill="url(#bg)"/>
+  <path d="M1000 0v360M1090 0v360M1180 0v360M910 90h370M910 180h370M910 270h370" stroke="#ffffff" stroke-opacity=".045"/>
+  <rect x="58" y="46" width="44" height="44" rx="12" fill="#5de1c4"/>
+  <path d="M70 60h20M80 60v18" fill="none" stroke="#111b34" stroke-width="5" stroke-linecap="round"/>
+  <text x="119" y="77" fill="#afbdd4" font-family="Segoe UI,Arial,sans-serif" font-size="18" letter-spacing="3">ELO AI</text>
+  <text x="58" y="158" fill="#ffffff" font-family="Segoe UI,Arial,sans-serif" font-size="60" font-weight="700">Tokenelo</text>
+  <text x="61" y="222" fill="#ffffff" font-family="Segoe UI,Arial,sans-serif" font-size="30">Know your AI usage. Bring the evidence.</text>
+  <text x="61" y="279" fill="#b5c4db" font-family="Segoe UI,Arial,sans-serif" font-size="19">Free token tracking and reporting</text>
+  <g fill="none" stroke="#5de1c4" stroke-width="3">
+    <rect x="983" y="111" width="128" height="138" rx="16" stroke-opacity=".8"/>
+    <path d="M1009 143h76M1009 165h52M1009 187h76" stroke-opacity=".65"/>
+    <path d="m1010 219 11 11 26-27"/>
+    <circle cx="1157" cy="236" r="30" fill="#172b45"/>
+    <path d="m1143 236 9 9 18-18"/>
+  </g>
+</svg>

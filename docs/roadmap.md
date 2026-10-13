@@ -19,11 +19,6 @@ The free tracker and dependable reports are the priority. This is a plan, not a 
 - [ ] Make source freshness and adapter-format compatibility easier to inspect.
 - [ ] Improve explanations for incomplete counts and mixed-model sessions.
 
-## Secondary measurement
-
-- [ ] Publish only the reviewed UCU scope with versioned definitions and calibration qualifications.
-- [ ] Keep token reporting understandable without knowledge of UCU.
-
 ## Release acceptance
 
 A release needs reproducible installation, passing relevant checks, accurate advertised behavior, reviewed examples, a clear license and honest known limitations. Scoped private tests do not establish public release acceptance. No signed installer, supported hosted service, billing certification or financial return is claimed until its evidence exists.
