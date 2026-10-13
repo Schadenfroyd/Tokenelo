@@ -12,6 +12,8 @@ const inventory = new Set([
   'docs/data-accuracy.md', 'docs/faq.md', 'docs/licensing.md', 'docs/maintaining.md',
   'docs/privacy.md', 'docs/product.md', 'docs/roadmap.md', 'docs/status.md',
   'docs/trademarks.md', 'scripts/check-docs.mjs', 'scripts/check-docs.test.mjs',
+  'CLAUDE.md', '.claude/cloud-setup.sh', '.claude/commands/verify-public.md',
+  'docs/claude-cloud.md', 'scripts/cloud-check.mjs', 'scripts/cloud-check.test.mjs',
 ]);
 
 export function anchors(text) {

@@ -1,5 +1,14 @@
 # Changelog
 
+## October 13, 2026 — Claude cloud documentation workflow
+
+- Added public repository instructions, a cloud environment runbook, and setup tooling.
+- Added checkout identity and clean public ancestry checks to documentation CI.
+- Kept the workflow dependency-free and limited to current public documentation.
+
+This prepares a documentation workspace; it is not a tracker release or proof of
+an authenticated cloud session.
+
 ## October 12, 2026 — public project documentation
 
 - Added the branded overview, product contract, FAQ, and dated internal status snapshot.

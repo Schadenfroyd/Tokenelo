@@ -58,6 +58,7 @@ The internal implementation includes adapters for Claude Code, Codex, and config
 | [Roadmap](docs/roadmap.md) | Acceptance work and proposed reporting improvements. |
 | [FAQ](docs/faq.md) | Availability, licensing, billing comparisons, and privacy. |
 | [Contributing](CONTRIBUTING.md) | Documentation, product feedback, and sanitized reproductions. |
+| [Claude cloud workflow](docs/claude-cloud.md) | Work on public documentation with reproducible checks and a clear handoff. |
 | [Issues](https://github.com/Schadenfroyd/Tokenelo/issues/new/choose) | Report a problem or propose a useful improvement. |
 | [Private vulnerability report](https://github.com/Schadenfroyd/Tokenelo/security/advisories/new) | Report security findings confidentially. |
 
