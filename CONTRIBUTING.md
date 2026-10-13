@@ -8,6 +8,10 @@ Explain the workflow, tool/version, operating system, selected range, expected r
 
 Documentation pull requests are welcome now. Run `node --test scripts/check-docs.test.mjs` and `node scripts/check-docs.mjs` before submitting; no dependency installation is needed for these checks. Product-source contributions must wait for the cleared release scope and license.
 
+For Claude cloud work, follow the [public documentation runbook](docs/claude-cloud.md)
+and run `node scripts/cloud-check.mjs`. The command adds checkout and runtime
+verification to the documentation checks without installing dependencies.
+
 Use the [bug, data-discrepancy or feature-request forms](https://github.com/Schadenfroyd/Tokenelo/issues/new/choose). Security concerns belong in [private vulnerability reporting](SECURITY.md).
 
 ## Proposed contribution policy for the source release

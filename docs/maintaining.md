@@ -6,7 +6,8 @@ This repository has a separate public history. Private engineering history, capt
 
 1. Branch from current `main`; keep the change limited to the public scope.
 2. Check claims against actual evidence. Label proposals and qualification limits.
-3. Run `node --test scripts/check-docs.test.mjs` and `node scripts/check-docs.mjs`.
+3. Run `node scripts/cloud-check.mjs` for checkout identity, clean public ancestry,
+   documentation tests, and the inventory/link/content checks.
 4. Open a pull request. Documentation CI and conversation resolution must pass.
 5. Review the final changed files for release scope, privacy, origin, and licensing.
 6. Squash merge after the required checks; retain the PR's evidence and review scope.
@@ -24,3 +25,8 @@ GitHub secret scanning, push protection, private vulnerability reporting, and re
 Product source or binaries require counsel clearance of the exact release scope. At that point, update the public inventory guard deliberately, add the reviewed license and third-party notices, publish a tested support matrix and installation path, and replace preparation copy with the actual release's status.
 
 Do not label an internal candidate a public release or treat finite test runs as complete acceptance. Update the [status snapshot](status.md) with an actual observation date rather than silently changing historical claims.
+
+The [Claude cloud runbook](claude-cloud.md) documents a dependency-free public
+environment and a bounded task prompt. Repository instructions and setup scripts
+do not prove an authenticated cloud session has been provisioned; record the actual
+session's checked commit and results when it runs.
