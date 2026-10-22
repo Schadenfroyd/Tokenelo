@@ -1,18 +1,22 @@
 # Contributing
 
-Tokenelo is preparing its public source release. Product feedback and sanitized reproducible examples are welcome now. Source contributions can be reviewed once the release scope and license are adopted.
+Tokenelo is preparing its public source release. You can improve the public documentation or send product feedback now. Product-source contributions can be reviewed once the release scope and license grant are cleared.
 
-## Useful reports
+## Choose a way to help
+
+- **Improve the documentation.** Documentation pull requests are welcome. Run `node --test scripts/check-docs.test.mjs` and `node scripts/check-docs.mjs` before submitting; these checks need no dependency installation.
+- **Share feedback or report a problem.** Use the [issue forms](https://github.com/Schadenfroyd/Tokenelo/issues/new/choose) to suggest an improvement or describe a tracking issue.
+- **Report a security concern privately.** Use [private vulnerability reporting](SECURITY.md), not a public issue.
+
+## Make a report useful and safe
 
 Explain the workflow, tool/version, operating system, selected range, expected result and observed result. Distinguish recorded counts from an invoice or estimate. Use fabricated records that preserve the shape of the problem. Never post raw usage logs, databases, credentials, customer names or personal project paths.
-
-Documentation pull requests are welcome now. Run `node --test scripts/check-docs.test.mjs` and `node scripts/check-docs.mjs` before submitting; no dependency installation is needed for these checks. Product-source contributions must wait for the cleared release scope and license.
 
 For Claude cloud work, follow the [public documentation runbook](docs/claude-cloud.md)
 and run `node scripts/cloud-check.mjs`. The command adds checkout and runtime
 verification to the documentation checks without installing dependencies.
 
-Use the [bug, data-discrepancy or feature-request forms](https://github.com/Schadenfroyd/Tokenelo/issues/new/choose). Security concerns belong in [private vulnerability reporting](SECURITY.md).
+Product-source contributions must wait for the cleared release scope and license. The [current status](docs/status.md) and [release and licensing details](docs/licensing.md) explain what remains pending.
 
 ## Proposed contribution policy for the source release
 
