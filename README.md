@@ -10,7 +10,7 @@
 
 Understand which tools and models were used, inspect the records behind a total, and bring a clear report into your next vendor conversation. Built by **Elo AI** for engineering, procurement, and FinOps teams.
 
-[Project status](docs/status.md) · [Product overview](docs/product.md) · [Data accuracy](docs/data-accuracy.md) · [Privacy](docs/privacy.md) · [FAQ](docs/faq.md)
+**Start here:** [What Tokenelo does](docs/product.md) · [Release status](docs/status.md) · [How to interpret counts](docs/data-accuracy.md).
 
 > **Internal alpha · public release in preparation.** This repository contains the public project documentation and repository tooling. Product source and installers are not available here yet. Apache 2.0 is the approved source-release plan; publication and the exact license grant remain pending counsel clearance. [Release and licensing details →](docs/licensing.md)
 

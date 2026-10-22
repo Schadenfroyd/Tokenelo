@@ -1,6 +1,6 @@
 # Project status
 
-**Snapshot: October 12, 2026 · internal alpha · public release in preparation.**
+**Availability reviewed October 22, 2026 · internal alpha · no public app download yet.**
 
 Tokenelo's primary purpose is free token tracking, reporting, and useful local evidence for vendor accountability. This page reports engineering progress; it is not a supported-release announcement.
 
@@ -12,11 +12,17 @@ Tokenelo's primary purpose is free token tracking, reporting, and useful local e
 
 Product source, private operational history, captured records, databases, and installers are excluded. Source and binary publication remain pending counsel clearance of the exact release scope.
 
-## Internal engineering snapshot
+## Current qualification work
+
+Work continues on installation and recovery, count quality and data provenance, and interface and drill-down verification across the three target platforms. The release gates below remain open. This is ongoing internal work, not a new release or platform-support announcement.
+
+## Historical engineering snapshot — October 12, 2026
+
+These observations describe the October 12 candidate and are retained with their original scope. They do not describe the latest candidate or establish current installed behavior.
 
 | Area | Verified observation | Limit |
 | --- | --- | --- |
-| Candidate checks | The latest checked candidate completed the 3,017-case test population on each of Windows, macOS, and Linux, together with type and bundle checks. | Windows and macOS: 3,001 passed / 16 skipped each; Linux: 3,003 passed / 14 skipped. No test failures in those runs. Existing platform skips remain disclosed. |
+| Candidate checks | The October 12 candidate completed the 3,017-case test population on each of Windows, macOS, and Linux, together with type and bundle checks. | Windows and macOS: 3,001 passed / 16 skipped each; Linux: 3,003 passed / 14 skipped. No test failures in those runs. Existing platform skips remain disclosed. |
 | Build comparison | The candidate's compiled backend files matched across those three runs. | This does not establish reproducible signed installers or public platform support. |
 | Lifecycle reliability | Scoped checks exercised accepted-work draining, startup cleanup, explicit CLI refusal, and proxy admission during shutdown. | Finite owned fixtures do not establish general latency bounds, fresh vendor capture, or every shutdown path. |
 | Installed applications | A fresh read-only observation confirmed saved process identities and installed package hashes on all three internal platforms. | Those installations use older builds; the checked candidate is **not installed**. Process presence does not prove current capture or correct UI data. |
@@ -33,12 +39,12 @@ The original internal alpha criteria remain unaccepted. Full release readiness h
 6. Complete mutation testing, required independent reviews, release inventory, dependency notices, and signing/notarization preparation.
 7. Obtain counsel clearance for the exact public source, patent grant, and binary distribution; then publish the cleared Apache 2.0 release.
 
-## Findings and opportunities
+## Findings and opportunities from the October 12 snapshot
 
-**Verified finding:** an owned internal parser fixture currently normalizes absent native counters and explicit zero counters to the same numeric result. This is a parser observation, not evidence about a vendor's live reporting behavior.
+**Verified finding:** an owned internal parser fixture was observed to normalize absent native counters and explicit zero counters to the same numeric result. This is a parser observation, not evidence about a vendor's live reporting behavior.
 
-**Proposed improvement:** make count-quality receipts distinguish an unavailable counter from measured zero, with explicit evidence for known components. The proposal is not implemented or accepted. It requires full-pipeline qualification and preservation of historical price and accounting behavior.
+**Proposed improvement:** make count-quality receipts distinguish an unavailable counter from measured zero, with explicit evidence for known components. The proposal was not implemented or accepted in that snapshot. Qualification requires full-pipeline qualification and preservation of historical price and accounting behavior.
 
-**Proposed improvement:** a local shutdown/recovery receipt could make incomplete draining or recovery visible to an operator. This is also unimplemented and requires retention and cleanup review.
+**Proposed improvement:** a local shutdown/recovery receipt could make incomplete draining or recovery visible to an operator. This was also unimplemented in that snapshot; retention and cleanup qualification are required.
 
 [Roadmap](roadmap.md) · [Data interpretation](data-accuracy.md) · [License plan](licensing.md)
