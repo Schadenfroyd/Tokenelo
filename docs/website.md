@@ -1,6 +1,6 @@
 # Public Tokenelo website
 
-The public marketing website is a buildless static site in the site directory. It uses HTML, CSS, vanilla JavaScript, and SVG. It has no package install, hosted data service, account system, analytics, cookie layer, or upload flow.
+The public marketing website is a buildless static site in the site directory. It uses HTML, CSS, vanilla JavaScript, and SVG. The site source has no hosted data service, account flow, analytics code, cookie handling, or visitor-data upload.
 
 The website explains the project from public repository documentation. It does not expose tracker source, internal builds, private operational material, or product acceptance evidence. The report illustration is conceptual and uses fabricated values; keep that label visible anywhere the example appears.
 
@@ -23,8 +23,12 @@ Use semantic HTML, keyboard-operable controls, visible focus, readable contrast,
 
 The repository checker verifies the website inventory, local HTML assets and anchors, allowed outbound links, private markers, and runtime-resource boundaries. Run the repository's public verification command described in the [maintainer workflow](maintaining.md).
 
-## Publishing plan
+## Publishing and response handling
 
 The GitHub Pages workflow automatically verifies and publishes the site directory from main. It also supports a manual workflow dispatch. The GitHub Pages CNAME remains deliberately unset, and the site artifact contains no CNAME file. The default project Pages URL is the upstream for the exact-host Cloudflare Worker that serves tokenelo.eloai.co. The public Worker, tests, and non-secret route configuration live under site-gateway/ and deploy independently; the gateway is not part of the Pages artifact. Do not put credentials, private DNS values, or access tokens in this repository or GitHub Actions. Tracker source and release binaries remain unavailable pending counsel clearance.
+
+Successful static responses from the gateway include Cache-Control: public, max-age=60, s-maxage=60, no-transform. The 60-second browser and shared-cache lifetimes remain unchanged. The no-transform directive prevents Cloudflare's automatic Web Analytics and JavaScript Detections script injection into the HTML response, so the existing Content Security Policy stays intact. See Cloudflare's [Web Analytics setup for proxied sites](https://developers.cloudflare.com/web-analytics/get-started/) and [JavaScript Detections guidance](https://developers.cloudflare.com/cloudflare-challenges/challenge-types/javascript-detections/).
+
+Cloudflare and GitHub Pages still process ordinary HTTP requests to serve, cache, route, and secure the site; hosting security features may use request metadata or security cookies. The Tokenelo page code adds no analytics JavaScript, account flow, cookie handling, or visitor-data upload.
 
 Website publication does not mean the tracker is available. Check the [current status](status.md) before describing installation, compatibility, or licensing.

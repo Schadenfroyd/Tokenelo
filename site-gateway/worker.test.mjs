@@ -89,6 +89,7 @@ test("allowlisted paths map to fixed Pages paths and strip incoming data", async
     assert.equal(response.headers.get("content-type"), contentType, path);
     assert.match(response.headers.get("cache-control"), /max-age=60/);
     assert.match(response.headers.get("cache-control"), /s-maxage=60/);
+    assert.match(response.headers.get("cache-control"), /(?:^|,\s*)no-transform(?:,|$)/i);
     assert.equal(response.headers.get("set-cookie"), null, path);
     assert.equal(response.headers.get("x-upstream-private"), null, path);
     securityHeaders(response);

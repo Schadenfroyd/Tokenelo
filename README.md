@@ -10,7 +10,7 @@
 
 Understand which tools and models were used, inspect the records behind a total, and bring a clear report into your next vendor conversation. Built by **Elo AI** for engineering, procurement, and FinOps teams.
 
-**Website:** [tokenelo.eloai.co](https://tokenelo.eloai.co) *(planned public deployment)* · [Website source](site/index.html)
+**Website:** [tokenelo.eloai.co](https://tokenelo.eloai.co) · [Website source](site/index.html)
 
 **Start here:** [What Tokenelo does](docs/product.md) · [Release status](docs/status.md) · [How to interpret counts](docs/data-accuracy.md).
 
