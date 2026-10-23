@@ -1,6 +1,6 @@
 # Maintaining the public repository
 
-This repository has a separate public history. Private engineering history, captured records, databases, farm configuration, and restricted release material must remain outside it.
+This repository has a separate public history. It includes public documentation, repository tooling, and the static marketing website source in `site/` and separately deployed gateway source in `site-gateway/`. Private engineering history, captured records, databases, farm configuration, and restricted release material must remain outside it.
 
 ## Change workflow
 
@@ -16,9 +16,16 @@ The repository owner is the current maintainer. `CODEOWNERS` routes review reque
 
 ## Automated checks
 
-The public-scope checker verifies local links and anchors, required documentation, the current documentation/tooling inventory, and unsafe SVG content. It rejects common private operational paths and key markers in public prose and assets. It is a guardrail, not a comprehensive secret scanner or proof of counsel clearance.
+The public-scope checker verifies Markdown and website links, local anchors and assets, required files, the explicit publication inventory, private operational markers, unsafe SVGs, and website runtime-resource limits. Website copy and assets are checked for private paths, restricted internal markers, unsafe links, remote scripts, fonts, and images. The Node test suite exercises the gateway allowlist and response behavior. These checks are guardrails, not a comprehensive secret scanner or proof of counsel clearance.
 
 GitHub secret scanning, push protection, private vulnerability reporting, and read-only workflow defaults provide additional controls. Actions must be pinned to full commit SHAs. Dependency updates are limited to the repository's GitHub Actions configuration.
+
+
+## Public website source and publishing
+
+The buildless marketing site lives in `site/` as HTML, CSS, vanilla JavaScript, and SVG. Keep it dependency-free and based only on public project documentation. The interactive report uses fabricated values and must remain clearly labeled. Website source is a public documentation and marketing surface; it does not include tracker implementation or release binaries.
+
+The main-branch GitHub Pages workflow verifies the public source and site, then uploads only the site directory. A manual workflow dispatch is also available. The GitHub Pages CNAME remains deliberately unset, and the site artifact contains no CNAME file. The default project Pages URL is the upstream for the exact-host Cloudflare Worker that serves tokenelo.eloai.co. The public Worker, tests, and non-secret route configuration live under site-gateway/ and deploy independently from the Pages workflow; the gateway is not part of the Pages artifact. Keep Cloudflare credentials, access tokens, and private DNS values out of this repository and GitHub Actions. Tracker source and release binaries remain unavailable pending counsel clearance. See the [website source guide](website.md) for editing and publishing rules.
 
 ## Release transition
 

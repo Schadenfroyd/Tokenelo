@@ -1,0 +1,13 @@
+// Verify that GitHub Pages reports https://schadenfroyd.github.io/Tokenelo/ before deployment.
+{
+  "name": "tokenelo-web",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-22",
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "tokenelo.eloai.co",
+      "custom_domain": true
+    }
+  ]
+}

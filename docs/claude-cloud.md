@@ -1,8 +1,9 @@
 # Work on Tokenelo in Claude cloud
 
-The public repository is ready for documentation and repository-tooling tasks.
-Application engineering belongs in the separately authorized engineering workspace;
-this checkout contains no tracker source or installers. Keep that distinction in
+The public repository is ready for public documentation, repository-tooling, static marketing-site, and gateway-source tasks.
+Tracker application engineering belongs in the separately authorized engineering workspace;
+this checkout contains public documentation, static website source under site/, and independently deployed gateway source under site-gateway/,
+with no tracker source or installers. Keep that distinction in
 task prompts, pull requests, and handoffs.
 
 ## Repository and environment
@@ -11,7 +12,7 @@ task prompts, pull requests, and handoffs.
 | --- | --- |
 | Repository | `Schadenfroyd/Tokenelo` |
 | Starting branch | Current public `main` |
-| Environment name | `Tokenelo public documentation` |
+| Environment name | `Tokenelo public docs and website` |
 | Runtime | Node.js 22 or newer and Git |
 | Network | None for repository checks; Trusted only when the task needs external documentation |
 | Environment variables and secrets | None required |
@@ -38,10 +39,9 @@ Use this as a bounded starting task:
 
 ```text
 Work only in Schadenfroyd/Tokenelo, starting from current public main.
-Read CLAUDE.md, the contribution guide, status, and licensing documents.
-Run node scripts/cloud-check.mjs and inspect the current public documentation.
-Choose one concrete improvement to navigation, clarity, accessibility, or
-fabricated reporting examples. Keep product source and restricted material out.
+Read CLAUDE.md, the contribution guide, status, and licensing documents. Read docs/website.md before static-site or gateway work.
+Run node scripts/cloud-check.mjs and inspect the public documentation and existing website source.
+Choose one concrete improvement to public documentation or the website's navigation, clarity, accessibility, or fabricated reporting examples. Keep tracker source, binaries, and restricted material out.
 Implement the improvement on a new branch, run the verification command again,
 and return a reviewable pull request with exact changes, results, and limitations.
 Do not merge, publish a release, or change repository settings or history.
@@ -55,8 +55,9 @@ controls. [Claude's project-instruction documentation](https://code.claude.com/d
 ## Checks and return path
 
 - `node scripts/cloud-check.mjs` is the complete local gate for this repository.
-  It runs `node --test scripts/check-docs.test.mjs scripts/cloud-check.test.mjs`
-  and `node scripts/check-docs.mjs` after checking the clean public ancestry.
+  It runs `node --test` for repository, cloud, and gateway tests, checks `site/site.js` with `node --check`, and
+  runs `node scripts/check-docs.mjs` after checking the clean public ancestry. The inventory also checks static-site links, assets, anchors, and runtime-resource boundaries.
+  The gate includes eight gateway tests and a syntax check for site/site.js.
   A shallow checkout fetches only explicit public `main` without tags or other refs.
   An opaque provider proxy origin remains unverified as a transport; the known
   public root and inventory establish the checked content's repository lineage.
@@ -77,4 +78,4 @@ support, counsel clearance, or a public release. A cloud environment is operatio
 only after an actual session clones the intended branch, completes setup, and
 returns its checked result.
 
-[Maintainer workflow](maintaining.md) · [Current status](status.md) · [Release scope](licensing.md)
+[Maintainer workflow](maintaining.md) · [Website source guide](website.md) · [Current status](status.md) · [Release scope](licensing.md)

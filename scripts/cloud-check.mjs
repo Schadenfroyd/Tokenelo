@@ -50,7 +50,8 @@ export function verify(root) {
     throw new Error('Start from current public main; this checkout has unexpected historical roots.');
   }
   if (origin === 'opaque') console.log('Clean public ancestry verified; provider origin transport format is not independently verified.');
-  run(process.execPath, ['--test', 'scripts/check-docs.test.mjs', 'scripts/cloud-check.test.mjs'], true);
+  run(process.execPath, ['--test', 'scripts/check-docs.test.mjs', 'scripts/cloud-check.test.mjs', 'site-gateway/worker.test.mjs'], true);
+  run(process.execPath, ['--check', 'site/site.js'], true);
   run(process.execPath, ['scripts/check-docs.mjs'], true);
   console.log(`Public documentation verification passed on Node ${process.versions.node}.`);
 }
