@@ -7,6 +7,8 @@ Tokenelo's primary purpose is free token tracking, reporting, and useful local e
 ## Available in this repository
 
 - Product overview, data interpretation, privacy, security, and licensing plan.
+- Public static marketing site source and its illustrative, fabricated report example.
+- Exact-host static-site gateway source and regression tests, separate from the tracker.
 - Roadmap, contributor guidance, and structured issue forms.
 - Repository artwork and automated documentation checks.
 

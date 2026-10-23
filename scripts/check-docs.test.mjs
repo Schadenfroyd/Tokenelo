@@ -36,3 +36,45 @@ test('malformed encoding fails and fenced sample headings are ignored', () => {
   assert.equal(validate(new Map([['README.md', '[Bad](%zz)']]), false).length, 1);
   assert.deepEqual([...anchors('# Real\n```md\n# Sample\n```\n## Next')], ['real', 'next']);
 });
+
+test('website accepts base-root and relative assets, local anchors, and approved destinations', () => {
+  const files = new Map([
+    ['site/index.html', '<link rel="canonical" href="https://tokenelo.eloai.co/"><link rel="stylesheet" href="./site.css"><link rel="icon" href="/favicon.svg"><script src="/site.js"></script><main id="main"></main><a href="#main">Top</a><a href="https://github.com/Schadenfroyd/Tokenelo">GitHub</a><a href="https://eloai.co">Elo AI</a>'],
+    ['site/site.css', 'body { color: navy; }'],
+    ['site/site.js', 'void 0;'],
+    ['site/favicon.svg', '<svg xmlns="http://www.w3.org/2000/svg"></svg>'],
+  ]);
+  assert.deepEqual(validate(files, false), []);
+});
+
+test('website private paths and restricted promotion markers fail', () => {
+  const marker = 'cryptocurrency';
+  const farm = 'f' + 'arm';
+  const files = new Map([['site/index.html', '<p>C:\\private\\example ' + farm + ' ' + marker + '</p>']]);
+  const failures = validate(files, false);
+  assert.ok(failures.some(x => x.includes('Private marker in public content: site/index.html')));
+  assert.ok(failures.some(x => x.includes('Farm detail in public website content: site/index.html')));
+  assert.ok(failures.some(x => x.includes('Local path in public website content: site/index.html')));
+  assert.ok(failures.some(x => x.includes('Restricted internal or patent promotion marker in website content: site/index.html')));
+});
+
+test('website missing local assets and anchors fail', () => {
+  const files = new Map([['site/index.html', '<link rel="stylesheet" href="./missing.css"><main id="main"><a href="#absent">Open</a></main>']]);
+  const failures = validate(files, false);
+  assert.ok(failures.some(x => x.includes('Missing website asset or page: site/index.html -> ./missing.css')));
+  assert.ok(failures.some(x => x.includes('Missing website anchor: site/index.html -> #absent')));
+});
+
+test('website rejects unsafe scripts, images, fonts, links, and network calls', () => {
+  const files = new Map([
+    ['site/index.html', '<script src="https://cdn.example.test/app.js"></script><img src="https://cdn.example.test/pixel.png"><a href="javascript:alert(1)">bad</a><a href="https://other.example.test/">outside</a>'],
+    ['site/site.css', '@font-face { src: url(https://fonts.example.test/font.woff2); }'],
+    ['site/site.js', 'fetch("/collect");'],
+  ]);
+  const failures = validate(files, false);
+  assert.ok(failures.some(x => x.includes('Remote runtime resource in website HTML')));
+  assert.ok(failures.some(x => x.includes('Unsafe URL scheme in website HTML')));
+  assert.ok(failures.some(x => x.includes('Unapproved website outbound link')));
+  assert.ok(failures.some(x => x.includes('Remote or active CSS reference')));
+  assert.ok(failures.some(x => x.includes('Network access is not allowed')));
+});

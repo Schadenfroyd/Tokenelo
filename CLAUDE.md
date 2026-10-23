@@ -1,11 +1,11 @@
 # Tokenelo public repository
 
-This checkout contains public project documentation, artwork, and repository tooling.
+This checkout contains public project documentation, artwork, repository tooling, a static marketing site in `site/`, and its separately deployed gateway source in `site-gateway/.
 Token tracking, reporting, data depth, and vendor accountability define its scope.
 
 ## Start here
 
-- Read `README.md`, `CONTRIBUTING.md`, `docs/status.md`, and `docs/licensing.md`.
+- Read `README.md`, `CONTRIBUTING.md`, `docs/status.md`, and `docs/licensing.md`. For website changes, read `docs/website.md`.
 - Use [the Claude cloud runbook](docs/claude-cloud.md) for environment setup and handoff.
 - Run `node scripts/cloud-check.mjs` before editing and again before handing off.
 - Node.js 22 or newer and Git are sufficient. No package installation, service,

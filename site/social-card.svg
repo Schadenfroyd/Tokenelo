@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Tokenelo by Elo AI</title>
+  <desc id="desc">AI usage, with evidence. Free AI usage tracking and reporting for vendor accountability.</desc>
+  <rect width="1200" height="630" fill="#f4f5f0"/>
+  <path d="M850 0v630M940 0v630M1030 0v630M1120 0v630M760 90h440M760 180h440M760 270h440M760 360h440M760 450h440M760 540h440" stroke="#17283c" stroke-opacity=".055"/>
+  <rect x="82" y="68" width="44" height="44" rx="12" fill="#5de1c4"/>
+  <path d="M94 83h20M104 83v17" fill="none" stroke="#111b34" stroke-width="4.4" stroke-linecap="round"/>
+  <text x="143" y="98" fill="#63717e" font-family="Segoe UI,Arial,sans-serif" font-size="18" letter-spacing="2.3">ELO AI</text>
+  <text x="82" y="254" fill="#111b34" font-family="Segoe UI,Arial,sans-serif" font-size="76" font-weight="700" letter-spacing="-4">Tokenelo</text>
+  <text x="82" y="347" fill="#43576b" font-family="Segoe UI,Arial,sans-serif" font-size="45" font-weight="500" letter-spacing="-1.5">AI usage, with evidence.</text>
+  <text x="82" y="414" fill="#63717e" font-family="Segoe UI,Arial,sans-serif" font-size="24">Free AI usage tracking and reporting</text>
+  <rect x="81" y="493" width="315" height="38" rx="19" fill="#e4ebe7"/>
+  <circle cx="102" cy="512" r="5" fill="#087c6b"/>
+  <text x="119" y="518" fill="#415563" font-family="Segoe UI,Arial,sans-serif" font-size="15" font-weight="600" letter-spacing=".5">INTERNAL ALPHA · RELEASE PREPARATION</text>
+  <rect x="922" y="161" width="157" height="202" rx="18" fill="#111b34"/>
+  <path d="M951 204h99M951 226h68M951 248h99M951 270h72" stroke="#aebccc" stroke-opacity=".65" stroke-width="5" stroke-linecap="round"/>
+  <path d="m953 320 15 15 35-36" fill="none" stroke="#5de1c4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
