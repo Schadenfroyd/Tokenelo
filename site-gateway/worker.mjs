@@ -117,7 +117,7 @@ async function handleRequest(request, fetchImpl) {
     status: 200,
     headers: responseHeaders({
       contentType: file.contentType,
-      cacheControl: "public, max-age=60, s-maxage=60",
+      cacheControl: "public, max-age=60, s-maxage=60, no-transform",
     }),
   });
 }
