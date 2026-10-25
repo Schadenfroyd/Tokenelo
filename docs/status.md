@@ -14,6 +14,12 @@ Tokenelo's primary purpose is free token tracking, reporting, and useful local e
 
 Product source, private operational history, captured records, databases, and installers are excluded. Source and binary publication remain pending counsel clearance of the exact release scope.
 
+## Internal UI fixture review — October 25, 2026
+
+A private, uninstalled source candidate completed a fixture-only review of Today in Sessions and Local in both color themes. The review checked separate query-time labels, an unavailable recorded-time cutoff, a local-model session join, and the session detail against fabricated `FILED-EXAMPLE` records. It captured 20 hidden/offscreen UI states with no network requests.
+
+This verifies only a bounded UI candidate against fabricated records. It does not establish live vendor capture, a current installation, measured usage totals, invoice reconciliation, public platform support, or release acceptance. The original internal alpha gates and counsel clearance remain open.
+
 ## Current qualification work
 
 Work continues on installation and recovery, count quality and data provenance, and interface and drill-down verification across the three target platforms. The release gates below remain open. This is ongoing internal work, not a new release or platform-support announcement.
