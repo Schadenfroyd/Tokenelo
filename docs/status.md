@@ -28,7 +28,7 @@ This verifies only a bounded UI candidate against fabricated records. It does no
 
 ## Current qualification work
 
-Exact current-candidate staged packages have passed the 11 hidden fixture cohorts on Windows and macOS. The Linux cohorts remain on an earlier staged source revision; its exact package identity has not been bound to this candidate. All reviews are uninstalled and use fabricated FILED-EXAMPLE records. They do not establish live data accuracy, physical interaction, authenticated cross-host reports, public platform support, or release acceptance. Work remains on live data accuracy, installed and physical behavior, authentication, storage recovery, and lifecycle. This is ongoing internal work, not a release or platform-support announcement.
+Exact-candidate staged packages bound to the same internal source identity have passed all 11 hidden fixture cohorts on Windows, macOS, and Linux. All reviews are uninstalled and use fabricated FILED-EXAMPLE records. They do not establish live data accuracy, physical interaction, authenticated cross-host reports, public platform support, or release acceptance. Work remains on live data accuracy, installed and physical behavior, authentication, storage recovery, and lifecycle. This is ongoing internal work, not a release or platform-support announcement.
 
 ## Historical engineering snapshot — October 12, 2026
 
