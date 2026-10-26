@@ -28,7 +28,7 @@ This verifies only a bounded UI candidate against fabricated records. It does no
 
 ## Current qualification work
 
-Staged fixture review now covers all nine screens on Windows, macOS, and Linux for the current candidate. Work remains on live data accuracy, installed and physical behavior, authentication, storage recovery, and lifecycle. This is ongoing internal work, not a release or platform-support announcement.
+A staged fixture review has covered all nine screens on Windows, macOS, and Linux using an uninstalled candidate. The reviewed staged source is not attested as the current product candidate or installed build. Work remains on live data accuracy, installed and physical behavior, authentication, storage recovery, and lifecycle. This is ongoing internal work, not a release or platform-support announcement.
 
 ## Historical engineering snapshot — October 12, 2026
 
