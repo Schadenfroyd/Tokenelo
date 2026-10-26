@@ -28,7 +28,7 @@ This verifies only a bounded UI candidate against fabricated records. It does no
 
 ## Current qualification work
 
-A staged fixture review has covered all nine screens on Windows, macOS, and Linux using an uninstalled candidate. The staged artifact is uninstalled, and its package identity has not been attested against the current product-candidate commit or installed runtime. Work remains on live data accuracy, installed and physical behavior, authentication, storage recovery, and lifecycle. This is ongoing internal work, not a release or platform-support announcement.
+The Windows staged package is built from the current product-candidate commit and passed the 11 hidden fixture cohorts. The macOS and Linux cohorts used earlier staged source revisions; those package identities have not been bound to the current candidate. All three reviews are uninstalled and use fabricated FILED-EXAMPLE records. They do not establish live data accuracy, physical interaction, authenticated cross-host reports, public platform support, or release acceptance. Work remains on live data accuracy, installed and physical behavior, authentication, storage recovery, and lifecycle. This is ongoing internal work, not a release or platform-support announcement.
 
 ## Historical engineering snapshot — October 12, 2026
 
