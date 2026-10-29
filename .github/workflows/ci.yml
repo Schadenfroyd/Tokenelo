@@ -31,18 +31,5 @@ jobs:
       - run: npm run typecheck
       # Several suites spawn or import the compiled output in dist, so build before testing.
       - run: npm run build
-      # TEMPORARY: records who owns a fresh temp directory on this runner (remove once the Windows result is understood).
-      - name: Probe Windows directory ownership
-        if: runner.os == 'Windows'
-        continue-on-error: true
-        shell: powershell
-        run: |
-          $d = Join-Path $env:TEMP ('tokenelo-owner-probe-' + [guid]::NewGuid().ToString('N').Substring(0, 6))
-          New-Item -ItemType Directory -Path $d | Out-Null
-          $id = [System.Security.Principal.WindowsIdentity]::GetCurrent()
-          'current SID : ' + $id.User.Value
-          'dir owner   : ' + [System.IO.Directory]::GetAccessControl($d).GetOwner([System.Security.Principal.SecurityIdentifier]).Value
-          'admin role  : ' + ([System.Security.Principal.WindowsPrincipal]$id).IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)
-          Remove-Item $d
       - run: npm test -- --maxWorkers=1
       - run: npm audit --audit-level=high
