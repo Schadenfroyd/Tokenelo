@@ -1,7 +1,7 @@
 # Work on Tokenelo in Claude cloud
 
 The public repository is ready for public documentation, repository-tooling, static marketing-site, and gateway-source tasks.
-Tracker application engineering belongs in the separately authorized engineering workspace;
+Tracker application engineering belongs in the separately authorized engineering workspace, and source pull requests follow CONTRIBUTING.md;
 this checkout contains public documentation, static website source under site/, independently deployed gateway source under site-gateway/,
 and the Apache 2.0 tracker source published from that workspace, with no installers or private engineering history. Keep that distinction in
 task prompts, pull requests, and handoffs.
@@ -41,7 +41,7 @@ Use this as a bounded starting task:
 Work only in Schadenfroyd/Tokenelo, starting from current public main.
 Read CLAUDE.md, the contribution guide, status, and licensing documents. Read docs/website.md before static-site or gateway work.
 Run node scripts/cloud-check.mjs and inspect the public documentation and existing website source.
-Choose one concrete improvement to public documentation or the website's navigation, clarity, accessibility, or fabricated reporting examples. Keep tracker source, binaries, and restricted material out.
+Choose one concrete improvement to public documentation or the website's navigation, clarity, accessibility, or fabricated reporting examples. Do not change tracker source or binaries, and keep restricted material out.
 Implement the improvement on a new branch, run the verification command again,
 and return a reviewable pull request with exact changes, results, and limitations.
 Do not merge, publish a release, or change repository settings or history.

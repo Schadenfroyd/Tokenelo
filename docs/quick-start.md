@@ -1,17 +1,19 @@
 # Source checkout quick start — release draft
 
-These instructions apply to the proposed source edition once it contains `package.json`, `src`, `rates`, reviewed tests and build scripts. The current public repository does not contain that edition yet. Clean public-install acceptance is still pending.
+These instructions build and run the tracker from a source checkout. They are a release draft: clean public-install acceptance is still pending, and no installer or supported release exists.
 
 ## Build
 
-Use Node.js 22.13 or newer and npm (`.nvmrc` pins 22.23.4, the version the test suite was run on; the source CI workflow uses Node 24). Clone the public source release, then run:
+Use Node.js 22.13 or newer and npm (`.nvmrc` pins 22.23.4, the version the test suite was run on; the source CI workflow uses Node 24). Clone this repository, then run:
 
 ```sh
 npm ci
 npm run typecheck
-npm test
 npm run build
+npm test
 ```
+
+Build before testing: several suites import or spawn the compiled output in `dist`.
 
 The build produces the CLI/daemon and Electron tray assets in `dist`. A source build is not a signed installer. The repository remains private to npm publication (`private: true`); public GitHub source does not imply an npm package release.
 
@@ -29,7 +31,7 @@ The config file is `config.json` in the platform configuration directory. `TOKEN
 }
 ```
 
-This disables local proxy capture and fleet sharing; supported source-log adapters still use their configured/default roots. Use empty, explicitly configured source roots for a synthetic trial. The source release must include a validated complete example of that isolated trial.
+This disables local proxy capture and fleet sharing; supported source-log adapters still use their configured/default roots. Use empty, explicitly configured source roots for a synthetic trial. A validated complete example of that isolated trial is not yet included.
 
 ## Inspect recorded usage
 
@@ -44,7 +46,7 @@ node dist/cli/index.js export --format json --range 7d > usage.json
 
 `ingest` imports supported local records. Reports/export read the local ledger. Raw exports contain operational identifiers and may contain paths; review before sharing. Available ranges are `today`, `24h`, `7d`, `30d`, and `all`.
 
-For ongoing capture, `node dist/cli/index.js serve` runs the daemon. `npm run tray` opens the tray application for the local user. Do not install a background service until the source release's platform service instructions and upgrade/rollback behavior have been verified.
+For ongoing capture, `node dist/cli/index.js serve` runs the daemon. `npm run tray` opens the tray application for the local user. Do not install a background service: platform service instructions and upgrade/rollback behavior have not been verified.
 
 ## Platform locations
 

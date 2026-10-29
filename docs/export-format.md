@@ -1,13 +1,13 @@
-# CSV field dictionary (schema version 3)
+# CSV field dictionary (schema version 3) — release draft
 
-`export --format csv` writes one row per recorded event with a fixed header. Later versions only append columns, so consumers should still select by header name. `export --format json` writes the normalized events; it has not been anonymized.
+`export --format csv` writes one row per recorded event with a fixed header. Select columns by header name: the header may change before a supported release. `export --format json` writes the normalized events; it has not been anonymized.
 
 | Group | Fields | Interpretation |
 | --- | --- | --- |
 | Identity and scope | `id`, `host`, `source`, `ts`, `sessionId`, `model`, `provider` | Operational identifiers; `ts` is epoch milliseconds UTC |
 | Price comparison | `apiEquivUsd`, `priceStatus`, `priceVersion` | Stored Standard API-equivalent comparison and its qualification; unavailable numbers are blank |
 | Recorded components | `inputFresh`, `cacheWrite5m`, `cacheWrite1h`, `cacheWriteUnassigned`, `cacheWriteAssumed1h`, `cacheRead`, `output`, `reasoning` | Normalized components; optional legacy fields stay blank. Assumed-duration and reasoning subsets must not be counted twice |
-| Count qualifications | `countQuality`, `ucuCountQuality` | Missing legacy metadata becomes `unrecorded`. `ucuCountQuality` is a legacy column kept so existing consumers keep working: it qualifies the fresh-input, cache-creation and output subset when that differs from the full counts, and repeats `countQuality` when no separate value was stored |
+| Count qualifications | `countQuality`, `ucuCountQuality` | Missing legacy metadata becomes `unrecorded`. `ucuCountQuality` qualifies the fresh-input, cache-creation and output subset when that differs from the full counts, and repeats `countQuality` when no separate value was stored |
 | Source context | `tsSource`, `engine`, `thinking`, `speed`, `effort`, `serviceTier`, `inferenceGeo` | Recorded source/model context, not inferred completeness |
 | Evidence structure | `flags`, `components` | JSON arrays inside properly quoted CSV cells; component details preserve mixed-model events |
 | Export contract | `costBasis`, `exportSchemaVersion` | `api-equivalent-not-billed` and `3` |

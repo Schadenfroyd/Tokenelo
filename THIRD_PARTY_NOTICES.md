@@ -1,6 +1,6 @@
-# Third-party notices — preparation checklist
+# Third-party notices
 
-This is an internal checklist, not a completed license notice for a distributed build.
+This file summarizes third-party license status for the source tree; it is a checklist, not a completed license notice for a distributed build. No installer or signed build is published. Generated candidate notices for the development dependency tree are in [docs/third-party/THIRD-PARTY-NOTICES.md](docs/third-party/THIRD-PARTY-NOTICES.md).
 
 The current resolved dependency tree has 370 entries, all development-only (regenerated 2026-10-28 from the 2026-10-25 lockfile; see docs/third-party/INVENTORY.md). Declared licenses: 283 MIT, 36 ISC, 12 MPL-2.0 (all `lightningcss` platform builds), 10 BSD-3-Clause, 9 Apache-2.0, 8 BlueOak-1.0.0, 6 BSD-2-Clause, and single entries of 0BSD, Python-2.0, WTFPL, WTFPL OR ISC, (MIT OR CC0-1.0) and (WTFPL OR MIT). One package (`truncate-utf8-bytes`, WTFPL) is classed unknown by the inventory checker. The older 104-entry and 159-entry inventories are historical. Preserve each dependency's actual required text/notice; metadata is not a substitute for those texts.
 
@@ -10,4 +10,4 @@ An Electron/Node binary contains additional runtime components and notices. Inve
 
 Review test-fixture origins, rate data, benchmark data, screenshots, fonts/icons and documentation assets separately. Do not redistribute a third-party dataset merely because the test code has a permissive license.
 
-The final source release must replace this checklist with actual notices and explicit file-level exceptions where needed. License selection and dependency vulnerability acceptance are separate checks.
+Before any installer or signed build is published, replace this checklist with notices for the exact delivered artifact, with explicit file-level exceptions where needed. License selection and dependency vulnerability acceptance are separate checks.

@@ -8,8 +8,8 @@
   "project": {
     "name": "tokenelo",
     "version": "0.1.0",
-    "license": null,
-    "note": "No project license has been granted; Apache-2.0 is a plan gated by counsel clearance.",
+    "license": "Apache-2.0",
+    "note": "Project license: Apache-2.0; see LICENSE and NOTICE.",
     "declaredRuntimeDependencies": [],
     "declaredDevDependencies": [
       "@types/node",
@@ -10151,6 +10151,6 @@
   "outputs": {
     "noticesSha256": "3bfc13c335faffde49470e60cc368e49530abcee318797bfaec158214d968de8",
     "sbomSha256": "a23bd9228c359dcd54fa80e3dc005b3b479e31c8c57f7d22933c08a3165c960c",
-    "markdownSha256": "6a6b1abf8774f24af6a2f766a167251003371591e979fef4469a1968da829fab"
+    "markdownSha256": "e28a0d859e66c3af32afb3989480725f4dc54e8b3c0c8fa3e58889f6ef9b0600"
   }
 }

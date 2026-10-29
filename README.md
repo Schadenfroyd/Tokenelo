@@ -60,7 +60,7 @@ The implementation includes adapters for Claude Code, Codex, and configured loca
 | [Roadmap](docs/roadmap.md) | Acceptance work and proposed reporting improvements. |
 | [FAQ](docs/faq.md) | Availability, licensing, billing comparisons, and privacy. |
 | [Build from source](docs/quick-start.md) | Node.js setup, checks, and local use (a release draft). |
-| [License](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md) | Apache 2.0 terms and candidate notices for the development dependency tree. |
+| [License](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md) | Apache 2.0 terms and the third-party notice checklist. |
 | [Contributing](CONTRIBUTING.md) | Source and documentation changes, product feedback, and sanitized reproductions. |
 | [Claude cloud workflow](docs/claude-cloud.md) | Work on public documentation with reproducible checks and a clear handoff. |
 | [Issues](https://github.com/Schadenfroyd/Tokenelo/issues/new/choose) | Report a problem or propose a useful improvement. |

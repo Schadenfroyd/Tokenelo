@@ -8,15 +8,16 @@ Token tracking, reporting, data depth, and vendor accountability define its scop
 - Read `README.md`, `CONTRIBUTING.md`, `docs/status.md`, and `docs/licensing.md`. For website changes, read `docs/website.md`.
 - Use [the Claude cloud runbook](docs/claude-cloud.md) for environment setup and handoff.
 - Run `node scripts/cloud-check.mjs` before editing and again before handing off.
-- Node.js 22 or newer and Git are sufficient. No package installation, service,
+- Node.js 22.13 or newer and Git are sufficient. No package installation, service,
   database, private network, or credentials file is needed for documentation work.
   Source work needs `npm ci`; see `docs/quick-start.md`.
 
 ## Work and publication boundaries
 
 - Branch from current public `main`; use a separate branch for each task.
-- Keep all changes within the explicit inventory in `scripts/check-docs.mjs`.
-  Review inventory additions as changes to the publication scope.
+- Keep all changes within the publication scope in `scripts/check-docs.mjs`: exact
+  files for documentation, site and tooling, and scoped paths for the source tree.
+  Review scope additions as changes to the publication scope.
 - Installers, signed builds, private engineering history, captured usage, customer
   data, and operational configuration remain outside this repository.
 - The tracker source is released under Apache 2.0 (see `LICENSE`). Binary and

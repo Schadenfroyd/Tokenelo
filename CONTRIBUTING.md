@@ -5,7 +5,7 @@ Tokenelo's application source is published under Apache 2.0. You can improve the
 ## Choose a way to help
 
 - **Improve the documentation.** Documentation pull requests are welcome. Run `node --test scripts/check-docs.test.mjs` and `node scripts/check-docs.mjs` before submitting; these checks need no dependency installation.
-- **Improve the source.** Source pull requests are welcome. Use Node.js 22.13 or newer (see the [quick start](docs/quick-start.md)), then run `npm ci`, `npm run typecheck`, `npm test` and `npm run build` before submitting.
+- **Improve the source.** Source pull requests are welcome. Use Node.js 22.13 or newer (`.nvmrc` pins the tested version; see the [quick start](docs/quick-start.md)), then run `npm ci`, `npm run typecheck`, `npm run build` and `npm test` before submitting. Tests import the compiled output, so build first.
 - **Share feedback or report a problem.** Use the [issue forms](https://github.com/Schadenfroyd/Tokenelo/issues/new/choose) to suggest an improvement or describe a tracking issue.
 - **Report a security concern privately.** Use [private vulnerability reporting](SECURITY.md), not a public issue.
 

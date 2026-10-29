@@ -2,7 +2,7 @@
   "name": "tokenelo",
   "version": "0.1.0",
   "private": true,
-  "description": "Cross-platform tray app + headless daemon capturing Claude Code, Codex and local Ollama usage; computes API-equivalent spend, sessions and reports.",
+  "description": "Tray app + headless daemon capturing Claude Code, Codex and local Ollama usage; computes API-equivalent spend, sessions and reports.",
   "type": "module",
   "engines": {
     "node": ">=22.13"

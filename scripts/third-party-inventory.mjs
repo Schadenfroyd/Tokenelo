@@ -193,7 +193,7 @@ function buildInventory(data) {
     project: {
       name: rootPkg.name, version: rootPkg.version,
       license: rootPkg.license ?? null,
-      note: 'No project license has been granted; Apache-2.0 is a plan gated by counsel clearance.',
+      note: rootPkg.license ? `Project license: ${rootPkg.license}; see LICENSE and NOTICE.` : 'No project license is declared in package.json.',
       declaredRuntimeDependencies: Object.keys(rootPkg.dependencies ?? {}).sort(),
       declaredDevDependencies: Object.keys(rootPkg.devDependencies ?? {}).sort(),
     },

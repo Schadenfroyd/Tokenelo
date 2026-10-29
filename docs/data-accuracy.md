@@ -22,7 +22,7 @@ Count completeness and pricing status are separate questions.
 
 ## Reporting and sharing
 
-The internal CSV v2 implementation retains the original leading columns and adds token components, qualifications, source/model-component detail and rate provenance. Unknown optional counters remain blank; legacy quality is labeled unrecorded. String fields that could become spreadsheet formulas receive an apostrophe in CSV presentation; JSON and stored records are unchanged.
+The CSV export retains the original leading columns and adds token components, qualifications, source/model-component detail and field evidence. Unknown optional counters remain blank; legacy quality is labeled unrecorded. String fields that could become spreadsheet formulas receive an apostrophe in CSV presentation; JSON and stored records are unchanged.
 
 The [CSV field dictionary](export-format.md) lists every exported column. Raw event/host/session identifiers remain sensitive. JSON may include project paths and additional metadata. Sanitize before sharing.
 

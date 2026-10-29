@@ -1,6 +1,6 @@
 # Maintaining the public repository
 
-This repository has a separate public history. It includes public documentation, repository tooling, and the static marketing website source in `site/` and separately deployed gateway source in `site-gateway/`. Private engineering history, captured records, databases, farm configuration, and restricted release material must remain outside it.
+This repository has a separate public history. It includes the Apache 2.0 tracker source, public documentation, repository tooling, and the static marketing website source in `site/` and separately deployed gateway source in `site-gateway/`. Private engineering history, captured records, databases, farm configuration, and restricted release material must remain outside it.
 
 ## Change workflow
 

@@ -1,9 +1,6 @@
 # Third-party inventory — findings and open questions
 
-Prepared on `cloud/work/dependency-inventory-20261013` from `cloud/current` (`e47be4c8`). This is
-CLOUD-lane preparation for SHIP stream 8 (SBOM / notices). It closes no gate, is not legal advice,
-and grants no license. Counsel clearance (DESIGN section 13) still governs any public source or
-binary release.
+This directory holds a generated inventory of the development dependency tree and notes on what it does and does not cover. It is not legal advice and is not a notice for a distributed build. No installer or signed build is published; see the root [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md).
 
 ## What is in this directory
 
@@ -61,30 +58,22 @@ manifest recording source hash, binary hash and compiler hash. I found no copyri
 
 **F7 — Data and content with outside origins.**
 - `rates/prices.json` cites vendor pricing pages and fetch dates. Prices are facts, but vendor terms of
-  use for any redistribution are a counsel question.
-- The benchmark harness fetches MMLU, MMLU-Pro and HellaSwag from Hugging Face at run time. Stored
-  results (`docs/benchmarks/**`) hold item IDs, token counts and timings only; I checked one
-  500-item file and found no question text. **The datasets' licenses are unverified:** this cloud
-  network policy blocks `huggingface.co` (HTTP 403 on CONNECT). Verify before publishing benchmark
-  outputs.
+  use for any redistribution are a separate question.
 
-**F8 — No project license yet, correctly.** There is no `LICENSE` or `NOTICE` at the root and no
-`license` field in `package.json`. Nothing was added: Apache-2.0 is a plan gated by counsel. When
-cleared: add `LICENSE` and `NOTICE`, set `license` in `package.json`, regenerate this directory.
+**F8 — Project license.** `LICENSE` and `NOTICE` are at the root and `package.json` sets `license` to
+Apache-2.0. Regenerate this directory when the lockfile changes.
 
 **F9 — Lockfile hygiene is good.** All 370 entries resolve from `registry.npmjs.org` and carry sha512
 integrity (re-verified 2026-10-28 from `package-lock.json`). Nineteen package names appear at more than
 one version (for example `undici` 6.29.1 / 7.30.1, `minimatch`, `fs-extra`, `semver`, `@types/node`); most
 are nested under `electron-builder`.
 
-## Suggested next steps (owner decisions, not done here)
+## Suggested next steps (not done here)
 
 1. Decide the packaging approach, then inventory the shipped artifact (Electron distribution license
    files, Node if bundled) and regenerate notices from that, not from the dev tree.
-2. Add `node scripts/third-party-inventory.mjs --check` to the portable CI job so a lockfile change
-   cannot drift from the inventory. I did not edit `.github/workflows/ci.yml` (owner-controlled).
-3. Verify the three dataset licenses from a network that can reach Hugging Face.
-4. After counsel clearance, add `LICENSE`/`NOTICE` and the `package.json` license field.
+2. Add `node scripts/third-party-inventory.mjs --check` to the CI workflow so a lockfile change cannot
+   drift from the inventory. It currently exits 1 because of the WTFPL package noted below.
 
 ## Reproduce
 
@@ -107,9 +96,5 @@ generated file that no longer matches the inventory. Weak-copyleft packages prod
 - `sbom.cdx.json` validates against the CycloneDX 1.5 JSON schema (schema files from the
   `@cyclonedx/cyclonedx-library` snapshot, checked with Ajv), a corrupted copy is rejected, bom-refs are
   unique, and there are no dangling dependency references.
-- Baseline of `cloud/current` in a Claude cloud container before these files: typecheck and full build
-  pass with `dist/` unchanged; portable profile 3,027 passed / 12 skipped / 0 failed (3,039); portable
-  report check passes. These changes add files only and touch no source, prices, evidence or compiled
-  output.
 - Network use by the generator: 48 GET requests of public npm package metadata. No usage data, model
   or vendor API calls.
