@@ -31,5 +31,71 @@ jobs:
       - run: npm run typecheck
       # Several suites spawn or import the compiled output in dist, so build before testing.
       - run: npm run build
-      - run: npm test -- --maxWorkers=1
+      - name: Test
+        if: runner.os != 'Windows'
+        run: npm test -- --maxWorkers=1
+      # The API token writer fails closed unless a directory is owned by the current user. The hosted Windows
+      # account is an elevated administrator whose new directories are owned by the Administrators group, so the
+      # Windows suite runs as a standard local user, which mirrors a normal installation. The ownership check is unchanged.
+      - name: Test as a standard user (Windows)
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $user = 'tkci'
+          $repo = $env:GITHUB_WORKSPACE
+          $logDir = Join-Path $env:RUNNER_TEMP 'tkci'
+          $node = (Get-Command node).Source
+          $nodeDir = Split-Path -Parent $node
+          $vitest = Join-Path $repo 'node_modules\vitest\vitest.mjs'
+          if (-not (Test-Path -LiteralPath $vitest)) { throw "vitest entry not found: $vitest" }
+
+          $bytes = New-Object byte[] 24
+          [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($bytes)
+          $plain = 'Aa1!' + [Convert]::ToBase64String($bytes)
+          Write-Host "::add-mask::$plain"
+          $secure = ConvertTo-SecureString $plain -AsPlainText -Force
+          New-LocalUser -Name $user -Password $secure -AccountNeverExpires -PasswordNeverExpires | Out-Null
+          Add-LocalGroupMember -SID 'S-1-5-32-545' -Member $user
+          $cred = New-Object System.Management.Automation.PSCredential("$env:COMPUTERNAME\$user", $secure)
+
+          function Grant([string]$Path, [string]$Rights) {
+            & icacls $Path /grant "${user}:$Rights" | Out-Null
+            if ($LASTEXITCODE -ne 0) { throw "icacls failed for $Path" }
+          }
+          New-Item -ItemType Directory -Path $logDir -Force | Out-Null
+          Grant $logDir '(OI)(CI)M'
+          Grant $repo '(OI)(CI)M'
+          $parent = Split-Path -Parent $repo
+          while ($parent -and $parent -ne (Split-Path -Parent $parent)) {
+            Grant $parent '(X)'
+            $parent = Split-Path -Parent $parent
+          }
+
+          function Invoke-AsUser([string]$Command, [string]$Name) {
+            $out = Join-Path $logDir "$Name.out.txt"
+            $err = Join-Path $logDir "$Name.err.txt"
+            $p = Start-Process -FilePath (Join-Path $env:SystemRoot 'System32\cmd.exe') `
+              -ArgumentList ('/d /s /c "' + $Command + '"') -Credential $cred -LoadUserProfile -UseNewEnvironment `
+              -WorkingDirectory $repo -RedirectStandardOutput $out -RedirectStandardError $err -Wait -PassThru
+            $text = ''
+            foreach ($file in @($out, $err)) {
+              if (Test-Path -LiteralPath $file) { $text += (Get-Content -Raw -LiteralPath $file) }
+            }
+            Write-Host $text
+            return [pscustomobject]@{ Code = $p.ExitCode; Text = $text }
+          }
+
+          # Show who the tests run as, and refuse to continue if that token is elevated.
+          $who = Invoke-AsUser 'whoami /user && whoami /groups' 'whoami'
+          if ($who.Code -ne 0) { throw "could not start a process as $user (exit $($who.Code))" }
+          if ($who.Text -match 'High Mandatory Level') { throw "$user is elevated; the test user must be a standard user" }
+
+          $inner = 'set "CI=true"&& set "TOKENELO_LIVE=0"&& set "TOKENELO_GOLDEN=0"&& set "PATH=' + $nodeDir + ';%PATH%"&& "' + $node + '" "' + $vitest + '" run --maxWorkers=1'
+          $run = Invoke-AsUser $inner 'vitest'
+          exit $run.Code
       - run: npm audit --audit-level=high
+      - name: Remove the Windows test user
+        if: always() && runner.os == 'Windows'
+        shell: powershell
+        run: Remove-LocalUser -Name tkci -ErrorAction SilentlyContinue
