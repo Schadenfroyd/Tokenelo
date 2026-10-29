@@ -46,7 +46,6 @@ jobs:
           $repo = $env:GITHUB_WORKSPACE
           $logDir = Join-Path $env:RUNNER_TEMP 'tkci'
           $node = (Get-Command node).Source
-          $nodeDir = Split-Path -Parent $node
           $vitest = Join-Path $repo 'node_modules\vitest\vitest.mjs'
           if (-not (Test-Path -LiteralPath $vitest)) { throw "vitest entry not found: $vitest" }
 
@@ -76,7 +75,7 @@ jobs:
             $out = Join-Path $logDir "$Name.out.txt"
             $err = Join-Path $logDir "$Name.err.txt"
             $p = Start-Process -FilePath (Join-Path $env:SystemRoot 'System32\cmd.exe') `
-              -ArgumentList ('/d /s /c "' + $Command + '"') -Credential $cred -LoadUserProfile -UseNewEnvironment `
+              -ArgumentList ('/d /s /c "' + $Command + '"') -Credential $cred -LoadUserProfile `
               -WorkingDirectory $repo -RedirectStandardOutput $out -RedirectStandardError $err -Wait -PassThru
             $text = ''
             foreach ($file in @($out, $err)) {
@@ -91,7 +90,17 @@ jobs:
           if ($who.Code -ne 0) { throw "could not start a process as $user (exit $($who.Code))" }
           if ($who.Text -match 'High Mandatory Level') { throw "$user is elevated; the test user must be a standard user" }
 
-          $inner = 'set "CI=true"&& set "TOKENELO_LIVE=0"&& set "TOKENELO_GOLDEN=0"&& set "PATH=' + $nodeDir + ';%PATH%"&& "' + $node + '" "' + $vitest + '" run --maxWorkers=1'
+          # The child inherits this step's environment (PATH, SystemRoot); only the per-user variables are replaced, so
+          # temp files land in the new user's own profile and are owned by that user.
+          $profileDir = Join-Path $env:SystemDrive "Users\$user"
+          $tempDir = "$profileDir\AppData\Local\Temp"
+          if (-not (Test-Path -LiteralPath $tempDir)) { throw "profile temp directory was not created: $tempDir" }
+          $vars = @(
+            'CI=true', 'TOKENELO_LIVE=0', 'TOKENELO_GOLDEN=0',
+            "USERNAME=$user", "USERPROFILE=$profileDir", "HOMEDRIVE=$env:SystemDrive", "HOMEPATH=\Users\$user",
+            "APPDATA=$profileDir\AppData\Roaming", "LOCALAPPDATA=$profileDir\AppData\Local", "TEMP=$tempDir", "TMP=$tempDir"
+          )
+          $inner = (($vars | ForEach-Object { 'set "' + $_ + '"' }) -join '&& ') + '&& "' + $node + '" "' + $vitest + '" run --maxWorkers=1'
           $run = Invoke-AsUser $inner 'vitest'
           exit $run.Code
       - run: npm audit --audit-level=high
