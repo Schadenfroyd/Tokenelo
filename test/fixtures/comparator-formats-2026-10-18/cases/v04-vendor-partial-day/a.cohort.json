@@ -1,0 +1,109 @@
+{
+  "completeness": "partial",
+  "dropped": [],
+  "format": "tokenelo/comparator-cohort@v1",
+  "label": "fab-ledger-v04",
+  "range": null,
+  "records": [
+    {
+      "completeness": "partial",
+      "components": {
+        "cache_read": {
+          "coverage": {"parts": 3, "resolved": 2, "resolved_subtotal": 26},
+          "presence": "missing",
+          "reason": "partial-members",
+          "value": null
+        },
+        "cache_write_1h": {
+          "coverage": {"parts": 3, "resolved": 2, "resolved_subtotal": 3},
+          "presence": "missing",
+          "reason": "partial-members",
+          "value": null
+        },
+        "cache_write_5m": {
+          "coverage": {"parts": 3, "resolved": 2, "resolved_subtotal": 2},
+          "presence": "missing",
+          "reason": "partial-members",
+          "value": null
+        },
+        "cache_write_total": {
+          "coverage": {"parts": 3, "resolved": 2, "resolved_subtotal": 5},
+          "presence": "missing",
+          "reason": "partial-members",
+          "value": null
+        },
+        "cache_write_unassigned": {
+          "coverage": {"parts": 3, "resolved": 2, "resolved_subtotal": 0},
+          "presence": "missing",
+          "reason": "partial-members",
+          "value": null
+        },
+        "input_fresh": {
+          "coverage": {"parts": 3, "resolved": 2, "resolved_subtotal": 14},
+          "presence": "missing",
+          "reason": "partial-members",
+          "value": null
+        },
+        "output": {
+          "coverage": {"parts": 3, "resolved": 2, "resolved_subtotal": 6},
+          "presence": "missing",
+          "reason": "partial-members",
+          "value": null
+        },
+        "reasoning": {
+          "coverage": {"parts": 3, "resolved": 0, "resolved_subtotal": 0},
+          "presence": "missing",
+          "reason": "partial-members",
+          "value": null
+        }
+      },
+      "count_quality": "unrecorded",
+      "day": {"date": "2026-10-12", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": null, "lines_observed": null, "members": 3, "members_complete": 2, "sessions_observed": null},
+      "flags": ["partial-cohort"],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "day-rollup", "iteration_count": null, "key": "2026-10-12", "request_id_present": null, "request_key": null},
+      "scope": "day",
+      "source": {"family": "product", "instance": "fab-ledger-v04", "kind": "tokenelo-event-projection", "tool_version": null},
+      "time": null,
+      "total": {
+        "measured_subtotal": 51,
+        "presence": "missing",
+        "reason": "component-unresolved",
+        "unresolved": ["input_fresh", "cache_write_total", "cache_read", "output"],
+        "value": null
+      }
+    },
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "cache_write_1h": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "cache_write_5m": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "cache_write_total": {"origin": "derived", "presence": "measured_zero", "value": 0},
+        "cache_write_unassigned": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "input_fresh": {"origin": "normalized", "presence": "measured", "value": 1},
+        "output": {"origin": "normalized", "presence": "measured", "value": 1},
+        "reasoning": {"presence": "missing", "reason": "ledger-zero-ambiguous", "value": null}
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-10-13", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": null, "lines_observed": null, "members": 1, "members_complete": 1, "sessions_observed": null},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "day-rollup", "iteration_count": null, "key": "2026-10-13", "request_id_present": null, "request_key": null},
+      "scope": "day",
+      "source": {"family": "product", "instance": "fab-ledger-v04", "kind": "tokenelo-event-projection", "tool_version": null},
+      "time": null,
+      "total": {
+        "measured_subtotal": 2,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 2
+      }
+    }
+  ],
+  "scope": "day",
+  "source": {"family": "product", "instance": "fab-ledger-v04", "kind": "tokenelo-event-projection", "tool_version": null},
+  "timezone": "-06:00"
+}

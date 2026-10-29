@@ -1,0 +1,435 @@
+{
+  "range": "30d",
+  "bucket": "day",
+  "generatedAt": 1790466276688,
+  "timeBasis": {
+    "startMs": 1787874276688,
+    "asOfMs": 1790466276688,
+    "endInclusive": true,
+    "timestampBasis": "recorded-timestamps",
+    "excludedFutureEvents": 0,
+    "excludedFutureActivity": 0
+  },
+  "points": [
+    {
+      "t": 1787874276688,
+      "apiEquivUsd": 125.72000000000001,
+      "tokens": 658189,
+      "totalTokens": 2158660,
+      "bySource": {
+        "claude": 102.31,
+        "codex": 20.46,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.95
+      }
+    },
+    {
+      "t": 1787960676688,
+      "apiEquivUsd": 136.79,
+      "tokens": 716161,
+      "totalTokens": 2348792,
+      "bySource": {
+        "claude": 111.32,
+        "codex": 22.26,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 3.21
+      }
+    },
+    {
+      "t": 1788047076688,
+      "apiEquivUsd": 146.85999999999999,
+      "tokens": 768940,
+      "totalTokens": 2521892,
+      "bySource": {
+        "claude": 119.52,
+        "codex": 23.9,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 3.44
+      }
+    },
+    {
+      "t": 1788133476688,
+      "apiEquivUsd": 154.78,
+      "tokens": 810379,
+      "totalTokens": 2657798,
+      "bySource": {
+        "claude": 125.96,
+        "codex": 25.19,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 3.63
+      }
+    },
+    {
+      "t": 1788219876688,
+      "apiEquivUsd": 159.56,
+      "tokens": 835372,
+      "totalTokens": 2739769,
+      "bySource": {
+        "claude": 129.85,
+        "codex": 25.97,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 3.74
+      }
+    },
+    {
+      "t": 1788306276688,
+      "apiEquivUsd": 160.51999999999998,
+      "tokens": 840400,
+      "totalTokens": 2756260,
+      "bySource": {
+        "claude": 130.63,
+        "codex": 26.13,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 3.76
+      }
+    },
+    {
+      "t": 1788392676688,
+      "apiEquivUsd": 157.36,
+      "tokens": 823910,
+      "totalTokens": 2702177,
+      "bySource": {
+        "claude": 128.06,
+        "codex": 25.61,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 3.69
+      }
+    },
+    {
+      "t": 1788479076688,
+      "apiEquivUsd": 150.22,
+      "tokens": 786496,
+      "totalTokens": 2579469,
+      "bySource": {
+        "claude": 122.25,
+        "codex": 24.45,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 3.52
+      }
+    },
+    {
+      "t": 1788565476688,
+      "apiEquivUsd": 139.59,
+      "tokens": 730856,
+      "totalTokens": 2396986,
+      "bySource": {
+        "claude": 113.6,
+        "codex": 22.72,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 3.27
+      }
+    },
+    {
+      "t": 1788651876688,
+      "apiEquivUsd": 126.33999999999999,
+      "tokens": 661532,
+      "totalTokens": 2169624,
+      "bySource": {
+        "claude": 102.82,
+        "codex": 20.56,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.96
+      }
+    },
+    {
+      "t": 1788738276688,
+      "apiEquivUsd": 111.63000000000001,
+      "tokens": 584453,
+      "totalTokens": 1916829,
+      "bySource": {
+        "claude": 90.84,
+        "codex": 18.17,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.62
+      }
+    },
+    {
+      "t": 1788824676688,
+      "apiEquivUsd": 96.71,
+      "tokens": 506337,
+      "totalTokens": 1660632,
+      "bySource": {
+        "claude": 78.7,
+        "codex": 15.74,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.27
+      }
+    },
+    {
+      "t": 1788911076688,
+      "apiEquivUsd": 82.88999999999999,
+      "tokens": 434007,
+      "totalTokens": 1423413,
+      "bySource": {
+        "claude": 67.46,
+        "codex": 13.49,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 1.94
+      }
+    },
+    {
+      "t": 1788997476688,
+      "apiEquivUsd": 71.38000000000001,
+      "tokens": 373698,
+      "totalTokens": 1225618,
+      "bySource": {
+        "claude": 58.09,
+        "codex": 11.62,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 1.67
+      }
+    },
+    {
+      "t": 1789083876688,
+      "apiEquivUsd": 63.10999999999999,
+      "tokens": 330425,
+      "totalTokens": 1083696,
+      "bySource": {
+        "claude": 51.36,
+        "codex": 10.27,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 1.48
+      }
+    },
+    {
+      "t": 1789170276688,
+      "apiEquivUsd": 58.730000000000004,
+      "tokens": 307478,
+      "totalTokens": 1008435,
+      "bySource": {
+        "claude": 47.79,
+        "codex": 9.56,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 1.38
+      }
+    },
+    {
+      "t": 1789256676688,
+      "apiEquivUsd": 58.46999999999999,
+      "tokens": 306098,
+      "totalTokens": 1003911,
+      "bySource": {
+        "claude": 47.58,
+        "codex": 9.52,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 1.37
+      }
+    },
+    {
+      "t": 1789343076688,
+      "apiEquivUsd": 62.14,
+      "tokens": 325371,
+      "totalTokens": 1067118,
+      "bySource": {
+        "claude": 50.57,
+        "codex": 10.11,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 1.46
+      }
+    },
+    {
+      "t": 1789429476688,
+      "apiEquivUsd": 69.2,
+      "tokens": 362335,
+      "totalTokens": 1188350,
+      "bySource": {
+        "claude": 56.32,
+        "codex": 11.26,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 1.62
+      }
+    },
+    {
+      "t": 1789515876688,
+      "apiEquivUsd": 78.75,
+      "tokens": 412313,
+      "totalTokens": 1352262,
+      "bySource": {
+        "claude": 64.09,
+        "codex": 12.82,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 1.84
+      }
+    },
+    {
+      "t": 1789602276688,
+      "apiEquivUsd": 89.64999999999999,
+      "tokens": 469406,
+      "totalTokens": 1539510,
+      "bySource": {
+        "claude": 72.96,
+        "codex": 14.59,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.1
+      }
+    },
+    {
+      "t": 1789688676688,
+      "apiEquivUsd": 100.68,
+      "tokens": 527118,
+      "totalTokens": 1728789,
+      "bySource": {
+        "claude": 81.93,
+        "codex": 16.39,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.36
+      }
+    },
+    {
+      "t": 1789775076688,
+      "apiEquivUsd": 110.59,
+      "tokens": 579031,
+      "totalTokens": 1899046,
+      "bySource": {
+        "claude": 90,
+        "codex": 18,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.59
+      }
+    },
+    {
+      "t": 1789861476688,
+      "apiEquivUsd": 118.31,
+      "tokens": 619458,
+      "totalTokens": 2031636,
+      "bySource": {
+        "claude": 96.28,
+        "codex": 19.26,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.77
+      }
+    },
+    {
+      "t": 1789947876688,
+      "apiEquivUsd": 122.99999999999999,
+      "tokens": 644022,
+      "totalTokens": 2112198,
+      "bySource": {
+        "claude": 100.1,
+        "codex": 20.02,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.88
+      }
+    },
+    {
+      "t": 1790034276688,
+      "apiEquivUsd": 124.16,
+      "tokens": 650073,
+      "totalTokens": 2132043,
+      "bySource": {
+        "claude": 101.04,
+        "codex": 20.21,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.91
+      }
+    },
+    {
+      "t": 1790120676688,
+      "apiEquivUsd": 121.64999999999999,
+      "tokens": 636927,
+      "totalTokens": 2088928,
+      "bySource": {
+        "claude": 99,
+        "codex": 19.8,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.85
+      }
+    },
+    {
+      "t": 1790207076688,
+      "apiEquivUsd": 115.73,
+      "tokens": 605889,
+      "totalTokens": 1987132,
+      "bySource": {
+        "claude": 94.18,
+        "codex": 18.84,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.71
+      }
+    },
+    {
+      "t": 1790293476688,
+      "apiEquivUsd": 106.97,
+      "tokens": 560064,
+      "totalTokens": 1836839,
+      "bySource": {
+        "claude": 87.05,
+        "codex": 17.41,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.51
+      }
+    },
+    {
+      "t": 1790379876688,
+      "apiEquivUsd": 96.27000000000001,
+      "tokens": 503982,
+      "totalTokens": 1652908,
+      "bySource": {
+        "claude": 78.34,
+        "codex": 15.67,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.26
+      }
+    }
+  ]
+}

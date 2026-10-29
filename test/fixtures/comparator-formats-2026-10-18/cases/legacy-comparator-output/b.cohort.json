@@ -1,0 +1,102 @@
+{
+  "completeness": "partial",
+  "dropped": [
+    {"count": 1, "reason": "legacy-empty-both-day", "unreadable": false}
+  ],
+  "format": "tokenelo/comparator-cohort@v1",
+  "label": "fab-legacy-ccusage",
+  "range": {"first": "2026-10-09", "last": "2026-10-12"},
+  "records": [
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {"origin": "reported", "presence": "measured", "value": 10},
+        "cache_write_1h": {"presence": "missing", "reason": "legacy-output-lacks-component", "value": null},
+        "cache_write_5m": {"presence": "missing", "reason": "legacy-output-lacks-component", "value": null},
+        "cache_write_total": {"origin": "reported", "presence": "measured", "value": 6},
+        "cache_write_unassigned": {"presence": "missing", "reason": "legacy-output-lacks-component", "value": null},
+        "input_fresh": {"origin": "reported", "presence": "measured", "value": 5},
+        "output": {"origin": "reported", "presence": "measured", "value": 4},
+        "reasoning": {"presence": "missing", "reason": "legacy-output-lacks-component", "value": null}
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-10-10", "timezone": "America/Denver"},
+      "evidence": {"distinct_snapshots": null, "lines_observed": null, "members": null, "members_complete": null, "sessions_observed": null},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "vendor-day", "iteration_count": null, "key": "2026-10-10", "request_id_present": null, "request_key": null},
+      "scope": "day",
+      "source": {"family": "vendor", "instance": "fab-legacy-ccusage", "kind": "legacy-comparator-output", "tool_version": null},
+      "source_total": {"origin": "reported", "presence": "measured", "value": 25},
+      "time": null,
+      "total": {
+        "measured_subtotal": 25,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 25
+      }
+    },
+    {
+      "completeness": "partial",
+      "components": {
+        "cache_read": {"inspection_value": 0, "presence": "missing", "reason": "legacy-zero-total-may-be-absent", "value": null},
+        "cache_write_1h": {"presence": "missing", "reason": "legacy-output-lacks-component", "value": null},
+        "cache_write_5m": {"presence": "missing", "reason": "legacy-output-lacks-component", "value": null},
+        "cache_write_total": {"inspection_value": 0, "presence": "missing", "reason": "legacy-zero-total-may-be-absent", "value": null},
+        "cache_write_unassigned": {"presence": "missing", "reason": "legacy-output-lacks-component", "value": null},
+        "input_fresh": {"inspection_value": 0, "presence": "missing", "reason": "legacy-zero-total-may-be-absent", "value": null},
+        "output": {"inspection_value": 0, "presence": "missing", "reason": "legacy-zero-total-may-be-absent", "value": null},
+        "reasoning": {"presence": "missing", "reason": "legacy-output-lacks-component", "value": null}
+      },
+      "count_quality": "unrecorded",
+      "day": {"date": "2026-10-11", "timezone": "America/Denver"},
+      "evidence": {"distinct_snapshots": null, "lines_observed": null, "members": null, "members_complete": null, "sessions_observed": null},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "vendor-day", "iteration_count": null, "key": "2026-10-11", "request_id_present": null, "request_key": null},
+      "scope": "day",
+      "source": {"family": "vendor", "instance": "fab-legacy-ccusage", "kind": "legacy-comparator-output", "tool_version": null},
+      "source_total": {"inspection_value": 0, "presence": "missing", "reason": "legacy-zero-total-may-be-absent", "value": null},
+      "time": null,
+      "total": {
+        "measured_subtotal": 0,
+        "presence": "missing",
+        "reason": "component-unresolved",
+        "unresolved": ["input_fresh", "cache_write_total", "cache_read", "output"],
+        "value": null
+      }
+    },
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {"origin": "reported", "presence": "measured", "value": 30},
+        "cache_write_1h": {"presence": "missing", "reason": "legacy-output-lacks-component", "value": null},
+        "cache_write_5m": {"presence": "missing", "reason": "legacy-output-lacks-component", "value": null},
+        "cache_write_total": {"origin": "reported", "presence": "measured", "value": 16},
+        "cache_write_unassigned": {"presence": "missing", "reason": "legacy-output-lacks-component", "value": null},
+        "input_fresh": {"origin": "reported", "presence": "measured", "value": 10},
+        "output": {"origin": "reported", "presence": "measured", "value": 40},
+        "reasoning": {"presence": "missing", "reason": "legacy-output-lacks-component", "value": null}
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-10-12", "timezone": "America/Denver"},
+      "evidence": {"distinct_snapshots": null, "lines_observed": null, "members": null, "members_complete": null, "sessions_observed": null},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "vendor-day", "iteration_count": null, "key": "2026-10-12", "request_id_present": null, "request_key": null},
+      "scope": "day",
+      "source": {"family": "vendor", "instance": "fab-legacy-ccusage", "kind": "legacy-comparator-output", "tool_version": null},
+      "source_total": {"origin": "reported", "presence": "measured", "value": 96},
+      "time": null,
+      "total": {
+        "measured_subtotal": 96,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 96
+      }
+    }
+  ],
+  "scope": "day",
+  "source": {"family": "vendor", "instance": "fab-legacy-ccusage", "kind": "legacy-comparator-output", "tool_version": null},
+  "timezone": "America/Denver"
+}

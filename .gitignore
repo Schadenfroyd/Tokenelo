@@ -16,3 +16,4 @@ api-token
 fleet-token
 config.local.json
 .DS_Store
+!test/fixtures/**/*.log

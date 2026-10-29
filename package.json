@@ -1,0 +1,34 @@
+{
+  "name": "tokenelo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cross-platform tray app + headless daemon capturing Claude Code, Codex and local Ollama usage; computes API-equivalent spend, sessions and reports.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "bin": {
+    "tokenelo": "dist/cli/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.tray.json && node scripts/build-tray.mjs && node scripts/write-build-identity.mjs",
+    "build:tray": "node scripts/build-tray.mjs",
+    "test": "vitest run",
+    "test:packaging": "node --test test/packaging/stage-private-package.test.mjs test/packaging/windows-payload-manifest.test.mjs test/packaging/windows-nsis-payload-bridge.test.mjs test/packaging/windows-nsis-expected-content.test.mjs test/packaging/build-windows-private-directory.test.mjs",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.tray.json",
+    "package:stage": "node scripts/stage-private-package.mjs",
+    "dev:daemon": "tsx src/daemon/main.ts",
+    "tray": "electron dist/tray/main.js",
+    "snapshot": "electron dist/tray/main.js --snapshot out.png"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "electron": "^44.9.3",
+    "electron-builder": "26.18.0",
+    "esbuild": "0.28.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "5.0.3"
+  },
+  "license": "Apache-2.0"
+}

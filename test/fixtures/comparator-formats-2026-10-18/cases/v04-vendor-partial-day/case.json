@@ -1,0 +1,57 @@
+{
+  "a": {"input": "a.input.json", "instance": "fab-ledger-v04", "rollup_days": true},
+  "b": {"input": "b.input.json", "instance": "fab-ccusage-v04"},
+  "case": "v04-vendor-partial-day",
+  "description": "Day 10-12 has three product rows; the third is a legacy row (null quality, null unassigned cache write). The two readable rows sum to exactly the vendor day (14, 5, 26, 6 = 51). Day 10-13 is fully readable.",
+  "does_not_show": ["Whether the unreadable row belongs to the vendor total; the fixture only shows the format refuses to guess."],
+  "expect": {
+    "pairs": {
+      "2026-10-12": {
+        "outcome": "unresolved",
+        "units": {
+          "cache_read": ["not_comparable", null, null, "missing-in-a"],
+          "cache_write_total": ["not_comparable", null, null, "missing-in-a"],
+          "input_fresh": ["not_comparable", null, null, "missing-in-a"],
+          "output": ["not_comparable", null, null, "missing-in-a"],
+          "total": ["not_comparable", null, null, "missing-in-a"]
+        }
+      },
+      "2026-10-13": {
+        "outcome": "identical",
+        "units": {
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      }
+    },
+    "records": {
+      "a": {
+        "2026-10-12": {
+          "completeness": "partial",
+          "components": {
+            "cache_read": ["missing", null],
+            "cache_write_total": ["missing", null],
+            "input_fresh": ["missing", null],
+            "output": ["missing", null]
+          },
+          "count_quality": "unrecorded",
+          "coverage": {
+            "cache_read": [3, 2, 26],
+            "cache_write_total": [3, 2, 5],
+            "input_fresh": [3, 2, 14],
+            "output": [3, 2, 6]
+          },
+          "evidence": {"members": 3, "members_complete": 2},
+          "flags": ["partial-cohort"],
+          "measured_subtotal": 51,
+          "total": null,
+          "unresolved": ["input_fresh", "cache_write_total", "cache_read", "output"]
+        },
+        "2026-10-13": {"completeness": "complete", "count_quality": "complete", "total": 2}
+      }
+    },
+    "summary": {"differs": 0, "identical": 1, "matched": 2, "only_in_a": 0, "only_in_b": 0, "partial_in_a": 1, "partial_in_b": 0, "unresolved": 1}
+  },
+  "shows": ["A day whose readable rows exactly equal the vendor total is still partial: the subtotal 51 is carried as measured_subtotal and the total stays null."],
+  "timezone": "-06:00",
+  "tolerance_percent_micro": null
+}

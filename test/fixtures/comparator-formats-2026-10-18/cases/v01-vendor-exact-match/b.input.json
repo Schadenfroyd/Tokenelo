@@ -1,0 +1,14 @@
+{
+  "daily": [
+    {
+      "cacheCreationTokens": 10,
+      "cacheReadTokens": 30,
+      "date": "2026-10-12",
+      "inputTokens": 2,
+      "modelsUsed": ["model-a"],
+      "outputTokens": 11,
+      "totalCost": 1.5,
+      "totalTokens": 53
+    }
+  ]
+}

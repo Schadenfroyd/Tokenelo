@@ -1,0 +1,697 @@
+{
+  "range": "24h",
+  "generatedAt": 1792337400000,
+  "timeBasis": {
+    "startMs": 1792251000000,
+    "asOfMs": 1792337400000,
+    "endInclusive": true,
+    "timestampBasis": "recorded-timestamps",
+    "excludedFutureEvents": 1,
+    "excludedFutureActivity": 1
+  },
+  "sessions": [
+    {
+      "source": "claude",
+      "sessionId": "claude-edge",
+      "host": "HOST-A",
+      "project": "/synthetic/edge",
+      "models": [
+        "oracle-opus"
+      ],
+      "start": 1792251000000,
+      "end": 1792337400000,
+      "activeMs": 1,
+      "activityEvidence": {
+        "version": 1,
+        "basis": "activity-gaps",
+        "markCount": 4,
+        "durationMarkCount": 0,
+        "idleGapMs": 300000
+      },
+      "live": true,
+      "subagents": 0,
+      "tokens": {
+        "inputFresh": 430,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 0,
+        "reasoning": 0,
+        "countQuality": "complete"
+      },
+      "apiEquivUsd": 0.0043,
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "priceEvidence": {
+        "version": 1,
+        "events": 4,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "burn": {
+        "tokensPerMin": 7.266666666666667,
+        "usdPerHour": 0.00436,
+        "countQuality": "complete",
+        "priceQuality": {
+          "events": 1,
+          "unpricedEvents": 0,
+          "estimatedPriceEvents": 0,
+          "priceStatus": "LIST",
+          "priceEvidence": {
+            "version": 1,
+            "events": 1,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          }
+        }
+      },
+      "telemetry": [
+        {
+          "host": "HOST-A",
+          "source": "claude",
+          "provider": "anthropic",
+          "models": [
+            "oracle-opus"
+          ],
+          "events": 4,
+          "tokens": {
+            "inputFresh": 430,
+            "cacheWrite5m": 0,
+            "cacheWrite1h": 0,
+            "cacheRead": 0,
+            "output": 0,
+            "reasoning": 0,
+            "countQuality": "complete"
+          },
+          "apiEquivUsd": 0.0043,
+          "unpricedEvents": 0,
+          "estimatedPriceEvents": 0,
+          "priceStatus": "LIST",
+          "priceEvidence": {
+            "version": 1,
+            "events": 4,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          },
+          "firstEventAt": 1792251000000,
+          "lastEventAt": 1792337400000,
+          "flags": {
+            "speedAssumed": 4,
+            "thinkingUnknown": 4
+          }
+        }
+      ]
+    },
+    {
+      "source": "claude",
+      "sessionId": "claude-s1",
+      "host": "HOST-A",
+      "project": "/synthetic/alpha",
+      "models": [
+        "oracle-opus",
+        "oracle-haiku"
+      ],
+      "start": 1792254600000,
+      "end": 1792337220000,
+      "activeMs": 300000,
+      "activityEvidence": {
+        "version": 1,
+        "basis": "activity-gaps",
+        "markCount": 4,
+        "durationMarkCount": 0,
+        "idleGapMs": 300000
+      },
+      "live": true,
+      "subagents": 0,
+      "tokens": {
+        "inputFresh": 7300,
+        "cacheWrite5m": 1500,
+        "cacheWrite1h": 2000,
+        "cacheRead": 37000,
+        "output": 1500,
+        "reasoning": 0,
+        "countQuality": "complete"
+      },
+      "apiEquivUsd": 0.19735,
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 1,
+      "priceStatus": "ESTIMATE",
+      "priceEvidence": {
+        "version": 1,
+        "events": 4,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "burn": {
+        "tokensPerMin": 1120,
+        "usdPerHour": 0.2144,
+        "countQuality": "complete",
+        "priceQuality": {
+          "events": 2,
+          "unpricedEvents": 0,
+          "estimatedPriceEvents": 1,
+          "priceStatus": "ESTIMATE",
+          "priceEvidence": {
+            "version": 1,
+            "events": 2,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          }
+        }
+      },
+      "telemetry": [
+        {
+          "host": "HOST-A",
+          "source": "claude",
+          "provider": "anthropic",
+          "models": [
+            "oracle-opus",
+            "oracle-haiku"
+          ],
+          "events": 4,
+          "tokens": {
+            "inputFresh": 7300,
+            "cacheWrite5m": 1500,
+            "cacheWrite1h": 2000,
+            "cacheRead": 37000,
+            "output": 1500,
+            "reasoning": 0,
+            "countQuality": "complete"
+          },
+          "apiEquivUsd": 0.19735,
+          "unpricedEvents": 0,
+          "estimatedPriceEvents": 1,
+          "priceStatus": "ESTIMATE",
+          "priceEvidence": {
+            "version": 1,
+            "events": 4,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          },
+          "firstEventAt": 1792254600000,
+          "lastEventAt": 1792337220000,
+          "flags": {
+            "speedAssumed": 4,
+            "thinkingUnknown": 1
+          }
+        }
+      ]
+    },
+    {
+      "source": "codex",
+      "sessionId": "codex-t1",
+      "host": "HOST-A",
+      "project": "/synthetic/delta",
+      "models": [
+        "oracle-gpt"
+      ],
+      "start": 1792267200000,
+      "end": 1792324800000,
+      "activeMs": 180000,
+      "activityEvidence": {
+        "version": 1,
+        "basis": "reported-turn-durations",
+        "markCount": 3,
+        "durationMarkCount": 2,
+        "idleGapMs": 300000
+      },
+      "live": false,
+      "subagents": 0,
+      "tokens": {
+        "inputFresh": 7500,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 12000,
+        "output": 1000,
+        "reasoning": 200,
+        "countQuality": "complete"
+      },
+      "apiEquivUsd": 0.0635,
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "priceEvidence": {
+        "version": 1,
+        "events": 2,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "burn": null,
+      "telemetry": [
+        {
+          "host": "HOST-A",
+          "source": "codex",
+          "provider": "openai",
+          "models": [
+            "oracle-gpt"
+          ],
+          "events": 2,
+          "tokens": {
+            "inputFresh": 7500,
+            "cacheWrite5m": 0,
+            "cacheWrite1h": 0,
+            "cacheRead": 12000,
+            "output": 1000,
+            "reasoning": 200,
+            "countQuality": "complete"
+          },
+          "apiEquivUsd": 0.0635,
+          "unpricedEvents": 0,
+          "estimatedPriceEvents": 0,
+          "priceStatus": "LIST",
+          "priceEvidence": {
+            "version": 1,
+            "events": 2,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          },
+          "firstEventAt": 1792267200000,
+          "lastEventAt": 1792324800000,
+          "flags": {}
+        }
+      ]
+    },
+    {
+      "source": "claude",
+      "sessionId": "claude-s3",
+      "host": "HOST-A",
+      "project": "/synthetic/live-unpriced",
+      "models": [
+        "oracle-unlisted"
+      ],
+      "start": 1792305000000,
+      "end": 1792337160000,
+      "activeMs": 0,
+      "activityEvidence": {
+        "version": 1,
+        "basis": "activity-gaps",
+        "markCount": 2,
+        "durationMarkCount": 0,
+        "idleGapMs": 300000
+      },
+      "live": true,
+      "subagents": 0,
+      "tokens": {
+        "inputFresh": 90,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 9,
+        "reasoning": 0,
+        "countQuality": "complete"
+      },
+      "apiEquivUsd": null,
+      "unpricedEvents": 2,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "UNPRICED",
+      "priceEvidence": {
+        "version": 1,
+        "events": 2,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "burn": {
+        "tokensPerMin": 3.6666666666666665,
+        "usdPerHour": 0,
+        "countQuality": "complete",
+        "priceQuality": {
+          "events": 1,
+          "unpricedEvents": 1,
+          "estimatedPriceEvents": 0,
+          "priceStatus": "UNPRICED",
+          "priceEvidence": {
+            "version": 1,
+            "events": 1,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          }
+        }
+      },
+      "telemetry": [
+        {
+          "host": "HOST-A",
+          "source": "claude",
+          "provider": "anthropic",
+          "models": [
+            "oracle-unlisted"
+          ],
+          "events": 2,
+          "tokens": {
+            "inputFresh": 90,
+            "cacheWrite5m": 0,
+            "cacheWrite1h": 0,
+            "cacheRead": 0,
+            "output": 9,
+            "reasoning": 0,
+            "countQuality": "complete"
+          },
+          "apiEquivUsd": null,
+          "unpricedEvents": 2,
+          "estimatedPriceEvents": 0,
+          "priceStatus": "UNPRICED",
+          "priceEvidence": {
+            "version": 1,
+            "events": 2,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          },
+          "firstEventAt": 1792305000000,
+          "lastEventAt": 1792337160000,
+          "flags": {
+            "speedAssumed": 2,
+            "thinkingUnknown": 2,
+            "unpricedModel": 2
+          }
+        }
+      ]
+    },
+    {
+      "source": "claude",
+      "sessionId": "claude-s2",
+      "host": "HOST-A",
+      "project": "/synthetic/beta",
+      "models": [
+        "oracle-opus",
+        "oracle-unlisted"
+      ],
+      "start": 1792314600000,
+      "end": 1792315080000,
+      "activeMs": 480000,
+      "activityEvidence": {
+        "version": 1,
+        "basis": "activity-gaps",
+        "markCount": 5,
+        "durationMarkCount": 0,
+        "idleGapMs": 300000
+      },
+      "live": false,
+      "subagents": 0,
+      "tokens": {
+        "inputFresh": 2500,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 260,
+        "reasoning": 0,
+        "countQuality": "incomplete"
+      },
+      "apiEquivUsd": 0.0185,
+      "unpricedEvents": 2,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "UNPRICED",
+      "priceEvidence": {
+        "version": 1,
+        "events": 5,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "burn": null,
+      "telemetry": [
+        {
+          "host": "HOST-A",
+          "source": "claude",
+          "provider": "anthropic",
+          "models": [
+            "oracle-opus",
+            "oracle-unlisted"
+          ],
+          "events": 5,
+          "tokens": {
+            "inputFresh": 2500,
+            "cacheWrite5m": 0,
+            "cacheWrite1h": 0,
+            "cacheRead": 0,
+            "output": 260,
+            "reasoning": 0,
+            "countQuality": "incomplete"
+          },
+          "apiEquivUsd": 0.0185,
+          "unpricedEvents": 2,
+          "estimatedPriceEvents": 0,
+          "priceStatus": "UNPRICED",
+          "priceEvidence": {
+            "version": 1,
+            "events": 5,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          },
+          "firstEventAt": 1792314600000,
+          "lastEventAt": 1792315080000,
+          "flags": {
+            "speedAssumed": 5,
+            "thinkingUnknown": 3,
+            "unpricedModel": 1,
+            "countBasisIncomplete": 1,
+            "legacyCountEvidenceMixed": 1
+          }
+        }
+      ]
+    },
+    {
+      "source": "claude",
+      "sessionId": "claude-s1",
+      "host": "HOST-B",
+      "project": "/synthetic/other-host",
+      "models": [
+        "oracle-opus"
+      ],
+      "start": 1792317600000,
+      "end": 1792317600000,
+      "activeMs": 0,
+      "activityEvidence": {
+        "version": 1,
+        "basis": "activity-gaps",
+        "markCount": 1,
+        "durationMarkCount": 0,
+        "idleGapMs": 300000
+      },
+      "live": false,
+      "subagents": 0,
+      "tokens": {
+        "inputFresh": 1100,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 110,
+        "reasoning": 0,
+        "countQuality": "complete"
+      },
+      "apiEquivUsd": 0.0165,
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "priceEvidence": {
+        "version": 1,
+        "events": 1,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "burn": null,
+      "telemetry": [
+        {
+          "host": "HOST-B",
+          "source": "claude",
+          "provider": "anthropic",
+          "models": [
+            "oracle-opus"
+          ],
+          "events": 1,
+          "tokens": {
+            "inputFresh": 1100,
+            "cacheWrite5m": 0,
+            "cacheWrite1h": 0,
+            "cacheRead": 0,
+            "output": 110,
+            "reasoning": 0,
+            "countQuality": "complete"
+          },
+          "apiEquivUsd": 0.0165,
+          "unpricedEvents": 0,
+          "estimatedPriceEvents": 0,
+          "priceStatus": "LIST",
+          "priceEvidence": {
+            "version": 1,
+            "events": 1,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          },
+          "firstEventAt": 1792317600000,
+          "lastEventAt": 1792317600000,
+          "flags": {
+            "speedAssumed": 1
+          }
+        }
+      ]
+    },
+    {
+      "source": "claude",
+      "sessionId": "claude-idle",
+      "host": "HOST-A",
+      "project": "/synthetic/idle",
+      "models": [],
+      "start": 1792321200000,
+      "end": 1792322520000,
+      "activeMs": 300000,
+      "activityEvidence": {
+        "version": 1,
+        "basis": "activity-gaps",
+        "markCount": 4,
+        "durationMarkCount": 0,
+        "idleGapMs": 300000
+      },
+      "live": false,
+      "subagents": 0,
+      "tokens": {
+        "inputFresh": 0,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 0,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 0,
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": null,
+      "priceEvidence": {
+        "version": 1,
+        "events": 0,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "burn": null,
+      "telemetry": []
+    },
+    {
+      "source": "ollama-proxy",
+      "sessionId": "proxy:cli:oracle-local-27b:2026-10-18",
+      "host": "HOST-A",
+      "models": [
+        "oracle-local-27b"
+      ],
+      "start": 1792328400000,
+      "end": 1792328400000,
+      "activeMs": 0,
+      "activityEvidence": {
+        "version": 1,
+        "basis": "no-marks",
+        "markCount": 0,
+        "durationMarkCount": 0,
+        "idleGapMs": 300000
+      },
+      "live": false,
+      "subagents": 0,
+      "tokens": {
+        "inputFresh": 1200,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 300,
+        "reasoning": 0,
+        "countQuality": "complete"
+      },
+      "apiEquivUsd": 0,
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "priceEvidence": {
+        "version": 1,
+        "events": 1,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "burn": null,
+      "telemetry": [
+        {
+          "host": "HOST-A",
+          "source": "ollama-proxy",
+          "provider": "local",
+          "engine": "ollama",
+          "models": [
+            "oracle-local-27b"
+          ],
+          "events": 1,
+          "tokens": {
+            "inputFresh": 1200,
+            "cacheWrite5m": 0,
+            "cacheWrite1h": 0,
+            "cacheRead": 0,
+            "output": 300,
+            "reasoning": 0,
+            "countQuality": "complete"
+          },
+          "apiEquivUsd": 0,
+          "unpricedEvents": 0,
+          "estimatedPriceEvents": 0,
+          "priceStatus": "LIST",
+          "priceEvidence": {
+            "version": 1,
+            "events": 1,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          },
+          "firstEventAt": 1792328400000,
+          "lastEventAt": 1792328400000,
+          "flags": {
+            "thinkingUnknown": 1
+          }
+        }
+      ]
+    }
+  ]
+}

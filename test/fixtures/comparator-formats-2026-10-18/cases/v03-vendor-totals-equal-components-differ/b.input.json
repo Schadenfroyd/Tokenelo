@@ -1,0 +1,5 @@
+{
+  "daily": [
+    {"cacheCreationTokens": 20, "cacheReadTokens": 30, "date": "2026-10-12", "inputTokens": 10, "outputTokens": 40, "totalTokens": 100}
+  ]
+}

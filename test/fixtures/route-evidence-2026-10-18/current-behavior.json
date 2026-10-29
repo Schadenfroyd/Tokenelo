@@ -1,0 +1,241 @@
+{
+ "schemaVersion": 1,
+ "label": "CURRENT BEHAVIOR (asserted by test/core/route-evidence-fixtures.test.ts)",
+ "note": "What the code classifies today for each case in components.json. Derived by hand from src/core/serving-route.ts, src/core/pricing.ts and src/store/ledger.ts. It is NOT a statement of what the classification should be: see target-d4-classification.json for the proposal, which no test asserts.",
+ "cases": {
+  "local-reported": {
+   "routeState": "local-reported",
+   "allowsLocalRatePolicy": true,
+   "providerOf": "local",
+   "priceComponent": {
+    "usd": 0,
+    "status": "LIST",
+    "flags": []
+   },
+   "storedByLedger": {
+    "provider": "local",
+    "apiEquivUsd": 0,
+    "priceStatus": "LIST",
+    "routeFlags": []
+   }
+  },
+  "hosted-reported": {
+   "routeState": "hosted-reported",
+   "allowsLocalRatePolicy": false,
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedger": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteUnpriced"
+    ]
+   }
+  },
+  "unrecorded-weights-name": {
+   "routeState": "unrecorded",
+   "allowsLocalRatePolicy": true,
+   "providerOf": "local",
+   "priceComponent": {
+    "usd": 0,
+    "status": "LIST",
+    "flags": []
+   },
+   "storedByLedger": {
+    "provider": "local",
+    "apiEquivUsd": 0,
+    "priceStatus": "LIST",
+    "routeFlags": []
+   }
+  },
+  "unrecorded-hosted-looking-weights-name": {
+   "routeState": "unrecorded",
+   "allowsLocalRatePolicy": true,
+   "providerOf": "local",
+   "priceComponent": {
+    "usd": 0,
+    "status": "LIST",
+    "flags": []
+   },
+   "storedByLedger": {
+    "provider": "local",
+    "apiEquivUsd": 0,
+    "priceStatus": "LIST",
+    "routeFlags": []
+   }
+  },
+  "unknown-openai-compatible": {
+   "routeState": "unknown",
+   "allowsLocalRatePolicy": false,
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedger": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteUnpriced"
+    ]
+   }
+  },
+  "unknown-unrecorded-evidence": {
+   "routeState": "unknown",
+   "allowsLocalRatePolicy": false,
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedger": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteUnpriced"
+    ]
+   }
+  },
+  "invalid-kind-evidence-mismatch": {
+   "routeState": "invalid",
+   "allowsLocalRatePolicy": false,
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedger": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteInvalid",
+     "servingRouteUnpriced"
+    ]
+   }
+  },
+  "invalid-missing-evidence": {
+   "routeState": "invalid",
+   "allowsLocalRatePolicy": false,
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedger": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteInvalid",
+     "servingRouteUnpriced"
+    ]
+   }
+  },
+  "invalid-extra-key": {
+   "routeState": "invalid",
+   "allowsLocalRatePolicy": false,
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedger": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteInvalid",
+     "servingRouteUnpriced"
+    ]
+   }
+  },
+  "invalid-null": {
+   "routeState": "invalid",
+   "allowsLocalRatePolicy": false,
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedger": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteInvalid",
+     "servingRouteUnpriced"
+    ]
+   }
+  },
+  "invalid-canonical-marker": {
+   "routeState": "invalid",
+   "allowsLocalRatePolicy": false,
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedger": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteInvalid",
+     "servingRouteUnpriced"
+    ]
+   }
+  },
+  "conflict-reports": {
+   "routeState": "conflict",
+   "allowsLocalRatePolicy": false,
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedger": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteConflict",
+     "servingRouteUnpriced"
+    ]
+   }
+  }
+ }
+}

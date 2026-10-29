@@ -1,0 +1,64 @@
+srv          init: init: chat template, thinking = 1
+srv          init: chat template supports preserving reasoning, consider enabling it via --reasoning-preserve
+srv  llama_server: model loaded
+srv  llama_server: listening on http://127.0.0.1:49665
+srv  update_slots: all slots are idle
+time=2026-09-26T17:11:31.525-06:00 level=INFO source=llama_server.go:1360 msg="llama-server started in 9.84 seconds"
+time=2026-09-26T17:11:31.590-06:00 level=INFO source=images.go:374 msg="template selection" model=hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL selected=gguf_chat_template renderer="" parser="" go_template="[completion vision]" chat_template="[tools thinking completion vision]" harmony=null renderer_parser=null
+time=2026-09-26T17:11:31.590-06:00 level=INFO source=sched.go:728 msg="loaded runners" count=1
+time=2026-09-26T17:11:31.590-06:00 level=INFO source=llama_server.go:1293 msg="waiting for llama-server to start responding"
+time=2026-09-26T17:11:31.591-06:00 level=INFO source=llama_server.go:1360 msg="llama-server started in 9.91 seconds"
+srv  server_strea: conv_id= (empty=1)
+srv    operator(): chat format: peg-native
+slot get_availabl: id  0 | task -1 |  - skipping, slot is empty
+slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+srv  get_availabl: updating prompt cache
+srv          load:  - looking for better prompt, base f_keep = -1.000, f_sim = 0.000
+srv        update:  - cache state: 0 prompts, 0.000 MiB (limits: 8192.000 MiB, 262144 tokens, 8589934592 est)
+srv  get_availabl: prompt cache update took 0.00 ms
+slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> ?min-p -> ?xtc -> temp-ext -> dist 
+slot launch_slot_: id  0 | task -1 | sampler params: 
+	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+	top_k = 40, top_p = 0.900, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.800
+	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 262144, n_keep = 4, task.n_tokens = 54
+slot   operator(): id  0 | task 0 | cached n_tokens = 0, memory_seq_rm [0, end)
+slot   operator(): id  0 | task 0 | cached n_tokens = 42, memory_seq_rm [42, end)
+slot create_check: id  0 | task 0 | created context checkpoint 1 of 32 (pos_min = 41, pos_max = 41, n_tokens = 42, size = 149.626 MiB)
+slot   operator(): id  0 | task 0 | cached n_tokens = 50, memory_seq_rm [50, end)
+slot init_sampler: id  0 | task 0 | init sampler, took 0.01 ms, tokens: text = 54, total = 54
+slot create_check: id  0 | task 0 | created context checkpoint 2 of 32 (pos_min = 49, pos_max = 49, n_tokens = 50, size = 149.626 MiB)
+slot print_timing: id  0 | task 0 | prompt eval time =    1797.61 ms /    54 tokens (   33.29 ms per token,    30.04 tokens per second)
+slot print_timing: id  0 | task 0 |        eval time =     769.48 ms /     8 tokens (   96.18 ms per token,    10.40 tokens per second)
+slot print_timing: id  0 | task 0 |       total time =    2567.09 ms /    62 tokens
+slot print_timing: id  0 | task 0 |    graphs reused =          7
+slot      release: id  0 | task 0 | stop processing: n_tokens = 61, truncated = 0
+srv  update_slots: all slots are idle
+[GIN] 2026/09/26 - 17:11:34 | 200 | 12.723664208s |       127.0.0.1 | POST     "/api/chat"
+srv  server_strea: conv_id= (empty=1)
+srv    operator(): chat format: peg-native
+slot get_availabl: id  0 | task -1 |  - checking sim = 1.000 (54/54) > 0.100
+slot get_availabl: id  0 | task -1 | selected slot by LCP similarity, f_sim_best = 1.000 (> 0.100 thold), f_keep = 0.885
+slot launch_slot_: id  0 | task -1 | sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> ?top-p -> ?min-p -> ?xtc -> ?temp-ext -> dist 
+slot launch_slot_: id  0 | task -1 | sampler params: 
+	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = 64
+	top_k = 40, top_p = 1.000, min_p = 0.000, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 1.000
+	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+slot launch_slot_: id  0 | task 11 | processing task, is_child = 0
+slot   operator(): id  0 | task 11 | new prompt, n_ctx_slot = 262144, n_keep = 4, task.n_tokens = 54
+slot   operator(): id  0 | task 11 | checking checkpoint with [49, 49] against 53...
+slot   operator(): id  0 | task 11 | restored context checkpoint (pos_min = 49, pos_max = 49, n_tokens = 50, n_past = 50, size = 149.626 MiB)
+slot   operator(): id  0 | task 11 | cached n_tokens = 50, memory_seq_rm [50, end)
+slot init_sampler: id  0 | task 11 | init sampler, took 0.01 ms, tokens: text = 54, total = 54
+slot create_check: id  0 | task 11 | erasing context checkpoint too close to an earlier one (pos_min = 49, pos_max = 49, n_tokens = 50, size = 149.626 MiB)
+slot create_check: id  0 | task 11 | created context checkpoint 2 of 32 (pos_min = 49, pos_max = 49, n_tokens = 50, size = 149.626 MiB)
+slot print_timing: id  0 | task 11 | prompt eval time =     363.84 ms /     4 tokens (   90.96 ms per token,    10.99 tokens per second)
+slot print_timing: id  0 | task 11 |        eval time =     772.70 ms /     8 tokens (   96.59 ms per token,    10.35 tokens per second)
+slot print_timing: id  0 | task 11 |       total time =    1136.53 ms /    12 tokens
+slot print_timing: id  0 | task 11 |    graphs reused =         13
+slot      release: id  0 | task 11 | stop processing: n_tokens = 61, truncated = 0
+srv  update_slots: all slots are idle
+[GIN] 2026/09/26 - 17:11:35 | 200 |  1.300145958s |       127.0.0.1 | POST     "/v1/chat/completions"

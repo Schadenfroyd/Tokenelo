@@ -1,0 +1,10 @@
+{
+  "kind": "tokenelo-event-projection",
+  "projection_policy": 7,
+  "rows": [
+    {"cache_read": 6, "cache_write_1h": 0, "cache_write_5m": 0, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-n04a", "input_fresh": 4, "output": 5, "reasoning": 0, "source": "claude", "ts": 1791799200000},
+    {"cache_read": 3, "cache_write_1h": 0, "cache_write_5m": 0, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-n04b", "input_fresh": 2, "output": 8, "reasoning": 0, "source": "claude", "ts": 1791799260000},
+    {"cache_read": 0, "cache_write_1h": 0, "cache_write_5m": 0, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-n04c", "input_fresh": 1, "output": 2, "reasoning": 0, "source": "claude", "ts": 1791799320000}
+  ],
+  "schema_version": 10
+}

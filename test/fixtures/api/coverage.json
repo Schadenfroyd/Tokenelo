@@ -1,0 +1,232 @@
+{
+  "host": "M4a",
+  "generatedAt": 1790466276688,
+  "collectorScans": [
+    {
+      "name": "claude",
+      "intervalMs": 30000,
+      "running": false,
+      "rerunQueued": false,
+      "currentStartedAt": null,
+      "lastStartedAt": 1790466272688,
+      "lastFinishedAt": 1790466272713,
+      "lastCompletedAt": 1790466272713,
+      "lastFailedAt": null,
+      "lastOutcome": "completed",
+      "lastDurationMs": 25,
+      "lastStats": {
+        "filesScanned": 12,
+        "filesSkipped": 0,
+        "recordsEmitted": 0,
+        "bytesRead": 0,
+        "warningCount": 0
+      }
+    },
+    {
+      "name": "codex",
+      "intervalMs": 30000,
+      "running": false,
+      "rerunQueued": false,
+      "currentStartedAt": null,
+      "lastStartedAt": 1790466272688,
+      "lastFinishedAt": 1790466272713,
+      "lastCompletedAt": 1790466156688,
+      "lastFailedAt": 1790466272713,
+      "lastOutcome": "failed",
+      "lastDurationMs": 25,
+      "lastStats": null
+    },
+    {
+      "name": "qwen-code",
+      "intervalMs": 30000,
+      "running": true,
+      "rerunQueued": true,
+      "currentStartedAt": 1790466156688,
+      "lastStartedAt": 1790466156688,
+      "lastFinishedAt": 1790466096688,
+      "lastCompletedAt": 1790466096688,
+      "lastFailedAt": null,
+      "lastOutcome": "completed",
+      "lastDurationMs": 25,
+      "lastStats": {
+        "filesScanned": 12,
+        "filesSkipped": 0,
+        "recordsEmitted": 0,
+        "bytesRead": 0,
+        "warningCount": 0
+      }
+    },
+    {
+      "name": "ollama-serverlog",
+      "intervalMs": 10000,
+      "running": false,
+      "rerunQueued": false,
+      "currentStartedAt": null,
+      "lastStartedAt": 1790466272688,
+      "lastFinishedAt": 1790466272713,
+      "lastCompletedAt": 1790466272713,
+      "lastFailedAt": null,
+      "lastOutcome": "warnings",
+      "lastDurationMs": 25,
+      "lastStats": {
+        "filesScanned": 1,
+        "filesSkipped": 1,
+        "recordsEmitted": 6,
+        "bytesRead": 2048,
+        "warningCount": 2
+      }
+    },
+    {
+      "name": "claude-desktop-plan-usage",
+      "intervalMs": 30000,
+      "running": false,
+      "rerunQueued": false,
+      "currentStartedAt": null,
+      "lastStartedAt": 1790466272688,
+      "lastFinishedAt": 1790466272713,
+      "lastCompletedAt": 1790466272713,
+      "lastFailedAt": null,
+      "lastOutcome": "completed",
+      "lastDurationMs": 25,
+      "lastStats": {
+        "filesScanned": 12,
+        "filesSkipped": 0,
+        "recordsEmitted": 0,
+        "bytesRead": 0,
+        "warningCount": 0
+      }
+    },
+    {
+      "name": "claude-desktop-sessions",
+      "intervalMs": 30000,
+      "running": false,
+      "rerunQueued": false,
+      "currentStartedAt": null,
+      "lastStartedAt": 1790466272688,
+      "lastFinishedAt": 1790466272713,
+      "lastCompletedAt": 1790466272713,
+      "lastFailedAt": null,
+      "lastOutcome": "completed",
+      "lastDurationMs": 25,
+      "lastStats": {
+        "filesScanned": 12,
+        "filesSkipped": 0,
+        "recordsEmitted": 0,
+        "bytesRead": 0,
+        "warningCount": 0
+      }
+    }
+  ],
+  "tools": [
+    {
+      "id": "claude-code-cli",
+      "name": "Claude Code CLI",
+      "category": "cloud-agent-cli",
+      "installed": true,
+      "running": false,
+      "captured": true,
+      "lastEventAt": 1790465976688
+    },
+    {
+      "id": "codex-cli",
+      "name": "Codex CLI",
+      "category": "cloud-agent-cli",
+      "installed": true,
+      "running": true,
+      "captured": true,
+      "lastEventAt": 1790466216688
+    },
+    {
+      "id": "codex-desktop-rocky",
+      "name": "Codex Desktop (\"Rocky\")",
+      "category": "cloud-agent-desktop",
+      "installed": true,
+      "running": true,
+      "captured": true,
+      "lastEventAt": 1790466216688
+    },
+    {
+      "id": "qwen-code-cli",
+      "name": "Qwen Code CLI",
+      "category": "cloud-agent-cli",
+      "installed": true,
+      "running": false,
+      "captured": true,
+      "lastEventAt": 1790463876688
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "category": "local-llm-server",
+      "installed": true,
+      "running": true,
+      "captured": true,
+      "lastEventAt": 1790466156688
+    },
+    {
+      "id": "docker-model-runner",
+      "name": "Docker Model Runner",
+      "category": "local-llm-server",
+      "installed": true,
+      "running": true,
+      "captured": false,
+      "lastEventAt": null
+    },
+    {
+      "id": "vllm",
+      "name": "vLLM",
+      "category": "local-llm-server",
+      "installed": false,
+      "running": false,
+      "captured": false,
+      "lastEventAt": null
+    },
+    {
+      "id": "claude-desktop",
+      "name": "Claude Desktop app",
+      "category": "cloud-agent-desktop",
+      "installed": true,
+      "running": true,
+      "captured": true,
+      "lastEventAt": 1790465376688
+    },
+    {
+      "id": "claude-desktop-chat",
+      "name": "Claude Desktop — plain chat (non-Code)",
+      "category": "cloud-agent-desktop",
+      "installed": false,
+      "running": false,
+      "captured": false,
+      "lastEventAt": null,
+      "reason": "claude.ai chat conversations are metered server-side; only a usage-percent history persists locally (captured separately)"
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "category": "cloud-agent-desktop",
+      "installed": false,
+      "running": false,
+      "captured": false,
+      "lastEventAt": null,
+      "reason": "the local ai-tracking DB has zero token/cost columns; real usage lives only in Cursor's cloud dashboard"
+    },
+    {
+      "id": "gemini-cli",
+      "name": "Gemini CLI",
+      "category": "cloud-agent-cli",
+      "installed": false,
+      "running": false,
+      "captured": false,
+      "lastEventAt": null
+    },
+    {
+      "id": "lm-studio",
+      "name": "LM Studio",
+      "category": "local-llm-server",
+      "installed": false,
+      "running": false,
+      "captured": false,
+      "lastEventAt": null
+    }
+  ]
+}

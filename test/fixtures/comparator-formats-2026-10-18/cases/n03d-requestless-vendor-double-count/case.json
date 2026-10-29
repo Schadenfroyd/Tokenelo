@@ -1,0 +1,44 @@
+{
+  "a": {"input": "a.input.json", "instance": "fab-native-n03d", "rollup_days": true},
+  "b": {"input": "b.input.json", "instance": "fab-ccusage-n03d"},
+  "case": "n03d-requestless-vendor-double-count",
+  "description": "FABRICATED illustration of the shape described in the R2974 continuation (a vendor version keying requestless copies by session and time counts both copies on two dates). The reference here is a made-up daily report with a 17-token day on 07-20 and the real 19-token day on 07-21; the subject is the native lines of case n03 rolled to days.",
+  "does_not_show": ["Real behavior of any ccusage version. The reference values are invented."],
+  "expect": {
+    "pairs": {
+      "2026-07-20": {"outcome": "only_in_b"},
+      "2026-07-21": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "cache_write_5m": ["not_comparable", null, null, "missing-in-b"],
+          "cache_write_total": ["equal", 0, 0, "exact-match"],
+          "input_fresh": ["equal", 0, 0, "exact-match"],
+          "output": ["equal", 0, 0, "exact-match"],
+          "reasoning": ["not_comparable", null, null, "missing-in-both"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      }
+    },
+    "records": {
+      "a": {
+        "2026-07-21": {
+          "components": {
+            "cache_read": ["measured", 5],
+            "cache_write_5m": ["measured", 3],
+            "input_fresh": ["measured", 3],
+            "output": ["measured", 8],
+            "reasoning": ["missing", null]
+          },
+          "count_quality": "complete",
+          "evidence": {"members": 2, "members_complete": 2},
+          "total": 19
+        }
+      }
+    },
+    "summary": {"differs": 0, "identical": 1, "matched": 1, "only_in_a": 0, "only_in_b": 1, "unresolved": 0}
+  },
+  "shows": ["A day that exists only on the reference side is reported as only-in-reference with its own numbers, never as a zero day."],
+  "timezone": "-06:00",
+  "tolerance_percent_micro": null
+}

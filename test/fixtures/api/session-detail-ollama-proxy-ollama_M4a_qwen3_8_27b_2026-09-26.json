@@ -1,0 +1,122 @@
+{
+  "source": "ollama-proxy",
+  "unpricedEvents": 0,
+  "estimatedPriceEvents": 0,
+  "priceStatus": "LIST",
+  "sessionId": "ollama:M4a:qwen3.8:27b:2026-09-26",
+  "host": "M4a",
+  "project": "/fixture/tokenelo-bench",
+  "models": [
+    "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL"
+  ],
+  "start": 1790465556688,
+  "end": 1790466156688,
+  "activeMs": 540000,
+  "live": true,
+  "subagents": 0,
+  "tokens": {
+    "inputFresh": 12000,
+    "cacheWrite5m": 0,
+    "cacheWrite1h": 0,
+    "cacheRead": 0,
+    "output": 3000,
+    "reasoning": 0
+  },
+  "apiEquivUsd": 0,
+  "burn": {
+    "tokensPerMin": 1000,
+    "usdPerHour": 0
+  },
+  "telemetry": [
+    {
+      "host": "M4a",
+      "source": "ollama-proxy",
+      "provider": "local",
+      "engine": "ollama",
+      "models": [
+        "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL"
+      ],
+      "events": 18,
+      "tokens": {
+        "inputFresh": 12000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 3000,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 0,
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "firstEventAt": 1790465556688,
+      "lastEventAt": 1790466156688,
+      "flags": {
+        "thinkingUnknown": 18
+      }
+    }
+  ],
+  "byModel": [
+    {
+      "model": "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL",
+      "displayName": "Qwen3.8 27B (local)",
+      "provider": "local",
+      "source": "ollama-proxy",
+      "thinking": "unknown",
+      "events": 18,
+      "tokens": {
+        "inputFresh": 12000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 3000,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 0,
+      "priceStatus": "LIST"
+    }
+  ],
+  "timeseries": {
+    "bucketMs": 300000,
+    "points": [
+      {
+        "t": 1790465400000,
+        "apiEquivUsd": 0,
+        "tokens": 4500,
+        "totalTokens": 4500,
+        "bySource": {
+          "ollama-proxy": 0
+        }
+      },
+      {
+        "t": 1790465700000,
+        "apiEquivUsd": 0,
+        "tokens": 7000,
+        "totalTokens": 7000,
+        "bySource": {
+          "ollama-proxy": 0
+        }
+      },
+      {
+        "t": 1790466000000,
+        "apiEquivUsd": 0,
+        "tokens": 3500,
+        "totalTokens": 3500,
+        "bySource": {
+          "ollama-proxy": 0
+        }
+      }
+    ]
+  },
+  "subagentSessions": [],
+  "cacheReadShare": 0,
+  "thinkingShare": null,
+  "thinkingUnknownEvents": 18,
+  "events": 18,
+  "firstEventTs": 1790465556688,
+  "lastEventTs": 1790466156688,
+  "wallMs": 600000,
+  "flags": {
+    "thinkingUnknown": 18
+  }
+}

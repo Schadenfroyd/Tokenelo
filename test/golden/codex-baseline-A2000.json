@@ -1,0 +1,444 @@
+{
+  "generated_at": "2026-09-26T22:12:13Z",
+  "corpus": {
+    "n_rollout_files": 2353,
+    "n_processed": 2353,
+    "total_bytes": 36889138504,
+    "elapsed_seconds": 1097.9
+  },
+  "db": {
+    "n_threads": 2353,
+    "n_spawn_edges": 760,
+    "n_spawn_children": 760,
+    "n_spawn_parents": 58
+  },
+  "session_meta_keys_union": [
+    "agent_nickname",
+    "agent_path",
+    "base_instructions",
+    "cli_version",
+    "context_window",
+    "creator_account_id",
+    "creator_user_id",
+    "cwd",
+    "dynamic_tools",
+    "forked_from_id",
+    "git",
+    "history_mode",
+    "id",
+    "model_provider",
+    "multi_agent_version",
+    "originator",
+    "parent_thread_id",
+    "runtime_workspace_roots",
+    "session_id",
+    "source",
+    "subagent_history_start_ordinal",
+    "thread_source",
+    "timestamp"
+  ],
+  "session_meta_fork_field_names_union": [
+    "forked_from_id",
+    "history_mode",
+    "parent_thread_id",
+    "subagent_history_start_ordinal"
+  ],
+  "event_msg_payload_types_union_with_counts": {
+    "item_completed": 591635,
+    "token_count": 314660,
+    "task_started": 58124,
+    "task_complete": 57903,
+    "thread_settings_applied": 53984,
+    "agent_message": 3677,
+    "turn_aborted": 161,
+    "user_message": 28,
+    "thread_goal_updated": 25
+  },
+  "fork_keyword_hits_total": {
+    "subagent": 30968,
+    "history": 135649,
+    "parent": 62629,
+    "inherit": 22863,
+    "replay": 33830,
+    "resum": 50685,
+    "fork": 12688
+  },
+  "fork_keyword_seen_in_event_types": {
+    "subagent": [
+      "event_msg",
+      "response_item",
+      "session_meta",
+      "world_state"
+    ],
+    "history": [
+      "event_msg",
+      "response_item",
+      "session_meta",
+      "world_state"
+    ],
+    "parent": [
+      "event_msg",
+      "response_item",
+      "session_meta",
+      "world_state"
+    ],
+    "inherit": [
+      "event_msg",
+      "response_item",
+      "world_state"
+    ],
+    "replay": [
+      "event_msg",
+      "response_item",
+      "world_state"
+    ],
+    "resum": [
+      "event_msg",
+      "response_item",
+      "session_meta",
+      "world_state"
+    ],
+    "fork": [
+      "event_msg",
+      "response_item",
+      "session_meta"
+    ]
+  },
+  "answer_a_fork_markers": {
+    "rollout_session_meta_fields": [
+      "forked_from_id",
+      "parent_thread_id",
+      "thread_source",
+      "agent_nickname",
+      "agent_path",
+      "subagent_history_start_ordinal",
+      "multi_agent_version"
+    ],
+    "sqlite_threads_fields": [
+      "thread_source (subagent|guardian_review)",
+      "source (JSON: subagent.thread_spawn.parent_thread_id | subagent.other)"
+    ],
+    "sqlite_fork_graph_table": "thread_spawn_edges(parent_thread_id, child_thread_id, status)"
+  },
+  "answer_b_inherited_baseline": {
+    "n_rollouts_with_nonzero_baseline": 572,
+    "n_fork_marked_rollouts_total": 1988,
+    "n_fork_marked_with_zero_baseline": 1416,
+    "conclusion": "Presence of fork markers (forked_from_id/parent_thread_id/thread_source=subagent/subagent_history_start_ordinal) does NOT reliably predict a nonzero baseline. baseline must be computed per-rollout, not inferred from the fork markers.",
+    "examples_nonzero_baseline": [
+      {
+        "session_id": "01a03586-3b7d-70e1-9ed9-2ba92b3105fb",
+        "path": "C:\\Users\\example\\.codex\\sessions\\2026\\08\\24\\rollout-2026-08-24T14-46-24-01a03586-3b7d-70e1-9ed9-2ba92b3105fb.jsonl",
+        "thread_source": "subagent",
+        "forked_from_id": null,
+        "parent_thread_id": "01a02131-e706-7ec0-9448-03b195060d6e",
+        "subagent_history_start_ordinal": 557,
+        "first_total": 1278038491,
+        "first_last_total": 84250,
+        "baseline": 1277954241,
+        "last_total": 1285247912,
+        "tokens_used_db": 1285247912,
+        "own_usage_after_rule": 7293671
+      },
+      {
+        "session_id": "01a05094-b873-7833-a261-92b6858990a4",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-08-29T20-51-58-01a05094-b873-7833-a261-92b6858990a4.jsonl",
+        "thread_source": "subagent",
+        "forked_from_id": "01a044d6-16a7-78b1-b2b5-cd13c309637b",
+        "parent_thread_id": "01a044d6-16a7-78b1-b2b5-cd13c309637b",
+        "subagent_history_start_ordinal": 85,
+        "first_total": 1118727657,
+        "first_last_total": 212533,
+        "baseline": 1118515124,
+        "last_total": 1120197739,
+        "tokens_used_db": 1120197739,
+        "own_usage_after_rule": 1682615
+      },
+      {
+        "session_id": "01a05094-4d16-7453-aafd-9eb6d6961357",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-08-29T20-51-31-01a05094-4d16-7453-aafd-9eb6d6961357.jsonl",
+        "thread_source": "subagent",
+        "forked_from_id": "01a044d6-16a7-78b1-b2b5-cd13c309637b",
+        "parent_thread_id": "01a044d6-16a7-78b1-b2b5-cd13c309637b",
+        "subagent_history_start_ordinal": 196,
+        "first_total": 1076187501,
+        "first_last_total": 49010,
+        "baseline": 1076138491,
+        "last_total": 1080264517,
+        "tokens_used_db": 1080264517,
+        "own_usage_after_rule": 4126026
+      }
+    ],
+    "examples_fork_marked_zero_baseline": [
+      {
+        "session_id": "01a04f63-d73c-7d02-940e-1cc6ba612f5a",
+        "thread_source": "guardian_review",
+        "forked_from_id": null,
+        "first_total": null,
+        "first_last_total": null
+      },
+      {
+        "session_id": "01a04fc8-0b43-7531-bed7-410583ac2a66",
+        "thread_source": "guardian_review",
+        "forked_from_id": null,
+        "first_total": null,
+        "first_last_total": null
+      },
+      {
+        "session_id": "01a05f1f-d28a-72a2-80ee-ee15ac48ba90",
+        "thread_source": "guardian_review",
+        "forked_from_id": null,
+        "first_total": null,
+        "first_last_total": null
+      }
+    ]
+  },
+  "answer_c_tokens_used_crosscheck": {
+    "n_checked": 2338,
+    "n_exact_match_to_last_total": 2189,
+    "n_mismatch": 149,
+    "mismatch_examples": [
+      {
+        "session_id": "01a079fa-a04d-74a1-927e-8e9515c70dbf",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-09-06T21-47-43-01a079fa-a04d-74a1-927e-8e9515c70dbf.jsonl",
+        "tokens_used_db": 0,
+        "last_total_rollout": 107,
+        "diff": -107,
+        "baseline": 0,
+        "thread_source": null
+      },
+      {
+        "session_id": "01a079fa-a046-7ee1-9fb2-268c120ee074",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-09-06T21-47-43-01a079fa-a046-7ee1-9fb2-268c120ee074.jsonl",
+        "tokens_used_db": 0,
+        "last_total_rollout": 77,
+        "diff": -77,
+        "baseline": 0,
+        "thread_source": null
+      },
+      {
+        "session_id": "01a079fa-a01e-74a3-9958-701334ef8c86",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-09-06T21-47-43-01a079fa-a01e-74a3-9958-701334ef8c86.jsonl",
+        "tokens_used_db": 0,
+        "last_total_rollout": 97,
+        "diff": -97,
+        "baseline": 0,
+        "thread_source": null
+      },
+      {
+        "session_id": "01a079fa-a04f-7843-9959-aba95d0bb52e",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-09-06T21-47-43-01a079fa-a04f-7843-9959-aba95d0bb52e.jsonl",
+        "tokens_used_db": 0,
+        "last_total_rollout": 580,
+        "diff": -580,
+        "baseline": 0,
+        "thread_source": null
+      },
+      {
+        "session_id": "01a0c609-e3d5-7d02-8a00-27faa2b0aec6",
+        "path": "C:\\Users\\example\\.codex\\sessions\\2026\\09\\21\\rollout-2026-09-21T16-15-32-01a0c609-e3d5-7d02-8a00-27faa2b0aec6.jsonl",
+        "tokens_used_db": 0,
+        "last_total_rollout": 68,
+        "diff": -68,
+        "baseline": 0,
+        "thread_source": null
+      },
+      {
+        "session_id": "01a0c609-e3d3-7900-bfbf-c1122fb229b4",
+        "path": "C:\\Users\\example\\.codex\\sessions\\2026\\09\\21\\rollout-2026-09-21T16-15-32-01a0c609-e3d3-7900-bfbf-c1122fb229b4.jsonl",
+        "tokens_used_db": 0,
+        "last_total_rollout": 68,
+        "diff": -68,
+        "baseline": 0,
+        "thread_source": null
+      },
+      {
+        "session_id": "01a079fa-9e80-71e0-b036-e2a8a8096f39",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-09-06T21-47-42-01a079fa-9e80-71e0-b036-e2a8a8096f39.jsonl",
+        "tokens_used_db": 0,
+        "last_total_rollout": 851,
+        "diff": -851,
+        "baseline": 0,
+        "thread_source": null
+      },
+      {
+        "session_id": "019ff73e-fed8-7661-8a46-672d4dba671e",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-08-12T12-32-08-019ff73e-fed8-7661-8a46-672d4dba671e.jsonl",
+        "tokens_used_db": 0,
+        "last_total_rollout": 863,
+        "diff": -863,
+        "baseline": 0,
+        "thread_source": null
+      },
+      {
+        "session_id": "019ff73e-fed7-7d22-bea9-1622531ea5c0",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-08-12T12-32-08-019ff73e-fed7-7d22-bea9-1622531ea5c0.jsonl",
+        "tokens_used_db": 0,
+        "last_total_rollout": 951,
+        "diff": -951,
+        "baseline": 0,
+        "thread_source": null
+      },
+      {
+        "session_id": "019ff73e-fed6-79e3-971b-d187e453ee73",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-08-12T12-32-08-019ff73e-fed6-79e3-971b-d187e453ee73.jsonl",
+        "tokens_used_db": 0,
+        "last_total_rollout": 951,
+        "diff": -951,
+        "baseline": 0,
+        "thread_source": null
+      }
+    ],
+    "conclusion": "threads.tokens_used equals the rollout's own last cumulative total_token_usage.total_tokens for essentially all threads checked (match_rate reported above), INCLUDING forked/subagent ones with a nonzero baseline \u2014 i.e. tokens_used is the raw cumulative counter and is NOT net of the inherited baseline."
+  },
+  "answer_d_rule": {
+    "rule": "per_rollout_own_usage = last_total - baseline, where baseline = first_total - first_last_total (first_total = total_token_usage.total_tokens of the FIRST token_count event in the rollout file; first_last_total = that same event's last_token_usage.total_tokens, i.e. its own turn delta). baseline is 0 for a normal/root thread by construction. Apply uniformly to every rollout (do not gate on thread_source/fork markers, which are an unreliable predictor per answer_b).",
+    "n_rollouts_affected_nonzero_baseline": 572,
+    "pct_rollouts_affected": 24.309,
+    "total_baseline_tokens_across_corpus": 184820311116,
+    "pct_of_all_tokens_used_sum": 82.2794
+  },
+  "monotonicity": {
+    "n_files_with_any_decrease": 22,
+    "decrease_examples": [
+      {
+        "session_id": "01a08127-9a3d-7220-a867-0b45fa2e2dab",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-09-08T07-14-11-01a08127-9a3d-7220-a867-0b45fa2e2dab.jsonl",
+        "decreases": [
+          [
+            217,
+            233,
+            1523633,
+            74283
+          ]
+        ]
+      },
+      {
+        "session_id": "01a04889-9ed0-7102-810b-6b4c046e221e",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-08-28T07-22-53-01a04889-9ed0-7102-810b-6b4c046e221e.jsonl",
+        "decreases": [
+          [
+            96,
+            115,
+            609141,
+            71556
+          ]
+        ]
+      },
+      {
+        "session_id": "01a06d14-dd9f-7d80-aaf5-60ab01f87c8b",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-09-04T09-41-19-01a06d14-dd9f-7d80-aaf5-60ab01f87c8b.jsonl",
+        "decreases": [
+          [
+            430,
+            444,
+            8694811,
+            211873
+          ]
+        ]
+      },
+      {
+        "session_id": "01a081af-56f7-70a0-a8d5-02985142d219",
+        "path": "C:\\Users\\example\\.codex\\sessions\\2026\\09\\08\\rollout-2026-09-08T09-42-27-01a081af-56f7-70a0-a8d5-02985142d219.jsonl",
+        "decreases": [
+          [
+            37,
+            74,
+            103542,
+            50690
+          ]
+        ]
+      },
+      {
+        "session_id": "01a06d14-afd4-7990-9883-809acfb72d85",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-09-04T09-41-07-01a06d14-afd4-7990-9883-809acfb72d85.jsonl",
+        "decreases": [
+          [
+            371,
+            390,
+            8371559,
+            228089
+          ]
+        ]
+      },
+      {
+        "session_id": "01a06f20-ee4b-7801-a3ab-faadb17a5c3e",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-09-04T19-13-44-01a06f20-ee4b-7801-a3ab-faadb17a5c3e.jsonl",
+        "decreases": [
+          [
+            1079,
+            1091,
+            17225158,
+            154567
+          ],
+          [
+            1564,
+            1575,
+            9871998,
+            72538
+          ]
+        ]
+      },
+      {
+        "session_id": "01a0882a-43eb-7781-a100-ddca3497db16",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-09-09T15-54-26-01a0882a-43eb-7781-a100-ddca3497db16.jsonl",
+        "decreases": [
+          [
+            327,
+            341,
+            6882363,
+            211629
+          ]
+        ]
+      },
+      {
+        "session_id": "01a05ee4-fa11-7900-9a62-1241fb5534b4",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-09-01T15-34-19-01a05ee4-fa11-7900-9a62-1241fb5534b4.jsonl",
+        "decreases": [
+          [
+            955,
+            971,
+            16897572,
+            97513
+          ]
+        ]
+      },
+      {
+        "session_id": "01a05f3d-6f34-72f1-849b-a8a42d0ceeb5",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-09-01T17-10-56-01a05f3d-6f34-72f1-849b-a8a42d0ceeb5.jsonl",
+        "decreases": [
+          [
+            1462,
+            1477,
+            29485452,
+            199879
+          ]
+        ]
+      },
+      {
+        "session_id": "01a0860a-79d1-77c2-8783-25fe40410da9",
+        "path": "C:\\Users\\example\\.codex\\archived_sessions\\rollout-2026-09-09T06-00-28-01a0860a-79d1-77c2-8783-25fe40410da9.jsonl",
+        "decreases": [
+          [
+            1100,
+            1114,
+            18913675,
+            154158
+          ],
+          [
+            7092,
+            7106,
+            99950120,
+            54600
+          ]
+        ]
+      }
+    ]
+  },
+  "totals": {
+    "sum_tokens_used_all_threads_in_db": 224625232770,
+    "sum_last_total_all_rollouts_processed": 224641119934
+  },
+  "parse_errors_total": 0,
+  "files_with_errors": []
+}

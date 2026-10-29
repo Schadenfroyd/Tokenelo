@@ -1,0 +1,56 @@
+{
+  "a": {"input": "a.input.json", "instance": "fab-ledger-n02"},
+  "b": {"input": "b.input.json", "instance": "fab-native-n02"},
+  "case": "n02-native-snapshots-incomparable",
+  "description": "Two snapshots of one message: (input 100, cache write 2, cache read 3, output 1) then (1, 5, 2, 10). Each field keeps its own maximum (100, 5, 3, 10; subtotal 118, hand arithmetic as in the existing snapshot reference test), but the snapshots move in opposite directions so the quality is conflict and no total is stated. The subject ledger row is stored with count quality conflict.",
+  "does_not_show": ["Which snapshot is right. The format never resolves a conflict."],
+  "expect": {
+    "pairs": {
+      "claude:fab-msg-n02": {
+        "outcome": "unresolved",
+        "units": {
+          "cache_read": ["not_comparable", null, null, "missing-in-a"],
+          "cache_write_total": ["not_comparable", null, null, "missing-in-a"],
+          "input_fresh": ["not_comparable", null, null, "missing-in-a"],
+          "output": ["not_comparable", null, null, "missing-in-a"],
+          "total": ["not_comparable", null, null, "missing-in-both"]
+        }
+      }
+    },
+    "records": {
+      "a": {
+        "claude:fab-msg-n02": {
+          "components": {
+            "cache_write_total": ["missing", null],
+            "input_fresh": ["missing", null]
+          },
+          "count_quality": "conflict",
+          "inspection": {"cache_read": 3, "cache_write_5m": 5, "input_fresh": 100, "output": 10},
+          "total": null
+        }
+      },
+      "b": {
+        "claude:fab-msg-n02": {
+          "completeness": "complete",
+          "components": {
+            "cache_read": ["measured", 3],
+            "cache_write_5m": ["measured", 5],
+            "cache_write_total": ["measured", 5],
+            "input_fresh": ["measured", 100],
+            "output": ["measured", 10]
+          },
+          "count_quality": "conflict",
+          "evidence": {"distinct_snapshots": 2, "lines_observed": 2},
+          "flags": ["snapshots-incomparable"],
+          "measured_subtotal": 118,
+          "time": 1784635205000,
+          "total": null
+        }
+      }
+    },
+    "summary": {"differs": 0, "identical": 0, "matched": 1, "only_in_a": 0, "only_in_b": 0, "unresolved": 1}
+  },
+  "shows": ["The per-field maxima are reproduced (subtotal 118) but are held evidence under conflict: not a total, no percentage.", "A stored conflict row keeps its recorded numbers only as inspection values, outside every comparison."],
+  "timezone": "-06:00",
+  "tolerance_percent_micro": null
+}
