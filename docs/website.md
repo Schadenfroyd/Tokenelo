@@ -2,13 +2,13 @@
 
 The public marketing website is a buildless static site in the site directory. It uses HTML, CSS, vanilla JavaScript, and SVG. The site source has no hosted data service, account flow, analytics code, cookie handling, or visitor-data upload.
 
-The website explains the project from public repository documentation. It does not expose tracker source, internal builds, private operational material, or product acceptance evidence. The report illustration is conceptual and uses fabricated values; keep that label visible anywhere the example appears.
+The website explains the project from public repository documentation. It links to the tracker source in this repository but does not include internal builds, private operational material, or product acceptance evidence. The report illustration is conceptual and uses fabricated values; keep that label visible anywhere the example appears.
 
 ## Content boundaries
 
 - Describe Tokenelo as free AI usage tracking and reporting for vendor accountability.
-- Keep availability clear: internal alpha, no public installer or supported source build, and Windows, macOS, and Linux under internal verification.
-- Describe Apache 2.0 as the planned license only. Source publication and the exact license grant remain pending counsel clearance.
+- Keep availability clear: internal alpha, no public installer or supported release, source available under Apache 2.0, and Windows, macOS, and Linux under internal verification.
+- Describe Apache 2.0 as the license of the source in this repository, as stated in `LICENSE`. Do not describe installers, signed builds, or hosted services as available.
 - Keep unknown, incomplete, unpriced, and measured zero distinct. Standard API-equivalent comparisons are not invoices.
 - Use only public documentation for privacy and product statements. Session metadata and exports can be sensitive; do not imply an external audit or complete capture.
 - Use fabricated examples. Keep private application data, captured screenshots, farm details, and restricted release material out of the site.
@@ -31,4 +31,4 @@ Successful static responses from the gateway include Cache-Control: public, max-
 
 Cloudflare and GitHub Pages still process ordinary HTTP requests to serve, cache, route, and secure the site; hosting security features may use request metadata or security cookies. The Tokenelo page code adds no analytics JavaScript, account flow, cookie handling, or visitor-data upload.
 
-Website publication does not mean the tracker is available. Check the [current status](status.md) before describing installation, compatibility, or licensing.
+Website publication does not mean an installer is available. Check the [current status](status.md) before describing installation, compatibility, or licensing.

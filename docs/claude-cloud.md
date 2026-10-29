@@ -2,8 +2,8 @@
 
 The public repository is ready for public documentation, repository-tooling, static marketing-site, and gateway-source tasks.
 Tracker application engineering belongs in the separately authorized engineering workspace;
-this checkout contains public documentation, static website source under site/, and independently deployed gateway source under site-gateway/,
-with no tracker source or installers. Keep that distinction in
+this checkout contains public documentation, static website source under site/, independently deployed gateway source under site-gateway/,
+and the Apache 2.0 tracker source published from that workspace, with no installers or private engineering history. Keep that distinction in
 task prompts, pull requests, and handoffs.
 
 ## Repository and environment

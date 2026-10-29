@@ -1,10 +1,11 @@
 # Contributing
 
-Tokenelo is preparing its public source release. You can improve the public documentation or send product feedback now. Product-source contributions can be reviewed once the release scope and license grant are cleared.
+Tokenelo's application source is published under Apache 2.0. You can improve the source or the documentation, or send product feedback.
 
 ## Choose a way to help
 
 - **Improve the documentation.** Documentation pull requests are welcome. Run `node --test scripts/check-docs.test.mjs` and `node scripts/check-docs.mjs` before submitting; these checks need no dependency installation.
+- **Improve the source.** Source pull requests are welcome. Use Node.js 22.13 or newer (see the [quick start](docs/quick-start.md)), then run `npm ci`, `npm run typecheck`, `npm test` and `npm run build` before submitting.
 - **Share feedback or report a problem.** Use the [issue forms](https://github.com/Schadenfroyd/Tokenelo/issues/new/choose) to suggest an improvement or describe a tracking issue.
 - **Report a security concern privately.** Use [private vulnerability reporting](SECURITY.md), not a public issue.
 
@@ -16,11 +17,11 @@ For Claude cloud work, follow the [public documentation runbook](docs/claude-clo
 and run `node scripts/cloud-check.mjs`. The command adds checkout and runtime
 verification to the documentation checks without installing dependencies.
 
-Product-source contributions must wait for the cleared release scope and license. The [current status](docs/status.md) and [release and licensing details](docs/licensing.md) explain what remains pending.
+Source contributions are licensed under Apache 2.0, as section 5 of the [license](LICENSE) provides. The [current status](docs/status.md) and [release and licensing details](docs/licensing.md) explain what remains pending for installers and supported releases.
 
-## Proposed contribution policy for the source release
+## Contribution policy
 
-Contributions will use the adopted repository license. The proposed origin policy is a Developer Certificate of Origin sign-off on each contribution commit. Sign-off certifies the contributor's right to submit the work; it is not copyright assignment. The adopted policy and exact developer commands will accompany the source release.
+Contributions use the repository license, Apache 2.0. The proposed origin policy is a Developer Certificate of Origin sign-off on each contribution commit (`git commit -s`). Sign-off certifies the contributor's right to submit the work; it is not copyright assignment. No tooling enforces it yet.
 
 Changes to accounting require examples covering missing data, known zero, caching/reasoning subsets, model/source identity and relevant ranges. Claims about privacy or billing need evidence. Keep UI language concise and navigation consistent with token tracking and reporting.
 

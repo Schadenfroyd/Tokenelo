@@ -12,9 +12,9 @@ Understand which tools and models were used, inspect the records behind a total,
 
 **Website:** [tokenelo.eloai.co](https://tokenelo.eloai.co) · [Website source](site/index.html)
 
-**Start here:** [What Tokenelo does](docs/product.md) · [Release status](docs/status.md) · [How to interpret counts](docs/data-accuracy.md).
+**Start here:** [What Tokenelo does](docs/product.md) · [Release status](docs/status.md) · [How to interpret counts](docs/data-accuracy.md) · [Build from source](docs/quick-start.md).
 
-> **Internal alpha · public release in preparation.** This repository contains public project documentation, artwork, repository tooling, a static marketing site in `site/`, and its separately deployed gateway source in `site-gateway/`. Tracker product source and installers are not available here yet. Apache 2.0 is the approved source-release plan; publication and the exact license grant remain pending counsel clearance. [Release and licensing details →](docs/licensing.md)
+> **Internal alpha · source available under Apache 2.0 · no installers yet.** This repository contains the tracker source (`src/`, `test/`, `rates/`, `packaging/`, `native/`), public project documentation, artwork, repository tooling, a static marketing site in `site/`, and its separately deployed gateway source in `site-gateway/`. The source is licensed under [Apache 2.0](LICENSE). Installers and signed builds are not available, and no platform support is claimed. [Release and licensing details →](docs/licensing.md)
 
 ## Know the usage. Explain the number.
 
@@ -30,9 +30,9 @@ Understand which tools and models were used, inspect the records behind a total,
 
 ## Built for useful, free adoption
 
-The planned tracker requires no Tokenelo account, paid subscription or central upload. Local tracking and reporting must be useful on their own.
+The tracker is designed to require no Tokenelo account, paid subscription or central upload. Local tracking and reporting must be useful on their own.
 
-The internal implementation includes adapters for Claude Code, Codex, and configured local inference. Supported formats and coverage vary. Windows, macOS, and Linux are under internal verification; the public release will carry an exact compatibility matrix and installation instructions.
+The implementation includes adapters for Claude Code, Codex, and configured local inference. Supported formats and coverage vary. Windows, macOS, and Linux are under verification; the [support matrix](docs/support-matrix.md) and [quick start](docs/quick-start.md) are release drafts, and no public platform support is claimed.
 
 ### The accountability workflow
 
@@ -59,7 +59,9 @@ The internal implementation includes adapters for Claude Code, Codex, and config
 | [Current status](docs/status.md) | Dated progress and what remains before release. |
 | [Roadmap](docs/roadmap.md) | Acceptance work and proposed reporting improvements. |
 | [FAQ](docs/faq.md) | Availability, licensing, billing comparisons, and privacy. |
-| [Contributing](CONTRIBUTING.md) | Documentation, product feedback, and sanitized reproductions. |
+| [Build from source](docs/quick-start.md) | Node.js setup, checks, and local use (a release draft). |
+| [License](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES.md) | Apache 2.0 terms and candidate notices for the development dependency tree. |
+| [Contributing](CONTRIBUTING.md) | Source and documentation changes, product feedback, and sanitized reproductions. |
 | [Claude cloud workflow](docs/claude-cloud.md) | Work on public documentation with reproducible checks and a clear handoff. |
 | [Issues](https://github.com/Schadenfroyd/Tokenelo/issues/new/choose) | Report a problem or propose a useful improvement. |
 | [Private vulnerability report](https://github.com/Schadenfroyd/Tokenelo/security/advisories/new) | Report security findings confidentially. |

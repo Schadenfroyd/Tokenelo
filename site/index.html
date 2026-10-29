@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f4f5f0">
-  <meta name="description" content="Free AI usage tracking and reporting for vendor accountability. Tokenelo is in internal alpha; public release preparation is underway.">
+  <meta name="description" content="Free AI usage tracking and reporting for vendor accountability. Tokenelo is in internal alpha; the source is available under Apache 2.0, with no installer yet.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://tokenelo.eloai.co/">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Tokenelo by Elo AI">
   <meta property="og:title" content="Tokenelo — AI usage, with evidence">
-  <meta property="og:description" content="Free AI usage tracking and reporting for vendor accountability. Internal alpha; public release in preparation.">
+  <meta property="og:description" content="Free AI usage tracking and reporting for vendor accountability. Internal alpha; source available under Apache 2.0.">
   <meta property="og:url" content="https://tokenelo.eloai.co/">
   <meta property="og:image" content="https://tokenelo.eloai.co/social-card.svg">
   <meta property="og:image:type" content="image/svg+xml">
@@ -21,7 +21,7 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Tokenelo — AI usage, with evidence">
-  <meta name="twitter:description" content="Free AI usage tracking and reporting for vendor accountability. Internal alpha; public release in preparation.">
+  <meta name="twitter:description" content="Free AI usage tracking and reporting for vendor accountability. Internal alpha; source available under Apache 2.0.">
   <meta name="twitter:image" content="https://tokenelo.eloai.co/social-card.svg">
 </head>
 <body>
@@ -29,7 +29,7 @@
   <div class="status-ribbon">
     <div class="wrap ribbon-inner">
       <span class="status-label"><span class="status-dot" aria-hidden="true"></span>Internal alpha</span>
-      <span class="ribbon-copy">Public release in preparation</span>
+      <span class="ribbon-copy">Source available under Apache 2.0 · no installer yet</span>
       <a href="https://github.com/Schadenfroyd/Tokenelo/blob/main/docs/status.md">Read current status <span aria-hidden="true">↗</span></a>
     </div>
   </div>
@@ -53,14 +53,14 @@
   <main id="main">
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span> Free AI usage reporting <span class="eyebrow-separator" aria-hidden="true">/</span> Release preparation</p>
+        <p class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span> Free AI usage reporting <span class="eyebrow-separator" aria-hidden="true">/</span> Internal alpha</p>
         <h1 id="hero-title">AI usage,<br><span>with evidence.</span></h1>
         <p class="hero-lede">See where recorded AI usage came from, understand what sits behind the total, and bring a clearer report into a vendor conversation.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="https://github.com/Schadenfroyd/Tokenelo">Explore Tokenelo on GitHub <span aria-hidden="true">↗</span></a>
           <a class="text-link" href="#report">Read the example report <span aria-hidden="true">↓</span></a>
         </div>
-        <p class="hero-note">Tokenelo is in internal alpha. There is no public installer or supported source build yet.</p>
+        <p class="hero-note">Tokenelo is in internal alpha. There is no public installer, and the source build path is a release draft.</p>
       </div>
 
       <aside class="hero-aside" aria-label="What a careful usage report should make clear">
@@ -188,10 +188,10 @@
       <div class="trust-title-block">
         <p class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span> Trust and data boundaries</p>
         <h2 id="trust-title">Local evidence needs careful handling.</h2>
-        <p>The public docs describe intended behavior and current qualifications. Product source is not yet available for public inspection.</p>
+        <p>The public docs describe intended behavior and current qualifications. The tracker source is available for public inspection under Apache 2.0.</p>
       </div>
       <div class="trust-content">
-        <div class="trust-statement"><span class="trust-symbol" aria-hidden="true">T</span><div><h3>Local use is the plan.</h3><p>The planned tracker is intended to provide useful local tracking and reporting without a Tokenelo account, paid subscription, or central upload requirement.</p></div></div>
+        <div class="trust-statement"><span class="trust-symbol" aria-hidden="true">T</span><div><h3>Local use is the plan.</h3><p>The tracker is designed to provide useful local tracking and reporting without a Tokenelo account, paid subscription, or central upload requirement.</p></div></div>
         <div class="trust-columns">
           <div><span class="trust-label">What the docs describe</span><p>Normalized local records hold counts and metadata. A deliberately configured proxy can process request and response traffic in memory to obtain counters.</p></div>
           <div><span class="trust-label">What deserves review</span><p>Session titles, identifiers, host labels, project paths, and exports can reveal sensitive activity. Review files before sharing them.</p></div>
@@ -204,16 +204,16 @@
       <div class="wrap release-wrap">
         <div class="release-intro">
           <p class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span> Release status</p>
-          <h2 id="release-title">In preparation.<br><span>Not available to install.</span></h2>
-          <p>Tokenelo is in internal alpha. The public repository currently contains product documentation, this website, and repository tooling while application release work continues.</p>
+          <h2 id="release-title">Source available.<br><span>Not available to install.</span></h2>
+          <p>Tokenelo is in internal alpha. The public repository contains the Apache 2.0 tracker source, product documentation, this website, and repository tooling while installer and release work continues.</p>
           <a class="button button-primary" href="https://github.com/Schadenfroyd/Tokenelo">Follow the public project <span aria-hidden="true">↗</span></a>
           <p class="release-follow-note">Star or watch the repository for release updates.</p>
         </div>
         <div class="release-facts" role="group" aria-label="Current availability details">
-          <div class="release-fact"><span>Availability</span><strong>No public installer or supported source build</strong><em>Internal alpha</em></div>
+          <div class="release-fact"><span>Availability</span><strong>No public installer</strong><em>Internal alpha; the source build path is a release draft</em></div>
           <div class="release-fact"><span>Platforms</span><strong>Windows, macOS, and Linux</strong><em>Under internal verification</em></div>
-          <div class="release-fact"><span>Application source and license</span><strong>Not published</strong><em>Apache 2.0 is planned; the exact release and license grant await counsel clearance</em></div>
-          <div class="release-fact"><span>Product intent</span><strong>Free local tracking and reporting</strong><em>No Tokenelo account, paid subscription, or central upload required by the planned tracker</em></div>
+          <div class="release-fact"><span>Application source and license</span><strong>Published under Apache 2.0</strong><em>Source in the public repository; installers and signed builds are not published</em></div>
+          <div class="release-fact"><span>Product intent</span><strong>Free local tracking and reporting</strong><em>No Tokenelo account, paid subscription, or central upload required by the tracker's design</em></div>
           <a class="release-status-link" href="https://github.com/Schadenfroyd/Tokenelo/blob/main/docs/status.md">See dated progress and open release work <span aria-hidden="true">↗</span></a>
         </div>
       </div>
@@ -222,10 +222,10 @@
     <section class="faq-section wrap" aria-labelledby="faq-title">
       <div class="faq-heading"><p class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span> Questions people ask first</p><h2 id="faq-title">Before you follow along.</h2></div>
       <div class="faq-list">
-        <details><summary>Can I install Tokenelo today?<span class="faq-plus" aria-hidden="true"></span></summary><p>No. There is no public installer or supported source build yet. The project is in internal alpha. Follow the <a href="https://github.com/Schadenfroyd/Tokenelo/blob/main/docs/status.md">release status</a> for current progress.</p></details>
-        <details><summary>Is the Tokenelo application open source now?<span class="faq-plus" aria-hidden="true"></span></summary><p>Not yet. Apache 2.0 is the approved plan for a cleared tracker release, but source publication and the exact license grant remain pending counsel clearance. The public website and documentation do not grant a license to the unpublished application. <a href="https://github.com/Schadenfroyd/Tokenelo/blob/main/docs/licensing.md">Read the licensing status.</a></p></details>
+        <details><summary>Can I install Tokenelo today?<span class="faq-plus" aria-hidden="true"></span></summary><p>No. There is no public installer. The source is public and can be built from a checkout, but that path is a release draft and platform support is not claimed. The project is in internal alpha. Follow the <a href="https://github.com/Schadenfroyd/Tokenelo/blob/main/docs/status.md">release status</a> for current progress.</p></details>
+        <details><summary>Is the Tokenelo application open source now?<span class="faq-plus" aria-hidden="true"></span></summary><p>Yes, the application source is published under Apache 2.0. Installers and signed builds are not published, and the project is in internal alpha. <a href="https://github.com/Schadenfroyd/Tokenelo/blob/main/docs/licensing.md">Read the licensing status.</a></p></details>
         <details><summary>Does an API-equivalent cost equal my invoice?<span class="faq-plus" aria-hidden="true"></span></summary><p>No. A comparison uses recorded usage and a configured price table. Subscription quotas, served tiers, negotiated rates, discounts, rounding, and uncaptured activity can differ from a vendor bill. <a href="https://github.com/Schadenfroyd/Tokenelo/blob/main/docs/data-accuracy.md">Learn how to read the numbers.</a></p></details>
-        <details><summary>Which tools and platforms will work?<span class="faq-plus" aria-hidden="true"></span></summary><p>Internal adapters include Claude Code, Codex, and configured local inference. Supported formats and coverage vary. Windows, macOS, and Linux are under internal verification; the public release will state its exact compatibility matrix.</p></details>
+        <details><summary>Which tools and platforms will work?<span class="faq-plus" aria-hidden="true"></span></summary><p>Internal adapters include Claude Code, Codex, and configured local inference. Supported formats and coverage vary. Windows, macOS, and Linux are under internal verification; the <a href="https://github.com/Schadenfroyd/Tokenelo/blob/main/docs/support-matrix.md">support matrix</a> is a release draft.</p></details>
         <details><summary>What data should I be careful with?<span class="faq-plus" aria-hidden="true"></span></summary><p>Metadata and exports can contain session titles, identifiers, host labels, and local project paths. Review reports before sharing and use fabricated examples in public issues. See the <a href="https://github.com/Schadenfroyd/Tokenelo/blob/main/docs/privacy.md">privacy model</a>.</p></details>
       </div>
     </section>

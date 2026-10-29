@@ -1,6 +1,6 @@
 # Privacy model
 
-Status: public release preparation. This is a product data-handling description, not a contract for a hosted service.
+Status: internal alpha; the source is released under Apache 2.0 and no installer is available. This is a product data-handling description, not a contract for a hosted service.
 
 ## Local records
 

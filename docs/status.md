@@ -6,13 +6,14 @@ Tokenelo's primary purpose is free token tracking, reporting, and useful local e
 
 ## Available in this repository
 
-- Product overview, data interpretation, privacy, security, and licensing plan.
+- Tracker application source under Apache 2.0, with tests, build scripts and a source CI workflow.
+- Product overview, data interpretation, privacy, security, and licensing status.
 - Public static marketing site source and its illustrative, fabricated report example.
 - Exact-host static-site gateway source and regression tests, separate from the tracker.
 - Roadmap, contributor guidance, and structured issue forms.
 - Repository artwork and automated documentation checks.
 
-Product source, private operational history, captured records, databases, and installers are excluded. Source and binary publication remain pending counsel clearance of the exact release scope.
+The tracker source is published here under [Apache 2.0](../LICENSE) as of October 28, 2026. Private operational history, captured records, databases, and installers are excluded. Installer and binary distribution remain pending clearance of their exact release scope.
 
 ## Internal UI fixture review — October 25, 2026
 
@@ -45,7 +46,7 @@ The original internal alpha criteria remain unaccepted. Full release readiness h
 4. Review all nine screens, ranges, selectors, controls, modals, and data drill-downs across supported platforms and themes, including physical interaction.
 5. Verify three-platform install, upgrade, uninstall, rollback, reboot, and export behavior.
 6. Complete mutation testing, required independent reviews, release inventory, dependency notices, and signing/notarization preparation.
-7. Obtain counsel clearance for the exact public source, patent grant, and binary distribution; then publish the cleared Apache 2.0 release.
+7. Source is released under Apache 2.0 (October 28, 2026). Obtain clearance for binary and installer distribution, then publish a tested, supported release.
 
 ## Findings and opportunities from the October 12 snapshot
 
