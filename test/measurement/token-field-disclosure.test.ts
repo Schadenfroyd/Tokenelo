@@ -10,7 +10,7 @@ import { tokenCountDetails, countBasisLabel, tokenCategoryText } from '../../src
 import { buildOllamaUsageEvent } from '../../src/collectors/ollama-proxy.js';
 import { openDb } from '../../src/store/db.js';
 import { SqliteLedger } from '../../src/store/ledger.js';
-import { StubEacsEngine, StubPricingEngine } from '../store/stubs.js';
+import { StubValuationEngine, StubPricingEngine } from '../store/stubs.js';
 import { defaultConfig } from '../../src/daemon/config.js';
 import { createQueries } from '../../src/store/queries.js';
 import { readUsageAggregate } from '../../src/store/usage-aggregate.js';
@@ -68,7 +68,7 @@ it.each(['today', '24h', '7d', '30d', 'all'] as Range[])('carries exact persiste
     const raw = captureNativeCounters({ prompt_eval_count: 3 });
     const e = buildOllamaUsageEvent({ host: 'OWNED', model: 'OWNED', ts: now - 1, requestStartNs: 1n, entrypoint: 'owned',
       tokens: nativeCounterProjection(raw), nativeCounterEvidence: raw });
-    new SqliteLedger(db, new StubPricingEngine(), new StubEacsEngine()).upsertEvents([e]);
+    new SqliteLedger(db, new StubPricingEngine(), new StubValuationEngine()).upsertEvents([e]);
     const before = db.prepare('SELECT * FROM main.events ORDER BY rowid').all();
     const queries = createQueries(db, defaultConfig({ hostLabel: 'OWNED' }), { now: () => now, readSnapshotFile: file, pageRows: 1 });
     const summary = await queries.getSummary(range);

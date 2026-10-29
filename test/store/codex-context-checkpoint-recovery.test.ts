@@ -6,7 +6,7 @@ import type { IngestState, TokeneloDb } from '../../src/core/types.js';
 import { configureCurrentEventBasis } from '../../src/store/event-basis.js';
 import { openDb } from '../../src/store/db.js';
 import { SqliteLedger } from '../../src/store/ledger.js';
-import { StubEacsEngine, StubPricingEngine, makeEvent } from './stubs.js';
+import { StubValuationEngine, StubPricingEngine, makeEvent } from './stubs.js';
 
 const { DatabaseSync } = createRequire(import.meta.url)('node:sqlite') as typeof import('node:sqlite');
 const SID = '01a00000-1111-7111-8111-111111111111';
@@ -58,7 +58,7 @@ function cursor(extra: unknown = unownedState(), patch: Partial<IngestState> = {
 }
 
 function newLedger(db: TokeneloDb): SqliteLedger {
-  return new SqliteLedger(db, new StubPricingEngine(), new StubEacsEngine());
+  return new SqliteLedger(db, new StubPricingEngine(), new StubValuationEngine());
 }
 
 function ownedLedgerFixture(): { db: TokeneloDb; ledger: SqliteLedger; close: () => void } {

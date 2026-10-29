@@ -37,9 +37,8 @@ function component(model: string, tokens: Partial<UsageComponent['tokens']>, ext
 }
 
 describe('resolve() / providerOf() / first-match ordering', () => {
-  it('retains weights classification without applying a local zero price to hosted/unknown serving', () => {
+  it('does not apply a local zero price to hosted or unknown serving', () => {
     const model = 'qwen3-coder-plus';
-    expect(engine.resolve(model)?.eacsClass).toBe('ELO_LMA');
     const hosted = { kind: 'hosted', evidence: 'qwen-oauth' } as const;
     const unknown = { kind: 'unknown', evidence: 'qwen-openai-compatible' } as const;
     for (const servingRoute of [hosted, unknown]) {
@@ -109,20 +108,15 @@ describe('resolve() / providerOf() / first-match ordering', () => {
     expect(engine.resolve('gpt-5.6-sol')?.id).not.toBe('gpt-6-sol');
   });
 
-  it('resolves local model ids by weights provenance (DESIGN §15.5: Gemma -> ELO_GEM, other local -> ELO_LMA)', () => {
+  it('resolves local model ids by weights provenance', () => {
     const gemma = engine.resolve('gemma4:26b');
-    expect(gemma?.eacsClass).toBe('ELO_GEM');
     expect(gemma?.provider).toBe('local');
     expect(gemma?.local).toBe(true);
 
     const qwenHf = engine.resolve('hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL');
-    expect(qwenHf?.eacsClass).toBe('ELO_LMA');
     const qwenGguf = engine.resolve('Qwen3.8-27B-UD-Q4_K_M.gguf');
-    expect(qwenGguf?.eacsClass).toBe('ELO_LMA');
     const llama = engine.resolve('llama-3.3-70b-instruct');
-    expect(llama?.eacsClass).toBe('ELO_LMA');
     const otherGguf = engine.resolve('some-other-model.gguf');
-    expect(otherGguf?.eacsClass).toBe('ELO_LMA');
     expect(otherGguf?.id).toBe('local-gguf');
   });
 
@@ -510,7 +504,7 @@ describe('createPricingEngine — pure construction from an in-memory row array 
         match: 'fixture-model',
         displayName: 'Fixture Model',
         provider: 'anthropic',
-        eacsClass: 'ELO_CLD',
+       
         local: false,
         rates: { in: 1, cacheWrite5m: 0, cacheWrite1h: 0, cacheRead: 0, out: 2 },
         status: 'LIST',

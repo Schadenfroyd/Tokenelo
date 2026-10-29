@@ -19,8 +19,8 @@ describe('session detail buckets carry their own price quality counts', () => {
   it('each bucket reports its own unpriced and estimated counts from the same events as its dollars', async () => {
     const db = openDb({ file: ':memory:' });
     const pricing = defaultPricingEngine();
-    const computeUnits = createNullEngine();
-    const ledger = new SqliteLedger(db, pricing, computeUnits);
+    const valuationEngine = createNullEngine();
+    const ledger = new SqliteLedger(db, pricing, valuationEngine);
     const common = { sessionId: SESSION, source: 'codex' as const, host: 'M4a' };
     ledger.upsertEvents([
       makeEvent({ ...common, id: 'unpriced-1', ts: T0, model: 'codex-auto-review', inputFresh: 1000, output: 100, thinking: null }),

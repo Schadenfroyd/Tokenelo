@@ -14,11 +14,11 @@ const MODEL = 'owned-speed-control';
 const SESSION = '00000000-0000-4000-8000-000000000001';
 const NOW = 1_700_000_000_000;
 const rows: PriceRow[] = [{ id: MODEL, match: '^owned-speed-control$', displayName: 'Owned speed control',
-  provider: 'anthropic', eacsClass: 'ELO_CLD', local: false,
+  provider: 'anthropic', local: false,
   rates: { in: 1, cacheWrite5m: 1.25, cacheWrite1h: 2, cacheRead: .1, out: 1 },
   status: 'LIST', source: 'Owned synthetic conditional rates; not vendor pricing', verifiedAt: '2023-11-14' }];
 const pricing = createPricingEngine(rows);
-const computeUnits = createNullEngine();
+const valuationEngine = createNullEngine();
 const owned: string[] = [];
 afterEach(() => { for (const p of owned.splice(0)) fs.rmSync(p, { recursive: true, force: true }); });
 function usage(output: number, speed?: string) {
@@ -34,10 +34,10 @@ async function harness(inputs: { usage: Record<string, unknown>; model?: string 
     sessionId: SESSION, requestId: 'owned-request', uuid: 'owned-record-' + i,
     message: { id: 'owned-speed-message', model: r.model ?? MODEL, usage: r.usage } })).join('\n') + '\n';
   fs.writeFileSync(file, text);
-  const db = openDb({ file: ':memory:' }), ledger = new SqliteLedger(db, pricing, computeUnits);
+  const db = openDb({ file: ':memory:' }), ledger = new SqliteLedger(db, pricing, valuationEngine);
   const config = defaultConfig({ hostLabel: 'owned-speed-fixture' }); config.claude.roots = [root];
   try {
-    await new ClaudeCollector().scan({ host: config.hostLabel, config, store: ledger, pricing, computeUnits,
+    await new ClaudeCollector().scan({ host: config.hostLabel, config, store: ledger, pricing, valuationEngine,
       log: () => {}, now: () => NOW + 1000 });
     expect(fs.readFileSync(file, 'utf8')).toBe(text);
     return { db, ledger };

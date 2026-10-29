@@ -4,8 +4,8 @@
  *
  * StubPricingEngine: $1 per 1000 (inputFresh + output) tokens, summed over components. Always
  * status 'LIST'.
- * StubEacsEngine: a seam test double for the ledger's reserved valuation fields (the EacsEngine interface in
- * core/types.ts: defSha256, ucuForEvent, rateBasisOf). It is NOT the behaviour of this edition (the real
+ * StubValuationEngine: a seam test double for the ledger's reserved valuation fields (the ValuationEngine interface in
+ * core/types.ts: defSha256, valueForEvent, rateBasisOf). It is NOT the behaviour of this edition (the real
  * seam is createNullEngine() in core/null-engine.ts, which records an unknown value). It exists so a test can
  * observe that the ledger writes whatever the injected seam returns for a new or changed row and keeps a
  * stored value while its measurement inputs are unchanged. Its value per component is
@@ -15,7 +15,7 @@
  * hand-computed from the raw token fields.
  */
 import type {
-  EacsEngine,
+  ValuationEngine,
   PriceResult,
   PriceRow,
   PricingEngine,
@@ -29,7 +29,7 @@ import type {
 export const STUB_PRICE_VERSION = 'stub-price-v1';
 export const STUB_DEF_SHA256 = 'stub-def-sha256';
 export const STUB_USD_PER_1K = 1; // $1 / 1000 (inputFresh+output) tokens
-export const STUB_TOKENS_PER_UCU = 100;
+export const STUB_TOKENS_PER_UNIT = 100;
 
 function componentUsd(c: UsageComponent): number {
   return ((c.tokens.inputFresh + c.tokens.output) / 1000) * STUB_USD_PER_1K;
@@ -60,17 +60,17 @@ function componentValuationTokens(t: TokenCounts): number {
   return t.inputFresh + t.cacheWrite5m + t.cacheWrite1h + t.output;
 }
 
-export class StubEacsEngine implements EacsEngine {
+export class StubValuationEngine implements ValuationEngine {
   readonly defSha256: string = STUB_DEF_SHA256;
 
   rateBasisOf(components: readonly UsageComponent[]): { rateKey: string; resolvedSha256: string } {
     const rateKey = `[${[...new Set(components.map((c) => JSON.stringify([c.model, null])))].sort().join(',')}]`;
-    return { rateKey, resolvedSha256: `stub-identity:${STUB_TOKENS_PER_UCU}:${rateKey}` };
+    return { rateKey, resolvedSha256: `stub-identity:${STUB_TOKENS_PER_UNIT}:${rateKey}` };
   }
 
-  ucuForEvent(e: Pick<UsageEvent, 'components' | 'effort' | 'thinking'>): { reservedValue: number | null; status: RateStatus } {
+  valueForEvent(e: Pick<UsageEvent, 'components' | 'effort' | 'thinking'>): { reservedValue: number | null; status: RateStatus } {
     const reservedValue = e.components.reduce(
-      (sum, c) => sum + componentValuationTokens(c.tokens) / STUB_TOKENS_PER_UCU,
+      (sum, c) => sum + componentValuationTokens(c.tokens) / STUB_TOKENS_PER_UNIT,
       0
     );
     return { reservedValue, status: 'MEASURED' };

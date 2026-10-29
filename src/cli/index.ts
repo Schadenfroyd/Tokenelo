@@ -17,7 +17,7 @@ import { buildRuntime, runIngestOnce, main as runDaemon, ensureApiToken, isEntry
 import fs from 'node:fs';
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
-import type { EacsEngine, PricingEngine, Range, UsageEvent } from '../core/types.js';
+import type { ValuationEngine, PricingEngine, Range, UsageEvent } from '../core/types.js';
 import { getPaths, ensureDirs, tightenDataDirPermissions, type TokeneloPaths } from '../daemon/paths.js';
 import { openDb, withTransaction } from '../store/db.js';
 import { runMigrations } from '../store/migrations.js';
@@ -259,7 +259,7 @@ const PREVIEW_MUTATION = {
  * logical backup through migrations, event selection and revaluation. The
  * backup reader sees the pre-migration committed state while competing writers
  * wait. All writes commit together, or all schema/economic changes roll back. */
-export function repriceLedger(paths: TokeneloPaths = getPaths(), pricing: PricingEngine = defaultPricingEngine(), computeUnits: EacsEngine = createNullEngine()) {
+export function repriceLedger(paths: TokeneloPaths = getPaths(), pricing: PricingEngine = defaultPricingEngine(), valuationEngine: ValuationEngine = createNullEngine()) {
   const existed = fs.existsSync(paths.dbFile);
   ensureDirs(paths);
   const db = openDb({ file: paths.dbFile, migrate: false });
@@ -281,7 +281,7 @@ export function repriceLedger(paths: TokeneloPaths = getPaths(), pricing: Pricin
       const events = (db.prepare('SELECT * FROM events ORDER BY rowid').all() as unknown as EventRow[]).map(rowToEvent);
       if (events.length === 0) return { ...(backupName ? { backup: backupName } : {}), inserted: 0, updated: 0, unchanged: 0 };
       const receipt = repriceReceipt(events, pricing);
-      const result = new SqliteLedger(db, pricing, computeUnits).upsertEvents(events, { reprice: true });
+      const result = new SqliteLedger(db, pricing, valuationEngine).upsertEvents(events, { reprice: true });
       return { ...(backupName ? { backup: backupName } : {}), ...result,
         priceStatusChanged: receipt.totals.priceStatusChanged,
         priceVersionChanged: receipt.totals.priceVersionChanged, providerChanged: receipt.totals.providerChanged,

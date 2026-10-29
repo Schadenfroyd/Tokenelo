@@ -4,7 +4,6 @@
     "match": "^synth-hosted$",
     "displayName": "synth-hosted (fabricated)",
     "provider": "anthropic",
-    "eacsClass": "ELO_CLD",
     "local": false,
     "rates": {
       "in": 3,
@@ -39,7 +38,6 @@
     "match": "^synth-derived$",
     "displayName": "synth-derived (fabricated)",
     "provider": "openai",
-    "eacsClass": "ELO_GPT",
     "local": false,
     "rates": {
       "in": 1,
@@ -60,7 +58,6 @@
     "match": "^synth-estimate-row$",
     "displayName": "synth-estimate-row (fabricated)",
     "provider": "anthropic",
-    "eacsClass": "ELO_CLD",
     "local": false,
     "rates": {
       "in": 1,
@@ -78,7 +75,6 @@
     "match": "^synth-long$",
     "displayName": "synth-long (fabricated)",
     "provider": "openai",
-    "eacsClass": "ELO_GPT",
     "local": false,
     "rates": {
       "in": 2,
@@ -107,7 +103,6 @@
     "match": "^synth-local-a$",
     "displayName": "synth-local-a (fabricated)",
     "provider": "local",
-    "eacsClass": "ELO_LMA",
     "local": true,
     "rates": {
       "in": 0,
@@ -125,7 +120,6 @@
     "match": "^synth-local-b$",
     "displayName": "synth-local-b (fabricated)",
     "provider": "local",
-    "eacsClass": "ELO_GEM",
     "local": true,
     "rates": {
       "in": 0,
@@ -143,7 +137,6 @@
     "match": "^synth-cmp-a$",
     "displayName": "synth-cmp-a (fabricated)",
     "provider": "anthropic",
-    "eacsClass": "ELO_CLD",
     "local": false,
     "rates": {
       "in": 4,
@@ -161,7 +154,6 @@
     "match": "^synth-cmp-b$",
     "displayName": "synth-cmp-b (fabricated)",
     "provider": "openai",
-    "eacsClass": "ELO_GPT",
     "local": false,
     "rates": {
       "in": 2,
@@ -179,7 +171,6 @@
     "match": "^synth-new-model$",
     "displayName": "synth-new-model (fabricated)",
     "provider": "anthropic",
-    "eacsClass": "ELO_CLD",
     "local": false,
     "rates": {
       "in": 1,

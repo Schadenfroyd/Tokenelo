@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { openDb, type TokeneloDb } from '../../src/store/db.js';
 import { SqliteLedger } from '../../src/store/ledger.js';
-import { StubEacsEngine, StubPricingEngine, makeEvent } from './stubs.js';
+import { StubValuationEngine, StubPricingEngine, makeEvent } from './stubs.js';
 
 type StatementCounts = { eventRead: number; eventWrite: number; activityWrite: number };
 type Fixture = { db: TokeneloDb; ledger: SqliteLedger; counts: StatementCounts };
@@ -26,7 +26,7 @@ function fixture(): Fixture {
       return typeof value === 'function' ? value.bind(target) : value;
     },
   }) as TokeneloDb;
-  const result = { db, ledger: new SqliteLedger(observedDb, new StubPricingEngine(), new StubEacsEngine()), counts };
+  const result = { db, ledger: new SqliteLedger(observedDb, new StubPricingEngine(), new StubValuationEngine()), counts };
   fixtures.push(result);
   return result;
 }

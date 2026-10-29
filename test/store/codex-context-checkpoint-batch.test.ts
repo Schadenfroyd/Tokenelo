@@ -9,7 +9,7 @@ import type { CodexContextCheckpointRecoveryCandidate, IngestState, TokeneloDb }
 import { openDb } from '../../src/store/db.js';
 import { configureCurrentEventBasis } from '../../src/store/event-basis.js';
 import { SqliteLedger } from '../../src/store/ledger.js';
-import { StubEacsEngine, StubPricingEngine, makeEvent } from './stubs.js';
+import { StubValuationEngine, StubPricingEngine, makeEvent } from './stubs.js';
 
 const { DatabaseSync } = createRequire(import.meta.url)('node:sqlite') as typeof import('node:sqlite');
 const RECEIPT_PREFIX = 'tokenelo/codex-context-checkpoint@v1:';
@@ -38,7 +38,7 @@ function candidate(n: number): CodexContextCheckpointRecoveryCandidate {
   return { prior, next: { ...prior, size: 256, offset: 256, ino: 88, extra: nextExtra },
     claim: { host: 'A2000', sessionId } };
 }
-const newLedger = (db: TokeneloDb) => new SqliteLedger(db, new StubPricingEngine(), new StubEacsEngine());
+const newLedger = (db: TokeneloDb) => new SqliteLedger(db, new StubPricingEngine(), new StubValuationEngine());
 function ownDb(db: TokeneloDb): TokeneloDb { dbs.push(db); return db; }
 function filePath(): string {
   fs.mkdirSync(scratchParent, { recursive: true });

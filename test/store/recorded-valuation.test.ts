@@ -13,7 +13,7 @@ import { openDb, type TokeneloDb } from '../../src/store/db.js';
 import { SqliteLedger } from '../../src/store/ledger.js';
 import { openDb as openCompiledDb } from '../../dist/store/db.js';
 import { SqliteLedger as CompiledSqliteLedger } from '../../dist/store/ledger.js';
-import { makeEvent, StubEacsEngine } from './stubs.js';
+import { makeEvent, StubValuationEngine } from './stubs.js';
 import { ownedLegacySchema } from '../helpers/legacy-schema.js';
 
 // OWNED-FILED memory ledger; actual price engine and production upsert. The prior table is a
@@ -22,13 +22,13 @@ const currentRows = loadPriceRows();
 const priorRows = structuredClone(currentRows).filter(r => r.id !== 'claude-haiku-5-5');
 priorRows.find(r => r.id === 'claude-sonnet-5-5')!.rates.cacheRead = 0.20;
 const oldPricing = createPricingEngine(priorRows), currentPricing = createPricingEngine(currentRows);
-// A valuation-seam double that differs from StubEacsEngine in every value it writes (the stored value x3 and another
+// A valuation-seam double that differs from StubValuationEngine in every value it writes (the stored value x3 and another
 // rate-basis identity), standing for "a different engine is injected when the ledger is reopened".
-class ChangedValuationEngine extends StubEacsEngine {
-  override ucuForEvent(e: Parameters<StubEacsEngine['ucuForEvent']>[0]) {
-    const result = super.ucuForEvent(e); return { ...result, reservedValue: result.reservedValue! * 3 };
+class ChangedValuationEngine extends StubValuationEngine {
+  override valueForEvent(e: Parameters<StubValuationEngine['valueForEvent']>[0]) {
+    const result = super.valueForEvent(e); return { ...result, reservedValue: result.reservedValue! * 3 };
   }
-  override rateBasisOf(components: Parameters<StubEacsEngine['rateBasisOf']>[0]) {
+  override rateBasisOf(components: Parameters<StubValuationEngine['rateBasisOf']>[0]) {
     const basis = super.rateBasisOf(components);
     return { ...basis, resolvedSha256: 'OWNED-FILED-new-valuation:' + basis.rateKey };
   }
@@ -37,7 +37,7 @@ const dbs: TokeneloDb[] = [];
 afterEach(() => { for (const db of dbs.splice(0)) db.close(); });
 function setup(event: UsageEvent = makeEvent({ id: 'recorded', model: 'claude-sonnet-5-5', inputFresh: 100, cacheRead: 1_000_000, output: 100 })) {
   const db = openDb({ file: ':memory:' }); dbs.push(db);
-  const old = new SqliteLedger(db, oldPricing, new StubEacsEngine()); old.upsertEvents([event]);
+  const old = new SqliteLedger(db, oldPricing, new StubValuationEngine()); old.upsertEvents([event]);
   const before = old.getEvents({})[0];
   const current = new SqliteLedger(db, currentPricing, new ChangedValuationEngine());
   return { db, event, before, current };
@@ -114,7 +114,7 @@ describe('recorded valuation survives ordinary replay; explicit maintenance and 
     expect(economics(after)).toEqual(economics(before));
   });
   it('route-only enrichment retains recorded economics until explicit reprice', () => {
-    // Synthetic route evidence and StubEacsEngine values; not a live serving-route attestation or valuation.
+    // Synthetic route evidence and StubValuationEngine values; not a live serving-route attestation or valuation.
     const { paths, cleanup } = maintenanceHome();
     const model = 'hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL';
     const event = makeEvent({ id: 'route-only-retention', model, inputFresh: 100, output: 10 });
@@ -122,7 +122,7 @@ describe('recorded valuation survives ordinary replay; explicit maintenance and 
     const db = openDb({ file: paths.dbFile });
     let dbOpen = true;
     try {
-      const recorded = new SqliteLedger(db, oldPricing, new StubEacsEngine());
+      const recorded = new SqliteLedger(db, oldPricing, new StubValuationEngine());
       recorded.upsertEvents([event]);
       const before = recorded.getEvents({})[0];
       expect(before.apiEquivUsd).toBe(0);
@@ -155,7 +155,7 @@ describe('recorded valuation survives ordinary replay; explicit maintenance and 
       } finally { refreshedDb.close(); }
       const backup = openDb({ file: path.join(paths.dataDir, 'backups', result.backup!), readOnly: true });
       try {
-        const saved = new SqliteLedger(backup, oldPricing, new StubEacsEngine()).getEvents({})[0];
+        const saved = new SqliteLedger(backup, oldPricing, new StubValuationEngine()).getEvents({})[0];
         expect(economics(saved)).toEqual(economics(before));
         expect(saved.components[0]!.servingRoute).toEqual({ kind: 'hosted', evidence: 'qwen-oauth' });
       } finally { backup.close(); }
@@ -168,7 +168,7 @@ describe('recorded valuation survives ordinary replay; explicit maintenance and 
     event.provider = 'local';
     const db = openCompiledDb({ file: ':memory:' });
     try {
-      const recorded = new CompiledSqliteLedger(db, oldPricing, new StubEacsEngine());
+      const recorded = new CompiledSqliteLedger(db, oldPricing, new StubValuationEngine());
       recorded.upsertEvents([event]);
       const before = recorded.getEvents({})[0]!;
       expect(before.apiEquivUsd).toBe(0);
@@ -243,7 +243,7 @@ describe('reviewed replay provenance regressions', () => {
     const first = makeEvent({ id: 'conflict-review', model: 'claude-sonnet-5-5', inputFresh: 1, cacheRead: 100, output: 10 });
     first.tokens.countQuality = 'complete'; first.components[0].tokens.countQuality = 'complete';
     const db = openDb({ file: ':memory:' }); dbs.push(db);
-    const old = new SqliteLedger(db, oldPricing, new StubEacsEngine()); old.upsertEvents([first]);
+    const old = new SqliteLedger(db, oldPricing, new StubValuationEngine()); old.upsertEvents([first]);
     const incoming = makeEvent({ id: first.id, model: 'gpt-6.1-sol', inputFresh: 1, cacheRead: 100, output: 20 });
     incoming.tokens.countQuality = 'complete'; incoming.components[0].tokens.countQuality = 'complete';
     old.upsertEvents([incoming]); const before = old.getEvents({})[0];
@@ -258,7 +258,7 @@ describe('reviewed replay provenance regressions', () => {
       rates: { in: 1, cacheWrite5m: 1, cacheWrite1h: 1, cacheRead: 1, out: 1 } }]);
     const event = makeEvent({ id: 'provider-review', model: row.id, inputFresh: 100, output: 100 });
     event.provider = 'local'; event.components[0].servingRoute = { kind: 'local', evidence: 'metered-engine' };
-    const db = openDb({ file: ':memory:' }); dbs.push(db); const old = new SqliteLedger(db, p1, new StubEacsEngine()); old.upsertEvents([event]);
+    const db = openDb({ file: ':memory:' }); dbs.push(db); const old = new SqliteLedger(db, p1, new StubValuationEngine()); old.upsertEvents([event]);
     const before = old.getEvents({})[0]; const current = new SqliteLedger(db, p2, new ChangedValuationEngine());
     expect(current.upsertEvents([event]).unchanged).toBe(1); const replayed = current.getEvents({})[0];
     expect(replayed.provider).toBe('local'); expect(economics(replayed)).toEqual(economics(before));
@@ -317,7 +317,7 @@ it('tied absent and standard speed snapshots replay without refreshing recorded 
   const line = (speed?: 'standard') => { const e = nativeEvent('speed-tie-review');
     if (speed) e.components[0].speed = speed; return e; };
   const db = openDb({ file: ':memory:' }); dbs.push(db);
-  const old = new SqliteLedger(db, oldPricing, new StubEacsEngine()); old.upsertEvents([line(), line('standard')]);
+  const old = new SqliteLedger(db, oldPricing, new StubValuationEngine()); old.upsertEvents([line(), line('standard')]);
   const before = old.getEvents({})[0]; expect(before.components[0].speed).toBe('standard');
   const current = new SqliteLedger(db, currentPricing, new ChangedValuationEngine()); current.upsertEvents([line(), line('standard')]);
   expect(economics(current.getEvents({})[0])).toEqual(economics(before));
@@ -350,19 +350,19 @@ it('valid zero request size is priced and replays without any recorded row write
   expect(current.upsertEvents([event]).unchanged).toBe(1); expect(db.prepare('SELECT rowid,* FROM events').get()).toEqual(row);
 });
 it('explicit maintenance validates malformed event counters as well as valid component counters', () => {
-  const db = openDb({ file: ':memory:' }); dbs.push(db); const computeUnits = createNullEngine(); const ledger = new SqliteLedger(db, currentPricing, computeUnits);
+  const db = openDb({ file: ':memory:' }); dbs.push(db); const valuationEngine = createNullEngine(); const ledger = new SqliteLedger(db, currentPricing, valuationEngine);
   const event = makeEvent({ id: 'invalid-event-review', model: 'claude-sonnet-5-5', inputFresh: 100, output: 100 }); ledger.upsertEvents([event]);
   db.prepare('UPDATE events SET output=?,flags_json=? WHERE id=?').run(100.5,JSON.stringify(['mergedComponentsMisaligned']),event.id);
   const stored = ledger.getEvents({})[0]; expect(stored.tokens.output).toBe(100.5); expect(stored.components[0].tokens.output).toBe(100);
-  const preview = currentPricing.priceEvent(stored); const previewUcu = computeUnits.ucuForEvent(stored);
-  expect(preview.usd).toBeNull(); expect(previewUcu.reservedValue).toBeNull(); ledger.upsertEvents([stored], { reprice: true }); const after = ledger.getEvents({})[0];
-  expect(after.apiEquivUsd).toBe(preview.usd); expect(after.priceStatus).toBe(preview.status); expect(after.reservedValue).toBe(previewUcu.reservedValue); expect(after.ucuRateStatus).toBe(previewUcu.status);
+  const preview = currentPricing.priceEvent(stored); const previewValue = valuationEngine.valueForEvent(stored);
+  expect(preview.usd).toBeNull(); expect(previewValue.reservedValue).toBeNull(); ledger.upsertEvents([stored], { reprice: true }); const after = ledger.getEvents({})[0];
+  expect(after.apiEquivUsd).toBe(preview.usd); expect(after.priceStatus).toBe(preview.status); expect(after.reservedValue).toBe(previewValue.reservedValue); expect(after.ucuRateStatus).toBe(previewValue.status);
   expect(after.tokens.output).toBe(100.5); expect(after.flags).toContain('priceContextInvalid');
 });
 
 
 it.each([100.5, 150])('unflagged legacy event output %s cannot be replaced by component100 on explicit maintenance', output => {
-  const db = openDb({ file: ':memory:' }); dbs.push(db); const computeUnits = createNullEngine(); const ledger = new SqliteLedger(db, currentPricing, computeUnits);
+  const db = openDb({ file: ':memory:' }); dbs.push(db); const valuationEngine = createNullEngine(); const ledger = new SqliteLedger(db, currentPricing, valuationEngine);
   const event = makeEvent({ id: 'unflagged-count-review', model: 'claude-sonnet-5-5', inputFresh: 100, output: 100 }); ledger.upsertEvents([event]);
   db.prepare('UPDATE events SET output=? WHERE id=?').run(output,event.id); const stored = ledger.getEvents({})[0];
   expect(stored.flags).not.toContain('mergedComponentsMisaligned'); expect(stored.tokens.output).toBe(output);
@@ -452,7 +452,7 @@ it.each(['inputFresh', 'cacheRead', 'output'] as const)('invalid native %s prese
     const countEvidence = captureComponentCounts(raw); const tokens = componentCountProjection(countEvidence).tokens;
     return { ...nativeEvent('native-invalid-provenance'), tokens, components: [{ model: 'claude-sonnet-5-5', tokens, countEvidence }] };
   };
-  const db = openDb({ file: ':memory:' }); dbs.push(db); const ledger = new SqliteLedger(db, currentPricing, new StubEacsEngine());
+  const db = openDb({ file: ':memory:' }); dbs.push(db); const ledger = new SqliteLedger(db, currentPricing, new StubValuationEngine());
   ledger.upsertEvents([line(false)]); ledger.upsertEvents([line(true)]); const after = ledger.getEvents({})[0];
   expect(after.tokens[key]).toBe(100); expect(after.components[0].tokens[key]).toBe(100); expect(after.tokens.countQuality).toBe('invalid');
   expect(after.flags).toContain('countBasisInvalid'); expect(after.flags).not.toContain('legacyCountEvidenceMixed');
@@ -475,7 +475,7 @@ it.each(['inputFresh', 'cacheRead', 'output'] as const)('invalid native %s retai
         components: [{ model: 'claude-sonnet-5-5', tokens, countEvidence }] };
     };
     const db = openDb({ file: ':memory:' }); dbs.push(db);
-    const ledger = new SqliteLedger(db, currentPricing, new StubEacsEngine());
+    const ledger = new SqliteLedger(db, currentPricing, new StubValuationEngine());
     for (const value of values) ledger.upsertEvents([line(value)]);
     const after = ledger.getEvents({})[0];
     expect(after.tokens[key]).toBe(150); expect(after.components[0].tokens[key]).toBe(150);
@@ -671,7 +671,7 @@ it.each([false, true])('F1 independent subset-complete quality survives an event
   const event = makeEvent({ id: 'independent-subset-complete', model: 'claude-sonnet-5-5', inputFresh: 100, output: 100 });
   event.tokens = { ...event.tokens, countQuality: 'incomplete', ucuCountQuality: 'complete' };
   if (componentClaim) event.components = event.components.map(c => ({ ...c, tokens: { ...c.tokens, countQuality: 'complete' } }));
-  const db = openDb({ file: ':memory:' }); dbs.push(db); const ledger = new SqliteLedger(db, currentPricing, new StubEacsEngine());
+  const db = openDb({ file: ':memory:' }); dbs.push(db); const ledger = new SqliteLedger(db, currentPricing, new StubValuationEngine());
   ledger.upsertEvents([event]); const after = ledger.getEvents({})[0];
   expect(after.apiEquivUsd).toBeNull(); expect(after.tokens.countQuality).toBe('incomplete');
   expect(after.tokens.ucuCountQuality).toBe('complete'); expect(after.reservedValue).toBe(2);

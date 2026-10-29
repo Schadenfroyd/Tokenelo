@@ -27,7 +27,7 @@ function fixture() {
 }
 function durable(t: ReturnType<typeof fixture>): TestHarness {
   const seed = makeHarness(t.config); seed.close();
-  const db = openDb({ file: t.dbFile }); const ledger = new SqliteLedger(db, seed.ctx.pricing, seed.ctx.computeUnits);
+  const db = openDb({ file: t.dbFile }); const ledger = new SqliteLedger(db, seed.ctx.pricing, seed.ctx.valuationEngine);
   return { ...seed, db, ledger, ctx: { ...seed.ctx, store: ledger }, close: () => db.close() };
 }
 const row = (h: TestHarness) => h.db.prepare('SELECT rowid,* FROM main.events WHERE id=?').get(BAD_ID);

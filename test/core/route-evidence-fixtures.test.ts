@@ -38,12 +38,12 @@ interface Current {
 const cases: Case[] = read('components.json').cases;
 const current: Record<string, Current> = read('current-behavior.json').cases;
 const pricing = defaultPricingEngine();
-const computeUnits = createNullEngine();
+const valuationEngine = createNullEngine();
 
 const eventFor = (c: UsageComponent, id: string): UsageEvent => ({
   id, host: 'SYNTH', source: 'qwen-code', ts: 1_790_000_000_000, tsSource: 'line', sessionId: 'route-fixture-session', isSubagent: false,
   model: c.model, provider: pricing.providerOf(c.model, c.servingRoute), thinking: false, components: [c], tokens: c.tokens, flags: [],
-  apiEquivUsd: 0, priceStatus: 'LIST', priceVersion: pricing.version, reservedValue: null, ucuRateStatus: 'NONE', eacsDefSha256: computeUnits.defSha256,
+  apiEquivUsd: 0, priceStatus: 'LIST', priceVersion: pricing.version, reservedValue: null, ucuRateStatus: 'NONE', eacsDefSha256: valuationEngine.defSha256,
 });
 
 describe('route-evidence fixtures: shape and hygiene', () => {
@@ -101,7 +101,7 @@ describe('route-evidence fixtures: CURRENT behavior (not a statement of what it 
   it('records each case in the ledger as expected today: provider, amount, price status and route flags', () => {
     const db = openDb({ file: ':memory:' });
     try {
-      const ledger = new SqliteLedger(db, pricing, computeUnits);
+      const ledger = new SqliteLedger(db, pricing, valuationEngine);
       for (const c of cases) ledger.upsertEvents([eventFor(c.component, `route-fixture-${c.id}`)]);
       const stored = new Map(ledger.getEvents({}).map(e => [e.id, e]));
       for (const c of cases) {

@@ -13,7 +13,7 @@ const NOW = 1_700_000_000_000;
 const MODEL = 'newly-recognized-local-model';
 const localRow: PriceRow = {
   id: MODEL, match: `^${MODEL}$`, displayName: 'Local model fixture', provider: 'local',
-  eacsClass: 'ELO_LMA', local: true,
+  local: true,
   rates: { in: 0, cacheWrite5m: 0, cacheWrite1h: 0, cacheRead: 0, out: 0 }, status: 'ESTIMATE',
   source: 'synthetic regression fixture', verifiedAt: '2023-11-14',
 };

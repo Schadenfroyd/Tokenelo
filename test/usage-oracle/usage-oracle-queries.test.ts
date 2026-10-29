@@ -296,7 +296,7 @@ describe('boundary and zone cases', () => {
       const db = openDb({ file: ':memory:' });
       try {
         const base = COHORT.find((c) => c.id === 'e06')!;
-        new SqliteLedger(db, engines.pricing, engines.computeUnits).upsertEvents([
+        new SqliteLedger(db, engines.pricing, engines.valuationEngine).upsertEvents([
           { ...base, id: 'z1', ts: localMidnight - 1, session: 'z' }, { ...base, id: 'z2', ts: localMidnight, session: 'z' }, { ...base, id: 'z3', ts: clock, session: 'z' },
         ].map(toUsageEvent));
         const q = createQueries(db, defaultConfig({ hostLabel: HOST_A }), { now: () => clock, pricing: engines.pricing, probeOllama: stubProbe });

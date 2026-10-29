@@ -65,11 +65,11 @@ function harness(initialLog: string): Harness {
   fs.writeFileSync(logPath, initialLog);
   const db = openDb({ file: ':memory:' });
   const pricing = defaultPricingEngine();
-  const computeUnits = createNullEngine();
-  const store = new SqliteLedger(db, pricing, computeUnits);
+  const valuationEngine = createNullEngine();
+  const store = new SqliteLedger(db, pricing, valuationEngine);
   const base = defaultConfig({ hostLabel: 'M4a' });
   const config = { ...base, local: { ...base.local, capture: 'serverlog' as const, serverLogPath: logPath } };
-  const ctx: IngestContext = { host: 'M4a', config, store, pricing, computeUnits, log: () => {}, now: () => Date.now() };
+  const ctx: IngestContext = { host: 'M4a', config, store, pricing, valuationEngine, log: () => {}, now: () => Date.now() };
   const collector = new OllamaServerlogCollector({ modelsDir: path.join(dir, 'no-models') });
   return {
     dir,

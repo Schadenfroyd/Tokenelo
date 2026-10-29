@@ -25,7 +25,7 @@ import { computeSubscriptionLeverage } from '../../src/core/subscriptions.js';
 import { createNullEngine } from '../../src/core/null-engine.js';
 import { createPricingEngine } from '../../src/core/pricing.js';
 import { priceQualityOf } from '../../src/core/price-quality.js';
-import { hasUnresolvedCounts, hasUnresolvedUcuCounts } from '../../src/core/token-counts.js';
+import { hasUnresolvedCounts, hasUnresolvedSubsetCounts } from '../../src/core/token-counts.js';
 import { openDb } from '../../src/store/db.js';
 import { SqliteLedger } from '../../src/store/ledger.js';
 import { captureComponentCounts, componentCountProjection } from '../../src/measurement/component-count-evidence.js';
@@ -256,7 +256,7 @@ describe('count quality decides what can be priced (hosted row, old world)', () 
     expect(c.tokens).toMatchObject({ countQuality: 'complete', cacheWrite5m: 200, cacheWrite1h: 100, cacheWriteUnassigned: 0, cacheWriteAssumed1h: 0 });
     const p = old.pricing.priceComponent(c);
     expect(p.usd).toBeCloseTo(0.0087, 12); expect(p.status).toBe('LIST');
-    expect(hasUnresolvedCounts(c.tokens)).toBe(false); expect(hasUnresolvedUcuCounts(c.tokens)).toBe(false);
+    expect(hasUnresolvedCounts(c.tokens)).toBe(false); expect(hasUnresolvedSubsetCounts(c.tokens)).toBe(false);
   });
 
   it('a REPORTED zero cache write is priced (2,000 + 800 + 5,000 = 7,800 -> $0.0078); a MISSING cache field is incomplete and unpriced, not zero', () => {
@@ -266,7 +266,7 @@ describe('count quality decides what can be priced (hosted row, old world)', () 
     const missing = fromUsage({ ...raw });
     expect(missing.tokens.countQuality).toBe('incomplete');
     expect(old.pricing.priceComponent(missing)).toMatchObject({ usd: null, status: 'UNPRICED' });
-    expect(hasUnresolvedUcuCounts(missing.tokens)).toBe(true);
+    expect(hasUnresolvedSubsetCounts(missing.tokens)).toBe(true);
   });
 
   it('assumed 1h: a flat total with no TTL split is priced at the 1h column (300*4 = 1,200 -> $0.009) and recorded as an assumption, not as reported 1h work', () => {
@@ -282,7 +282,7 @@ describe('count quality decides what can be priced (hosted row, old world)', () 
     const c = fromUsage({ ...raw, cache_creation_input_tokens: 300, cache_creation: { ephemeral_5m_input_tokens: 200, ephemeral_1h_input_tokens: 50 } });
     expect(c.tokens).toMatchObject({ cacheWrite5m: 200, cacheWrite1h: 50, cacheWriteUnassigned: 50, countQuality: 'complete' });
     expect(old.pricing.priceComponent(c)).toMatchObject({ usd: null, status: 'UNPRICED' }); // no invented split
-    expect(hasUnresolvedUcuCounts(c.tokens)).toBe(false);
+    expect(hasUnresolvedSubsetCounts(c.tokens)).toBe(false);
   });
 
   it('incomplete (input_tokens missing): the price is unknown and both count bases are held, and the zero in the projection is not a reported zero', () => {
@@ -291,7 +291,7 @@ describe('count quality decides what can be priced (hosted row, old world)', () 
     expect(c.tokens.countQuality).toBe('incomplete');
     expect(c.tokens.inputFresh).toBe(0);
     expect(old.pricing.priceComponent(c)).toMatchObject({ usd: null, status: 'UNPRICED' });
-    expect(hasUnresolvedCounts(c.tokens)).toBe(true); expect(hasUnresolvedUcuCounts(c.tokens)).toBe(true);
+    expect(hasUnresolvedCounts(c.tokens)).toBe(true); expect(hasUnresolvedSubsetCounts(c.tokens)).toBe(true);
   });
 
   it('conflict, invalid and incomplete counts are unpriced and held; unrecorded and absent (legacy) are priced with no completeness claim', () => {
@@ -299,19 +299,19 @@ describe('count quality decides what can be priced (hosted row, old world)', () 
     for (const q of ['conflict', 'invalid', 'incomplete'] as const) {
       const c = component('synth-hosted', { ...base, countQuality: q }, { speed: 'standard' });
       expect(old.pricing.priceComponent(c)).toMatchObject({ usd: null, status: 'UNPRICED' });
-      expect(hasUnresolvedCounts(c.tokens)).toBe(true); expect(hasUnresolvedUcuCounts(c.tokens)).toBe(true);
+      expect(hasUnresolvedCounts(c.tokens)).toBe(true); expect(hasUnresolvedSubsetCounts(c.tokens)).toBe(true);
     }
     for (const q of ['unrecorded', undefined] as const) {
       const c = component('synth-hosted', { ...base, ...(q ? { countQuality: q } : {}) }, { speed: 'standard' });
       expect(old.pricing.priceComponent(c).usd).toBeCloseTo(0.007, 12);
-      expect(hasUnresolvedCounts(c.tokens)).toBe(false); expect(hasUnresolvedUcuCounts(c.tokens)).toBe(false);
+      expect(hasUnresolvedCounts(c.tokens)).toBe(false); expect(hasUnresolvedSubsetCounts(c.tokens)).toBe(false);
     }
   });
 
   it('a subset-only count hold leaves the price known: the overall and subset count qualities are separate', () => {
     const c = component('synth-hosted', { inputFresh: 1000, output: 500, countQuality: 'complete', ucuCountQuality: 'incomplete' }, { speed: 'standard' });
     expect(old.pricing.priceComponent(c).usd).toBeCloseTo(0.007, 12);
-    expect(hasUnresolvedCounts(c.tokens)).toBe(false); expect(hasUnresolvedUcuCounts(c.tokens)).toBe(true);
+    expect(hasUnresolvedCounts(c.tokens)).toBe(false); expect(hasUnresolvedSubsetCounts(c.tokens)).toBe(true);
   });
 
   it('through the ledger the disclosures are stored as flags and survive a replay under today\'s table', () => {

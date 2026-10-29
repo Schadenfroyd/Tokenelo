@@ -7,7 +7,7 @@ import {captureNativeCounters,nativeCounterProjection}from'../../src/measurement
 import {buildOllamaUsageEvent}from'../../src/collectors/ollama-proxy.js';
 import {openDb}from'../../src/store/db.js';
 import {SqliteLedger}from'../../src/store/ledger.js';
-import {StubPricingEngine,StubEacsEngine}from'../store/stubs.js';
+import {StubPricingEngine,StubValuationEngine}from'../store/stubs.js';
 import {buildShareReport}from'../../src/cli/share-report.js';
 import {tokenPeriodEvidence}from'../../src/tray/renderer/token-period.js';
 
@@ -15,15 +15,15 @@ class NewPrice extends StubPricingEngine {
  constructor(){super();Object.defineProperty(this,'version',{value:'OWNED-FILED-new-price'});}
  override priceEvent(e:Parameters<StubPricingEngine['priceEvent']>[0]){const p=super.priceEvent(e);return{...p,usd:p.usd!*2};}
 }
-class NewCalibration extends StubEacsEngine {
+class NewCalibration extends StubValuationEngine {
  constructor(){super();Object.defineProperty(this,'defSha256',{value:'OWNED-FILED-new-calibration'});}
- override ucuForEvent(e:Parameters<StubEacsEngine['ucuForEvent']>[0]){const p=super.ucuForEvent(e);return{...p,reservedValue:p.reservedValue!*7};}
- override rateBasisOf(c:Parameters<StubEacsEngine['rateBasisOf']>[0]){const b=super.rateBasisOf(c);return{...b,resolvedSha256:'OWNED-FILED-new-selection:'+b.rateKey};}
+ override valueForEvent(e:Parameters<StubValuationEngine['valueForEvent']>[0]){const p=super.valueForEvent(e);return{...p,reservedValue:p.reservedValue!*7};}
+ override rateBasisOf(c:Parameters<StubValuationEngine['rateBasisOf']>[0]){const b=super.rateBasisOf(c);return{...b,resolvedSha256:'OWNED-FILED-new-selection:'+b.rateKey};}
 }
 function event(){const evidence=captureNativeCounters({prompt_eval_count:3,eval_count:8});return{...buildOllamaUsageEvent({host:'OWNED',model:'OWNED-NONGENERATING-FIXTURE',ts:1,requestStartNs:1n,entrypoint:'owned',tokens:nativeCounterProjection(evidence),nativeCounterEvidence:evidence}),id:'OWNED-native-recorded-price'};}
 it.each(['raw-source','exported-row']as const)('retains every recorded native valuation cell under changed tables on ordinary %s replay',mode=>{
  const db=openDb({file:':memory:'});try{
-  const incoming=event(),old=new SqliteLedger(db,new StubPricingEngine(),new StubEacsEngine());old.upsertEvents([incoming]);const stored=old.getEvents({})[0]!;
+  const incoming=event(),old=new SqliteLedger(db,new StubPricingEngine(),new StubValuationEngine());old.upsertEvents([incoming]);const stored=old.getEvents({})[0]!;
   expect(stored.tokens.fieldEvidence).toBeDefined();const before=db.prepare('SELECT rowid,* FROM events').get();
   const current=new SqliteLedger(db,new NewPrice(),new NewCalibration());
   expect(current.upsertEvents([mode==='raw-source'?incoming:stored])).toEqual({inserted:0,updated:0,unchanged:1});
@@ -32,7 +32,7 @@ it.each(['raw-source','exported-row']as const)('retains every recorded native va
 });
 it('keeps explicit native repricing distinct from ordinary replay',()=>{
  const db=openDb({file:':memory:'});try{
-  const old=new SqliteLedger(db,new StubPricingEngine(),new StubEacsEngine());old.upsertEvents([event()]);const before=old.getEvents({})[0]!,rowid=db.prepare('SELECT rowid FROM events').get();
+  const old=new SqliteLedger(db,new StubPricingEngine(),new StubValuationEngine());old.upsertEvents([event()]);const before=old.getEvents({})[0]!,rowid=db.prepare('SELECT rowid FROM events').get();
   const current=new SqliteLedger(db,new NewPrice(),new NewCalibration());expect(current.upsertEvents([before],{reprice:true}).updated).toBe(1);const after=current.getEvents({})[0]!;
   expect(after.apiEquivUsd).toBe(before.apiEquivUsd!*2);expect(after.reservedValue).toBe(before.reservedValue);expect(after.eacsDefSha256).toBe(before.eacsDefSha256);expect(after.rateResolvedSha256).toBe(before.rateResolvedSha256);expect(after.priceVersion).toBe('OWNED-FILED-new-price');expect(after.tokens).toEqual(before.tokens);expect(db.prepare('SELECT rowid FROM events').get()).toEqual(rowid);
  }finally{db.close();}

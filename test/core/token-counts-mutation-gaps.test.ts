@@ -7,7 +7,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   addTokenCounts, completeTokenTotal, hasInvalidTokenQuantities, hasInvalidTokenValues, hasUnresolvedCounts,
-  isCountQuality, normalizeCountQuality, tokenSubtotal, ucuCountQuality, ucuTokenSubtotal, weakestCountQuality,
+  isCountQuality, normalizeCountQuality, tokenSubtotal, subsetCountQuality, subsetTokenSubtotal, weakestCountQuality,
 } from '../../src/core/token-counts.js';
 import { normalizedTokenFields, validTokenFieldCoverage } from '../../src/core/token-field-evidence.js';
 import type { TokenCounts } from '../../src/core/types.js';
@@ -21,13 +21,13 @@ describe('token subtotals', () => {
   it('tokenSubtotal sums every billable category and excludes reasoning (a subset of output)', () => {
     expect(tokenSubtotal(t)).toBe(111111);
   });
-  it('ucuTokenSubtotal is fresh input + cache creation + output: it excludes cache reads and reasoning', () => {
-    expect(ucuTokenSubtotal(t)).toBe(101111);
+  it('subsetTokenSubtotal is fresh input + cache creation + output: it excludes cache reads and reasoning', () => {
+    expect(subsetTokenSubtotal(t)).toBe(101111);
   });
   it('an absent unassigned-TTL field counts as zero, not one', () => {
     const u = tc({ inputFresh: 1, cacheWrite5m: 10, cacheWrite1h: 100, cacheRead: 10000, output: 100000 });
     expect(tokenSubtotal(u)).toBe(110111);
-    expect(ucuTokenSubtotal(u)).toBe(100111);
+    expect(subsetTokenSubtotal(u)).toBe(100111);
   });
   it('completeTokenTotal is null for unresolved counts and the subtotal otherwise', () => {
     expect(completeTokenTotal(tc({ inputFresh: 5, countQuality: 'complete' }))).toBe(5);
@@ -88,12 +88,12 @@ describe('weakestCountQuality', () => {
     const tokens = tc({ inputFresh: 5, countQuality: unknown, ucuCountQuality: unknown });
     expect(hasInvalidTokenValues(tokens)).toBe(true);
     expect(hasUnresolvedCounts(tokens)).toBe(true);
-    expect(ucuCountQuality(tokens)).toBe('invalid');
+    expect(subsetCountQuality(tokens)).toBe('invalid');
     expect(completeTokenTotal(tokens)).toBeNull();
     const folded = tc();
     addTokenCounts(folded, tc({ inputFresh: 1, countQuality: unknown, ucuCountQuality: unknown }));
     expect(folded.countQuality).toBe('invalid');
-    expect(ucuCountQuality(folded)).toBe('invalid');
+    expect(subsetCountQuality(folded)).toBe('invalid');
   });
 });
 

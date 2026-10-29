@@ -475,7 +475,7 @@ describe('against the real SqliteLedger (in-memory DB, stub engines)', () => {
     place('subagent-copied-snapshot-01a02222.jsonl', `archived_sessions/rollout-2026-08-20T20-24-51-${ID_SPAWN}.jsonl`);
     const db = openDb({ file: ':memory:' });
     const probe = makeCtx(new MemoryStore());
-    const ledger = new SqliteLedger(db, probe.pricing, probe.computeUnits);
+    const ledger = new SqliteLedger(db, probe.pricing, probe.valuationEngine);
     const ctx = makeCtx(ledger);
     const c = new CodexCollector({ homes: [home], batchSize: 7 });
     const s1 = await c.scan(ctx);

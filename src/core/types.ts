@@ -216,9 +216,6 @@ export interface UsageEvent {
 
 export type PriceStatus = 'LIST' | 'ESTIMATE' | 'UNPRICED';
 
-/** Class label carried by every row of rates/prices.json; validated at load, otherwise unused by this edition. */
-export type EacsClass = 'ELO_GPT' | 'ELO_CLD' | 'ELO_GEM' | 'ELO_LMA';
-
 /** Per-million-token USD rates. */
 export interface RateColumns {
   in: number;
@@ -241,7 +238,6 @@ export interface PriceRow {
   match: string;
   displayName: string;
   provider: Provider;
-  eacsClass: EacsClass;
   local: boolean;
   rates: RateColumns;
   status: 'LIST' | 'ESTIMATE';
@@ -413,7 +409,7 @@ export interface IngestContext {
   meteringBacklogStatus?: () => MeteringBacklogStatus | null;
   pricing: PricingEngine;
   /** The valuation seam (src/core/null-engine.ts): fills the reserved compatibility columns of new rows. */
-  computeUnits: EacsEngine;
+  valuationEngine: ValuationEngine;
   log: (level: 'debug' | 'info' | 'warn' | 'error', msg: string, data?: Record<string, unknown>) => void;
   now: () => number;
 }
@@ -466,11 +462,11 @@ export interface PricingEngine {
  * The valuation seam. This edition configures no valuation rates, so its only implementation
  * (core/null-engine.ts) reports an unknown value and records no definition or rate selection.
  */
-export interface EacsEngine {
+export interface ValuationEngine {
   /** Identity of the definition a new row was valued under. Empty = none. */
   readonly defSha256: string;
   /** The reserved compatibility value of one event: `null` + `'NONE'` = unknown (never zero). */
-  ucuForEvent(e: Pick<UsageEvent, 'components' | 'effort' | 'thinking'> & { tokens?: TokenCounts; flags?: EventFlag[] }): { reservedValue: number | null; status: RateStatus };
+  valueForEvent(e: Pick<UsageEvent, 'components' | 'effort' | 'thinking'> & { tokens?: TokenCounts; flags?: EventFlag[] }): { reservedValue: number | null; status: RateStatus };
   /** The rate selection recorded with a new row. `null` = none. */
   rateBasisOf(components: readonly UsageComponent[], effort?: string, think?: boolean | null): { rateKey: string | null; resolvedSha256: string | null };
 }

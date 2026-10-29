@@ -50,13 +50,13 @@ export function thinkingBucket(v: number | null): 'thinking' | 'non-thinking' | 
 /** Builds one row's token value. Each unchanged target fold retains the original row and category addition order. */
 function rowTokens(r: RawEventAgg): TokenCounts {
   const countQuality = normalizeCountQuality(r.count_quality);
-  const ucuQuality = normalizeCountQuality(r.ucu_count_quality ?? r.count_quality);
+  const subsetQuality = normalizeCountQuality(r.ucu_count_quality ?? r.count_quality);
   const tokens: TokenCounts = { inputFresh: r.input_fresh, cacheWrite5m: r.cache_write_5m, cacheWrite1h: r.cache_write_1h,
     cacheRead: r.cache_read, output: r.output, reasoning: r.reasoning,
     ...(r.cache_write_unassigned == null ? {} : { cacheWriteUnassigned: r.cache_write_unassigned }),
     ...(r.cache_write_assumed_1h == null ? {} : { cacheWriteAssumed1h: r.cache_write_assumed_1h }),
     countQuality,
-    ...(ucuQuality !== countQuality ? { ucuCountQuality: ucuQuality } : {}) };
+    ...(subsetQuality !== countQuality ? { ucuCountQuality: subsetQuality } : {}) };
   const fields = storedNativeTokenFields(r.field_components_json, tokens, r.count_revision);
   if (fields) tokens.fieldEvidence = fields;
   return tokens;

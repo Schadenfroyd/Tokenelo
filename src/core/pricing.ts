@@ -80,7 +80,6 @@ function validatePriceRows(rows: unknown): asserts rows is PriceRow[] {
     if (!['anthropic','openai','local','unknown'].includes(r.provider as string)) fail(i,'provider');
     if (!['LIST','ESTIMATE'].includes(r.status as string)) fail(i,'status');
     if (typeof r.local !== 'boolean') fail(i,'local');
-    if (!['ELO_GPT','ELO_CLD','ELO_GEM','ELO_LMA'].includes(r.eacsClass as string)) fail(i,'class');
     if (typeof r.displayName !== 'string' || !r.displayName.length) fail(i,'display name');
     columns(r.rates,i,'rates');derived(r.derivedColumns,i,'derived columns');
     if (r.longContext !== undefined) {

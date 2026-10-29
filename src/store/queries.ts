@@ -267,9 +267,9 @@ export function bucketTimeseries(rows: readonly BucketableRow[], bucketMs: numbe
     point.tokens += r.tok;
     point.totalTokens = (point.totalTokens ?? 0) + r.totalTok;
     const rowQuality = normalizeCountQuality(r.countQuality);
-    const rowUcuQuality = normalizeCountQuality(r.ucuCountQuality ?? r.countQuality);
-    const uq = point.countQuality === undefined ? rowUcuQuality
-      : weakestCountQuality(point.ucuCountQuality ?? point.countQuality, rowUcuQuality);
+    const rowSubsetQuality = normalizeCountQuality(r.ucuCountQuality ?? r.countQuality);
+    const uq = point.countQuality === undefined ? rowSubsetQuality
+      : weakestCountQuality(point.ucuCountQuality ?? point.countQuality, rowSubsetQuality);
     point.countQuality = point.countQuality === undefined ? rowQuality : weakestCountQuality(point.countQuality, rowQuality);
     if (uq !== point.countQuality) point.ucuCountQuality = uq;
     else delete point.ucuCountQuality;

@@ -705,7 +705,6 @@
       "match": "^oracle-opus",
       "displayName": "Oracle Opus",
       "provider": "anthropic",
-      "eacsClass": "ELO_CLD",
       "local": false,
       "rates": {
         "in": 10,
@@ -723,7 +722,6 @@
       "match": "^oracle-haiku",
       "displayName": "Oracle Haiku",
       "provider": "anthropic",
-      "eacsClass": "ELO_CLD",
       "local": false,
       "rates": {
         "in": 2,
@@ -744,7 +742,6 @@
       "match": "^oracle-gpt",
       "displayName": "Oracle GPT",
       "provider": "openai",
-      "eacsClass": "ELO_GPT",
       "local": false,
       "rates": {
         "in": 5,
@@ -762,7 +759,6 @@
       "match": "^oracle-local-27b",
       "displayName": "Oracle Local 27B",
       "provider": "local",
-      "eacsClass": "ELO_LMA",
       "local": true,
       "rates": {
         "in": 0,

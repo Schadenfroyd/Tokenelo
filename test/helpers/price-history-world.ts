@@ -19,8 +19,8 @@ function readJson<T>(name: string): T { return JSON.parse(fs.readFileSync(DIR + 
 
 /** Table versions pinned at fixture creation. A drift between these and the files fails the fixture self-check. */
 export const PINNED = {
-  oldPriceVersion: 'e357da3f1675c3cd9eabffe064dd82a562113816cc3fd13d4b517a1750d06ccd',
-  todayPriceVersion: '6f40d1cf2ee3096201ed9cb1385884561fbf6be87e5166777ab20b89dab73578',
+  oldPriceVersion: '76e095ea8d4abb9e06d87efe174eca477960297de94bd1e32f7c9c2a4fd438af',
+  todayPriceVersion: '16e2388021219ead839a59e43b4b5aae6e00e8e72505229f8bc717b7fdb47149',
 } as const;
 
 export type WorldName = 'old' | 'today';

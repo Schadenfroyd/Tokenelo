@@ -4,9 +4,9 @@ import {SqliteLedger} from '../../src/store/ledger.js';
 import {defaultPricingEngine} from '../../src/core/pricing.js';
 import { createNullEngine } from '../../src/core/null-engine.js';
 import type {UsageEvent} from '../../src/core/types.js';
-const pricing=defaultPricingEngine(),computeUnits=createNullEngine(),model='qwen3-coder-plus',tokens={inputFresh:100,cacheWrite5m:0,cacheWrite1h:0,cacheRead:0,output:10,reasoning:0};
-const event:UsageEvent={id:'qwen-code:maintenance',host:'TEST',source:'qwen-code',ts:1790000000000,tsSource:'line',sessionId:'fixture',isSubagent:false,model,provider:'local',thinking:false,components:[{model,tokens}],tokens,flags:[],apiEquivUsd:0,priceStatus:'LIST',priceVersion:pricing.version,reservedValue:null,ucuRateStatus:'NONE',eacsDefSha256:computeUnits.defSha256};
-function seed(db:TokeneloDb){const ledger=new SqliteLedger(db,pricing, computeUnits);ledger.upsertEvents([event]);return ledger;}
+const pricing=defaultPricingEngine(),valuationEngine=createNullEngine(),model='qwen3-coder-plus',tokens={inputFresh:100,cacheWrite5m:0,cacheWrite1h:0,cacheRead:0,output:10,reasoning:0};
+const event:UsageEvent={id:'qwen-code:maintenance',host:'TEST',source:'qwen-code',ts:1790000000000,tsSource:'line',sessionId:'fixture',isSubagent:false,model,provider:'local',thinking:false,components:[{model,tokens}],tokens,flags:[],apiEquivUsd:0,priceStatus:'LIST',priceVersion:pricing.version,reservedValue:null,ucuRateStatus:'NONE',eacsDefSha256:valuationEngine.defSha256};
+function seed(db:TokeneloDb){const ledger=new SqliteLedger(db,pricing, valuationEngine);ledger.upsertEvents([event]);return ledger;}
 describe('current retained maintenance and allocation',()=>{
  it('protects single-quoted retained tables and schema names',()=>{
   const db=openDb({file:':memory:'});try{seed(db);for(const sql of ["DROP TABLE 'event_route_reports'","DROP TABLE 'events'","DROP TABLE 'main'.'event_interpretation_history'","ALTER TABLE 'event_projection' RENAME TO other"])expect(()=>db.exec(sql)).toThrow(/retained event layout/);}finally{db.close();}
@@ -51,7 +51,7 @@ describe('current retained maintenance and allocation',()=>{
 
 describe('focused adversarial routing findings',()=>{
  it('recovers the first recorded Claude fallback identity after current deletion',()=>{
-  const db=openDb({file:':memory:'});try{const ledger=new SqliteLedger(db,pricing, computeUnits);const fallback:UsageEvent={...event,id:'claude:+fallback-uuid',source:'claude',collectorFallbackUuidIdentity:true,collectorActivityUuid:'fallback-uuid'};
+  const db=openDb({file:':memory:'});try{const ledger=new SqliteLedger(db,pricing, valuationEngine);const fallback:UsageEvent={...event,id:'claude:+fallback-uuid',source:'claude',collectorFallbackUuidIdentity:true,collectorActivityUuid:'fallback-uuid'};
    ledger.upsertEvents([fallback]);const original=db.prepare('SELECT id,rowid AS r FROM main.events').get();db.prepare('DELETE FROM events WHERE id=?').run(fallback.id);
    db.prepare('INSERT INTO activity(source,session_id,ts,uuid,host)VALUES(?,?,?,?,?)').run('claude','resolved-session',event.ts,'fallback-uuid','TEST');
    ledger.upsertEvents([fallback]);expect(db.prepare('SELECT id,rowid AS r FROM events').all()).toEqual([original]);expect(db.prepare('SELECT COUNT(*) AS n FROM main.events').get()).toEqual({n:1});

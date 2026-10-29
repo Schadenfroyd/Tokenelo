@@ -19,7 +19,7 @@ import type {
   Collector,
   DoctorReport,
   MeteringBacklogStatus,
-  EacsEngine,
+  ValuationEngine,
   IngestContext,
   IngestStats,
   LedgerWriter,
@@ -295,7 +295,7 @@ export interface Runtime {
   config: TokeneloConfig;
   db: TokeneloDb;
   pricing: PricingEngine;
-  computeUnits: EacsEngine;
+  valuationEngine: ValuationEngine;
   store: LedgerWriter;
   queries: Queries;
   collectors: RegisteredCollector[];
@@ -444,8 +444,8 @@ export async function buildRuntime(opts?: BuildRuntimeOpts): Promise<Runtime> {
   // permissions depend on the process umask alone unless we chmod them explicitly here too.
   tightenDataDirPermissions(paths);
   const pricing = defaultPricingEngine();
-  const computeUnits = createNullEngine();
-  const store = new SqliteLedger(db, pricing, computeUnits);
+  const valuationEngine = createNullEngine();
+  const store = new SqliteLedger(db, pricing, valuationEngine);
   // Proxy observations are durably queued independently of the capture ledger.
   // A lazy consumer connection never waits behind maintenance: failed writes
   // remain queued, and ordinary event replay preserves historical valuations.
@@ -453,7 +453,7 @@ export async function buildRuntime(opts?: BuildRuntimeOpts): Promise<Runtime> {
   meteringBacklog = needsBacklog ? new MeteringBacklog(path.join(paths.dataDir, 'metering-backlog'), envelope => {
     backlogDb ??= openDb({ file: paths.dbFile, migrate: false, busyTimeoutMs: 0 });
     if (envelope.observation.kind === 'event') {
-      backlogLedger ??= new SqliteLedger(backlogDb, pricing, computeUnits);
+      backlogLedger ??= new SqliteLedger(backlogDb, pricing, valuationEngine);
       backlogLedger.upsertEvents([envelope.observation.event]);
     } else {
       // The receipt and counter commit together. A crash after commit but
@@ -487,7 +487,7 @@ export async function buildRuntime(opts?: BuildRuntimeOpts): Promise<Runtime> {
     config,
     db,
     pricing,
-    computeUnits,
+    valuationEngine,
     store,
     queries,
     collectors,
@@ -535,7 +535,7 @@ function ingestContext(runtime: Runtime): IngestContext {
     primaryOllamaActiveRequests: () => runtime.ollamaProxyHandle?.activeRequestCount() ?? 0,
     meteringBacklogStatus: () => runtime.meteringBacklog?.status() ?? null,
     pricing: runtime.pricing,
-    computeUnits: runtime.computeUnits,
+    valuationEngine: runtime.valuationEngine,
     log: runtime.log,
     now: runtime.now,
   };

@@ -12,7 +12,7 @@
  * No response reports an aggregate of the reserved value. Nothing in this file interprets a stored value:
  * values already present in a user's ledger are passed through untouched by the readers that return raw rows.
  */
-import type { EacsEngine, RateStatus } from './types.js';
+import type { ValuationEngine, RateStatus } from './types.js';
 
 /** The status of every value this edition produces: no rate was configured, so the value is unknown. */
 export const NO_RATE_STATUS: RateStatus = 'NONE';
@@ -22,10 +22,10 @@ export const NO_RATE_STATUS: RateStatus = 'NONE';
  * definition to identify, and `rateBasisOf` records no selection (`null`), so a stored row can never
  * claim a calibration it did not use.
  */
-export function createNullEngine(): EacsEngine {
+export function createNullEngine(): ValuationEngine {
   return {
     defSha256: '',
-    ucuForEvent: () => ({ reservedValue: null, status: NO_RATE_STATUS }),
+    valueForEvent: () => ({ reservedValue: null, status: NO_RATE_STATUS }),
     rateBasisOf: () => ({ rateKey: null, resolvedSha256: null }),
   };
 }

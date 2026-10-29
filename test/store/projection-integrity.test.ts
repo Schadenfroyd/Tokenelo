@@ -12,10 +12,10 @@ import {defaultPricingEngine} from '../../src/core/pricing.js';
 import { createNullEngine } from '../../src/core/null-engine.js';
 import type {UsageEvent} from '../../src/core/types.js';
 const {DatabaseSync}=createRequire(import.meta.url)('node:sqlite') as typeof import('node:sqlite');
-const pricing=defaultPricingEngine(),computeUnits=createNullEngine(),model='qwen3-coder-plus';
+const pricing=defaultPricingEngine(),valuationEngine=createNullEngine(),model='qwen3-coder-plus';
 const tokens={inputFresh:100,cacheWrite5m:0,cacheWrite1h:0,cacheRead:0,output:10,reasoning:0};
-const event:UsageEvent={id:'qwen-code:integrity',host:'TEST',source:'qwen-code',ts:1790000000000,tsSource:'line',sessionId:'fixture',isSubagent:false,model,provider:'local',thinking:false,components:[{model,tokens}],tokens,flags:[],apiEquivUsd:0,priceStatus:'LIST',priceVersion:pricing.version,reservedValue:null,ucuRateStatus:'NONE',eacsDefSha256:computeUnits.defSha256};
-function seed(db:TokeneloDb){const ledger=new SqliteLedger(db,pricing, computeUnits);ledger.upsertEvents([event]);ledger.upsertEvents([{...event,components:[{model,tokens,servingRoute:{kind:'hosted',evidence:'qwen-oauth'}}]}]);}
+const event:UsageEvent={id:'qwen-code:integrity',host:'TEST',source:'qwen-code',ts:1790000000000,tsSource:'line',sessionId:'fixture',isSubagent:false,model,provider:'local',thinking:false,components:[{model,tokens}],tokens,flags:[],apiEquivUsd:0,priceStatus:'LIST',priceVersion:pricing.version,reservedValue:null,ucuRateStatus:'NONE',eacsDefSha256:valuationEngine.defSha256};
+function seed(db:TokeneloDb){const ledger=new SqliteLedger(db,pricing, valuationEngine);ledger.upsertEvents([event]);ledger.upsertEvents([{...event,components:[{model,tokens,servingRoute:{kind:'hosted',evidence:'qwen-oauth'}}]}]);}
 function replace(db:TokeneloDb,table:string,row:Record<string,unknown>){const names=Object.keys(row);return db.prepare(`INSERT OR REPLACE INTO ${table}(${names.join(',')})VALUES(${names.map(()=>'?').join(',')})`).run(...Object.values(row) as never[]);}
 describe('retained projection integrity',()=>{
  it('keeps current event identity and original row identity stable',()=>{
@@ -65,7 +65,7 @@ describe('retained projection integrity',()=>{
   const root=fs.mkdtempSync(path.join(os.tmpdir(),'tokenelo-upgrade-snapshot-')),file=path.join(root,'fixture.sqlite');let armed=true;
   try{const legacy=openDb({file,migrate:false});legacy.exec('CREATE TABLE meta(key TEXT PRIMARY KEY,value TEXT NOT NULL)');
    for(const migration of SCHEMA_MIGRATIONS.filter(m=>m.version<=9)){migration.up(legacy);legacy.prepare("INSERT OR REPLACE INTO meta(key,value)VALUES('schema_version',?)").run(String(migration.version));}
-   new SqliteLedger(legacy,pricing, computeUnits).upsertEvents([event]);legacy.close();
+   new SqliteLedger(legacy,pricing, valuationEngine).upsertEvents([event]);legacy.close();
    const nativeExec=DatabaseSync.prototype.exec;const spy=vi.spyOn(DatabaseSync.prototype,'exec').mockImplementation(function(this:TokeneloDb,sql:string){
     if(armed&&sql.trim()==='BEGIN'){armed=false;const writer=openDb({file});writer.prepare('UPDATE events SET api_equiv_usd=99').run();writer.close();}
     return nativeExec.call(this,sql);

@@ -45,13 +45,13 @@ const OPTIONAL_COLUMNS = ['cache_write_unassigned', 'cache_write_assumed_1h', 'c
 const zero = (): UsageAggregateRow => ({ events: 0, tokens: { ...ZERO_TOKENS }, apiEquivUsd: 0, unpricedEvents: 0, estimatedPriceEvents: 0, priceStatus: null, priceEvidence: emptyPriceEvidence() });
 function counts(row: CountRow): TokenCounts {
   const countQuality = normalizeCountQuality(row.count_quality);
-  const ucuQuality = normalizeCountQuality(row.ucu_count_quality ?? row.count_quality);
+  const subsetQuality = normalizeCountQuality(row.ucu_count_quality ?? row.count_quality);
   const tokens: TokenCounts = { inputFresh: row.input_fresh, cacheRead: row.cache_read, output: row.output, reasoning: row.reasoning,
     cacheWrite5m: row.cache_write_5m, cacheWrite1h: row.cache_write_1h,
     ...(row.cache_write_unassigned === null ? {} : { cacheWriteUnassigned: row.cache_write_unassigned }),
     ...(row.cache_write_assumed_1h === null ? {} : { cacheWriteAssumed1h: row.cache_write_assumed_1h }),
     countQuality,
-    ...(ucuQuality !== countQuality ? { ucuCountQuality: ucuQuality } : {}) };
+    ...(subsetQuality !== countQuality ? { ucuCountQuality: subsetQuality } : {}) };
   const fields = storedNativeTokenFields(row.field_components_json, tokens, row.count_revision);
   if (fields) tokens.fieldEvidence = fields;
   return tokens;

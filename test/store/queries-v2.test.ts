@@ -29,7 +29,7 @@ import { createProfiler, setActiveProfiler } from '../../src/core/phase-profile.
 const NOW = Date.UTC(2026, 8, 26, 18, 0, 0);
 const HOUR = 3_600_000;
 const pricing = defaultPricingEngine();
-const computeUnits = createNullEngine();
+const valuationEngine = createNullEngine();
 
 let db: TokeneloDb;
 let ledger: SqliteLedger;
@@ -80,7 +80,7 @@ function ev(p: {
 
 beforeEach(() => {
   db = openDb({ file: ':memory:' });
-  ledger = new SqliteLedger(db, pricing, computeUnits);
+  ledger = new SqliteLedger(db, pricing, valuationEngine);
   config = defaultConfig({ hostLabel: 'M4a' });
 });
 

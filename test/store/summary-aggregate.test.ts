@@ -160,7 +160,7 @@ interface FixtureRow {
   priceStatus: 'LIST' | 'ESTIMATE' | 'UNPRICED';
   apiEquivUsd: number | null;
   reservedValue: number | null;
-  ucuStatus: RateStatus;
+  valueStatus: RateStatus;
   thinking: number | null;
   tokens: number;
 }
@@ -171,8 +171,8 @@ function fixtureRows(n: number, seed: number): FixtureRow[] {
   for (let i = 0; i < n; i++) {
     const priceRoll = rand();
     const priceStatus: FixtureRow['priceStatus'] = priceRoll < 0.1 ? 'UNPRICED' : priceRoll < 0.25 ? 'ESTIMATE' : 'LIST';
-    const ucuRoll = rand();
-    const ucuStatus = STORED_STATUSES[Math.floor(rand() * STORED_STATUSES.length)]!;
+    const valueRoll = rand();
+    const valueStatus = STORED_STATUSES[Math.floor(rand() * STORED_STATUSES.length)]!;
     out.push({
       id: `ev-${String(i).padStart(5, '0')}`,
       // Out of order: the timestamp is random within 4,000 seconds, so equal timestamps are common (ties).
@@ -183,8 +183,8 @@ function fixtureRows(n: number, seed: number): FixtureRow[] {
       priceStatus,
       // Fractional values whose sums are not exact in binary: the order of addition shows in the last digits.
       apiEquivUsd: priceStatus === 'UNPRICED' ? null : (rand() * 7 + 0.1) / 3,
-      reservedValue: ucuRoll < 0.1 ? null : (rand() * 13 + 0.05) / 7,
-      ucuStatus: ucuRoll < 0.1 ? 'NONE' : ucuStatus,
+      reservedValue: valueRoll < 0.1 ? null : (rand() * 13 + 0.05) / 7,
+      valueStatus: valueRoll < 0.1 ? 'NONE' : valueStatus,
       thinking: rand() < 0.2 ? null : rand() < 0.5 ? 1 : 0,
       tokens: Math.floor(rand() * 1000),
     });
@@ -206,7 +206,7 @@ function seedFile(rows: FixtureRow[]): { db: TokeneloDb; file: string; dir: stri
   for (const r of rows) {
     ins.run(
       r.id, r.source, r.ts, `s-${r.ts % 37}`, r.model, r.provider, r.tokens, r.tokens, r.apiEquivUsd,
-      r.priceStatus, r.reservedValue, r.ucuStatus, r.thinking
+      r.priceStatus, r.reservedValue, r.valueStatus, r.thinking
     );
   }
   db.exec('COMMIT');

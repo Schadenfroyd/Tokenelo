@@ -1673,7 +1673,7 @@ export function detectCodexThinking(effort: string | undefined, reasoningTokens:
 export function toUsageEvent(
   u: ParsedUsage,
   meta: CodexSessionMeta | undefined,
-  ctx: Pick<IngestContext, 'host' | 'pricing' | 'computeUnits'>
+  ctx: Pick<IngestContext, 'host' | 'pricing' | 'valuationEngine'>
 ): UsageEvent {
   const flags = new Set<EventFlag>(u.flags);
   const components: UsageComponent[] = u.components.map((c) => {
@@ -1689,7 +1689,7 @@ export function toUsageEvent(
   if (thinking === null) flags.add('thinkingUnknown');
   const price = ctx.pricing.priceEvent({ components });
   for (const f of price.flags) flags.add(f);
-  const valuation = ctx.computeUnits.ucuForEvent({ components, thinking, ...(u.effort ? { effort: u.effort } : {}) });
+  const valuation = ctx.valuationEngine.valueForEvent({ components, thinking, ...(u.effort ? { effort: u.effort } : {}) });
   const ev: UsageEvent = {
     id: u.id,
     host: ctx.host,
@@ -1709,7 +1709,7 @@ export function toUsageEvent(
     priceVersion: ctx.pricing.version,
     reservedValue: valuation.reservedValue,
     ucuRateStatus: valuation.status,
-    eacsDefSha256: ctx.computeUnits.defSha256,
+    eacsDefSha256: ctx.valuationEngine.defSha256,
   };
   const parent = meta?.parentThreadId ?? meta?.forkedFromId;
   if (parent) ev.parentSessionId = parent;

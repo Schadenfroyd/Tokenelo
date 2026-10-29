@@ -9,7 +9,7 @@ import path from 'node:path';
 import { openDb, transactionDepth, withTransaction, type TokeneloDb } from '../../src/store/db.js';
 import { SqliteLedger } from '../../src/store/ledger.js';
 import { safeIno, statSafe } from '../../src/collectors/fswalk.js';
-import { StubPricingEngine, StubEacsEngine, makeEvent } from './stubs.js';
+import { StubPricingEngine, StubValuationEngine, makeEvent } from './stubs.js';
 import type { CodexFieldStateEvidence, UsageEvent } from '../../src/core/types.js';
 
 /** A2000's real NTFS file id (DESIGN §15.9.6, types.ts note) — > 2^53. */
@@ -21,7 +21,7 @@ let ledger: SqliteLedger;
 
 beforeEach(() => {
   db = openDb({ file: ':memory:' });
-  ledger = new SqliteLedger(db, new StubPricingEngine(), new StubEacsEngine());
+  ledger = new SqliteLedger(db, new StubPricingEngine(), new StubValuationEngine());
 });
 
 afterEach(() => {
@@ -242,7 +242,7 @@ describe('reentrant transaction (SAVEPOINT)', () => {
         return super.priceEvent(e);
       }
     }
-    const l2 = new SqliteLedger(db, new Throwing(), new StubEacsEngine());
+    const l2 = new SqliteLedger(db, new Throwing(), new StubValuationEngine());
     l2.transaction(() => {
       l2.upsertEvents([makeEvent({ id: 'ok', inputFresh: 1, output: 1 })]);
       expect(() =>

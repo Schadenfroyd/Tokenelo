@@ -124,8 +124,7 @@ describe('price-row validation', () => {
     bad(withRow('claude-sonnet-5-5', (r) => { r.match = 5; }), /: match/);
     bad(withRow('claude-sonnet-5-5', (r) => { r.match = '('; }), /match syntax/);
   });
-  it('rejects an unknown price-row class and an empty display name', () => {
-    bad(withRow('claude-sonnet-5-5', (r) => { r.eacsClass = 'ELO_XXX'; }), /: class/);
+  it('rejects an empty display name', () => {
     bad(withRow('claude-sonnet-5-5', (r) => { r.displayName = ''; }), /display name/);
   });
   it('rejects malformed long-context rates and thresholds, but accepts a zero threshold', () => {
@@ -201,7 +200,7 @@ describe('what counts as a zero-rate local row', () => {
     expect(eng.priceComponent({ model: 'synthetic-free', tokens: unassigned }).usd).toBeNull();
   });
   it('a hosted row with all-zero rates is never treated as a free local row', () => {
-    const eng = synth((r) => { r.local = false; r.provider = 'openai'; r.eacsClass = 'ELO_GPT'; });
+    const eng = synth((r) => { r.local = false; r.provider = 'openai'; });
     expect(eng.priceComponent({ model: 'synthetic-free', tokens: unassigned }).usd).toBeNull();
     expect(eng.priceComponent({ model: 'synthetic-free', speed: 'fast', tokens: tokens({ inputFresh: 1000 }) }).flags).toContain('priceTierUnsupported');
   });

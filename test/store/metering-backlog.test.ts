@@ -5,7 +5,7 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { MeteringBacklog, type MeteringEnvelope } from '../../src/store/metering-backlog.js';
 import { openDb } from '../../src/store/db.js';
 import { SqliteLedger } from '../../src/store/ledger.js';
-import { makeEvent, StubPricingEngine, StubEacsEngine } from './stubs.js';
+import { makeEvent, StubPricingEngine, StubValuationEngine } from './stubs.js';
 
 const roots: string[] = [], queues: MeteringBacklog[] = [];
 afterEach(() => { vi.restoreAllMocks(); for (const q of queues.splice(0)) q.close(); for (const r of roots.splice(0)) fs.rmSync(r,{recursive:true,force:true}); });
@@ -46,7 +46,7 @@ it('does not expose a proxy guard match until a failed partial is recovered and 
 });
 it('real native writer contention retains the queued event, then retry commits exactly once',()=>{
   const home=root(),dir=path.join(home,'backlog'),file=path.join(home,'owned.sqlite');const db=openDb({file,busyTimeoutMs:0}),other=openDb({file,migrate:false});
-  const ledger=new SqliteLedger(db,new StubPricingEngine(),new StubEacsEngine()),q=queue(dir,e=>{if(e.observation.kind==='event')ledger.upsertEvents([e.observation.event]);});
+  const ledger=new SqliteLedger(db,new StubPricingEngine(),new StubValuationEngine()),q=queue(dir,e=>{if(e.observation.kind==='event')ledger.upsertEvents([e.observation.event]);});
   try{q.enqueue({kind:'event',event:event()});other.exec('BEGIN IMMEDIATE');q.flush();expect(q.status()).toMatchObject({pending:1,lastError:'ledger-busy'});expect(ledger.getEvents({})).toEqual([]);other.exec('ROLLBACK');q.flush();expect(q.status().pending).toBe(0);expect(ledger.getEvents({})).toHaveLength(1);expect(ledger.getEvents({})[0].tokens).toMatchObject({inputFresh:12,output:4});q.flush();expect(ledger.getEvents({})).toHaveLength(1);}finally{other.close();db.close();}
 });
 it('restart recovers and drains a valid synced observation without editing it',()=>{
@@ -58,7 +58,7 @@ it('recovers a fully written partial but quarantines torn content without consum
   fs.writeFileSync(path.join(dir,'.00000000-0000-0000-0000-000000000000.partial'),'{torn');let received=0;const second=queue(dir,()=>{received++;});expect(second.status()).toMatchObject({pending:1,quarantined:1});second.flush();expect(received).toBe(1);expect(fs.readdirSync(dir)).toHaveLength(1);expect(fs.readdirSync(dir)[0]).toMatch(/\.invalid$/);
 });
 it('a failure after commit but before file acknowledgement replays without changing recorded economics',()=>{
-  const dir=root(),db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,new StubPricingEngine(),new StubEacsEngine());const q=queue(dir,e=>{if(e.observation.kind==='event')ledger.upsertEvents([e.observation.event]);});
+  const dir=root(),db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,new StubPricingEngine(),new StubValuationEngine());const q=queue(dir,e=>{if(e.observation.kind==='event')ledger.upsertEvents([e.observation.event]);});
   try{q.enqueue({kind:'event',event:event()});const original=fs.unlinkSync;const failure=vi.spyOn(fs,'unlinkSync').mockImplementationOnce(()=>{throw Object.assign(new Error('OWNED acknowledgement failure'),{code:'EACCES'});});q.flush();expect(q.status().pending).toBe(1);const row=db.prepare('SELECT rowid,* FROM events').get();failure.mockRestore();q.flush();expect(q.status().pending).toBe(0);expect(db.prepare('SELECT rowid,* FROM events').get()).toEqual(row);expect(original).toBeTypeOf('function');}finally{db.close();}
 });
 it('retains oversized invalid entries without reading or consuming them',()=>{

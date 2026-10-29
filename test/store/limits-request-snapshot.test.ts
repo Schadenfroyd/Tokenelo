@@ -13,7 +13,7 @@ import { createQueries } from '../../src/store/queries.js';
 const NOW = Date.UTC(2026, 9, 20, 12);
 const EVENT_TS = NOW - 30 * 60_000;
 const price = defaultPricingEngine();
-const computeUnits = createNullEngine();
+const valuationEngine = createNullEngine();
 
 function event(host: 'A' | 'B'): UsageEvent {
   const tokens = { inputFresh: 1000, cacheWrite5m: 0, cacheWrite1h: 0, cacheRead: 0, output: 0, reasoning: 0 };
@@ -79,7 +79,7 @@ describe('Limits derived block and contributor rows use one request snapshot', (
     const liveReaderDb = openDb({ file: dbPath });
     let snapshotDb: TokeneloDb | undefined;
     try {
-      const ledger = new SqliteLedger(writerDb, price, computeUnits);
+      const ledger = new SqliteLedger(writerDb, price, valuationEngine);
       const marks = (['A', 'B'] as const).map((host) => ({
         source: 'claude' as const,
         sessionId: `fixture-${host}`,
@@ -142,7 +142,7 @@ describe('Limits derived block and contributor rows use one request snapshot', (
   it('releases the direct-handle read savepoint after malformed rows abort the response', async () => {
     const db = openDb({ file: ':memory:' });
     try {
-      const ledger = new SqliteLedger(db, price, computeUnits);
+      const ledger = new SqliteLedger(db, price, valuationEngine);
       ledger.recordActivity([{ source: 'claude', sessionId: 'fixture-A', ts: EVENT_TS, uuid: 'limits-snapshot-error', host: 'A' }]);
       ledger.upsertEvents([event('A')]);
       const stored = db.prepare('SELECT components_json FROM events WHERE id=?').get('limits-snapshot-A');
@@ -176,7 +176,7 @@ describe('Limits derived block and contributor rows use one request snapshot', (
     const dbPath = path.join(tempRoot, 'ledger.sqlite');
     const writerDb = openDb({ file: dbPath });
     try {
-      const ledger = new SqliteLedger(writerDb, price, computeUnits);
+      const ledger = new SqliteLedger(writerDb, price, valuationEngine);
       ledger.recordActivity([{ source: 'claude', sessionId: 'fixture-A', ts: EVENT_TS, uuid: 'limits-file-snapshot-activity', host: 'A' }]);
       ledger.upsertEvents([event('A')]);
       writerDb.prepare("UPDATE events SET api_equiv_usd = 0.01, price_status = 'LIST', price_version = 'fixture-prices-v1'").run();
@@ -203,7 +203,7 @@ describe('Limits derived block and contributor rows use one request snapshot', (
     const db = openDb({ file: ':memory:' });
     const releaseError = new Error('injected Limits savepoint release failure');
     try {
-      const ledger = new SqliteLedger(db, price, computeUnits);
+      const ledger = new SqliteLedger(db, price, valuationEngine);
       ledger.recordActivity([{ source: 'claude', sessionId: 'fixture-A', ts: EVENT_TS, uuid: 'limits-cleanup-error', host: 'A' }]);
       ledger.upsertEvents([event('A')]);
       db.prepare('UPDATE events SET components_json=? WHERE id=?').run('{malformed', 'limits-snapshot-A');

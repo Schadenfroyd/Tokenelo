@@ -11,11 +11,11 @@ import { defaultPricingEngine } from '../../src/core/pricing.js';
 import { createNullEngine } from '../../src/core/null-engine.js';
 import type { UsageEvent } from '../../src/core/types.js';
 const { DatabaseSync } = createRequire(import.meta.url)('node:sqlite') as typeof import('node:sqlite');
-const pricing=defaultPricingEngine(),computeUnits=createNullEngine();
+const pricing=defaultPricingEngine(),valuationEngine=createNullEngine();
 const model='qwen3-coder-plus',tokens={inputFresh:100,cacheWrite5m:0,cacheWrite1h:0,cacheRead:0,output:10,reasoning:0};
 const event:UsageEvent={id:'qwen-code:fixture',host:'TEST',source:'qwen-code',ts:1790000000000,tsSource:'line',sessionId:'fixture',isSubagent:false,
  model,provider:'local',thinking:false,components:[{model,tokens}],tokens,flags:[],apiEquivUsd:0,priceStatus:'LIST',priceVersion:pricing.version,
- reservedValue:null,ucuRateStatus:'NONE',eacsDefSha256:computeUnits.defSha256};
+ reservedValue:null,ucuRateStatus:'NONE',eacsDefSha256:valuationEngine.defSha256};
 // A real count increase keeps these SQL-basis tests about changed measurements, not D4 route-only enrichment.
 function hostedObservation(base:UsageEvent=event):UsageEvent{
  const nextTokens={...base.tokens,output:base.tokens.output+1};
@@ -31,12 +31,12 @@ function ownedFixture(){
  for(const row of raw.prepare("SELECT name FROM sqlite_schema WHERE type='trigger' AND (name LIKE 'recorded_events_%' OR name LIKE 'supported_writer_%' OR name LIKE 'projection_%' OR name LIKE 'retained_history_%')").all()as{name:string}[])
   raw.exec(`DROP TRIGGER "${row.name}"`);
  raw.exec("DROP TABLE event_projection;DROP TABLE event_projection_basis;DROP TABLE event_interpretation_history;DROP TABLE event_route_reports;UPDATE meta SET value='9' WHERE key='schema_version'");
- const ledger=new SqliteLedger(raw,pricing, computeUnits);ledger.upsertEvents([event]);ledger.setState({key:'fixture',size:100,mtimeMs:1,offset:50});raw.close();
+ const ledger=new SqliteLedger(raw,pricing, valuationEngine);ledger.upsertEvents([event]);ledger.setState({key:'fixture',size:100,mtimeMs:1,offset:50});raw.close();
  return{file,close:()=>fs.rmSync(root,{recursive:true,force:true})};
 }
 describe('current event SQL basis',()=>{
  it('protects original rows and immutable observations from REPLACE even without recursive triggers',()=>{
-  const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing, computeUnits);
+  const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing, valuationEngine);
   const replace=(table:string,row:Record<string,unknown>)=>{const names=Object.keys(row);return db.prepare(`INSERT OR REPLACE INTO ${table}(${names.join(',')})VALUES(${names.map(()=>'?').join(',')})`).run(...Object.values(row)as never[]);};
   try{
    ledger.upsertEvents([event]);ledger.upsertEvents([hostedObservation()]);
@@ -54,7 +54,7 @@ describe('current event SQL basis',()=>{
   }finally{db.close();}
  });
  it('retains every current deletion and REPLACE prior row as a typed deletion interpretation',()=>{
-  const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing, computeUnits);
+  const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing, valuationEngine);
   try{
    ledger.upsertEvents([event]);const original=db.prepare('SELECT rowid,* FROM main.events').get();
    const row=db.prepare('SELECT rowid,* FROM events').get()as Record<string,unknown>,names=Object.keys(row);
@@ -66,7 +66,7 @@ describe('current event SQL basis',()=>{
   }finally{db.close();}
  });
  it('keeps parenthesized joins, WINDOW and pragma functions on the current basis',()=>{
-  const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing, computeUnits);
+  const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing, valuationEngine);
   try{
    ledger.upsertEvents([event]);ledger.upsertEvents([hostedObservation()]);
    for(const sql of ['SELECT api_equiv_usd FROM (events)','SELECT events.api_equiv_usd FROM ((events))','SELECT events.api_equiv_usd FROM (events JOIN (SELECT 1) AS unit ON 1)','SELECT events.api_equiv_usd FROM ((SELECT 1) AS unit JOIN events ON 1)','SELECT events.api_equiv_usd FROM events WINDOW w AS (PARTITION BY session_id)'])expect(db.prepare(sql).get()).toEqual({api_equiv_usd:null});
@@ -92,7 +92,7 @@ describe('current event SQL basis',()=>{
   }finally{db.close();}
  });
  it('keeps aggregate aliases independent of physical table qualifiers',()=>{
-  const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing, computeUnits);
+  const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing, valuationEngine);
   try{
    ledger.upsertEvents([event]);
    expect(db.prepare('SELECT COUNT(*) AS events, events.id FROM events').get()).toEqual({events:1,id:event.id});
@@ -100,7 +100,7 @@ describe('current event SQL basis',()=>{
   }finally{db.close();}
  });
  it('uses the current economic row for comma joins and retains original indexed reads explicitly',()=>{
-  const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing, computeUnits);
+  const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing, valuationEngine);
   try{
    ledger.upsertEvents([event]);
    ledger.upsertEvents([hostedObservation()]);
@@ -109,7 +109,7 @@ describe('current event SQL basis',()=>{
   }finally{db.close();}
  });
  it('resolves nested table aliases and CTE scope without changing an outer current interpretation',()=>{
-  const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing, computeUnits);
+  const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing, valuationEngine);
   try{
    ledger.upsertEvents([event]);
    ledger.upsertEvents([hostedObservation()]);
@@ -140,7 +140,7 @@ describe('current event SQL basis',()=>{
   const fixture=ownedFixture(),old=new DatabaseSync(fixture.file);
   const before=JSON.stringify(old.prepare('SELECT rowid,* FROM events').all());
   const rootpage=(old.prepare("SELECT rootpage FROM sqlite_schema WHERE type='table' AND name='events'").get()as{rootpage:number}).rootpage;
-  const writer=openDb({file:fixture.file}),ledger=new SqliteLedger(writer,pricing, computeUnits);
+  const writer=openDb({file:fixture.file}),ledger=new SqliteLedger(writer,pricing, valuationEngine);
   try{
    ledger.upsertEvents([hostedObservation()]);
    expect(ledger.getEvents()[0]!.apiEquivUsd).toBeNull();
@@ -152,7 +152,7 @@ describe('current event SQL basis',()=>{
   }finally{old.close();writer.close();fixture.close();}
  });
  it('rejects an already-prepared unsupported writer and rolls back its actual cursor/event transaction',()=>{
-  const fixture=ownedFixture(),old=new DatabaseSync(fixture.file),oldLedger=new SqliteLedger(old,pricing, computeUnits);
+  const fixture=ownedFixture(),old=new DatabaseSync(fixture.file),oldLedger=new SqliteLedger(old,pricing, valuationEngine);
   const prepared=old.prepare("UPDATE events SET api_equiv_usd=0 WHERE id='qwen-code:fixture'");
   const writer=openDb({file:fixture.file});
   try{
@@ -163,7 +163,7 @@ describe('current event SQL basis',()=>{
   }finally{old.close();writer.close();fixture.close();}
  });
  it('retains first recorded values for new captures and each changed interpretation without rewriting originals',()=>{
-  const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing, computeUnits);
+  const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing, valuationEngine);
   try{
    ledger.upsertEvents([event]);
    const original=JSON.stringify(db.prepare('SELECT rowid,* FROM main.events').all());
@@ -181,7 +181,7 @@ describe('current event SQL basis',()=>{
  });
  it('refuses an unsupported projection policy for both writable and current read-only openers',()=>{
   const fixture=ownedFixture(),db=openDb({file:fixture.file});db.exec('UPDATE event_projection_basis SET policy=999');
-  expect(()=>new SqliteLedger(db,pricing, computeUnits).setState({key:'fixture',size:200,mtimeMs:2,offset:150})).toThrow(/writer policy/);
+  expect(()=>new SqliteLedger(db,pricing, valuationEngine).setState({key:'fixture',size:200,mtimeMs:2,offset:150})).toThrow(/writer policy/);
   expect((db.prepare('SELECT offset FROM ingest_state').get()as{offset:number}).offset).toBe(50);db.close();
   try{
    expect(()=>openDb({file:fixture.file})).toThrow(/projection policy/);
@@ -189,7 +189,7 @@ describe('current event SQL basis',()=>{
   }finally{fixture.close();}
  });
  it('refuses earlier internal projection policy copies and prevents negative history identity poisoning',()=>{
-  const fixture=ownedFixture(),db=openDb({file:fixture.file}),ledger=new SqliteLedger(db,pricing, computeUnits);
+  const fixture=ownedFixture(),db=openDb({file:fixture.file}),ledger=new SqliteLedger(db,pricing, valuationEngine);
   try{
    ledger.upsertEvents([{...event,components:[{model,tokens,servingRoute:{kind:'hosted',evidence:'qwen-oauth'}}]}]);
    const history=db.prepare('SELECT * FROM event_interpretation_history').get()as Record<string,unknown>,names=Object.keys(history);

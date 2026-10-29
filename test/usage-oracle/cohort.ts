@@ -36,26 +36,26 @@ const utc = (iso: string): number => {
 
 // ── synthetic price book (USD per million tokens; fabricated) ───────────────────────────────────────────────
 const zeroRates = { in: 0, cacheWrite5m: 0, cacheWrite1h: 0, cacheRead: 0, out: 0 };
-function priceRow(id: string, displayName: string, provider: Provider, eacsClass: PriceRow['eacsClass'], local: boolean,
+function priceRow(id: string, displayName: string, provider: Provider, local: boolean,
   rates: PriceRow['rates'], extra: Partial<PriceRow> = {}): PriceRow {
-  return { id, match: `^${id}`, displayName, provider, eacsClass, local, rates, status: 'LIST',
+  return { id, match: `^${id}`, displayName, provider, local, rates, status: 'LIST',
     source: 'synthetic usage-oracle cohort (fabricated rates)', verifiedAt: '2026-10-18', ...extra };
 }
 export const PRICE_BOOK: PriceRow[] = [
-  priceRow('oracle-opus', 'Oracle Opus', 'anthropic', 'ELO_CLD', false, { in: 10, cacheWrite5m: 12.5, cacheWrite1h: 20, cacheRead: 1, out: 50 }),
+  priceRow('oracle-opus', 'Oracle Opus', 'anthropic', false, { in: 10, cacheWrite5m: 12.5, cacheWrite1h: 20, cacheRead: 1, out: 50 }),
   // No primary 1-hour cache-write figure: an event that bills that column is priced ESTIMATE, never LIST.
-  priceRow('oracle-haiku', 'Oracle Haiku', 'anthropic', 'ELO_CLD', false, { in: 2, cacheWrite5m: 2.5, cacheWrite1h: 4, cacheRead: 0.2, out: 10 },
+  priceRow('oracle-haiku', 'Oracle Haiku', 'anthropic', false, { in: 2, cacheWrite5m: 2.5, cacheWrite1h: 4, cacheRead: 0.2, out: 10 },
     { derivedColumns: ['cacheWrite1h'] }),
-  priceRow('oracle-gpt', 'Oracle GPT', 'openai', 'ELO_GPT', false, { in: 5, cacheWrite5m: 0, cacheWrite1h: 0, cacheRead: 0.5, out: 20 }),
-  priceRow('oracle-local-27b', 'Oracle Local 27B', 'local', 'ELO_LMA', true, zeroRates),
+  priceRow('oracle-gpt', 'Oracle GPT', 'openai', false, { in: 5, cacheWrite5m: 0, cacheWrite1h: 0, cacheRead: 0.5, out: 20 }),
+  priceRow('oracle-local-27b', 'Oracle Local 27B', 'local', true, zeroRates),
   // 'oracle-unlisted' deliberately has NO row: its events are UNPRICED, which is not $0.
 ];
 
 /** The engines the ledger is written with: the synthetic price book, and the null engine (neutral reserved valuation values). */
 export function buildEngines() {
-  const computeUnits = createNullEngine();
+  const valuationEngine = createNullEngine();
   const pricing = createPricingEngine(PRICE_BOOK);
-  return { pricing, computeUnits };
+  return { pricing, valuationEngine };
 }
 
 // ── the cohort table ────────────────────────────────────────────────────────────────────────────────────────
@@ -167,7 +167,7 @@ export function toUsageEvent(c: CohortEvent): UsageEvent {
 }
 
 export function seedCohort(db: TokeneloDb, engines = buildEngines()): void {
-  const ledger = new SqliteLedger(db, engines.pricing, engines.computeUnits);
+  const ledger = new SqliteLedger(db, engines.pricing, engines.valuationEngine);
   const marks: ActivityMark[] = COHORT_MARKS.map((m) => ({ source: m.source, sessionId: m.session, ts: m.ts, uuid: m.uuid, host: m.host,
     ...(m.project ? { project: m.project } : {}), ...(m.durationMs !== undefined ? { durationMs: m.durationMs } : {}) }));
   ledger.recordActivity(marks);

@@ -21,10 +21,10 @@ const MODEL = 'provider/cache-fixture-model'; // production IDs are not constrai
 const NOW = 1_700_000_000_000;
 const SESSION = '00000000-0000-4000-8000-000000000001';
 const rows: PriceRow[] = [{ id: MODEL, match: '^provider/cache-fixture-model$', displayName: 'Synthetic', provider: 'anthropic',
-  eacsClass: 'ELO_CLD', local: false, rates: { in: 1, cacheWrite5m: 1.25, cacheWrite1h: 2, cacheRead: .1, out: 1 },
+  local: false, rates: { in: 1, cacheWrite5m: 1.25, cacheWrite1h: 2, cacheRead: .1, out: 1 },
   status: 'LIST', source: 'Owned synthetic fixture; not vendor prices', verifiedAt: '2023-11-14' }];
 const pricing = createPricingEngine(rows);
-const computeUnits = createNullEngine();
+const valuationEngine = createNullEngine();
 const owned: string[] = [];
 afterEach(() => { for (const p of owned.splice(0)) fs.rmSync(p, { recursive: true, force: true }); });
 function usage(flat: number | undefined, five: number | undefined, hour: number | undefined, out = 20) {
@@ -42,9 +42,9 @@ async function harness(usages: Record<string, unknown>[]) {
     uuid: `fixture-${i}`, message: { id: 'fixture-event', model: MODEL, usage: u } })).join('\n') + '\n';
   fs.writeFileSync(file, text);
   const config = defaultConfig({ hostLabel: 'fixture' }); config.claude.roots = [root];
-  const db = openDb({ file: ':memory:' }), ledger = new SqliteLedger(db, pricing, computeUnits);
+  const db = openDb({ file: ':memory:' }), ledger = new SqliteLedger(db, pricing, valuationEngine);
   try {
-    const stats = await new ClaudeCollector().scan({ host: 'fixture', config, store: ledger, pricing, computeUnits, log: () => {}, now: () => NOW + 100 });
+    const stats = await new ClaudeCollector().scan({ host: 'fixture', config, store: ledger, pricing, valuationEngine, log: () => {}, now: () => NOW + 100 });
     expect(fs.readFileSync(file, 'utf8')).toBe(text);
     const queries = createQueries(db, config, { now: () => NOW + 100, pricing,
       listProcesses: async () => [], probeOllama: async () => ({ servers: [], manifests: new Map(), generatedAt: NOW }) });
@@ -54,7 +54,7 @@ async function harness(usages: Record<string, unknown>[]) {
 
 function useLegacySchema(h: Awaited<ReturnType<typeof harness>>, version: number): void {
   const current=h.db;h.db=ownedLegacySchema(version,current);current.close();
-  h.ledger=new SqliteLedger(h.db,pricing,computeUnits);
+  h.ledger=new SqliteLedger(h.db,pricing,valuationEngine);
   h.queries=createQueries(h.db,defaultConfig({hostLabel:'fixture'}),{now:()=>NOW+100,pricing,
     listProcesses:async()=>[],probeOllama:async()=>({servers:[],manifests:new Map(),generatedAt:NOW})});
 }

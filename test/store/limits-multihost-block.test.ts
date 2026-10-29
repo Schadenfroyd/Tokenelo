@@ -24,7 +24,7 @@ const H = 3_600_000;
 const DAY = Date.UTC(2026, 9, 13);
 const at = (h: number, m = 0) => DAY + h * H + m * 60_000;
 const pricing = defaultPricingEngine();
-const computeUnits = createNullEngine();
+const valuationEngine = createNullEngine();
 const acct = (id: string, hosts: string[]): AccountConfig => ({ id, kind: 'claude', hosts, monthlyUsd: 100 });
 
 function event(host: string, ts: number, n: number): UsageEvent {
@@ -39,7 +39,7 @@ function event(host: string, ts: number, n: number): UsageEvent {
 async function blockRows(accounts: AccountConfig[], acts: Record<string, number[]>, now: number) {
   const db = openDb({ file: ':memory:' });
   try {
-    const ledger = new SqliteLedger(db, pricing, computeUnits);
+    const ledger = new SqliteLedger(db, pricing, valuationEngine);
     const config = defaultConfig({ hostLabel: 'A' });
     config.accounts = accounts;
     let n = 0;

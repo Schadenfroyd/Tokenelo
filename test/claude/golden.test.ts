@@ -82,8 +82,8 @@ describe.skipIf(!RUN)('Claude collector vs ccusage golden baseline (gate 2, TOKE
     const dbFile = path.join(tmpDir, 'golden.db');
     const db = openDb({ file: dbFile });
     const pricing = defaultPricingEngine();
-    const computeUnits = createNullEngine();
-    const ledger = new SqliteLedger(db, pricing, computeUnits);
+    const valuationEngine = createNullEngine();
+    const ledger = new SqliteLedger(db, pricing, valuationEngine);
     try {
 
     const config: TokeneloConfig = {
@@ -102,7 +102,7 @@ describe.skipIf(!RUN)('Claude collector vs ccusage golden baseline (gate 2, TOKE
       config,
       store: ledger,
       pricing,
-      computeUnits,
+      valuationEngine,
       log: (level, msg) => {
         if (level === 'warn' || level === 'error') warnings.push(`${level}: ${msg}`);
       },

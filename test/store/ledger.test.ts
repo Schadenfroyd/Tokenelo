@@ -3,7 +3,7 @@ import { openDb, type TokeneloDb } from '../../src/store/db.js';
 import { SqliteLedger } from '../../src/store/ledger.js';
 import {
   StubPricingEngine,
-  StubEacsEngine,
+  StubValuationEngine,
   STUB_PRICE_VERSION,
   STUB_DEF_SHA256,
   makeEvent,
@@ -15,7 +15,7 @@ describe('SqliteLedger.upsertEvents', () => {
 
   beforeEach(() => {
     db = openDb({ file: ':memory:' });
-    ledger = new SqliteLedger(db, new StubPricingEngine(), new StubEacsEngine());
+    ledger = new SqliteLedger(db, new StubPricingEngine(), new StubValuationEngine());
   });
 
   afterEach(() => {
@@ -174,7 +174,7 @@ describe('SqliteLedger.upsertEvents', () => {
         return super.priceEvent(e);
       }
     }
-    const txLedger = new SqliteLedger(db, new ThrowingPricingEngine(), new StubEacsEngine());
+    const txLedger = new SqliteLedger(db, new ThrowingPricingEngine(), new StubValuationEngine());
     const good = makeEvent({ id: 'e1', inputFresh: 10, output: 10 });
     const bad = makeEvent({ id: 'e2', inputFresh: 10, output: 10, model: 'THROW' });
 
@@ -212,7 +212,7 @@ describe('SqliteLedger activity/skipped/ingest_state', () => {
 
   beforeEach(() => {
     db = openDb({ file: ':memory:' });
-    ledger = new SqliteLedger(db, new StubPricingEngine(), new StubEacsEngine());
+    ledger = new SqliteLedger(db, new StubPricingEngine(), new StubValuationEngine());
   });
 
   afterEach(() => {
@@ -275,7 +275,7 @@ describe('SqliteLedger.getEvents filters', () => {
 
   beforeEach(() => {
     db = openDb({ file: ':memory:' });
-    ledger = new SqliteLedger(db, new StubPricingEngine(), new StubEacsEngine());
+    ledger = new SqliteLedger(db, new StubPricingEngine(), new StubValuationEngine());
     ledger.upsertEvents([
       makeEvent({ id: 'a', ts: 100, source: 'claude', inputFresh: 1, output: 1 }),
       makeEvent({ id: 'b', ts: 200, source: 'codex', inputFresh: 1, output: 1 }),

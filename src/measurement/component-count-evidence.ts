@@ -92,7 +92,7 @@ function invalidTtlHistory(e: ComponentCountEvidence): boolean {
   return !!e.ttlHistoryInvalid || e.snapshots.some(s => s.cacheCreation.container === 'malformed'
     || [s.cacheCreation.ephemeral5m, s.cacheCreation.ephemeral1h].some(f => quality(f) === 'invalid'));
 }
-function invalidUcuHistory(e: ComponentCountEvidence): boolean {
+function invalidSubsetHistory(e: ComponentCountEvidence): boolean {
   return e.snapshots.some(s => [s.inputFresh, s.output, s.cacheCreation.flatTotal].some(f => quality(f) === 'invalid'));
 }
 /** Invalid native observations retain the largest actually reported count for
@@ -106,19 +106,19 @@ function inspectableNativeCount(e: ComponentCountEvidence, key: 'inputFresh' | '
 export function componentCountProjection(e: ComponentCountEvidence, reasoning = 0): { tokens: TokenCounts; cache: CacheWriteProjection; ttlHistoryInvalid: boolean } {
   if (!isSupportedCountPolicy(e.policy)) throw new Error('Unsupported count evidence policy');
   const cache = projectCacheWrites(e.cacheCreation, e.fallbackPolicy);
-  let ucuQuality = weakestCountQuality(quality(e.inputFresh), quality(e.output));
+  let subsetQuality = weakestCountQuality(quality(e.inputFresh), quality(e.output));
   const cacheQuality = cache.evidence.total.state === 'reported' ? 'complete'
     : cache.evidence.total.state === 'conflict' ? 'conflict'
     : cache.evidence.issues.some(i => i.endsWith('invalid-for-count') || i === 'ttl-subtotal-out-of-safe-range') ? 'invalid' : 'incomplete';
-  ucuQuality = weakestCountQuality(ucuQuality, cacheQuality);
-  let countQuality = weakestCountQuality(ucuQuality, quality(e.cacheRead));
+  subsetQuality = weakestCountQuality(subsetQuality, cacheQuality);
+  let countQuality = weakestCountQuality(subsetQuality, quality(e.cacheRead));
   if (e.mergeState === 'incomparable') countQuality = 'conflict';
   if (e.mergeState === 'legacy-mixed') countQuality = weakestCountQuality(countQuality, 'incomplete');
   if (e.snapshotLimitExceeded) countQuality = weakestCountQuality(countQuality, 'incomplete');
   if (invalidCountHistory(e)) countQuality = weakestCountQuality(countQuality, 'invalid');
-  if (e.mergeState === 'incomparable') ucuQuality = 'conflict';
-  if (e.mergeState === 'legacy-mixed' || e.snapshotLimitExceeded) ucuQuality = weakestCountQuality(ucuQuality, 'incomplete');
-  if (invalidUcuHistory(e)) ucuQuality = weakestCountQuality(ucuQuality, 'invalid');
+  if (e.mergeState === 'incomparable') subsetQuality = 'conflict';
+  if (e.mergeState === 'legacy-mixed' || e.snapshotLimitExceeded) subsetQuality = weakestCountQuality(subsetQuality, 'incomplete');
+  if (invalidSubsetHistory(e)) subsetQuality = weakestCountQuality(subsetQuality, 'invalid');
   const tokens: TokenCounts = { inputFresh: inspectableNativeCount(e, 'inputFresh'), cacheRead: inspectableNativeCount(e, 'cacheRead'), output: inspectableNativeCount(e, 'output'),
     cacheWrite5m: cache.known5m, cacheWrite1h: cache.known1h + cache.assumed1h,
     cacheWriteUnassigned: cache.unassignedTtl ?? 0, cacheWriteAssumed1h: cache.assumed1h,
@@ -126,8 +126,8 @@ export function componentCountProjection(e: ComponentCountEvidence, reasoning = 
   if (!Number.isSafeInteger(tokens.inputFresh + tokens.cacheRead + tokens.output + tokens.cacheWrite5m + tokens.cacheWrite1h + (tokens.cacheWriteUnassigned ?? 0)))
     tokens.countQuality = weakestCountQuality(countQuality, 'invalid');
   if (!Number.isSafeInteger(tokens.inputFresh + tokens.output + tokens.cacheWrite5m + tokens.cacheWrite1h + (tokens.cacheWriteUnassigned ?? 0)))
-    ucuQuality = weakestCountQuality(ucuQuality, 'invalid');
-  if (ucuQuality !== tokens.countQuality) tokens.ucuCountQuality = ucuQuality;
+    subsetQuality = weakestCountQuality(subsetQuality, 'invalid');
+  if (subsetQuality !== tokens.countQuality) tokens.ucuCountQuality = subsetQuality;
   return { cache, tokens, ttlHistoryInvalid: invalidTtlHistory(e) };
 }
 

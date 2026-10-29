@@ -49,15 +49,15 @@ let clock = 1_700_000_000_000;
 export function makeHarness(config: TokeneloConfig): TestHarness {
   const db = openDb({ file: ':memory:' });
   const pricing = defaultPricingEngine();
-  const computeUnits = createNullEngine();
-  const ledger = new SqliteLedger(db, pricing, computeUnits);
+  const valuationEngine = createNullEngine();
+  const ledger = new SqliteLedger(db, pricing, valuationEngine);
   const logs: { level: string; msg: string; data?: Record<string, unknown> }[] = [];
   const ctx: IngestContext = {
     host: config.hostLabel,
     config,
     store: ledger,
     pricing,
-    computeUnits,
+    valuationEngine,
     log: (level, msg, data) => {
       logs.push({ level, msg, data });
     },

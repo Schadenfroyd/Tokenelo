@@ -16,7 +16,7 @@ import type { IngestState } from '../../src/core/types.js';
 import { openDb, openLedgerReadOnly, type TokeneloDb } from '../../src/store/db.js';
 import { SqliteLedger } from '../../src/store/ledger.js';
 import { baseTestConfig, makeHarness, type TestHarness } from '../claude/helpers.js';
-import { StubEacsEngine, StubPricingEngine } from './stubs.js';
+import { StubValuationEngine, StubPricingEngine } from './stubs.js';
 
 type CursorSql = 'getState' | 'setState' | 'recordSkipped';
 type PrepareCounts = Record<CursorSql, number>;
@@ -42,7 +42,7 @@ function countPrepares(db: TokeneloDb): PrepareCounts {
   return counts;
 }
 
-const newLedger = (db: TokeneloDb): SqliteLedger => new SqliteLedger(db, new StubPricingEngine(), new StubEacsEngine());
+const newLedger = (db: TokeneloDb): SqliteLedger => new SqliteLedger(db, new StubPricingEngine(), new StubValuationEngine());
 
 /** Arbitrary keys and values, including absent optional fields, fractional times, zero, and non-object extras. */
 const STATES: IngestState[] = [

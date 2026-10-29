@@ -15,7 +15,7 @@ import type { UsageEvent } from '../../src/core/types.js';
 const model = 'hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL';
 const tokens = { inputFresh: 100, cacheWrite5m: 0, cacheWrite1h: 0, cacheRead: 0, output: 10, reasoning: 0 };
 const pricing = defaultPricingEngine();
-const computeUnits = createNullEngine();
+const valuationEngine = createNullEngine();
 const point = (extra: Partial<TimeseriesPoint> = {}): TimeseriesPoint => ({ t: 1_790_000_000_000, apiEquivUsd: 0,
   tokens: 110, totalTokens: 150, bySource: { 'qwen-code': 0 }, ...extra });
 
@@ -23,12 +23,12 @@ const event = (components: UsageComponent[], extra: Partial<UsageEvent> = {}): U
   id: 'qwen-code:route', host: 'TEST', source: 'qwen-code', ts: 1_790_000_000_000, tsSource: 'line',
   sessionId: 'route-session', isSubagent: false, model, provider: 'local', thinking: false, components,
   tokens: components[0]!.tokens, flags: [], apiEquivUsd: 0, priceStatus: 'LIST', priceVersion: pricing.version,
-  reservedValue: null, ucuRateStatus: 'NONE', eacsDefSha256: computeUnits.defSha256, ...extra,
+  reservedValue: null, ucuRateStatus: 'NONE', eacsDefSha256: valuationEngine.defSha256, ...extra,
 });
 
 describe('persisted route evidence', () => {
   it.each([false,true])('misaligned route claims cannot restore local zero, reverse=%s',reverse=>{
-    const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing,computeUnits);
+    const db=openDb({file:':memory:'}),ledger=new SqliteLedger(db,pricing,valuationEngine);
     const hosted=event([{model,tokens,servingRoute:{kind:'hosted',evidence:'qwen-oauth'}}]);
     const winner=event([{model,tokens:{...tokens,output:100}},{model:'qwen3:8b',tokens}],{tokens:{...tokens,output:110}});
     try{
@@ -48,7 +48,7 @@ describe('persisted route evidence', () => {
     expect(pricing.priceComponent(component).status).toBe('LIST'); // Reference API-equivalent, not actual invoice/vendor proof.
   });
   it('explicit undefined stays invalid through SQL persistence, re-read and repeated merge', () => {
-    const db = openDb({ file: ':memory:' }); const ledger = new SqliteLedger(db, pricing, computeUnits);
+    const db = openDb({ file: ':memory:' }); const ledger = new SqliteLedger(db, pricing, valuationEngine);
     try {
       ledger.upsertEvents([event([{ model, tokens, servingRoute: undefined }])]);
       const [stored] = ledger.getEvents();
@@ -61,7 +61,7 @@ describe('persisted route evidence', () => {
     } finally { db.close(); }
   });
   it.each([false, true])('route evidence survives route-less replay without refreshing stored economics, reverse=%s', reverse => {
-    const db = openDb({ file: ':memory:' }); const ledger = new SqliteLedger(db, pricing, computeUnits);
+    const db = openDb({ file: ':memory:' }); const ledger = new SqliteLedger(db, pricing, valuationEngine);
     const old = event([{ model, tokens: { ...tokens, output: 100 } }]);
     const hosted = event([{ model, tokens: { ...tokens, output: 100 }, servingRoute: { kind: 'hosted', evidence: 'qwen-oauth' } }], { provider: 'unknown' });
     try {
@@ -82,7 +82,7 @@ describe('persisted route evidence', () => {
     } finally { db.close(); }
   });
   it('a smaller hosted observation preserves the larger retained counts and recorded valuation', () => {
-    const db = openDb({ file: ':memory:' }); const ledger = new SqliteLedger(db, pricing, computeUnits);
+    const db = openDb({ file: ':memory:' }); const ledger = new SqliteLedger(db, pricing, valuationEngine);
     const larger = event([{ model, tokens: { ...tokens, output: 100 } }]);
     const smallerHosted = event([{ model, tokens, servingRoute: { kind: 'hosted', evidence: 'qwen-oauth' } }], { provider: 'unknown' });
     try {
@@ -103,7 +103,7 @@ describe('persisted route evidence', () => {
     } finally { db.close(); }
   });
   it('incompatible reported local/hosted claims retain stored economics and expose conflict', () => {
-    const db = openDb({ file: ':memory:' }); const ledger = new SqliteLedger(db, pricing, computeUnits);
+    const db = openDb({ file: ':memory:' }); const ledger = new SqliteLedger(db, pricing, valuationEngine);
     try {
       ledger.upsertEvents([event([{ model, tokens: { ...tokens, output: 100 }, servingRoute: { kind: 'local', evidence: 'metered-engine' } }])]);
       const before = ledger.getEvents()[0]!;
@@ -121,7 +121,7 @@ describe('persisted route evidence', () => {
     } finally { db.close(); }
   });
   it('an unrecognized stored rate key does not break an actual Summary read', async () => {
-    const db = openDb({ file: ':memory:' }); const ledger = new SqliteLedger(db, pricing, computeUnits);
+    const db = openDb({ file: ':memory:' }); const ledger = new SqliteLedger(db, pricing, valuationEngine);
     try {
       ledger.upsertEvents([event([{ model, tokens }])]);
       db.prepare('UPDATE events SET rate_key=?,rate_resolved_sha256=?').run(JSON.stringify([[model, { think: false }, 'future-route']]), '0'.repeat(64));

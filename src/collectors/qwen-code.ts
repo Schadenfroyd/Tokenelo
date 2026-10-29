@@ -159,7 +159,7 @@ function buildEvent(line: QwenUsageLine, ctx: IngestContext, project: string | u
 
   const priceResult = ctx.pricing.priceEvent({ components: [component] });
   for (const f of priceResult.flags) if (!flags.includes(f)) flags.push(f);
-  const ucuResult = ctx.computeUnits.ucuForEvent({ components: [component], thinking });
+  const valueResult = ctx.valuationEngine.valueForEvent({ components: [component], thinking });
 
   return {
     id: makeQwenEventId(line.id),
@@ -181,9 +181,9 @@ function buildEvent(line: QwenUsageLine, ctx: IngestContext, project: string | u
     apiEquivUsd: priceResult.usd,
     priceStatus: priceResult.status,
     priceVersion: ctx.pricing.version,
-    reservedValue: ucuResult.reservedValue,
-    ucuRateStatus: ucuResult.status,
-    eacsDefSha256: ctx.computeUnits.defSha256,
+    reservedValue: valueResult.reservedValue,
+    ucuRateStatus: valueResult.status,
+    eacsDefSha256: ctx.valuationEngine.defSha256,
   };
 }
 

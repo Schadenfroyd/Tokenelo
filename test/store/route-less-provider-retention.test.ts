@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { openDb } from '../../src/store/db.js';
 import { SqliteLedger } from '../../src/store/ledger.js';
 import { createPricingEngine, loadPriceRows } from '../../src/core/pricing.js';
-import { makeEvent, StubEacsEngine } from './stubs.js';
+import { makeEvent, StubValuationEngine } from './stubs.js';
 
 // A provider label must travel with retained historical economic provenance.
 // The two opposite hand-authored table/classification changes prevent a false
@@ -19,9 +19,9 @@ describe('ordinary route-less replay retains provider with recorded economics', 
         rates: { ...row.rates, in: next === 'local' ? 0 : 2, out: next === 'local' ? 0 : 2 } }]);
       const event = makeEvent({ id: 'OWNED-provider', model: row.id, inputFresh: 100, output: 100 }); event.provider = initial;
       expect(event.components[0].servingRoute).toBeUndefined();
-      const old = new SqliteLedger(db, oldPrices, new StubEacsEngine()); old.upsertEvents([event]);
+      const old = new SqliteLedger(db, oldPrices, new StubValuationEngine()); old.upsertEvents([event]);
       const before = db.prepare('SELECT rowid,* FROM events').get();
-      const current = new SqliteLedger(db, newPrices, new StubEacsEngine());
+      const current = new SqliteLedger(db, newPrices, new StubValuationEngine());
       const incoming = { ...event, provider: next };
       expect(current.upsertEvents([incoming])).toEqual({ inserted: 0, updated: 0, unchanged: 1 });
       expect(db.prepare('SELECT rowid,* FROM events').get()).toEqual(before);

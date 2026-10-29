@@ -62,8 +62,8 @@ function makeHost(label: HostLabel): TestHost {
   const config = defaultConfig({ hostLabel: label });
   const priceRows = loadPriceRows();
   const pricing = createPricingEngine(priceRows);
-  const computeUnits = createNullEngine();
-  const ledger = new SqliteLedger(db, pricing, computeUnits);
+  const valuationEngine = createNullEngine();
+  const ledger = new SqliteLedger(db, pricing, valuationEngine);
   const now = Date.now();
   const offsets = [60_000, 2 * 60 * 60_000, 2 * DAY, 10 * DAY, 45 * DAY];
   const rows = offsets.map((offset, index) => {

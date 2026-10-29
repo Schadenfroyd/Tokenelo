@@ -24,7 +24,7 @@ import { SqliteLedger } from '../../src/store/ledger.js';
 import { captureNativeCounters, mergeNativeCounters, nativeCounterProjection, type NativeCounterEvidence } from '../../src/measurement/native-counter-evidence.js';
 import { buildOllamaUsageEvent } from '../../src/collectors/ollama-proxy.js';
 import type { UsageEvent } from '../../src/core/types.js';
-import { makeEvent, StubEacsEngine, StubPricingEngine } from './stubs.js';
+import { makeEvent, StubValuationEngine, StubPricingEngine } from './stubs.js';
 import { nativeFinal, send, startRig } from '../helpers/proxy-contract-rig.js';
 
 const FIXTURE = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'test', 'fixtures', 'claude-cloud-2026-10-17', 'structure-only.json'), 'utf8')) as {
@@ -36,7 +36,7 @@ let open: TokeneloDb[] = [];
 afterEach(() => { for (const db of open) db.close(); open = []; });
 function fresh(pricing: StubPricingEngine = new StubPricingEngine()) {
   const db = openDb({ file: ':memory:' }); open.push(db);
-  return { db, ledger: new SqliteLedger(db, pricing, new StubEacsEngine()) };
+  return { db, ledger: new SqliteLedger(db, pricing, new StubValuationEngine()) };
 }
 const rows = (db: TokeneloDb) => db.prepare('SELECT rowid,* FROM events ORDER BY rowid').all();
 

@@ -32,15 +32,15 @@ function makeConfig(qwenRoot: string): TokeneloConfig {
 function makeCtx(config: TokeneloConfig) {
   const db = openDb({ file: ':memory:' });
   const pricing = defaultPricingEngine();
-  const computeUnits = createNullEngine();
-  const ledger = new SqliteLedger(db, pricing, computeUnits);
+  const valuationEngine = createNullEngine();
+  const ledger = new SqliteLedger(db, pricing, valuationEngine);
   let clock = 1_800_000_000_000;
   const ctx: IngestContext = {
     host: config.hostLabel,
     config,
     store: ledger,
     pricing,
-    computeUnits,
+    valuationEngine,
     log: () => {},
     now: () => clock++,
   };

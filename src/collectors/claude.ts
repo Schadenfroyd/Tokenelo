@@ -436,7 +436,7 @@ function buildUsageEvent(
   const priceResult = measure('price.event', () => ctx.pricing.priceEvent({ components, inferenceGeo: strOrUndef(usage.inference_geo) }));
   for (const f of priceResult.flags) if (!flags.includes(f)) flags.push(f);
   flags.push(...countEvidenceFlags(components));
-  const ucuResult = measure('units.valuation', () => ctx.computeUnits.ucuForEvent({ components, effort: strOrUndef(line.effort), thinking }));
+  const valueResult = measure('units.valuation', () => ctx.valuationEngine.valueForEvent({ components, effort: strOrUndef(line.effort), thinking }));
 
   const event: UsageEvent = {
     id,
@@ -465,9 +465,9 @@ function buildUsageEvent(
     apiEquivUsd: priceResult.usd,
     priceStatus: priceResult.status,
     priceVersion: ctx.pricing.version,
-    reservedValue: ucuResult.reservedValue,
-    ucuRateStatus: ucuResult.status,
-    eacsDefSha256: ctx.computeUnits.defSha256,
+    reservedValue: valueResult.reservedValue,
+    ucuRateStatus: valueResult.status,
+    eacsDefSha256: ctx.valuationEngine.defSha256,
   };
   return event;
 }

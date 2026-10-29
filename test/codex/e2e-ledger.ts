@@ -18,14 +18,14 @@ async function main(): Promise<void> {
   if (!home || !dbFile) throw new Error('usage: e2e-ledger <CODEX_HOME> <tempDbFile> [prices.json]');
   const db = openDb({ file: dbFile });
   const pricing = defaultPricingEngine(pricesPath);
-  const computeUnits = createNullEngine();
-  const store = new SqliteLedger(db, pricing, computeUnits);
+  const valuationEngine = createNullEngine();
+  const store = new SqliteLedger(db, pricing, valuationEngine);
   const ctx = {
     host: 'e2e',
     config: { hostLabel: 'e2e', codex: { homes: [home] } } as unknown as TokeneloConfig,
     store,
     pricing,
-    computeUnits,
+    valuationEngine,
     log: () => {},
     now: () => Date.now(),
   };

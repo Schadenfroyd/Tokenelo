@@ -137,7 +137,7 @@ describe('buildRuntime', () => {
     const runtime = await buildRuntime({ paths, now: () => 1_700_000_000_000 });
     try {
       expect(runtime.pricing).not.toBeNull();
-      expect(runtime.computeUnits).not.toBeNull();
+      expect(runtime.valuationEngine).not.toBeNull();
       expect(runtime.store).not.toBeNull();
       expect(runtime.collectors.map((c) => c.name).sort()).toEqual(['claude', 'claude-desktop-plan-usage', 'claude-desktop-sessions', 'codex', 'qwen-code']);
       expect(runtime.ollamaProxyHandle).toBeNull(); // local.capture: 'off' in this fixture's config

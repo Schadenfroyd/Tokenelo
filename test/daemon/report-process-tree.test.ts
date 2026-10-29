@@ -31,7 +31,7 @@ function fixture() {
       const poll=setInterval(()=>{if(fs.existsSync(root+'/beat.json')){clearInterval(poll);parentPort.postMessage({type:'progress',phase:'reading-usage'});Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0);}},5);
       parentPort.on('message',()=>{});}`);
   fs.writeFileSync(path.join(root, 'trace.txt'), '');
-  const pricing = defaultPricingEngine(), computeUnits = createNullEngine(), retired: string[] = [];
+  const pricing = defaultPricingEngine(), valuationEngine = createNullEngine(), retired: string[] = [];
   const reads = new ReportReads({ dbFile: root, config: defaultConfig(), priceRows: loadPriceRows(),
     pricesVersion: pricing.version },
   { workerUrl: pathToFileURL(worker), workers: 1, waiting: 2, budgetMs: 2000, cancelGraceMs: 100,

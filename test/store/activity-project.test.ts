@@ -45,8 +45,8 @@ describe('recorded activity workspace context', () => {
 
   async function queried(marks: ActivityMark[]) {
     const db = openDb({ file: ':memory:' }); opened.push(db);
-    const pricing = defaultPricingEngine(), computeUnits = createNullEngine();
-    new SqliteLedger(db, pricing, computeUnits).recordActivity(marks);
+    const pricing = defaultPricingEngine(), valuationEngine = createNullEngine();
+    new SqliteLedger(db, pricing, valuationEngine).recordActivity(marks);
     const queries = createQueries(db, defaultConfig({ hostLabel: 'owned-host' }), {
       now: () => NOW, pricing,
       probeOllama: async () => ({ servers: [], manifests: new Map(), generatedAt: NOW }),

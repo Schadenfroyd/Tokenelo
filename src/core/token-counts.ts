@@ -46,13 +46,13 @@ export function hasUnresolvedCounts(t: TokenCounts): boolean {
   const quality = normalizeCountQuality(t.countQuality);
   return quality === 'conflict' || quality === 'invalid' || quality === 'incomplete';
 }
-export function ucuCountQuality(t: TokenCounts): CountQuality {
+export function subsetCountQuality(t: TokenCounts): CountQuality {
   return normalizeCountQuality(t.ucuCountQuality ?? t.countQuality);
 }
-export function hasUnresolvedUcuCounts(t: TokenCounts): boolean {
-  return ['conflict', 'invalid', 'incomplete'].includes(ucuCountQuality(t));
+export function hasUnresolvedSubsetCounts(t: TokenCounts): boolean {
+  return ['conflict', 'invalid', 'incomplete'].includes(subsetCountQuality(t));
 }
-export function ucuTokenSubtotal(t: TokenCounts): number {
+export function subsetTokenSubtotal(t: TokenCounts): number {
   return t.inputFresh + t.cacheWrite5m + t.cacheWrite1h + (t.cacheWriteUnassigned ?? 0) + t.output;
 }
 /** Absence remains legacy/unrecorded; callers must disclose it rather than claim verified counts. */
@@ -91,9 +91,9 @@ export function addTokenCounts(target: TokenCounts, value: TokenCounts): void {
     }
     deferredFields.set(target, fields);
   }
-  const priorUcuQuality = ucuCountQuality(target);
-  const nextUcuQuality = empty ? ucuCountQuality(value) : weakestCountQuality(priorUcuQuality, ucuCountQuality(value));
-  const hasUcuOverride = target.ucuCountQuality !== undefined || value.ucuCountQuality !== undefined;
+  const priorSubsetQuality = subsetCountQuality(target);
+  const nextSubsetQuality = empty ? subsetCountQuality(value) : weakestCountQuality(priorSubsetQuality, subsetCountQuality(value));
+  const hasSubsetOverride = target.ucuCountQuality !== undefined || value.ucuCountQuality !== undefined;
   target.inputFresh += value.inputFresh;
   target.cacheWrite5m += value.cacheWrite5m;
   target.cacheWrite1h += value.cacheWrite1h;
@@ -108,9 +108,9 @@ export function addTokenCounts(target: TokenCounts, value: TokenCounts): void {
     target.countQuality = empty ? normalizeCountQuality(value.countQuality) : weakestCountQuality(target.countQuality, value.countQuality);
   if (target.countQuality === 'complete' && !Number.isSafeInteger(tokenSubtotal(target)))
     target.countQuality = weakestCountQuality(target.countQuality, 'invalid');
-  const aggregateUcuQuality = nextUcuQuality === 'complete' && !Number.isSafeInteger(ucuTokenSubtotal(target)) ? 'invalid' : nextUcuQuality;
-  if (hasUcuOverride || aggregateUcuQuality !== (target.countQuality ?? 'unrecorded')) {
-    if (aggregateUcuQuality === (target.countQuality ?? 'unrecorded')) delete target.ucuCountQuality;
-    else target.ucuCountQuality = aggregateUcuQuality;
+  const aggregateSubsetQuality = nextSubsetQuality === 'complete' && !Number.isSafeInteger(subsetTokenSubtotal(target)) ? 'invalid' : nextSubsetQuality;
+  if (hasSubsetOverride || aggregateSubsetQuality !== (target.countQuality ?? 'unrecorded')) {
+    if (aggregateSubsetQuality === (target.countQuality ?? 'unrecorded')) delete target.ucuCountQuality;
+    else target.ucuCountQuality = aggregateSubsetQuality;
   }
 }

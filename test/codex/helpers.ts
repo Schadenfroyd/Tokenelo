@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import type {
   ActivityMark,
   DesktopSessionMeta,
-  EacsEngine,
+  ValuationEngine,
   IngestContext,
   IngestState,
   LedgerWriter,
@@ -223,7 +223,7 @@ export function stubUsd(t: TokenCounts): number {
       t.cacheRead * STUB_RATES.cr + t.output * STUB_RATES.out) / 1e6
   );
 }
-export const STUB_TOKENS_PER_UCU = 1000;
+export const STUB_TOKENS_PER_UNIT = 1000;
 
 export class StubPricing implements PricingEngine {
   readonly version = 'stub-prices';
@@ -242,19 +242,19 @@ export class StubPricing implements PricingEngine {
 }
 
 /**
- * Deterministic test double for the valuation seam (the slim EacsEngine): a fixed linear value per event
- * (fresh input + cache writes + output, STUB_TOKENS_PER_UCU tokens per unit) so a test can hand-check exactly what a
+ * Deterministic test double for the valuation seam (the slim ValuationEngine): a fixed linear value per event
+ * (fresh input + cache writes + output, STUB_TOKENS_PER_UNIT tokens per unit) so a test can hand-check exactly what a
  * collector writes through the seam. It models no real valuation.
  */
-export class StubEacs implements EacsEngine {
+export class StubValuation implements ValuationEngine {
   readonly defSha256 = 'stub-def';
   rateBasisOf(components: readonly UsageComponent[]): { rateKey: string; resolvedSha256: string } {
     const rateKey = `[${[...new Set(components.map((c) => JSON.stringify([c.model, null])))].sort().join(',')}]`;
-    return { rateKey, resolvedSha256: `stub-identity:${STUB_TOKENS_PER_UCU}:${rateKey}` };
+    return { rateKey, resolvedSha256: `stub-identity:${STUB_TOKENS_PER_UNIT}:${rateKey}` };
   }
-  ucuForEvent(e: Pick<UsageEvent, 'components' | 'effort' | 'thinking'>): { reservedValue: number | null; status: RateStatus } {
+  valueForEvent(e: Pick<UsageEvent, 'components' | 'effort' | 'thinking'>): { reservedValue: number | null; status: RateStatus } {
     const stubTokens = (t: TokenCounts): number => t.inputFresh + t.cacheWrite5m + t.cacheWrite1h + t.output;
-    return { reservedValue: e.components.reduce((a, c) => a + stubTokens(c.tokens), 0) / STUB_TOKENS_PER_UCU, status: 'MEASURED' };
+    return { reservedValue: e.components.reduce((a, c) => a + stubTokens(c.tokens), 0) / STUB_TOKENS_PER_UNIT, status: 'MEASURED' };
   }
 }
 
@@ -266,7 +266,7 @@ export function makeCtx(store: LedgerWriter, homes: string[] = []): IngestContex
     config,
     store,
     pricing: new StubPricing(),
-    computeUnits: new StubEacs(),
+    valuationEngine: new StubValuation(),
     log: (level, msg) => {
       logs.push({ level, msg });
     },

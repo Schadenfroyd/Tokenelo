@@ -25,7 +25,7 @@ import type {
   ActivityMark,
   CodexContextCheckpointRecoveryCandidate,
   DesktopSessionMeta,
-  EacsEngine,
+  ValuationEngine,
   EventFlag,
   EventUpsertOptions,
   HostLabel,
@@ -42,7 +42,7 @@ import type {
 } from '../core/types.js';
 import { isCanonicalCodexSessionId, isStructurallyBoundCodexContextState, isUnownedCodexContextState } from '../core/codex-context-recovery.js';
 import { withTransaction, type TokeneloDb } from './db.js';
-import { addTokenCounts, hasInvalidTokenValues, hasUnresolvedCounts, hasUnresolvedUcuCounts, normalizeCountQuality, ucuCountQuality, weakestCountQuality } from '../core/token-counts.js';
+import { addTokenCounts, hasInvalidTokenValues, hasUnresolvedCounts, hasUnresolvedSubsetCounts, normalizeCountQuality, subsetCountQuality, weakestCountQuality } from '../core/token-counts.js';
 import { nativeTokenFieldCoverage } from '../core/token-field-evidence.js';
 import { COMPONENT_COUNT_POLICY, mergeComponentCounts, COUNT_EVIDENCE_FLAGS, countEvidenceFlags, isSupportedCountPolicy } from '../measurement/component-count-evidence.js';
 import { mergeNativeCounters, nativeCounterProjection, supportedNativeCounters } from '../measurement/native-counter-evidence.js';
@@ -84,7 +84,7 @@ function sameValuationInputs(a: UsageEvent, b: UsageEvent): boolean {
     // apply today's prices/calibration to unchanged historical work.
     const { ucuCountQuality: _override, fieldEvidence: _readCoverage, ...counts } = definedValue(t) as TokenCounts;
     return { cacheWriteUnassigned: 0, cacheWriteAssumed1h: 0, ...counts,
-      ucuCountQuality: t.countQuality || t.ucuCountQuality ? ucuCountQuality(t) : null };
+      ucuCountQuality: t.countQuality || t.ucuCountQuality ? subsetCountQuality(t) : null };
   };
   const basis = (e: UsageEvent) => ({
     tokens: tokens(e.tokens),
@@ -217,10 +217,10 @@ export class StoredComponentEvidenceError extends Error {
 /** Maps one `events` row (SELECT *) back to a UsageEvent. Shared with store/queries.ts. */
 function legacyMixedTokenCounts(tokens: TokenCounts): TokenCounts {
   const countQuality = weakestCountQuality(tokens.countQuality, 'incomplete');
-  const ucuQuality = weakestCountQuality(ucuCountQuality(tokens), 'incomplete');
+  const subsetQuality = weakestCountQuality(subsetCountQuality(tokens), 'incomplete');
   const projected = { ...tokens, countQuality };
   delete projected.ucuCountQuality;
-  if (ucuQuality !== countQuality) projected.ucuCountQuality = ucuQuality;
+  if (subsetQuality !== countQuality) projected.ucuCountQuality = subsetQuality;
   return projected;
 }
 
@@ -278,8 +278,8 @@ export function rowToEvent(row: EventRow): UsageEvent {
   if (row.cache_write_assumed_1h !== null && row.cache_write_assumed_1h !== undefined) event.tokens.cacheWriteAssumed1h = row.cache_write_assumed_1h;
   if (row.count_quality !== null && row.count_quality !== undefined) event.tokens.countQuality = normalizeCountQuality(row.count_quality);
   if (row.ucu_count_quality !== null && row.ucu_count_quality !== undefined) {
-    const ucuQuality = normalizeCountQuality(row.ucu_count_quality);
-    if (ucuQuality !== normalizeCountQuality(event.tokens.countQuality)) event.tokens.ucuCountQuality = ucuQuality;
+    const subsetQuality = normalizeCountQuality(row.ucu_count_quality);
+    if (subsetQuality !== normalizeCountQuality(event.tokens.countQuality)) event.tokens.ucuCountQuality = subsetQuality;
   }
   if (row.count_revision == null && event.components.some(c => c.countEvidence || c.nativeCounterEvidence)) {
     // Raw JSON retained by a legacy writer is not proof its normalized columns agree.
@@ -399,7 +399,7 @@ export function mergeDuplicateEvent(stored: UsageEvent, incoming: UsageEvent): U
       const tokens = maxTokens(stored.tokens, incoming.tokens);
       return { ...kept, ...ownership, ...economicContext, id: incoming.id, components: aligned,
         tokens: { ...tokens, countQuality: weakestCountQuality(tokens.countQuality, 'incomplete'),
-          ucuCountQuality: weakestCountQuality(ucuCountQuality(tokens), 'incomplete') }, thinking, flags: correctedFlags };
+          ucuCountQuality: weakestCountQuality(subsetCountQuality(tokens), 'incomplete') }, thinking, flags: correctedFlags };
     }
     const projected = sumComponentTokens(aligned);
     const maximum = maxTokens(stored.tokens, incoming.tokens);
@@ -425,7 +425,7 @@ export function mergeDuplicateEvent(stored: UsageEvent, incoming: UsageEvent): U
       // Capture the component subset qualification before an overall hold is folded:
       // cache/overall uncertainty must not erase independently complete fresh work.
       const componentOverall = projected.countQuality;
-      const componentUcu = projected.ucuCountQuality ?? componentOverall;
+      const componentSubset = projected.ucuCountQuality ?? componentOverall;
       // addTokenCounts derives unrecorded for a mixed qualified/absent component
       // fold. An identical observation cannot use that synthetic absence to
       // downgrade a recorded event claim or implicitly refresh its economics.
@@ -433,10 +433,10 @@ export function mergeDuplicateEvent(stored: UsageEvent, incoming: UsageEvent): U
       const sameObservedBasis = sameValuationInputs(stored, incoming);
       const explicitUnrecorded = [...stored.components, ...incoming.components]
         .some(c => c.tokens.countQuality === 'unrecorded');
-      const explicitUcuUnrecorded = [...stored.components, ...incoming.components]
+      const explicitSubsetUnrecorded = [...stored.components, ...incoming.components]
         .some(c => (c.tokens.ucuCountQuality ?? c.tokens.countQuality) === 'unrecorded');
       const omitSyntheticOverall = sameObservedBasis && !explicitUnrecorded && componentOverall === 'unrecorded';
-      const omitSyntheticUcu = sameObservedBasis && !explicitUcuUnrecorded && componentUcu === 'unrecorded';
+      const omitSyntheticSubset = sameObservedBasis && !explicitSubsetUnrecorded && componentSubset === 'unrecorded';
       // A stored legacy event supplies unrecorded evidence, even when the
       // incoming claim is complete: its smaller counter cannot certify retained
       // maxima which that incoming observation never reported.
@@ -452,7 +452,7 @@ export function mergeDuplicateEvent(stored: UsageEvent, incoming: UsageEvent): U
       } else if (stored.tokens.countQuality || incoming.tokens.countQuality || componentOverall !== undefined) {
         projected.countQuality = overallQuality;
       }
-      const subsetQualities = [omitSyntheticUcu ? undefined : componentUcu,
+      const subsetQualities = [omitSyntheticSubset ? undefined : componentSubset,
         stored.tokens.ucuCountQuality ?? stored.tokens.countQuality ?? 'unrecorded',
         incoming.tokens.ucuCountQuality ?? incoming.tokens.countQuality]
         .filter((q): q is NonNullable<TokenCounts['countQuality']> => q !== undefined);
@@ -473,10 +473,10 @@ export function mergeDuplicateEvent(stored: UsageEvent, incoming: UsageEvent): U
       const components = aligned.map(c => ({ ...c,
         ...(c.countEvidence ? { countEvidence: { ...c.countEvidence, mergeState: 'legacy-mixed' as const } } : {}),
         tokens: { ...c.tokens, countQuality: weakestCountQuality(c.tokens.countQuality, 'incomplete'),
-          ucuCountQuality: weakestCountQuality(ucuCountQuality(c.tokens), 'incomplete') } }));
+          ucuCountQuality: weakestCountQuality(subsetCountQuality(c.tokens), 'incomplete') } }));
       return { ...kept, ...ownership, ...economicContext, id: incoming.id, components,
         tokens: { ...tokens, countQuality: weakestCountQuality(tokens.countQuality, quality),
-          ucuCountQuality: weakestCountQuality(ucuCountQuality(tokens), quality) }, thinking, flags: correctedFlags };
+          ucuCountQuality: weakestCountQuality(subsetCountQuality(tokens), quality) }, thinking, flags: correctedFlags };
     }
     return { ...kept, ...ownership, ...economicContext, id: incoming.id, components: aligned, tokens: projected, thinking, flags: correctedFlags };
   }
@@ -562,7 +562,7 @@ function maxTokens(a: TokenCounts, b: TokenCounts): TokenCounts {
   if (a.cacheWriteAssumed1h !== undefined || b.cacheWriteAssumed1h !== undefined)
     result.cacheWriteAssumed1h = Math.max(a.cacheWriteAssumed1h ?? 0, b.cacheWriteAssumed1h ?? 0);
   if (a.countQuality || b.countQuality) result.countQuality = weakestCountQuality(a.countQuality, b.countQuality);
-  const q = weakestCountQuality(ucuCountQuality(a), ucuCountQuality(b));
+  const q = weakestCountQuality(subsetCountQuality(a), subsetCountQuality(b));
   if (q !== (result.countQuality ?? 'unrecorded')) result.ucuCountQuality = q;
   return result;
 }
@@ -625,7 +625,7 @@ function sameStoredShape(a: UsageEvent, storedRow: EventRow): boolean {
     (a.tokens.countQuality ?? null) === (storedRow.count_quality ?? null) &&
     (a.tokens.countQuality || a.tokens.ucuCountQuality ? COMPONENT_COUNT_POLICY : null) === (storedRow.count_policy ?? null) &&
     (a.tokens.countQuality || a.tokens.ucuCountQuality ? storedRow.count_revision != null : storedRow.count_revision == null) &&
-    (a.tokens.countQuality || a.tokens.ucuCountQuality ? ucuCountQuality(a.tokens) : null) === (storedRow.ucu_count_quality ?? null) &&
+    (a.tokens.countQuality || a.tokens.ucuCountQuality ? subsetCountQuality(a.tokens) : null) === (storedRow.ucu_count_quality ?? null) &&
     a.tokens.cacheRead === storedRow.cache_read &&
     a.tokens.output === storedRow.output &&
     a.tokens.reasoning === storedRow.reasoning &&
@@ -830,7 +830,7 @@ export class SqliteLedger implements LedgerWriter {
   constructor(
     private readonly db: TokeneloDb,
     private readonly pricing: PricingEngine,
-    private readonly computeUnits: EacsEngine
+    private readonly valuationEngine: ValuationEngine
   ) {}
 
   private statement(name: CachedStatement, sql: string): PreparedStatement {
@@ -969,9 +969,9 @@ export class SqliteLedger implements LedgerWriter {
             components: merged.components.map(c => c.countEvidence && !isSupportedCountPolicy(c.countEvidence.policy)
               || c.nativeCounterEvidence && !supportedNativeCounters(c.nativeCounterEvidence)
               ? { ...c, tokens: { ...c.tokens, countQuality: weakestCountQuality(c.tokens.countQuality, 'incomplete'),
-                ucuCountQuality: weakestCountQuality(ucuCountQuality(c.tokens), 'incomplete') } } : c),
+                ucuCountQuality: weakestCountQuality(subsetCountQuality(c.tokens), 'incomplete') } } : c),
             tokens: { ...merged.tokens, countQuality: weakestCountQuality(merged.tokens.countQuality, 'incomplete'),
-              ucuCountQuality: weakestCountQuality(ucuCountQuality(merged.tokens), 'incomplete') } };
+              ucuCountQuality: weakestCountQuality(subsetCountQuality(merged.tokens), 'incomplete') } };
         }
         const retainValuation = recorded !== undefined && options?.reprice !== true && sameValuationInputs(merged, recorded);
         const priceResult = retainValuation ? {
@@ -986,7 +986,7 @@ export class SqliteLedger implements LedgerWriter {
         // The reserved compatibility columns are not part of the price refresh: a stored row keeps them whenever its
         // measurement inputs are unchanged, including through an explicit reprice, so historical values are never wiped.
         const retainUnits = recorded !== undefined && sameValuationInputs(merged, recorded);
-        const ucuResult = retainUnits ? { reservedValue: recorded.reservedValue, status: recorded.ucuRateStatus } : this.computeUnits.ucuForEvent({
+        const valueResult = retainUnits ? { reservedValue: recorded.reservedValue, status: recorded.ucuRateStatus } : this.valuationEngine.valueForEvent({
           components: merged.components,
           tokens: merged.tokens,
           effort: merged.effort,
@@ -995,9 +995,9 @@ export class SqliteLedger implements LedgerWriter {
         });
 
         const basis = retainUnits ? { rateKey: recorded.rateKey, resolvedSha256: recorded.rateResolvedSha256 }
-          : this.computeUnits.rateBasisOf(merged.components, merged.effort, merged.thinking);
+          : this.valuationEngine.rateBasisOf(merged.components, merged.effort, merged.thinking);
         const unresolved = hasUnresolvedCounts(merged.tokens);
-        const unresolvedUcu = hasUnresolvedUcuCounts(merged.tokens);
+        const unresolvedSubset = hasUnresolvedSubsetCounts(merged.tokens);
         // Reporting provider is part of recorded economic provenance, including
         // legacy route-less observations. A new descriptive classification must
         // not relabel historical $0/local or hosted prices on ordinary replay.
@@ -1013,9 +1013,9 @@ export class SqliteLedger implements LedgerWriter {
           apiEquivUsd: unresolved ? null : priceResult.usd,
           priceStatus: unresolved ? 'UNPRICED' : priceResult.status,
           priceVersion: retainValuation ? recorded.priceVersion : this.pricing.version,
-          reservedValue: unresolvedUcu ? null : ucuResult.reservedValue,
-          ucuRateStatus: unresolvedUcu ? 'NONE' : ucuResult.status,
-          eacsDefSha256: retainUnits ? recorded.eacsDefSha256 : this.computeUnits.defSha256,
+          reservedValue: unresolvedSubset ? null : valueResult.reservedValue,
+          ucuRateStatus: unresolvedSubset ? 'NONE' : valueResult.status,
+          eacsDefSha256: retainUnits ? recorded.eacsDefSha256 : this.valuationEngine.defSha256,
           rateKey: basis.rateKey,
           rateResolvedSha256: basis.resolvedSha256,
         };
@@ -1056,7 +1056,7 @@ export class SqliteLedger implements LedgerWriter {
           cacheWriteUnassigned: finalEvent.tokens.cacheWriteUnassigned ?? null,
           cacheWriteAssumed1h: finalEvent.tokens.cacheWriteAssumed1h ?? null,
           countQuality: finalEvent.tokens.countQuality ?? null,
-          ucuCountQuality: finalEvent.tokens.countQuality || finalEvent.tokens.ucuCountQuality ? ucuCountQuality(finalEvent.tokens) : null,
+          ucuCountQuality: finalEvent.tokens.countQuality || finalEvent.tokens.ucuCountQuality ? subsetCountQuality(finalEvent.tokens) : null,
           // The current writer policy covers overall AND subset-only qualifications.
           // Every changed materialization advances the trigger revision.
           countPolicy: finalEvent.tokens.countQuality || finalEvent.tokens.ucuCountQuality ? COMPONENT_COUNT_POLICY : null,
