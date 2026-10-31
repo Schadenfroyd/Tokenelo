@@ -102,8 +102,8 @@ jobs:
             "USERNAME=$user", "USERPROFILE=$profileDir", "HOMEDRIVE=$env:SystemDrive", "HOMEPATH=\Users\$user",
             "APPDATA=$profileDir\AppData\Roaming", "LOCALAPPDATA=$profileDir\AppData\Local", "TEMP=$tempDir", "TMP=$tempDir"
           )
-          $inner = (($vars | ForEach-Object { 'set "' + $_ + '"' }) -join '&& ') + '&& "' + $node + '" "' + (Join-Path $repo 'scripts\ci-win-env-bisect.cjs') + '"'
-          $run = Invoke-AsUser $inner 'bisect'
+          $inner = (($vars | ForEach-Object { 'set "' + $_ + '"' }) -join '&& ') + '&& "' + $node + '" "' + (Join-Path $repo 'scripts\ci-win-env-probe2.cjs') + '"'
+          $run = Invoke-AsUser $inner 'probe2'
           exit $run.Code
       - run: npm audit --audit-level=high
       - name: Remove the Windows test user
