@@ -12,7 +12,7 @@ Reasoning can be a subset of output. A cache-duration assumption can be a subset
 
 Check the source, model, selected range, recorded timestamp and capture status. Parent sessions may already include subagent usage. Session views must make that inclusion explicit. A comparison across different windows or partial sources is not a like-for-like total.
 
-Zero means a known value of zero. Blank, unknown, unavailable, incomplete, estimated and unpriced carry different meanings. Failed reads must not silently become zero.
+Zero means a known value of zero. Blank, unknown, unavailable, incomplete, estimated and unpriced carry different meanings. Failed reads must not silently become zero. This edition does not meet that standard everywhere yet. The six core token counters are stored as integers that default to 0 and cannot be blank, and some collectors store an absent counter as 0: Codex, Qwen Code, the Ollama server-log collector and the Ollama proxy's response parser. Such a row's count quality reads `unrecorded` or carries an estimate flag, and its exported number is the same as a measured zero. The Codex collector keeps per-field presence (reported zero, missing or invalid) in the stored components, but no report reads it yet.
 
 ## Cost interpretation
 
@@ -22,7 +22,7 @@ Count completeness and pricing status are separate questions.
 
 ## Reporting and sharing
 
-The CSV export retains the original leading columns and adds token components, qualifications, source/model-component detail and field evidence. Unknown optional counters remain blank; legacy quality is labeled unrecorded. String fields that could become spreadsheet formulas receive an apostrophe in CSV presentation; JSON and stored records are unchanged.
+The CSV export retains the original leading columns and adds token components, qualifications, source/model-component detail and field evidence. Unknown optional counters remain blank, but the six core counters cannot be blank: an absent core counter exports as `0`. Legacy quality is labeled unrecorded. String fields that could become spreadsheet formulas receive an apostrophe in CSV presentation; JSON and stored records are unchanged.
 
 The [CSV field dictionary](export-format.md) lists every exported column. Raw event/host/session identifiers remain sensitive. JSON may include project paths and additional metadata. Sanitize before sharing.
 

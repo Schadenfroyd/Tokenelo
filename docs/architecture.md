@@ -21,7 +21,7 @@ flowchart LR
 - SQLite persists normalized event metadata and provenance. Read queries and ingestion share the accounting contract.
 - The local HTTP API is read-oriented and authenticated. Mutating import/reprice operations are CLI actions.
 - Renderer data reaches the UI through the Electron preload/IPC bridge, not an unrestricted renderer-side filesystem or network API.
-- Optional configured local proxies meter upstream traffic; optional fleet reporting has a separate listener/token and path-sharing controls.
+- The local metering proxy starts by default and meters upstream traffic when a client is pointed at it; optional fleet reporting has a separate listener and token, and its summary carries no project paths.
 
 ## Measurement boundary
 

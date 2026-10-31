@@ -45,7 +45,7 @@ The implementation includes adapters for Claude Code, Codex, and configured loca
 
 ## Trust is part of the product
 
-- **Local records.** Normalized counts and metadata are stored locally. Optional proxies process traffic in memory to obtain counters; configured fleet sharing is a separate choice.
+- **Local records.** Normalized counts and metadata are stored locally. The local metering proxy starts by default with the daemon (loopback only; `local.capture: off` disables it) and, when a client is pointed at it, processes traffic in memory to obtain counters; configured fleet sharing is a separate choice.
 - **Honest numbers.** Unknown, incomplete, unpriced, and measured zero have different meanings. API-equivalent comparisons do not establish actual spending or savings.
 - **Careful sharing.** Metadata and raw exports can expose project identity and activity. Review them before sharing; public issues should use fabricated examples.
 - **Visible limitations.** Passing internal tests does not establish complete capture, invoice reconciliation, public platform support, or an external security audit.
