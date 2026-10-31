@@ -14,7 +14,7 @@ Tokenelo is being built for engineering teams investigating AI usage, procuremen
 | Reporting | Export useful local CSV and JSON data. | Raw identifiers and metadata can be sensitive; exports are not automatically anonymous. |
 | Diagnostics | Expose capture and interpretation limitations. | Unknown and failed reads must not be presented as verified zero. |
 
-These are acceptance requirements for the cleared release. See the [current status](status.md) for what is verified and what remains open.
+These are acceptance requirements for a supported release. See the [current status](status.md) for what is verified and what remains open.
 
 ## Local use and optional sharing
 
@@ -28,6 +28,6 @@ Start with the same tools, models, time window, and coverage on both sides. Insp
 
 ## Architecture at a glance
 
-The internal implementation uses source adapters, a local SQLite ledger, an authenticated local read API, and a desktop interface. Supported release builds, exact collection behavior, schemas, and developer instructions will be documented with cleared source. This overview is not a public API compatibility promise.
+The implementation uses source adapters, a local SQLite ledger, an authenticated local read API, and a desktop interface. The [architecture notes](architecture.md) are a release draft and the [CSV field dictionary](export-format.md) lists the exported columns; supported release builds are not yet available. This overview is not a public API compatibility promise.
 
 [Data accuracy](data-accuracy.md) · [Roadmap](roadmap.md) · [FAQ](faq.md)

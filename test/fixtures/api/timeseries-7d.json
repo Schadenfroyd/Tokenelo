@@ -1,0 +1,113 @@
+{
+  "range": "7d",
+  "bucket": "day",
+  "generatedAt": 1790466276688,
+  "timeBasis": {
+    "startMs": 1789861476688,
+    "asOfMs": 1790466276688,
+    "endInclusive": true,
+    "timestampBasis": "recorded-timestamps",
+    "excludedFutureEvents": 0,
+    "excludedFutureActivity": 0
+  },
+  "points": [
+    {
+      "t": 1789861476688,
+      "apiEquivUsd": 135.26999999999998,
+      "tokens": 708227,
+      "totalTokens": 2322770,
+      "bySource": {
+        "claude": 110.08,
+        "codex": 22.02,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 3.17
+      }
+    },
+    {
+      "t": 1789947876688,
+      "apiEquivUsd": 140.63,
+      "tokens": 736310,
+      "totalTokens": 2414876,
+      "bySource": {
+        "claude": 114.45,
+        "codex": 22.89,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 3.29
+      }
+    },
+    {
+      "t": 1790034276688,
+      "apiEquivUsd": 141.95000000000002,
+      "tokens": 743228,
+      "totalTokens": 2437565,
+      "bySource": {
+        "claude": 115.52,
+        "codex": 23.1,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 3.33
+      }
+    },
+    {
+      "t": 1790120676688,
+      "apiEquivUsd": 139.08999999999997,
+      "tokens": 728199,
+      "totalTokens": 2388272,
+      "bySource": {
+        "claude": 113.19,
+        "codex": 22.64,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 3.26
+      }
+    },
+    {
+      "t": 1790207076688,
+      "apiEquivUsd": 132.29999999999998,
+      "tokens": 692713,
+      "totalTokens": 2271888,
+      "bySource": {
+        "claude": 107.67,
+        "codex": 21.53,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 3.1
+      }
+    },
+    {
+      "t": 1790293476688,
+      "apiEquivUsd": 122.31,
+      "tokens": 640321,
+      "totalTokens": 2100059,
+      "bySource": {
+        "claude": 99.53,
+        "codex": 19.91,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.87
+      }
+    },
+    {
+      "t": 1790379876688,
+      "apiEquivUsd": 110.05,
+      "tokens": 576202,
+      "totalTokens": 1889770,
+      "bySource": {
+        "claude": 89.56,
+        "codex": 17.91,
+        "ollama-proxy": 0,
+        "ollama-log": 0,
+        "qwen-code": 0,
+        "bench": 2.58
+      }
+    }
+  ]
+}

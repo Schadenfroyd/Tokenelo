@@ -1,0 +1,239 @@
+{
+ "schemaVersion": 1,
+ "fixtureKind": "fabricated-route-evidence",
+ "allValuesFabricated": true,
+ "containsPromptOrResponseText": false,
+ "containsFilesystemPaths": false,
+ "containsHostnamesOrCredentials": false,
+ "cases": [
+  {
+   "id": "local-reported",
+   "routeState": "local-reported",
+   "note": "A component that reports the allow-listed local route.",
+   "component": {
+    "model": "qwen3:8b",
+    "tokens": {
+     "inputFresh": 1000,
+     "cacheWrite5m": 0,
+     "cacheWrite1h": 0,
+     "cacheRead": 0,
+     "output": 200,
+     "reasoning": 0
+    },
+    "servingRoute": {
+     "kind": "local",
+     "evidence": "metered-engine"
+    }
+   }
+  },
+  {
+   "id": "hosted-reported",
+   "routeState": "hosted-reported",
+   "note": "A component that reports the allow-listed hosted route.",
+   "component": {
+    "model": "qwen3:8b",
+    "tokens": {
+     "inputFresh": 1000,
+     "cacheWrite5m": 0,
+     "cacheWrite1h": 0,
+     "cacheRead": 0,
+     "output": 200,
+     "reasoning": 0
+    },
+    "servingRoute": {
+     "kind": "hosted",
+     "evidence": "qwen-oauth"
+    }
+   }
+  },
+  {
+   "id": "unrecorded-weights-name",
+   "routeState": "unrecorded",
+   "note": "No servingRoute key at all (legacy shape), model name matches a local weights family.",
+   "component": {
+    "model": "qwen3:8b",
+    "tokens": {
+     "inputFresh": 1000,
+     "cacheWrite5m": 0,
+     "cacheWrite1h": 0,
+     "cacheRead": 0,
+     "output": 200,
+     "reasoning": 0
+    }
+   }
+  },
+  {
+   "id": "unrecorded-hosted-looking-weights-name",
+   "routeState": "unrecorded",
+   "note": "No servingRoute key; the model id has the form a hosted open-weight endpoint reports, but it still matches a local weights family.",
+   "component": {
+    "model": "qwen/qwen3-coder-fabricated",
+    "tokens": {
+     "inputFresh": 1000,
+     "cacheWrite5m": 0,
+     "cacheWrite1h": 0,
+     "cacheRead": 0,
+     "output": 200,
+     "reasoning": 0
+    }
+   }
+  },
+  {
+   "id": "unknown-openai-compatible",
+   "routeState": "unknown",
+   "note": "Route reported as unknown because an OpenAI-compatible endpoint may be local or hosted.",
+   "component": {
+    "model": "qwen3:8b",
+    "tokens": {
+     "inputFresh": 1000,
+     "cacheWrite5m": 0,
+     "cacheWrite1h": 0,
+     "cacheRead": 0,
+     "output": 200,
+     "reasoning": 0
+    },
+    "servingRoute": {
+     "kind": "unknown",
+     "evidence": "qwen-openai-compatible"
+    }
+   }
+  },
+  {
+   "id": "unknown-unrecorded-evidence",
+   "routeState": "unknown",
+   "note": "Route reported as unknown with the explicit unrecorded marker.",
+   "component": {
+    "model": "qwen3:8b",
+    "tokens": {
+     "inputFresh": 1000,
+     "cacheWrite5m": 0,
+     "cacheWrite1h": 0,
+     "cacheRead": 0,
+     "output": 200,
+     "reasoning": 0
+    },
+    "servingRoute": {
+     "kind": "unknown",
+     "evidence": "unrecorded"
+    }
+   }
+  },
+  {
+   "id": "invalid-kind-evidence-mismatch",
+   "routeState": "invalid",
+   "note": "A present route whose kind and evidence do not belong together.",
+   "component": {
+    "model": "qwen3:8b",
+    "tokens": {
+     "inputFresh": 1000,
+     "cacheWrite5m": 0,
+     "cacheWrite1h": 0,
+     "cacheRead": 0,
+     "output": 200,
+     "reasoning": 0
+    },
+    "servingRoute": {
+     "kind": "local",
+     "evidence": "qwen-oauth"
+    }
+   }
+  },
+  {
+   "id": "invalid-missing-evidence",
+   "routeState": "invalid",
+   "note": "A present route with the evidence field absent.",
+   "component": {
+    "model": "qwen3:8b",
+    "tokens": {
+     "inputFresh": 1000,
+     "cacheWrite5m": 0,
+     "cacheWrite1h": 0,
+     "cacheRead": 0,
+     "output": 200,
+     "reasoning": 0
+    },
+    "servingRoute": {
+     "kind": "local"
+    }
+   }
+  },
+  {
+   "id": "invalid-extra-key",
+   "routeState": "invalid",
+   "note": "A supported route carrying an extra key; any extra key invalidates the report.",
+   "component": {
+    "model": "qwen3:8b",
+    "tokens": {
+     "inputFresh": 1000,
+     "cacheWrite5m": 0,
+     "cacheWrite1h": 0,
+     "cacheRead": 0,
+     "output": 200,
+     "reasoning": 0
+    },
+    "servingRoute": {
+     "kind": "local",
+     "evidence": "metered-engine",
+     "note": "extra"
+    }
+   }
+  },
+  {
+   "id": "invalid-null",
+   "routeState": "invalid",
+   "note": "A present servingRoute key whose value is null.",
+   "component": {
+    "model": "qwen3:8b",
+    "tokens": {
+     "inputFresh": 1000,
+     "cacheWrite5m": 0,
+     "cacheWrite1h": 0,
+     "cacheRead": 0,
+     "output": 200,
+     "reasoning": 0
+    },
+    "servingRoute": null
+   }
+  },
+  {
+   "id": "invalid-canonical-marker",
+   "routeState": "invalid",
+   "note": "The marker the ledger itself writes for an invalid report; it is not a supported route.",
+   "component": {
+    "model": "qwen3:8b",
+    "tokens": {
+     "inputFresh": 1000,
+     "cacheWrite5m": 0,
+     "cacheWrite1h": 0,
+     "cacheRead": 0,
+     "output": 200,
+     "reasoning": 0
+    },
+    "servingRoute": {
+     "kind": "unknown",
+     "evidence": "invalid"
+    }
+   }
+  },
+  {
+   "id": "conflict-reports",
+   "routeState": "conflict",
+   "note": "Incompatible reports were merged for the same component.",
+   "component": {
+    "model": "qwen3:8b",
+    "tokens": {
+     "inputFresh": 1000,
+     "cacheWrite5m": 0,
+     "cacheWrite1h": 0,
+     "cacheRead": 0,
+     "output": 200,
+     "reasoning": 0
+    },
+    "servingRoute": {
+     "kind": "unknown",
+     "evidence": "conflicting-reports"
+    }
+   }
+  }
+ ]
+}

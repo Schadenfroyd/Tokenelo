@@ -1,0 +1,129 @@
+{
+  "bucket": "day",
+  "range": "7d",
+  "generatedAt": 1792337400000,
+  "timeBasis": {
+    "startMs": 1791732600000,
+    "asOfMs": 1792337400000,
+    "endInclusive": true,
+    "timestampBasis": "recorded-timestamps",
+    "excludedFutureEvents": 1,
+    "excludedFutureActivity": 1
+  },
+  "priceQualityCounts": true,
+  "points": [
+    {
+      "t": 1791676800000,
+      "apiEquivUsd": 0.10104,
+      "tokens": 4904,
+      "totalTokens": 24904,
+      "bySource": {
+        "claude": 0.10104
+      },
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "priceEvidence": {
+        "version": 1,
+        "events": 2,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "countQuality": "complete"
+    },
+    {
+      "t": 1791936000000,
+      "apiEquivUsd": 0,
+      "tokens": 1000,
+      "totalTokens": 1000,
+      "bySource": {
+        "ollama-proxy": 0
+      },
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "priceEvidence": {
+        "version": 1,
+        "events": 1,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "countQuality": "complete"
+    },
+    {
+      "t": 1792022400000,
+      "apiEquivUsd": 0,
+      "tokens": 770,
+      "totalTokens": 770,
+      "bySource": {
+        "claude": 0
+      },
+      "unpricedEvents": 1,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "UNPRICED",
+      "priceEvidence": {
+        "version": 1,
+        "events": 1,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "countQuality": "conflict"
+    },
+    {
+      "t": 1792195200000,
+      "apiEquivUsd": 0.12243,
+      "tokens": 10118,
+      "totalTokens": 28118,
+      "bySource": {
+        "claude": 0.07943,
+        "codex": 0.043
+      },
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "priceEvidence": {
+        "version": 1,
+        "events": 5,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "countQuality": "complete"
+    },
+    {
+      "t": 1792281600000,
+      "apiEquivUsd": 0.17877,
+      "tokens": 16786,
+      "totalTokens": 47786,
+      "bySource": {
+        "claude": 0.15827000000000002,
+        "codex": 0.0205,
+        "ollama-proxy": 0
+      },
+      "unpricedEvents": 4,
+      "estimatedPriceEvents": 1,
+      "priceStatus": "UNPRICED",
+      "priceEvidence": {
+        "version": 1,
+        "events": 15,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "countQuality": "incomplete"
+    }
+  ]
+}

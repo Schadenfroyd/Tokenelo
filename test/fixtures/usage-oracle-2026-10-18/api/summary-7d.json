@@ -1,0 +1,356 @@
+{
+  "host": "HOST-A",
+  "range": "7d",
+  "generatedAt": 1792337400000,
+  "timeBasis": {
+    "startMs": 1791732600000,
+    "asOfMs": 1792337400000,
+    "endInclusive": true,
+    "timestampBasis": "recorded-timestamps",
+    "excludedFutureEvents": 1,
+    "excludedFutureActivity": 1
+  },
+  "totals": {
+    "events": 24,
+    "tokens": {
+      "inputFresh": 25829,
+      "cacheWrite5m": 1500,
+      "cacheWrite1h": 2000,
+      "cacheRead": 69000,
+      "output": 4249,
+      "reasoning": 200,
+      "countQuality": "conflict"
+    },
+    "apiEquivUsd": 0.40224,
+    "unpricedEvents": 5,
+    "estimatedPriceEvents": 1,
+    "priceStatus": "UNPRICED",
+    "priceEvidence": {
+      "version": 1,
+      "events": 24,
+      "invalidAmountEvents": 0,
+      "unknownStatusEvents": 0,
+      "statusAmountConflictEvents": 0,
+      "issuesEvents": 0,
+      "aggregateAmountInvalid": false
+    }
+  },
+  "bySource": {
+    "claude": {
+      "events": 20,
+      "tokens": {
+        "inputFresh": 16329,
+        "cacheWrite5m": 1500,
+        "cacheWrite1h": 2000,
+        "cacheRead": 57000,
+        "output": 2749,
+        "reasoning": 0,
+        "countQuality": "conflict"
+      },
+      "apiEquivUsd": 0.33874,
+      "unpricedEvents": 5,
+      "estimatedPriceEvents": 1,
+      "priceStatus": "UNPRICED",
+      "priceEvidence": {
+        "version": 1,
+        "events": 20,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      }
+    },
+    "ollama-proxy": {
+      "events": 2,
+      "tokens": {
+        "inputFresh": 2000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 500,
+        "reasoning": 0,
+        "countQuality": "complete"
+      },
+      "apiEquivUsd": 0,
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "priceEvidence": {
+        "version": 1,
+        "events": 2,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      }
+    },
+    "codex": {
+      "events": 2,
+      "tokens": {
+        "inputFresh": 7500,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 12000,
+        "output": 1000,
+        "reasoning": 200,
+        "countQuality": "complete"
+      },
+      "apiEquivUsd": 0.0635,
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "priceEvidence": {
+        "version": 1,
+        "events": 2,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      }
+    }
+  },
+  "byModel": [
+    {
+      "model": "oracle-opus",
+      "displayName": "Oracle Opus",
+      "provider": "anthropic",
+      "source": "claude",
+      "thinking": "unknown",
+      "events": 9,
+      "tokens": {
+        "inputFresh": 2239,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 160,
+        "reasoning": 0,
+        "countQuality": "conflict"
+      },
+      "apiEquivUsd": 0.01089,
+      "priceStatus": "UNPRICED",
+      "unpricedEvents": 2,
+      "estimatedPriceEvents": 0,
+      "priceEvidence": {
+        "version": 1,
+        "events": 9,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      }
+    },
+    {
+      "model": "oracle-opus",
+      "displayName": "Oracle Opus",
+      "provider": "anthropic",
+      "source": "claude",
+      "thinking": "thinking",
+      "events": 4,
+      "tokens": {
+        "inputFresh": 9600,
+        "cacheWrite5m": 500,
+        "cacheWrite1h": 0,
+        "cacheRead": 42000,
+        "output": 1810,
+        "reasoning": 0,
+        "countQuality": "complete"
+      },
+      "apiEquivUsd": 0.23475000000000004,
+      "priceStatus": "LIST",
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceEvidence": {
+        "version": 1,
+        "events": 4,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      }
+    },
+    {
+      "model": "oracle-unlisted",
+      "displayName": "oracle-unlisted",
+      "provider": "anthropic",
+      "source": "claude",
+      "thinking": "unknown",
+      "events": 3,
+      "tokens": {
+        "inputFresh": 790,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 79,
+        "reasoning": 0,
+        "countQuality": "complete"
+      },
+      "apiEquivUsd": null,
+      "priceStatus": "UNPRICED",
+      "unpricedEvents": 3,
+      "estimatedPriceEvents": 0,
+      "priceEvidence": {
+        "version": 1,
+        "events": 3,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      }
+    },
+    {
+      "model": "oracle-opus",
+      "displayName": "Oracle Opus",
+      "provider": "anthropic",
+      "source": "claude",
+      "thinking": "non-thinking",
+      "events": 3,
+      "tokens": {
+        "inputFresh": 2900,
+        "cacheWrite5m": 1000,
+        "cacheWrite1h": 0,
+        "cacheRead": 15000,
+        "output": 500,
+        "reasoning": 0,
+        "countQuality": "complete"
+      },
+      "apiEquivUsd": 0.0815,
+      "priceStatus": "LIST",
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceEvidence": {
+        "version": 1,
+        "events": 3,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      }
+    },
+    {
+      "model": "oracle-local-27b",
+      "displayName": "Oracle Local 27B",
+      "provider": "local",
+      "source": "ollama-proxy",
+      "thinking": "unknown",
+      "events": 2,
+      "tokens": {
+        "inputFresh": 2000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 500,
+        "reasoning": 0,
+        "countQuality": "complete"
+      },
+      "apiEquivUsd": 0,
+      "priceStatus": "LIST",
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceEvidence": {
+        "version": 1,
+        "events": 2,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      }
+    },
+    {
+      "model": "oracle-gpt",
+      "displayName": "Oracle GPT",
+      "provider": "openai",
+      "source": "codex",
+      "thinking": "thinking",
+      "events": 2,
+      "tokens": {
+        "inputFresh": 7500,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 12000,
+        "output": 1000,
+        "reasoning": 200,
+        "countQuality": "complete"
+      },
+      "apiEquivUsd": 0.0635,
+      "priceStatus": "LIST",
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceEvidence": {
+        "version": 1,
+        "events": 2,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      }
+    },
+    {
+      "model": "oracle-haiku",
+      "displayName": "Oracle Haiku",
+      "provider": "anthropic",
+      "source": "claude",
+      "thinking": "unknown",
+      "events": 1,
+      "tokens": {
+        "inputFresh": 800,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 2000,
+        "cacheRead": 0,
+        "output": 200,
+        "reasoning": 0,
+        "countQuality": "complete"
+      },
+      "apiEquivUsd": 0.0116,
+      "priceStatus": "ESTIMATE",
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 1,
+      "priceEvidence": {
+        "version": 1,
+        "events": 1,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      }
+    }
+  ],
+  "local": {
+    "captured": true,
+    "valueVsClaude": {
+      "usd": null,
+      "comparator": "claude-sonnet-5",
+      "status": "NONE",
+      "unratedEvents": 0
+    },
+    "valueVsGpt": {
+      "usd": null,
+      "comparator": "gpt-6-sol",
+      "status": "NONE",
+      "unratedEvents": 0
+    },
+    "energy": {
+      "kwh": null,
+      "usd": null,
+      "status": "NONE"
+    },
+    "netSavingsVsClaude": null,
+    "netSavingsVsClaudeStatus": "NONE",
+    "netSavingsVsGpt": null,
+    "netSavingsVsGptStatus": "NONE"
+  },
+  "subscriptions": [],
+  "activeTime": {
+    "agentMs": 1260002,
+    "wallMs": 1380002
+  }
+}

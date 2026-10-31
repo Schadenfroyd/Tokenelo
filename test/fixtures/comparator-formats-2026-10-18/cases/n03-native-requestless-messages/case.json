@@ -1,0 +1,61 @@
+{
+  "a": {"input": "a.input.json", "instance": "fab-ledger-n03"},
+  "b": {"input": "b.input.json", "instance": "fab-native-n03"},
+  "case": "n03-native-requestless-messages",
+  "description": "Four native lines, none with a request id. Two lines carry message id n03a with identical counts 2/3/5/7 on either side of local midnight (-06:00); two lines carry no message id and no request id, only the same line uuid (the documented uuid fallback identity), replayed. Each identity is one record; the first is attributed to the later timestamp.",
+  "does_not_show": ["How any vendor version treats the same lines."],
+  "expect": {
+    "pairs": {
+      "claude:fab-msg-n03a": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "cache_write_1h": ["equal", 0, 0, "exact-match"],
+          "cache_write_5m": ["equal", 0, 0, "exact-match"],
+          "cache_write_total": ["equal", 0, 0, "exact-match"],
+          "cache_write_unassigned": ["equal", 0, 0, "exact-match"],
+          "input_fresh": ["equal", 0, 0, "exact-match"],
+          "output": ["equal", 0, 0, "exact-match"],
+          "reasoning": ["not_comparable", null, null, "missing-in-both"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      },
+      "claude:fab-sess-3+fab-uuid-33": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "cache_write_1h": ["equal", 0, 0, "exact-match"],
+          "cache_write_5m": ["equal", 0, 0, "exact-match"],
+          "cache_write_total": ["equal", 0, 0, "exact-match"],
+          "cache_write_unassigned": ["equal", 0, 0, "exact-match"],
+          "input_fresh": ["equal", 0, 0, "exact-match"],
+          "output": ["equal", 0, 0, "exact-match"],
+          "reasoning": ["not_comparable", null, null, "missing-in-both"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      }
+    },
+    "records": {
+      "b": {
+        "claude:fab-msg-n03a": {
+          "count_quality": "complete",
+          "day": "2026-07-21",
+          "evidence": {"distinct_snapshots": 1, "lines_observed": 2},
+          "identity": {"basis": "message-id", "request_id_present": false, "request_key": null},
+          "time": 1784613601000,
+          "total": 17
+        },
+        "claude:fab-sess-3+fab-uuid-33": {
+          "count_quality": "complete",
+          "evidence": {"distinct_snapshots": 1, "lines_observed": 2},
+          "identity": {"basis": "line-uuid-fallback", "request_id_present": false},
+          "total": 2
+        }
+      }
+    },
+    "summary": {"differs": 0, "identical": 2, "matched": 2, "only_in_a": 0, "only_in_b": 0, "unresolved": 0}
+  },
+  "shows": ["A requestless replay is one 17-token record, not two, matching the hand arithmetic of the existing requestless reference test."],
+  "timezone": "-06:00",
+  "tolerance_percent_micro": null
+}

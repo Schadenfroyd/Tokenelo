@@ -1,0 +1,126 @@
+{
+  "a": {"input": "a.input.json", "instance": "fab-ledger-n05"},
+  "b": {"input": "b.input.json", "instance": "fab-native-n05"},
+  "case": "n05-native-cache-ttl-split",
+  "description": "Five native messages with different cache-write evidence. a: flat total 100, no TTL container (the product stores this as 1h with an assumed-1h marker). b: flat 100 with 60 five-minute and 40 one-hour. c: flat 100 with only the five-minute field (60). d: TTL fields but no flat total. e: TTL fields summing to 70 against a flat total of 50. Ledger rows d and e are stored with count quality incomplete and conflict.",
+  "does_not_show": ["Which TTL a flat-only cache write really used."],
+  "expect": {
+    "pairs": {
+      "claude:fab-msg-n05a": {
+        "outcome": "identical",
+        "units": {
+          "cache_write_1h": ["not_comparable", null, null, "cache-ttl-assumed"],
+          "cache_write_5m": ["not_comparable", null, null, "cache-ttl-assumed"],
+          "cache_write_total": ["equal", 0, 0, "exact-match"],
+          "cache_write_unassigned": ["not_comparable", null, null, "cache-ttl-assumed"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      },
+      "claude:fab-msg-n05b": {
+        "outcome": "identical",
+        "units": {
+          "cache_write_1h": ["equal", 0, 0, "exact-match"],
+          "cache_write_5m": ["equal", 0, 0, "exact-match"],
+          "cache_write_total": ["equal", 0, 0, "exact-match"],
+          "cache_write_unassigned": ["equal", 0, 0, "exact-match"]
+        }
+      },
+      "claude:fab-msg-n05c": {
+        "outcome": "identical",
+        "units": {
+          "cache_write_1h": ["not_comparable", null, null, "missing-in-b"],
+          "cache_write_5m": ["equal", 0, 0, "exact-match"],
+          "cache_write_total": ["equal", 0, 0, "exact-match"],
+          "cache_write_unassigned": ["equal", 0, 0, "exact-match"]
+        }
+      },
+      "claude:fab-msg-n05d": {
+        "outcome": "unresolved",
+        "units": {
+          "total": ["not_comparable", null, null, "missing-in-both"]
+        }
+      },
+      "claude:fab-msg-n05e": {
+        "outcome": "unresolved",
+        "units": {
+          "total": ["not_comparable", null, null, "missing-in-both"]
+        }
+      }
+    },
+    "records": {
+      "a": {
+        "claude:fab-msg-n05a": {
+          "assumed_part": {"cache_write_1h": 100},
+          "components": {
+            "cache_write_1h": ["measured", 100],
+            "cache_write_5m": ["measured_zero", 0],
+            "cache_write_total": ["measured", 100],
+            "cache_write_unassigned": ["measured_zero", 0]
+          }
+        }
+      },
+      "b": {
+        "claude:fab-msg-n05a": {
+          "components": {
+            "cache_write_1h": ["missing", null],
+            "cache_write_5m": ["missing", null],
+            "cache_write_total": ["measured", 100],
+            "cache_write_unassigned": ["measured", 100]
+          },
+          "count_quality": "complete",
+          "total": 102
+        },
+        "claude:fab-msg-n05b": {
+          "components": {
+            "cache_write_1h": ["measured", 40],
+            "cache_write_5m": ["measured", 60],
+            "cache_write_total": ["measured", 100],
+            "cache_write_unassigned": ["measured_zero", 0]
+          },
+          "count_quality": "complete",
+          "total": 102
+        },
+        "claude:fab-msg-n05c": {
+          "components": {
+            "cache_write_1h": ["missing", null],
+            "cache_write_5m": ["measured", 60],
+            "cache_write_total": ["measured", 100],
+            "cache_write_unassigned": ["measured", 40]
+          },
+          "count_quality": "complete",
+          "total": 102
+        },
+        "claude:fab-msg-n05d": {
+          "completeness": "partial",
+          "components": {
+            "cache_write_1h": ["measured", 40],
+            "cache_write_5m": ["measured", 60],
+            "cache_write_total": ["missing", null],
+            "cache_write_unassigned": ["missing", null]
+          },
+          "count_quality": "incomplete",
+          "measured_subtotal": 102,
+          "total": null,
+          "unresolved": ["cache_write_total"]
+        },
+        "claude:fab-msg-n05e": {
+          "completeness": "partial",
+          "components": {
+            "cache_write_1h": ["measured", 40],
+            "cache_write_5m": ["measured", 30],
+            "cache_write_total": ["missing", null],
+            "cache_write_unassigned": ["missing", null]
+          },
+          "count_quality": "conflict",
+          "flags": ["cache-split-exceeds-total"],
+          "measured_subtotal": 72,
+          "total": null
+        }
+      }
+    },
+    "summary": {"differs": 0, "identical": 3, "matched": 5, "only_in_a": 0, "only_in_b": 0, "unresolved": 2}
+  },
+  "shows": ["Unassigned (flat total, no TTL), reported 5m/1h, a partial split and an absent flat total stay distinct.", "A policy-assigned 1h is never compared as if it were reported TTL evidence: the three TTL leaves are not comparable, the group total still is."],
+  "timezone": "-06:00",
+  "tolerance_percent_micro": null
+}

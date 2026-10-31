@@ -1,0 +1,152 @@
+{
+  "a": {"input": "a.input.json", "instance": "fab-ledger-n07"},
+  "b": {"input": "b.input.json", "instance": "fab-native-n07"},
+  "case": "n07-local-engine-counters",
+  "description": "Local-engine native counters (prompt_eval_count gross prompt, prompt_eval_cached_count, eval_count) in the six shapes of the repository structure-only fixture: reported zero, missing cache counter, negative cache counter, replayed identical snapshot, cache above gross prompt, two genuinely different snapshots. Cache-write categories do not exist for this source (not applicable). Subject ledger rows follow the product projection, whose assume-zero policy turns a missing cache counter into a stored 0.",
+  "does_not_show": ["Anything about real local-engine output; all numbers are fabricated."],
+  "expect": {
+    "pairs": {
+      "fab-ollama-01": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "cache_write_1h": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_5m": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_total": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_unassigned": ["not_comparable", null, null, "not-applicable-in-both"],
+          "input_fresh": ["equal", 0, 0, "exact-match"],
+          "output": ["equal", 0, 0, "exact-match"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      },
+      "fab-ollama-02": {
+        "outcome": "unresolved",
+        "units": {
+          "cache_read": ["not_comparable", null, null, "missing-in-b"],
+          "cache_write_1h": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_5m": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_total": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_unassigned": ["not_comparable", null, null, "not-applicable-in-both"],
+          "input_fresh": ["not_comparable", null, null, "missing-in-b"],
+          "output": ["equal", 0, null, "equal-quality-not-complete"],
+          "total": ["not_comparable", null, null, "missing-in-b"]
+        }
+      },
+      "fab-ollama-03": {
+        "outcome": "unresolved",
+        "units": {
+          "cache_read": ["not_comparable", null, null, "invalid-in-b"],
+          "cache_write_1h": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_5m": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_total": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_unassigned": ["not_comparable", null, null, "not-applicable-in-both"],
+          "input_fresh": ["not_comparable", null, null, "invalid-in-b"],
+          "output": ["not_comparable", null, null, "missing-in-a"],
+          "total": ["not_comparable", null, null, "missing-in-both"]
+        }
+      },
+      "fab-ollama-04": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "cache_write_1h": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_5m": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_total": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_unassigned": ["not_comparable", null, null, "not-applicable-in-both"],
+          "input_fresh": ["equal", 0, 0, "exact-match"],
+          "output": ["equal", 0, 0, "exact-match"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      },
+      "fab-ollama-05": {
+        "outcome": "unresolved",
+        "units": {
+          "cache_read": ["not_comparable", null, null, "missing-in-a"],
+          "cache_write_1h": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_5m": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_total": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_unassigned": ["not_comparable", null, null, "not-applicable-in-both"],
+          "input_fresh": ["not_comparable", null, null, "invalid-in-b"]
+        }
+      },
+      "fab-ollama-06": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "cache_write_1h": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_5m": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_total": ["not_comparable", null, null, "not-applicable-in-both"],
+          "cache_write_unassigned": ["not_comparable", null, null, "not-applicable-in-both"],
+          "input_fresh": ["equal", 0, 0, "exact-match"],
+          "output": ["equal", 0, 0, "exact-match"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      }
+    },
+    "records": {
+      "b": {
+        "fab-ollama-01": {
+          "components": {
+            "cache_read": ["measured_zero", 0],
+            "cache_write_5m": ["not_applicable", null],
+            "cache_write_total": ["not_applicable", null],
+            "input_fresh": ["measured", 17],
+            "output": ["measured_zero", 0]
+          },
+          "count_quality": "complete",
+          "total": 17
+        },
+        "fab-ollama-02": {
+          "components": {
+            "cache_read": ["missing", null],
+            "input_fresh": ["missing", null],
+            "output": ["measured", 4]
+          },
+          "count_quality": "incomplete",
+          "total": null
+        },
+        "fab-ollama-03": {
+          "components": {
+            "cache_read": ["invalid", null],
+            "input_fresh": ["invalid", null],
+            "output": ["measured", 4]
+          },
+          "count_quality": "invalid"
+        },
+        "fab-ollama-04": {
+          "components": {
+            "cache_read": ["measured", 8],
+            "input_fresh": ["measured", 22],
+            "output": ["measured", 6]
+          },
+          "count_quality": "complete",
+          "evidence": {"distinct_snapshots": 1, "lines_observed": 2},
+          "total": 36
+        },
+        "fab-ollama-05": {
+          "components": {
+            "cache_read": ["measured", 15],
+            "input_fresh": ["invalid", null],
+            "output": ["measured", 2]
+          },
+          "count_quality": "invalid",
+          "total": null
+        },
+        "fab-ollama-06": {
+          "components": {
+            "cache_read": ["measured", 7],
+            "input_fresh": ["measured", 12],
+            "output": ["measured", 5]
+          },
+          "count_quality": "complete",
+          "evidence": {"distinct_snapshots": 2, "lines_observed": 2},
+          "total": 24
+        }
+      }
+    },
+    "summary": {"differs": 0, "identical": 3, "matched": 6, "only_in_a": 0, "only_in_b": 0, "unresolved": 3}
+  },
+  "shows": ["A reported 0 cache counter and a missing cache counter are different; the product assume-zero policy is not promoted to a measurement.", "Not-applicable categories never block an identical outcome."],
+  "timezone": "-06:00",
+  "tolerance_percent_micro": null
+}

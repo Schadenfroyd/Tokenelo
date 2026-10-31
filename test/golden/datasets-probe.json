@@ -1,0 +1,257 @@
+{
+  "probe_date": "2026-09-26",
+  "probe_source": "curl against https://datasets-server.huggingface.co",
+  "api_endpoints_tested": [
+    "/splits?dataset=<id>",
+    "/size?dataset=<id>",
+    "/rows?dataset=<id>&config=<cfg>&split=<split>&offset=<offset>&length=<length>",
+    "https://huggingface.co/api/datasets/<id> (cardData.license)"
+  ],
+  "pagination_max_length": 100,
+  "datasets": [
+    {
+      "dataset_id": "cais/mmlu",
+      "configs": {
+        "count": 58,
+        "note": "57 subjects + 'all' aggregate config"
+      },
+      "requested_config": "all",
+      "available_splits": ["test", "validation", "dev", "auxiliary_train"],
+      "requested_split": "test",
+      "row_count": 115700,
+      "columns": [
+        {
+          "name": "question",
+          "type": "string"
+        },
+        {
+          "name": "subject",
+          "type": "string"
+        },
+        {
+          "name": "choices",
+          "type": "list[string]"
+        },
+        {
+          "name": "answer",
+          "type": "int64"
+        }
+      ],
+      "sample_row": {
+        "row_idx": 0,
+        "question": "Find the degree for the given field extension Q(sqrt(2), sqrt(3), sqrt(18)) over Q.",
+        "subject": "abstract_algebra",
+        "choices": ["0", "4", "2", "6"],
+        "answer": 1
+      },
+      "license": "MIT",
+      "pagination_offset_100_works": true,
+      "pagination_sample": "offset=100 returns 3 rows as expected"
+    },
+    {
+      "dataset_id": "TIGER-Lab/MMLU-Pro",
+      "configs": {
+        "count": 1,
+        "note": "single 'default' config"
+      },
+      "requested_config": "default",
+      "available_splits": ["test", "validation"],
+      "requested_split": "test",
+      "row_count": 12032,
+      "columns": [
+        {
+          "name": "question_id",
+          "type": "int64"
+        },
+        {
+          "name": "question",
+          "type": "string"
+        },
+        {
+          "name": "options",
+          "type": "list[string]"
+        },
+        {
+          "name": "answer",
+          "type": "string"
+        },
+        {
+          "name": "answer_index",
+          "type": "int64"
+        },
+        {
+          "name": "cot_content",
+          "type": "string"
+        },
+        {
+          "name": "category",
+          "type": "string"
+        },
+        {
+          "name": "src",
+          "type": "string"
+        }
+      ],
+      "sample_row": {
+        "row_idx": 0,
+        "question_id": 70,
+        "question": "Typical advertising regulatory bodies suggest, for example that adverts must not: encourage _________, cause unnecessary ________ or _____, and must not cause _______ offence.",
+        "options": [
+          "Safe practices, Fear, Jealousy, Trivial",
+          "Unsafe practices, Distress, Joy, Trivial",
+          "Safe practices, Wants, Jealousy, Trivial",
+          "Safe practices, Distress, Fear, Trivial",
+          "Unsafe practices, Wants, Jealousy, Serious",
+          "Safe practices, Distress, Jealousy, Serious",
+          "Safe practices, Wants, Fear, Serious",
+          "Unsafe practices, Wants, Fear, Trivial",
+          "Unsafe practices, Distress, Fear, Serious"
+        ],
+        "answer": "I",
+        "answer_index": 8,
+        "cot_content": "",
+        "category": "business",
+        "src": "ori_mmlu-business_ethics"
+      },
+      "license": "MIT",
+      "pagination_offset_100_works": true,
+      "pagination_sample": "offset=100 returns 3 rows as expected",
+      "server_reported_page_size": 100
+    },
+    {
+      "dataset_id": "openai/openai_humaneval",
+      "configs": {
+        "count": 1,
+        "note": "single 'openai_humaneval' config"
+      },
+      "requested_config": "openai_humaneval",
+      "available_splits": ["test"],
+      "requested_split": "test",
+      "row_count": 164,
+      "columns": [
+        {
+          "name": "task_id",
+          "type": "string"
+        },
+        {
+          "name": "prompt",
+          "type": "string"
+        },
+        {
+          "name": "canonical_solution",
+          "type": "string"
+        },
+        {
+          "name": "test",
+          "type": "string"
+        },
+        {
+          "name": "entry_point",
+          "type": "string"
+        }
+      ],
+      "sample_row": {
+        "row_idx": 0,
+        "task_id": "HumanEval/0",
+        "prompt": "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n",
+        "entry_point": "has_close_elements"
+      },
+      "license": "MIT",
+      "pagination_offset_100_works": true,
+      "pagination_sample": "offset=100 returns 3 rows as expected",
+      "server_reported_page_size": 100,
+      "note": "Small dataset (164 rows). Text fields truncated in sample."
+    },
+    {
+      "dataset_id": "Rowan/hellaswag",
+      "configs": {
+        "count": 1,
+        "note": "single 'default' config"
+      },
+      "requested_config": "default",
+      "available_splits": ["train", "test", "validation"],
+      "requested_split": "validation",
+      "row_count": 10042,
+      "columns": [
+        {
+          "name": "ind",
+          "type": "int32"
+        },
+        {
+          "name": "activity_label",
+          "type": "string"
+        },
+        {
+          "name": "ctx_a",
+          "type": "string"
+        },
+        {
+          "name": "ctx_b",
+          "type": "string"
+        },
+        {
+          "name": "ctx",
+          "type": "string"
+        },
+        {
+          "name": "endings",
+          "type": "list[string]"
+        },
+        {
+          "name": "source_id",
+          "type": "string"
+        },
+        {
+          "name": "split",
+          "type": "string"
+        },
+        {
+          "name": "split_type",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        }
+      ],
+      "sample_row": {
+        "row_idx": 0,
+        "ind": 24,
+        "activity_label": "Roof shingle removal",
+        "ctx_a": "A man is sitting on a roof.",
+        "ctx_b": "he",
+        "ctx": "A man is sitting on a roof. he",
+        "endings": [
+          "is using wrap to wrap a pair of skis.",
+          "is ripping level tiles off.",
+          "is holding a rubik's cube.",
+          "starts pulling up roofing on a roof."
+        ],
+        "source_id": "activitynet~v_-JhWjGDPHMY",
+        "split": "val",
+        "split_type": "indomain",
+        "label": "3"
+      },
+      "license": null,
+      "license_note": "Not specified in cardData",
+      "pagination_offset_100_works": true,
+      "pagination_sample": "offset=100 returns 3 rows as expected",
+      "server_reported_page_size": 100
+    }
+  ],
+  "summary": {
+    "all_datasets_accessible": true,
+    "all_requested_splits_available": true,
+    "pagination_tested": "offset=0..100 works for all datasets with length=3",
+    "max_length_parameter": 100,
+    "length_over_100_behavior": "Returns empty results (length=200 returned 0 rows)",
+    "license_status": "MIT for 3/4 datasets. Rowan/hellaswag has no license specified.",
+    "total_rows_across_benchmarks": 147938,
+    "notes": [
+      "DESIGN.md §9 requires datasets from HF datasets-server rows API, cached with sha256 manifest.",
+      "Max length=100 per rows call suggests paginating with offset+length for large datasets.",
+      "All datasets successfully fetched and parsed.",
+      "Column types extracted from features schema in /rows response."
+    ]
+  }
+}

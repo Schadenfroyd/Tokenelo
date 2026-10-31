@@ -1,0 +1,188 @@
+{
+  "allDailyAllCategoriesExact": false,
+  "allDailyTotalsWithinOnePercent": false,
+  "calendarDays": 4,
+  "ccusageReportSha256": "fb46a56d3bc28579551d6fdf7576b95053d4b4f7ebc0f1c2b7a875e392beeb9e",
+  "countQualityRows": {
+    "complete": 3
+  },
+  "dailyComparisons": [
+    {
+      "comparison": {
+        "cacheCreationTokens": {
+          "absolutePercentOfCcusage": 0,
+          "ccusage": 0,
+          "currentProjection": 0,
+          "delta": 0,
+          "withinOnePercent": true
+        },
+        "cacheReadTokens": {
+          "absolutePercentOfCcusage": 0,
+          "ccusage": 0,
+          "currentProjection": 0,
+          "delta": 0,
+          "withinOnePercent": true
+        },
+        "inputTokens": {
+          "absolutePercentOfCcusage": 0,
+          "ccusage": 0,
+          "currentProjection": 0,
+          "delta": 0,
+          "withinOnePercent": true
+        },
+        "outputTokens": {
+          "absolutePercentOfCcusage": 0,
+          "ccusage": 0,
+          "currentProjection": 0,
+          "delta": 0,
+          "withinOnePercent": true
+        },
+        "totalTokens": {
+          "absolutePercentOfCcusage": 0,
+          "ccusage": 0,
+          "currentProjection": 0,
+          "delta": 0,
+          "withinOnePercent": true
+        }
+      },
+      "date": "2026-10-09",
+      "emptyBoth": true
+    },
+    {
+      "comparison": {
+        "cacheCreationTokens": {
+          "absolutePercentOfCcusage": 0.0,
+          "ccusage": 6,
+          "currentProjection": 6,
+          "delta": 0,
+          "withinOnePercent": true
+        },
+        "cacheReadTokens": {
+          "absolutePercentOfCcusage": 0.0,
+          "ccusage": 10,
+          "currentProjection": 10,
+          "delta": 0,
+          "withinOnePercent": true
+        },
+        "inputTokens": {
+          "absolutePercentOfCcusage": 0.0,
+          "ccusage": 5,
+          "currentProjection": 5,
+          "delta": 0,
+          "withinOnePercent": true
+        },
+        "outputTokens": {
+          "absolutePercentOfCcusage": 0.0,
+          "ccusage": 4,
+          "currentProjection": 4,
+          "delta": 0,
+          "withinOnePercent": true
+        },
+        "totalTokens": {
+          "absolutePercentOfCcusage": 0.0,
+          "ccusage": 25,
+          "currentProjection": 25,
+          "delta": 0,
+          "withinOnePercent": true
+        }
+      },
+      "date": "2026-10-10",
+      "emptyBoth": false
+    },
+    {
+      "comparison": {
+        "cacheCreationTokens": {
+          "absolutePercentOfCcusage": 0,
+          "ccusage": 0,
+          "currentProjection": 0,
+          "delta": 0,
+          "withinOnePercent": true
+        },
+        "cacheReadTokens": {
+          "absolutePercentOfCcusage": 0,
+          "ccusage": 0,
+          "currentProjection": 0,
+          "delta": 0,
+          "withinOnePercent": true
+        },
+        "inputTokens": {
+          "absolutePercentOfCcusage": null,
+          "ccusage": 0,
+          "currentProjection": 7,
+          "delta": 7,
+          "withinOnePercent": false
+        },
+        "outputTokens": {
+          "absolutePercentOfCcusage": null,
+          "ccusage": 0,
+          "currentProjection": 3,
+          "delta": 3,
+          "withinOnePercent": false
+        },
+        "totalTokens": {
+          "absolutePercentOfCcusage": null,
+          "ccusage": 0,
+          "currentProjection": 10,
+          "delta": 10,
+          "withinOnePercent": false
+        }
+      },
+      "date": "2026-10-11",
+      "emptyBoth": false
+    },
+    {
+      "comparison": {
+        "cacheCreationTokens": {
+          "absolutePercentOfCcusage": 62.5,
+          "ccusage": 16,
+          "currentProjection": 6,
+          "delta": -10,
+          "withinOnePercent": false
+        },
+        "cacheReadTokens": {
+          "absolutePercentOfCcusage": 33.33333333333333,
+          "ccusage": 30,
+          "currentProjection": 40,
+          "delta": 10,
+          "withinOnePercent": false
+        },
+        "inputTokens": {
+          "absolutePercentOfCcusage": 100.0,
+          "ccusage": 10,
+          "currentProjection": 20,
+          "delta": 10,
+          "withinOnePercent": false
+        },
+        "outputTokens": {
+          "absolutePercentOfCcusage": 25.0,
+          "ccusage": 40,
+          "currentProjection": 30,
+          "delta": -10,
+          "withinOnePercent": false
+        },
+        "totalTokens": {
+          "absolutePercentOfCcusage": 0.0,
+          "ccusage": 96,
+          "currentProjection": 96,
+          "delta": 0,
+          "withinOnePercent": true
+        }
+      },
+      "date": "2026-10-12",
+      "emptyBoth": false
+    }
+  ],
+  "endExclusiveMs": 1791871200000,
+  "firstInclusiveDate": "2026-10-09",
+  "independentInputSnapshotValidatedByThisScript": false,
+  "lastInclusiveDate": "2026-10-12",
+  "nonemptyDays": 3,
+  "physicalCurrentTable": "main.event_projection",
+  "projectionPolicy": 7,
+  "schemaVersion": 10,
+  "scope": "Finite current-projection aggregate comparison. Source roots/range/timezone and input immutability must be independently bound. Count quality is retained; pricing, capture freshness, UI and full acceptance are not established.",
+  "selectedCountProjectionSha256": "c8dc0ff5cb415e62f8a760c425cb71a057b93123538bdc6ba3b955ea99568755",
+  "selectedRows": 3,
+  "startInclusiveMs": 1791525600000,
+  "timezone": "America/Denver"
+}

@@ -1,0 +1,116 @@
+{
+  "a": {"input": "a.input.json", "instance": "fab-ledger-n06"},
+  "b": {"input": "b.input.json", "instance": "fab-native-n06"},
+  "case": "n06-native-missing-vs-zero-vs-invalid",
+  "description": "Native messages where one counter is absent (a), an explicit 0 (b), null (c), negative (d) or fractional (e); two reasoning cases (r1: thinking 25 against output 10, clamped to 10; r2: thinking 4); and five lines that become no record (all-zero usage, empty usage, synthetic model, non-assistant line, unreadable timestamp). Subject ledger rows are complete and report cache read 0 everywhere.",
+  "does_not_show": ["That the product ledger drops the same lines: a line whose only counters are invalid is kept here as an invalid record, which the product collector would skip as zero usage."],
+  "expect": {
+    "dropped": {
+      "b": {"all-zero-usage": 1, "invalid-timestamp": 1, "no-counters-observed": 1, "not-usage-line": 1, "synthetic-model": 1},
+      "b_completeness": "partial"
+    },
+    "pairs": {
+      "claude:fab-msg-n06a": {
+        "outcome": "unresolved",
+        "units": {
+          "cache_read": ["not_comparable", null, null, "missing-in-b"],
+          "input_fresh": ["equal", 0, null, "equal-quality-not-complete"],
+          "total": ["not_comparable", null, null, "missing-in-b"]
+        }
+      },
+      "claude:fab-msg-n06b": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      },
+      "claude:fab-msg-n06c": {
+        "outcome": "unresolved",
+        "units": {
+          "cache_read": ["not_comparable", null, null, "invalid-in-b"],
+          "total": ["not_comparable", null, null, "missing-in-b"]
+        }
+      },
+      "claude:fab-msg-n06d": {
+        "outcome": "unresolved",
+        "units": {
+          "output": ["not_comparable", null, null, "invalid-in-b"]
+        }
+      },
+      "claude:fab-msg-n06e": {
+        "outcome": "unresolved",
+        "units": {
+          "input_fresh": ["not_comparable", null, null, "invalid-in-b"]
+        }
+      },
+      "claude:fab-msg-n06r1": {
+        "outcome": "identical",
+        "units": {
+          "reasoning": ["equal", 0, 0, "exact-match"]
+        }
+      },
+      "claude:fab-msg-n06r2": {
+        "outcome": "identical",
+        "units": {
+          "reasoning": ["equal", 0, 0, "exact-match"]
+        }
+      }
+    },
+    "records": {
+      "b": {
+        "claude:fab-msg-n06a": {
+          "completeness": "partial",
+          "components": {
+            "cache_read": ["missing", null],
+            "cache_write_total": ["measured_zero", 0]
+          },
+          "count_quality": "incomplete",
+          "measured_subtotal": 7,
+          "total": null
+        },
+        "claude:fab-msg-n06b": {
+          "components": {
+            "cache_read": ["measured_zero", 0]
+          },
+          "count_quality": "complete",
+          "total": 7
+        },
+        "claude:fab-msg-n06c": {
+          "components": {
+            "cache_read": ["invalid", null]
+          },
+          "count_quality": "invalid"
+        },
+        "claude:fab-msg-n06d": {
+          "components": {
+            "output": ["invalid", null]
+          },
+          "count_quality": "invalid"
+        },
+        "claude:fab-msg-n06e": {
+          "components": {
+            "input_fresh": ["invalid", null]
+          },
+          "count_quality": "invalid"
+        },
+        "claude:fab-msg-n06r1": {
+          "components": {
+            "reasoning": ["measured", 10]
+          },
+          "flags": ["reasoning-clamped"]
+        },
+        "claude:fab-msg-n06r2": {
+          "components": {
+            "reasoning": ["measured", 4]
+          },
+          "flags": []
+        }
+      }
+    },
+    "summary": {"differs": 0, "identical": 3, "matched": 7, "only_in_a": 0, "only_in_b": 0, "unresolved": 4}
+  },
+  "shows": ["Absent, zero, null, negative and fractional counters are five different states; none becomes a zero or a total.", "An unreadable line makes the cohort partial; lines the producer skips by design are counted but do not."],
+  "timezone": "-06:00",
+  "tolerance_percent_micro": null
+}

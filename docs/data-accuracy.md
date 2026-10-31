@@ -1,6 +1,6 @@
 # Interpreting Tokenelo data
 
-Public release preparation. These principles describe the tracker contract; the cleared release must document exactly which adapters and fields it supports.
+Internal alpha; the source is released and no installer is available. These principles describe the tracker contract; a release must document exactly which adapters and fields it supports.
 
 ## Recorded components
 
@@ -22,9 +22,9 @@ Count completeness and pricing status are separate questions.
 
 ## Reporting and sharing
 
-The internal CSV v2 implementation retains the original leading columns and adds token components, qualifications, source/model-component detail and rate provenance. Unknown optional counters remain blank; legacy quality is labeled unrecorded. String fields that could become spreadsheet formulas receive an apostrophe in CSV presentation; JSON and stored records are unchanged.
+The CSV export retains the original leading columns and adds token components, qualifications, source/model-component detail and field evidence. Unknown optional counters remain blank; legacy quality is labeled unrecorded. String fields that could become spreadsheet formulas receive an apostrophe in CSV presentation; JSON and stored records are unchanged.
 
-The cleared source release will publish a field dictionary and example. Raw event/host/session identifiers remain sensitive. JSON may include project paths and additional metadata. Sanitize before sharing.
+The [CSV field dictionary](export-format.md) lists every exported column. Raw event/host/session identifiers remain sensitive. JSON may include project paths and additional metadata. Sanitize before sharing.
 
 ## Accountability workflow
 

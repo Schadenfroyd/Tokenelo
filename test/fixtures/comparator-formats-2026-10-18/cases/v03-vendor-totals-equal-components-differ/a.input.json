@@ -1,0 +1,9 @@
+{
+  "kind": "tokenelo-event-projection",
+  "projection_policy": 7,
+  "rows": [
+    {"cache_read": 25, "cache_write_1h": 2, "cache_write_5m": 4, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-v03a", "input_fresh": 12, "output": 18, "reasoning": 0, "source": "claude", "ts": 1791806400000},
+    {"cache_read": 15, "cache_write_1h": 4, "cache_write_5m": 0, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-v03b", "input_fresh": 8, "output": 12, "reasoning": 0, "source": "claude", "ts": 1791810000000}
+  ],
+  "schema_version": 10
+}

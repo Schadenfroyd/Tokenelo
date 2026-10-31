@@ -1,0 +1,79 @@
+{
+  "a": {"input": "a.input.json", "instance": "fab-ledger-n01"},
+  "b": {"input": "b.input.json", "instance": "fab-native-n01"},
+  "case": "n01-native-iterations-shared-request",
+  "description": "Two native messages. Message a has two usage iterations (early 11/13/17/19, final 2/3/5/7) sharing one request id. Message b is the same with a fallback_message final iteration and a conflicting top-level cache split (5m 9 against a flat 3) that must be ignored because iterations are present. Hand arithmetic: input 11+2=13, cache write 13+3=16, cache read 17+5=22, output 19+7=26, total 77.",
+  "does_not_show": ["Per-iteration distribution: the record carries only the iteration count, so two messages with the same sums but different iteration splits compare equal."],
+  "expect": {
+    "pairs": {
+      "claude:fab-msg-n01a": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "cache_write_1h": ["equal", 0, 0, "exact-match"],
+          "cache_write_5m": ["equal", 0, 0, "exact-match"],
+          "cache_write_total": ["equal", 0, 0, "exact-match"],
+          "cache_write_unassigned": ["equal", 0, 0, "exact-match"],
+          "input_fresh": ["equal", 0, 0, "exact-match"],
+          "output": ["equal", 0, 0, "exact-match"],
+          "reasoning": ["not_comparable", null, null, "missing-in-both"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      },
+      "claude:fab-msg-n01b": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "cache_write_1h": ["equal", 0, 0, "exact-match"],
+          "cache_write_5m": ["equal", 0, 0, "exact-match"],
+          "cache_write_total": ["equal", 0, 0, "exact-match"],
+          "cache_write_unassigned": ["equal", 0, 0, "exact-match"],
+          "input_fresh": ["equal", 0, 0, "exact-match"],
+          "output": ["equal", 0, 0, "exact-match"],
+          "reasoning": ["not_comparable", null, null, "missing-in-both"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      }
+    },
+    "records": {
+      "b": {
+        "claude:fab-msg-n01a": {
+          "completeness": "complete",
+          "components": {
+            "cache_read": ["measured", 22],
+            "cache_write_1h": ["measured_zero", 0],
+            "cache_write_5m": ["measured", 16],
+            "cache_write_total": ["measured", 16],
+            "cache_write_unassigned": ["measured_zero", 0],
+            "input_fresh": ["measured", 13],
+            "output": ["measured", 26],
+            "reasoning": ["missing", null]
+          },
+          "count_quality": "complete",
+          "identity": {"basis": "message-id", "iteration_count": 2, "request_id_present": true},
+          "total": 77
+        },
+        "claude:fab-msg-n01b": {
+          "completeness": "complete",
+          "components": {
+            "cache_read": ["measured", 22],
+            "cache_write_1h": ["measured_zero", 0],
+            "cache_write_5m": ["measured", 16],
+            "cache_write_total": ["measured", 16],
+            "cache_write_unassigned": ["measured_zero", 0],
+            "input_fresh": ["measured", 13],
+            "output": ["measured", 26],
+            "reasoning": ["missing", null]
+          },
+          "count_quality": "complete",
+          "identity": {"basis": "message-id", "iteration_count": 2, "request_id_present": true},
+          "total": 77
+        }
+      }
+    },
+    "summary": {"differs": 0, "identical": 2, "matched": 2, "only_in_a": 0, "only_in_b": 0, "unresolved": 0}
+  },
+  "shows": ["Iterations are summed per component; the top-level usage that mirrors the final iteration is not added again."],
+  "timezone": "-06:00",
+  "tolerance_percent_micro": null
+}

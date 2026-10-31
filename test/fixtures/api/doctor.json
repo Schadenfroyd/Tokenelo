@@ -1,0 +1,68 @@
+{
+  "host": "M4a",
+  "generatedAt": 1790466276688,
+  "skippedPaths": [
+    {
+      "reason": "memory-vault",
+      "count": 412,
+      "examples": [
+        "/fixture/memory-vault/session-1.jsonl"
+      ]
+    },
+    {
+      "reason": "sync-conflict",
+      "count": 3,
+      "examples": [
+        "/fixture/proj/a.sync-conflict-20260920.jsonl"
+      ]
+    }
+  ],
+  "unmatchedModels": [
+    {
+      "model": "codex-auto-review",
+      "events": 3
+    }
+  ],
+  "thinkingUnknownEvents": 5,
+  "codex": {
+    "resetFiles": 2,
+    "inheritedBaselineFiles": 14,
+    "suspectFiles": 1,
+    "recordReconciledFiles": 0,
+    "nonZeroCacheWrite": 0,
+    "ownInWrapperFiles": 2,
+    "ownInWrapperEvents": 2,
+    "trailingRecordFiles": 0
+  },
+  "claude": {
+    "speedAssumed": 269,
+    "cacheSplitAssumed": 842,
+    "iterationEvents": 12,
+    "reasoningClamped": 0
+  },
+  "ollama": {
+    "servers": [
+      {
+        "address": "127.0.0.1:11434",
+        "family": "IPv4",
+        "version": "0.32.13",
+        "binary": "ollama (homebrew)",
+        "logPath": "/opt/homebrew/var/log/ollama.log",
+        "logAvailable": true
+      },
+      {
+        "address": "[::1]:11434",
+        "family": "IPv6",
+        "version": "0.34.2",
+        "binary": "Ollama.app",
+        "logAvailable": false
+      }
+    ],
+    "unmeteredRequests": 0,
+    "capture": "serverlog"
+  },
+  "warnings": [
+    "A2000 Codex: 1 rollout flagged inheritedBaselineSuspect (unexplained baseline after a turn).",
+    "M4a: two Ollama servers detected; serverlog capture is best-effort (ESTIMATE)."
+  ]
+}

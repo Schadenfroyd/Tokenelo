@@ -1,0 +1,14 @@
+data: {"id": "chatcmpl-659", "object": "chat.completion.chunk", "created": 1790464266, "model": "gemma4:26b", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {"role": "assistant", "content": "", "reasoning": "[redacted]"}, "finish_reason": null}]}
+
+data: {"id": "chatcmpl-659", "object": "chat.completion.chunk", "created": 1790464266, "model": "gemma4:26b", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {"content": "", "reasoning": "[redacted]"}, "finish_reason": null}]}
+
+data: {"id": "chatcmpl-659", "object": "chat.completion.chunk", "created": 1790464266, "model": "gemma4:26b", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {"content": "", "reasoning": "[redacted]"}, "finish_reason": null}]}
+
+data: {"id": "chatcmpl-659", "object": "chat.completion.chunk", "created": 1790464266, "model": "gemma4:26b", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {"content": "", "reasoning": "[redacted]"}, "finish_reason": null}]}
+
+data: {"id": "chatcmpl-659", "object": "chat.completion.chunk", "created": 1790464266, "model": "gemma4:26b", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {"content": "", "reasoning": "[redacted]"}, "finish_reason": null}]}
+
+data: {"id": "chatcmpl-659", "object": "chat.completion.chunk", "created": 1790464266, "model": "gemma4:26b", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {}, "finish_reason": "length"}]}
+
+data: [DONE]
+

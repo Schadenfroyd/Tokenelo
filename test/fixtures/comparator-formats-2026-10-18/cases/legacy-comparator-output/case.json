@@ -1,0 +1,74 @@
+{
+  "a": {"instance": "fab-legacy-product"},
+  "b": {"instance": "fab-legacy-ccusage"},
+  "case": "legacy-comparator-output",
+  "description": "Real output of scripts/compare-claude-ccusage.py on an owned synthetic database (event_projection, schema 10, policy 7, America/Denver) and a synthetic ccusage report, mapped into canonical day cohorts. Days: 10-09 empty on both sides; 10-10 exact; 10-11 product only (the vendor day is absent and zero-imputed by the legacy output); 10-12 equal totals, different components.",
+  "does_not_show": ["Anything about real data: the database and report are owned synthetic fixtures."],
+  "expect": {
+    "dropped": {
+      "a": {"legacy-empty-both-day": 1},
+      "b": {"legacy-empty-both-day": 1}
+    },
+    "pairs": {
+      "2026-10-10": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "cache_write_5m": ["not_comparable", null, null, "missing-in-both"],
+          "cache_write_total": ["equal", 0, 0, "exact-match"],
+          "input_fresh": ["equal", 0, 0, "exact-match"],
+          "output": ["equal", 0, 0, "exact-match"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      },
+      "2026-10-11": {
+        "outcome": "unresolved",
+        "units": {
+          "input_fresh": ["not_comparable", null, null, "missing-in-b"],
+          "total": ["not_comparable", null, null, "missing-in-b"]
+        }
+      },
+      "2026-10-12": {
+        "flags": ["totals-equal-components-differ"],
+        "outcome": "differs",
+        "units": {
+          "cache_read": ["differ", 10, 33333333, "values-differ"],
+          "cache_write_total": ["differ", -10, 62500000, "values-differ"],
+          "input_fresh": ["differ", 10, 100000000, "values-differ"],
+          "output": ["differ", -10, 25000000, "values-differ"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      }
+    },
+    "records": {
+      "a": {
+        "2026-10-10": {
+          "components": {
+            "cache_write_1h": ["missing", null],
+            "cache_write_5m": ["missing", null],
+            "cache_write_total": ["measured", 6],
+            "cache_write_unassigned": ["missing", null],
+            "input_fresh": ["measured", 5],
+            "reasoning": ["missing", null]
+          },
+          "count_quality": "complete",
+          "total": 25
+        }
+      },
+      "b": {
+        "2026-10-11": {
+          "components": {
+            "input_fresh": ["missing", null]
+          },
+          "count_quality": "unrecorded",
+          "total": null
+        }
+      }
+    },
+    "summary": {"differs": 1, "identical": 1, "matched": 3, "only_in_a": 0, "only_in_b": 0, "totals_equal_components_differ": 1, "unresolved": 1}
+  },
+  "legacy_output": "legacy-output.json",
+  "shows": ["The legacy output reports the sum of the three cache-write categories, so the TTL split is absent from it and is represented as missing, not recovered.", "A day with total 0 on one side cannot be told from an absent day and is represented as missing with an inspection value of 0."],
+  "timezone": "America/Denver",
+  "tolerance_percent_micro": null
+}

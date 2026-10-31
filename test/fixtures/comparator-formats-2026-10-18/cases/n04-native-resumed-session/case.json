@@ -1,0 +1,68 @@
+{
+  "a": {"input": "a.input.json", "instance": "fab-ledger-n04"},
+  "b": {"input": "b.input.json", "instance": "fab-native-n04"},
+  "case": "n04-native-resumed-session",
+  "description": "Session A wrote messages a (4/0/6/5) and b (a streaming snapshot with output 3). Resumed session B replays a unchanged, replays b with output grown to 8, and adds c. Three identities, no double counting: day total must be 15+13+3 = 31. The replay that claims a different session does not move the recorded time (the first-seen 10:01:00 stays) and is flagged, as the product ledger does.",
+  "does_not_show": ["Session attribution: the record counts sessions observed but does not choose an owner."],
+  "expect": {
+    "pairs": {
+      "claude:fab-msg-n04a": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "cache_write_total": ["equal", 0, 0, "exact-match"],
+          "input_fresh": ["equal", 0, 0, "exact-match"],
+          "output": ["equal", 0, 0, "exact-match"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      },
+      "claude:fab-msg-n04b": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "cache_write_total": ["equal", 0, 0, "exact-match"],
+          "input_fresh": ["equal", 0, 0, "exact-match"],
+          "output": ["equal", 0, 0, "exact-match"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      },
+      "claude:fab-msg-n04c": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "cache_write_total": ["equal", 0, 0, "exact-match"],
+          "input_fresh": ["equal", 0, 0, "exact-match"],
+          "output": ["equal", 0, 0, "exact-match"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      }
+    },
+    "records": {
+      "b": {
+        "claude:fab-msg-n04a": {
+          "evidence": {"distinct_snapshots": 1, "lines_observed": 2, "sessions_observed": 2},
+          "flags": ["session-attribution-conflict"],
+          "total": 15
+        },
+        "claude:fab-msg-n04b": {
+          "components": {
+            "output": ["measured", 8]
+          },
+          "evidence": {"distinct_snapshots": 2, "lines_observed": 2, "sessions_observed": 2},
+          "flags": ["session-attribution-conflict"],
+          "time": 1791799260000,
+          "total": 13
+        },
+        "claude:fab-msg-n04c": {
+          "evidence": {"distinct_snapshots": 1, "lines_observed": 1, "sessions_observed": 1},
+          "flags": [],
+          "total": 3
+        }
+      }
+    },
+    "summary": {"differs": 0, "identical": 3, "matched": 3, "only_in_a": 0, "only_in_b": 0, "unresolved": 0}
+  },
+  "shows": ["Identity is the message, not the session: a resumed session adds no tokens for replayed messages and a grown snapshot replaces, not adds to, its predecessor."],
+  "timezone": "-06:00",
+  "tolerance_percent_micro": null
+}

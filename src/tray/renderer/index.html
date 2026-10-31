@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta
+  http-equiv="Content-Security-Policy"
+  content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none';"
+/>
+<meta name="color-scheme" content="light dark" />
+<title>Tokenelo</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="app" class="app">
+  <header class="app-header">
+    <div class="brand">Tokenelo</div>
+    <span id="scope-indicator" class="scope-indicator" hidden></span>
+    <div class="range-switch" id="range-switch" role="group" aria-label="Time range">
+      <button type="button" data-range="today" class="range-btn is-active" aria-pressed="true">Today</button>
+      <button type="button" data-range="24h" class="range-btn" aria-label="Last 24 hours" aria-pressed="false">24h</button>
+      <button type="button" data-range="7d" class="range-btn" aria-pressed="false">7d</button>
+      <button type="button" data-range="30d" class="range-btn" aria-pressed="false">30d</button>
+      <button type="button" data-range="all" class="range-btn" aria-label="All recorded history" aria-pressed="false">All</button>
+    </div>
+    <button type="button" id="refresh-btn" class="refresh-btn" aria-label="Refresh current screen and telemetry">Refresh</button>
+    <button type="button" id="doctor-btn" class="doctor-btn" aria-haspopup="dialog" aria-controls="doctor-panel" aria-expanded="false">Doctor</button>
+  </header>
+  <div id="fixture-example-banner" class="fixture-example-banner" role="status" aria-live="polite" hidden></div>
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Sections">
+    <button type="button" id="tab-now" data-tab="now" class="tab is-active" role="tab" aria-selected="true" aria-controls="panel" tabindex="0">Now</button>
+    <button type="button" id="tab-sessions" data-tab="sessions" class="tab" role="tab" aria-selected="false" aria-controls="panel" tabindex="-1">Sessions</button>
+    <button type="button" id="tab-usage" data-tab="usage" class="tab" role="tab" aria-selected="false" aria-controls="panel" tabindex="-1">Usage</button>
+    <button type="button" id="tab-local" data-tab="local" class="tab" role="tab" aria-selected="false" aria-controls="panel" tabindex="-1">Local</button>
+    <button type="button" id="tab-limits" data-tab="limits" class="tab" role="tab" aria-selected="false" aria-controls="panel" tabindex="-1">Limits</button>
+    <button type="button" id="tab-coverage" data-tab="coverage" class="tab" role="tab" aria-selected="false" aria-controls="panel" tabindex="-1">Coverage</button>
+    <button type="button" id="tab-fleet" data-tab="fleet" class="tab" role="tab" aria-selected="false" aria-controls="panel" tabindex="-1">Fleet</button>
+  </nav>
+  <main id="panel" class="panel" role="tabpanel" aria-labelledby="tab-now" tabindex="0" aria-live="polite"></main>
+  <div id="doctor-panel" class="doctor-panel hidden" role="dialog" aria-modal="true" aria-labelledby="doctor-title"></div>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

@@ -19,6 +19,21 @@ const inventory = new Set([
   'site/site.js', 'site/sitemap.xml', 'site/social-card.svg',
 ]);
 
+// Application source (Apache-2.0, see LICENSE) is exercised by its own workflow, .github/workflows/ci.yml.
+// The exact-file inventory above still governs everything outside these paths.
+const sourcePrefixes = ['src/', 'test/', 'rates/', 'packaging/', 'native/', 'scripts/', 'docs/third-party/'];
+const sourceFiles = new Set([
+  'LICENSE', 'NOTICE', 'THIRD_PARTY_NOTICES.md', 'package.json', 'package-lock.json', '.nvmrc',
+  'tsconfig.json', 'tsconfig.tray.json', 'vitest.config.ts', 'vitest.cloud.config.ts', 'vitest.bootstrap-observer.config.ts',
+  '.github/workflows/ci.yml', 'docs/architecture.md', 'docs/export-format.md', 'docs/quick-start.md', 'docs/releasing.md',
+  'docs/support-matrix.md',
+]);
+const requiredSourceFiles = ['LICENSE', 'NOTICE', 'package.json', 'package-lock.json'];
+
+export function inSourceScope(name) {
+  return sourceFiles.has(name) || sourcePrefixes.some(prefix => name.startsWith(prefix));
+}
+
 export function anchors(text) {
   const ids = new Set(); const counts = new Map();
   const prose = text.replace(/^```[^\n]*\n[\s\S]*?^```\s*$/gm, '');
@@ -169,7 +184,8 @@ export function validate(files, checkInventory = true) {
   const failures = [];
   if (checkInventory) {
     for (const name of inventory) if (!files.has(name)) failures.push(`Required public file missing: ${name}`);
-    for (const name of files.keys()) if (!inventory.has(name)) failures.push(`Outside current public inventory: ${name}`);
+    for (const name of requiredSourceFiles) if (!files.has(name)) failures.push(`Required source file missing: ${name}`);
+    for (const name of files.keys()) if (!inventory.has(name) && !inSourceScope(name)) failures.push(`Outside current public inventory: ${name}`);
   }
   for (const [name, text] of files) {
     const websiteFile = /^site\/[^/]+\.(?:html|css|js|svg|txt|xml)$/.test(name);
@@ -185,9 +201,11 @@ export function validate(files, checkInventory = true) {
     if (name.endsWith('.svg') && /<script\b|<foreignObject\b|\bon\w+\s*=|(?:href|src)=["'](?:https?:|data:|javascript:|\/\/)/i.test(text)) failures.push(`Unsafe SVG content: ${name}`);
     if (name.endsWith('.yml') && /pull_request_target/.test(text)) failures.push(`Privileged PR trigger: ${name}`);
     if (!name.endsWith('.md')) continue;
+    // Fenced blocks are literal text (for example verbatim license files), not navigation.
+    const prose = text.replace(/^```[^\n]*\n[\s\S]*?^```\s*$/gm, '');
     const targets = [
-      ...Array.from(text.matchAll(/\[[^\]]*\]\(([^\s)]+)(?:\s+[^)]*)?\)/g), m => m[1]),
-      ...Array.from(text.matchAll(/<(?:img|a)\b[^>]*\b(?:src|href)=["']([^"']+)["']/g), m => m[1]),
+      ...Array.from(prose.matchAll(/\[[^\]]*\]\(([^\s)]+)(?:\s+[^)]*)?\)/g), m => m[1]),
+      ...Array.from(prose.matchAll(/<(?:img|a)\b[^>]*\b(?:src|href)=["']([^"']+)["']/g), m => m[1]),
     ];
     for (const raw of targets) {
       let target;

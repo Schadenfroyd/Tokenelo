@@ -19,10 +19,27 @@ test('encoded traversal, disk links, and unsafe schemes fail', () => {
   const failures = validate(new Map([['README.md', '[Escape](%2e%2e/private.md)\n[Disk](file:///private.md)\n[Script](javascript:alert)']]), false);
   assert.equal(failures.length, 3); assert.match(failures[0], /escapes/);
 });
-test('public inventory rejects product source before cleared release', () => {
+test('public inventory accepts the released source tree and still requires its license files', () => {
   const failures = validate(new Map([['src/product.ts', 'export {};']]));
-  assert.ok(failures.some(x => x.includes('Outside current public inventory: src/product.ts')));
+  assert.ok(!failures.some(x => x.includes('Outside current public inventory: src/product.ts')));
   assert.ok(failures.some(x => x.includes('Required public file missing: README.md')));
+  for (const name of ['LICENSE', 'NOTICE', 'package.json', 'package-lock.json']) {
+    assert.ok(failures.some(x => x.includes(`Required source file missing: ${name}`)), name);
+  }
+});
+test('public inventory rejects files outside the documentation and source scopes', () => {
+  const names = ['evidence/run.json', 'internal/notes.md', 'PRIVATE-NOTES.md', '.github/workflows/deploy-private.yml'];
+  const failures = validate(new Map(names.map(name => [name, 'x'])));
+  for (const name of names) assert.ok(failures.some(x => x.includes(`Outside current public inventory: ${name}`)), name);
+});
+test('private markers are still rejected inside the source scope', () => {
+  const failures = validate(new Map([['docs/third-party/NOTES.md', 'Host: 100.64.0.1'], ['docs/architecture.md', 'See C:\\work\\notes']]), false);
+  assert.equal(failures.length, 2);
+});
+test('links inside fenced blocks are literal text, links outside still fail', () => {
+  const fenced = '# Notices\n```text\ncomplied with [Notices](#nowhere), you can keep\n```\n';
+  assert.deepEqual(validate(new Map([['docs/third-party/NOTICES.md', fenced]]), false), []);
+  assert.equal(validate(new Map([['README.md', fenced + '[Gone](missing.md)']]), false).length, 1);
 });
 test('private marker, executable SVG, and privileged PR trigger fail', () => {
   const files = new Map([

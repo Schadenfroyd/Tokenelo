@@ -1,0 +1,22 @@
+data: {"id": "chatcmpl-569", "object": "chat.completion.chunk", "created": 1790464294, "model": "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {"role": "assistant", "content": "", "reasoning": "[redacted]"}, "finish_reason": null}]}
+
+data: {"id": "chatcmpl-569", "object": "chat.completion.chunk", "created": 1790464294, "model": "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {"content": "", "reasoning": "[redacted]"}, "finish_reason": null}]}
+
+data: {"id": "chatcmpl-569", "object": "chat.completion.chunk", "created": 1790464294, "model": "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {"content": "", "reasoning": "[redacted]"}, "finish_reason": null}]}
+
+data: {"id": "chatcmpl-569", "object": "chat.completion.chunk", "created": 1790464294, "model": "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {"content": "", "reasoning": "[redacted]"}, "finish_reason": null}]}
+
+data: {"id": "chatcmpl-569", "object": "chat.completion.chunk", "created": 1790464294, "model": "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {"content": "", "reasoning": "[redacted]"}, "finish_reason": null}]}
+
+data: {"id": "chatcmpl-569", "object": "chat.completion.chunk", "created": 1790464294, "model": "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {"content": "", "reasoning": "[redacted]"}, "finish_reason": null}]}
+
+data: {"id": "chatcmpl-569", "object": "chat.completion.chunk", "created": 1790464294, "model": "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {"content": "", "reasoning": "[redacted]"}, "finish_reason": null}]}
+
+data: {"id": "chatcmpl-569", "object": "chat.completion.chunk", "created": 1790464294, "model": "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {"content": "", "reasoning": "[redacted]"}, "finish_reason": null}]}
+
+data: {"id": "chatcmpl-569", "object": "chat.completion.chunk", "created": 1790464294, "model": "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL", "system_fingerprint": "fp_ollama", "choices": [{"index": 0, "delta": {}, "finish_reason": "length"}]}
+
+data: {"id": "chatcmpl-569", "object": "chat.completion.chunk", "created": 1790464294, "model": "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL", "system_fingerprint": "fp_ollama", "choices": [], "usage": {"prompt_tokens": 54, "completion_tokens": 8, "total_tokens": 62}}
+
+data: [DONE]
+
