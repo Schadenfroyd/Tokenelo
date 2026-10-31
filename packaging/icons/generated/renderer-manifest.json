@@ -1,0 +1,170 @@
+{
+  "status": "PASS_RENDERER",
+  "electronVersion": "44.6.0",
+  "chromiumVersion": "152.0.7977.130",
+  "sourceSha256": "66b0857f938dc83a4af3e14538e672524e695983fad4644802493d9941aa32a2",
+  "renderer": "Electron offscreen BrowserWindow, hidden, focusable=false, software Canvas, GPU disabled",
+  "networkNavigationWindowFocusCounts": {
+    "blockedNetworkRequests": 0,
+    "rejectedNavigations": 0,
+    "rejectedWindowOpens": 0,
+    "showAttempts": 0,
+    "focusAttempts": 0
+  },
+  "sourceSamples": {
+    "transparentCorner": true,
+    "exactMintInterior": true,
+    "exactNavyGlyph": true
+  },
+  "icoFrames": [
+    16,
+    24,
+    32,
+    48,
+    64,
+    128,
+    256
+  ],
+  "pngFrames": [
+    {
+      "size": 16,
+      "pngSha256": "58d109307416dda9b786a4c8b56da890ec357ba60f871c0286ec8752cebaa039",
+      "pngBytes": 634
+    },
+    {
+      "size": 24,
+      "pngSha256": "c3fc1bffedad4bf390bce48dfa808322ce8edcef9025ab1c070f9785c06cfe33",
+      "pngBytes": 939
+    },
+    {
+      "size": 32,
+      "pngSha256": "a6b1e23de85d2e67e7b4e58c091b1b5310ae8bcd217595b75810fb8a2cf14fc2",
+      "pngBytes": 1211
+    },
+    {
+      "size": 48,
+      "pngSha256": "f32073743262b36b50da22f54e5a15b4c76251532aa806767f58a94fecfaa9a7",
+      "pngBytes": 1740
+    },
+    {
+      "size": 64,
+      "pngSha256": "350b256504b021d3b3c61242edad990fc8252b63798bb168213d7861c8b05fc8",
+      "pngBytes": 2310
+    },
+    {
+      "size": 128,
+      "pngSha256": "8c4eb03ae813d674667b835268ccc42e8191d08ec603e8093b0df8f81c1402cc",
+      "pngBytes": 4837
+    },
+    {
+      "size": 256,
+      "pngSha256": "b172f921a6286842b3716c9b818d10e760676ba776582dc3b6fe3e6f1811b7a5",
+      "pngBytes": 10023
+    },
+    {
+      "size": 512,
+      "pngSha256": "43167ed560dddd82a1c56a820b659b01a014603160fac23fc4235c726fddaafc",
+      "pngBytes": 20986
+    },
+    {
+      "size": 1024,
+      "pngSha256": "c5797d82b26022e907e8095bdeb70c3af85f0fccbf61511e9b910a0786183cfe",
+      "pngBytes": 43564
+    }
+  ],
+  "outputs": [
+    {
+      "name": "tokenelo-1024.png",
+      "bytes": 43564,
+      "sha256": "c5797d82b26022e907e8095bdeb70c3af85f0fccbf61511e9b910a0786183cfe"
+    },
+    {
+      "name": "tokenelo-linux-512.png",
+      "bytes": 20986,
+      "sha256": "43167ed560dddd82a1c56a820b659b01a014603160fac23fc4235c726fddaafc"
+    },
+    {
+      "name": "tokenelo-windows.ico",
+      "bytes": 21812,
+      "sha256": "6e5a98b30a99b2e5293ebccccc3fda9696b314ae79a4dc2ae0c7274866a2614b"
+    }
+  ],
+  "macosIconset": {
+    "directory": "tokenelo-macos.iconset",
+    "fileCount": 10
+  },
+  "macosIconsetFrames": [
+    {
+      "name": "icon_16x16.png",
+      "size": 16,
+      "pngBytes": 634,
+      "sha256": "58d109307416dda9b786a4c8b56da890ec357ba60f871c0286ec8752cebaa039"
+    },
+    {
+      "name": "icon_16x16@2x.png",
+      "size": 32,
+      "pngBytes": 1211,
+      "sha256": "a6b1e23de85d2e67e7b4e58c091b1b5310ae8bcd217595b75810fb8a2cf14fc2"
+    },
+    {
+      "name": "icon_32x32.png",
+      "size": 32,
+      "pngBytes": 1211,
+      "sha256": "a6b1e23de85d2e67e7b4e58c091b1b5310ae8bcd217595b75810fb8a2cf14fc2"
+    },
+    {
+      "name": "icon_32x32@2x.png",
+      "size": 64,
+      "pngBytes": 2310,
+      "sha256": "350b256504b021d3b3c61242edad990fc8252b63798bb168213d7861c8b05fc8"
+    },
+    {
+      "name": "icon_128x128.png",
+      "size": 128,
+      "pngBytes": 4837,
+      "sha256": "8c4eb03ae813d674667b835268ccc42e8191d08ec603e8093b0df8f81c1402cc"
+    },
+    {
+      "name": "icon_128x128@2x.png",
+      "size": 256,
+      "pngBytes": 10023,
+      "sha256": "b172f921a6286842b3716c9b818d10e760676ba776582dc3b6fe3e6f1811b7a5"
+    },
+    {
+      "name": "icon_256x256.png",
+      "size": 256,
+      "pngBytes": 10023,
+      "sha256": "b172f921a6286842b3716c9b818d10e760676ba776582dc3b6fe3e6f1811b7a5"
+    },
+    {
+      "name": "icon_256x256@2x.png",
+      "size": 512,
+      "pngBytes": 20986,
+      "sha256": "43167ed560dddd82a1c56a820b659b01a014603160fac23fc4235c726fddaafc"
+    },
+    {
+      "name": "icon_512x512.png",
+      "size": 512,
+      "pngBytes": 20986,
+      "sha256": "43167ed560dddd82a1c56a820b659b01a014603160fac23fc4235c726fddaafc"
+    },
+    {
+      "name": "icon_512x512@2x.png",
+      "size": 1024,
+      "pngBytes": 43564,
+      "sha256": "c5797d82b26022e907e8095bdeb70c3af85f0fccbf61511e9b910a0786183cfe"
+    }
+  ],
+  "nativeMacosIcns": {
+    "status": "PINNED_NATIVE_ICONUTIL_ARTIFACT",
+    "rendererCreatesIcns": false,
+    "binding": "../native/native-iconutil-binding.json",
+    "output": "tokenelo-macos.icns"
+  },
+  "manifestDerivation": {
+    "derivedFromPriorRendererManifestSha256": "dc36516055fc687e0fb12788590e2f65ce52b97468f06bd8c246fe5bde34a9f3",
+    "rasterOutputsReusedUnchanged": true,
+    "iconsetInputsCopiedByteForByteFromPinnedFrames": true,
+    "rendererRerunDuringCanonicalUpdate": false
+  }
+}

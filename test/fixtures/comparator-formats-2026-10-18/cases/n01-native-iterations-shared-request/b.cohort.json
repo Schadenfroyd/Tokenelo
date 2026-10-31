@@ -1,0 +1,138 @@
+{
+  "completeness": "complete",
+  "dropped": [],
+  "format": "tokenelo/comparator-cohort@v1",
+  "label": "fab-native-n01",
+  "range": null,
+  "records": [
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 22},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 22
+        },
+        "cache_write_1h": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 0},
+          "origin": "aggregated",
+          "presence": "measured_zero",
+          "value": 0
+        },
+        "cache_write_5m": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 16},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 16
+        },
+        "cache_write_total": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 16},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 16
+        },
+        "cache_write_unassigned": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 0},
+          "origin": "aggregated",
+          "presence": "measured_zero",
+          "value": 0
+        },
+        "input_fresh": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 13},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 13
+        },
+        "output": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 26},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 26
+        },
+        "reasoning": {"presence": "missing", "reason": "source-does-not-report", "value": null}
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-07-21", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": 1, "lines_observed": 1, "members": null, "members_complete": null, "sessions_observed": 1},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "message-id", "iteration_count": 2, "key": "claude:fab-msg-n01a", "request_id_present": true, "request_key": "fab-req-1"},
+      "scope": "message",
+      "source": {"family": "native", "instance": "fab-native-n01", "kind": "claude-native-lines", "tool_version": null},
+      "time": {"basis": "winning-snapshot", "utc_ms": 1784635200000},
+      "total": {
+        "measured_subtotal": 77,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 77
+      }
+    },
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 22},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 22
+        },
+        "cache_write_1h": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 0},
+          "origin": "aggregated",
+          "presence": "measured_zero",
+          "value": 0
+        },
+        "cache_write_5m": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 16},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 16
+        },
+        "cache_write_total": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 16},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 16
+        },
+        "cache_write_unassigned": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 0},
+          "origin": "aggregated",
+          "presence": "measured_zero",
+          "value": 0
+        },
+        "input_fresh": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 13},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 13
+        },
+        "output": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 26},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 26
+        },
+        "reasoning": {"presence": "missing", "reason": "source-does-not-report", "value": null}
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-07-21", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": 1, "lines_observed": 1, "members": null, "members_complete": null, "sessions_observed": 1},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "message-id", "iteration_count": 2, "key": "claude:fab-msg-n01b", "request_id_present": true, "request_key": "fab-req-2"},
+      "scope": "message",
+      "source": {"family": "native", "instance": "fab-native-n01", "kind": "claude-native-lines", "tool_version": null},
+      "time": {"basis": "winning-snapshot", "utc_ms": 1784635500000},
+      "total": {
+        "measured_subtotal": 77,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 77
+      }
+    }
+  ],
+  "scope": "message",
+  "source": {"family": "native", "instance": "fab-native-n01", "kind": "claude-native-lines", "tool_version": null},
+  "timezone": "-06:00"
+}

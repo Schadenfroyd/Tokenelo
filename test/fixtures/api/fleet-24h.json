@@ -1,0 +1,366 @@
+{
+  "range": "24h",
+  "generatedAt": 1790466216688,
+  "hosts": [
+    {
+      "label": "M4a",
+      "kind": "local",
+      "status": "online",
+      "summary": {
+        "host": "M4a",
+        "range": "24h",
+        "generatedAt": 1790465916688,
+        "totals": {
+          "events": 1684,
+          "tokens": {
+            "inputFresh": 1024680,
+            "cacheWrite5m": 24000,
+            "cacheWrite1h": 680000,
+            "cacheRead": 4400000,
+            "output": 196200,
+            "reasoning": 30000
+          },
+          "apiEquivUsd": 368.64,
+          "unpricedEvents": 6,
+          "estimatedPriceEvents": 0,
+          "priceStatus": "UNPRICED"
+        },
+        "bySource": {
+          "claude": {
+            "events": 1400,
+            "tokens": {
+              "inputFresh": 800000,
+              "cacheWrite5m": 24000,
+              "cacheWrite1h": 680000,
+              "cacheRead": 4200000,
+              "output": 160000,
+              "reasoning": 30000
+            },
+            "apiEquivUsd": 300,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": "LIST"
+          },
+          "codex": {
+            "events": 240,
+            "tokens": {
+              "inputFresh": 200000,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 200000,
+              "output": 30000,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 60,
+            "unpricedEvents": 6,
+            "estimatedPriceEvents": 0,
+            "priceStatus": "UNPRICED"
+          },
+          "ollama-proxy": {
+            "events": 36,
+            "tokens": {
+              "inputFresh": 24000,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 0,
+              "output": 6000,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 0,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": "LIST"
+          },
+          "ollama-log": {
+            "events": 0,
+            "tokens": {
+              "inputFresh": 0,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 0,
+              "output": 0,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 0,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": null
+          },
+          "qwen-code": {
+            "events": 0,
+            "tokens": {
+              "inputFresh": 0,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 0,
+              "output": 0,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 0,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": null
+          },
+          "bench": {
+            "events": 8,
+            "tokens": {
+              "inputFresh": 680,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 0,
+              "output": 200,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 8.64,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": "LIST"
+          }
+        },
+        "activeTime": {
+          "agentMs": 10800000,
+          "wallMs": 14400000
+        }
+      }
+    },
+    {
+      "label": "A2000",
+      "kind": "peer",
+      "status": "online",
+      "summary": {
+        "host": "A2000",
+        "range": "24h",
+        "generatedAt": 1790465616688,
+        "totals": {
+          "events": 624,
+          "tokens": {
+            "inputFresh": 780000,
+            "cacheWrite5m": 0,
+            "cacheWrite1h": 90000,
+            "cacheRead": 824000,
+            "output": 158000,
+            "reasoning": 46000
+          },
+          "apiEquivUsd": 186.36,
+          "unpricedEvents": 0,
+          "estimatedPriceEvents": 0,
+          "priceStatus": "LIST"
+        },
+        "bySource": {
+          "claude": {
+            "events": 384,
+            "tokens": {
+              "inputFresh": 420000,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 90000,
+              "cacheRead": 640000,
+              "output": 84000,
+              "reasoning": 16000
+            },
+            "apiEquivUsd": 112.4,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": "LIST"
+          },
+          "codex": {
+            "events": 240,
+            "tokens": {
+              "inputFresh": 360000,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 184000,
+              "output": 74000,
+              "reasoning": 30000
+            },
+            "apiEquivUsd": 73.96,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": "LIST"
+          },
+          "ollama-proxy": {
+            "events": 0,
+            "tokens": {
+              "inputFresh": 0,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 0,
+              "output": 0,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 0,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": null
+          },
+          "ollama-log": {
+            "events": 0,
+            "tokens": {
+              "inputFresh": 0,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 0,
+              "output": 0,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 0,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": null
+          },
+          "qwen-code": {
+            "events": 0,
+            "tokens": {
+              "inputFresh": 0,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 0,
+              "output": 0,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 0,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": null
+          },
+          "bench": {
+            "events": 0,
+            "tokens": {
+              "inputFresh": 0,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 0,
+              "output": 0,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 0,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": null
+          }
+        },
+        "activeTime": {
+          "agentMs": 6200000,
+          "wallMs": 8400000
+        }
+      }
+    },
+    {
+      "label": "ryzen",
+      "kind": "peer",
+      "status": "online",
+      "summary": {
+        "host": "ryzen",
+        "range": "24h",
+        "generatedAt": 1790465316688,
+        "totals": {
+          "events": 188,
+          "tokens": {
+            "inputFresh": 640000,
+            "cacheWrite5m": 0,
+            "cacheWrite1h": 0,
+            "cacheRead": 0,
+            "output": 50000,
+            "reasoning": 0
+          },
+          "apiEquivUsd": 25.5,
+          "unpricedEvents": null,
+          "estimatedPriceEvents": null,
+          "priceStatus": null
+        },
+        "bySource": {
+          "claude": {
+            "events": 0,
+            "tokens": {
+              "inputFresh": 0,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 0,
+              "output": 0,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 0,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": null
+          },
+          "codex": {
+            "events": 0,
+            "tokens": {
+              "inputFresh": 0,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 0,
+              "output": 0,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 0,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": null
+          },
+          "ollama-proxy": {
+            "events": 188,
+            "tokens": {
+              "inputFresh": 640000,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 0,
+              "output": 50000,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 25.5
+          },
+          "ollama-log": {
+            "events": 0,
+            "tokens": {
+              "inputFresh": 0,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 0,
+              "output": 0,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 0,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": null
+          },
+          "qwen-code": {
+            "events": 0,
+            "tokens": {
+              "inputFresh": 0,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 0,
+              "output": 0,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 0,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": null
+          },
+          "bench": {
+            "events": 0,
+            "tokens": {
+              "inputFresh": 0,
+              "cacheWrite5m": 0,
+              "cacheWrite1h": 0,
+              "cacheRead": 0,
+              "output": 0,
+              "reasoning": 0
+            },
+            "apiEquivUsd": 0,
+            "unpricedEvents": 0,
+            "estimatedPriceEvents": 0,
+            "priceStatus": null
+          }
+        },
+        "activeTime": {
+          "agentMs": 1800000,
+          "wallMs": 2400000
+        }
+      }
+    }
+  ]
+}

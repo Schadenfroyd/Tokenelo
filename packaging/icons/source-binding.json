@@ -1,0 +1,12 @@
+{
+  "source": "Schadenfroyd/Tokenelo public main/assets/tokenelo-banner.svg",
+  "sourceCommit": "0499020dcba673a0a3b42f3bcd9798aa73f4dd17",
+  "sourceSha256": "61a248aeeea598434384a824767c19db9f8874b2af36bf98a11e5a5949740619",
+  "sourceMarkGeometry": {
+    "viewBox": "58 46 44 44",
+    "rect": { "x": 58, "y": 46, "width": 44, "height": 44, "rx": 12, "fill": "#5de1c4" },
+    "path": { "d": "M70 60h20M80 60v18", "stroke": "#111b34", "strokeWidth": 5, "linecap": "round" }
+  },
+  "derivedSvg": "tokenelo-mark.svg",
+  "publicContentChanged": false
+}

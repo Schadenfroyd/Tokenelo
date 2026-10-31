@@ -1,18 +1,19 @@
 # Project status
 
-**Availability reviewed October 26, 2026 · internal alpha · no public app download yet.**
+**Availability reviewed October 31, 2026 · internal alpha · source available under Apache 2.0 · no public app download yet.**
 
 Tokenelo's primary purpose is free token tracking, reporting, and useful local evidence for vendor accountability. This page reports engineering progress; it is not a supported-release announcement.
 
 ## Available in this repository
 
-- Product overview, data interpretation, privacy, security, and licensing plan.
+- Tracker application source under Apache 2.0, with tests and build scripts. `native/` includes one prebuilt Windows helper executable with a provenance manifest; the build checks its exact bytes and copies it without running it.
+- Product overview, data interpretation, privacy, security, and licensing status.
 - Public static marketing site source and its illustrative, fabricated report example.
 - Exact-host static-site gateway source and regression tests, separate from the tracker.
 - Roadmap, contributor guidance, and structured issue forms.
 - Repository artwork and automated documentation checks.
 
-Product source, private operational history, captured records, databases, and installers are excluded. Source and binary publication remain pending counsel clearance of the exact release scope.
+The tracker source is published here under [Apache 2.0](../LICENSE) as of October 31, 2026. Private operational history, captured records, databases, and installers are excluded. Installer and binary distribution remain pending clearance of their exact release scope.
 
 ## Internal staged UI review — October 26, 2026
 
@@ -24,7 +25,7 @@ This verifies staged interface behavior against fabricated records only. It does
 
 A private, uninstalled source candidate completed a fixture-only review of Today in Sessions and Local in both color themes. The review checked separate query-time labels, an unavailable recorded-time cutoff, a local-model session join, and the session detail against fabricated `FILED-EXAMPLE` records. It captured 20 hidden/offscreen UI states with no network requests.
 
-This verifies only a bounded UI candidate against fabricated records. It does not establish live vendor capture, a current installation, measured usage totals, invoice reconciliation, public platform support, or release acceptance. The original internal alpha gates and counsel clearance remain open.
+This verifies only a bounded UI candidate against fabricated records. It does not establish live vendor capture, a current installation, measured usage totals, invoice reconciliation, public platform support, or release acceptance. The original internal alpha gates remained open at that review.
 
 ## Current qualification work
 
@@ -43,7 +44,9 @@ These observations describe the October 12 candidate and are retained with their
 
 The original internal alpha criteria remain unaccepted. Full release readiness has not been established. Internal checks are recorded privately; sensitive evidence and farm details are not published here.
 
-## Work needed before a public release
+## Work needed before a supported release
+
+The source was released under Apache 2.0 on October 31, 2026. The items below concern a supported release with installers.
 
 1. Complete lifecycle and storage recovery checks, then qualify controlled candidate rollout.
 2. Establish independent vendor-count and baseline accuracy, pricing provenance, and count-quality evidence.
@@ -51,7 +54,7 @@ The original internal alpha criteria remain unaccepted. Full release readiness h
 4. Complete installed and physical review of all nine screens, ranges, selectors, controls, modals, and data drill-downs across supported platforms and themes. The staged fixture review above does not close this gate.
 5. Verify three-platform install, upgrade, uninstall, rollback, reboot, and export behavior.
 6. Complete mutation testing, required independent reviews, release inventory, dependency notices, and signing/notarization preparation.
-7. Obtain counsel clearance for the exact public source, patent grant, and binary distribution; then publish the cleared Apache 2.0 release.
+7. Obtain clearance for binary and installer distribution, then publish a tested, supported release.
 
 ## Findings and opportunities from the October 12 snapshot
 
@@ -61,5 +64,5 @@ The original internal alpha criteria remain unaccepted. Full release readiness h
 
 **Proposed improvement:** a local shutdown/recovery receipt could make incomplete draining or recovery visible to an operator. This was also unimplemented in that snapshot; retention and cleanup qualification are required.
 
-[Roadmap](roadmap.md) · [Data interpretation](data-accuracy.md) · [License plan](licensing.md)
+[Roadmap](roadmap.md) · [Data interpretation](data-accuracy.md) · [Licensing](licensing.md)
 

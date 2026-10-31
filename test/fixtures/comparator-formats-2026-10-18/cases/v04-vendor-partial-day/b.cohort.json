@@ -1,0 +1,70 @@
+{
+  "completeness": "complete",
+  "dropped": [],
+  "format": "tokenelo/comparator-cohort@v1",
+  "label": "fab-ccusage-v04",
+  "range": null,
+  "records": [
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {"origin": "reported", "presence": "measured", "value": 26},
+        "cache_write_1h": {"presence": "missing", "reason": "source-does-not-split-ttl", "value": null},
+        "cache_write_5m": {"presence": "missing", "reason": "source-does-not-split-ttl", "value": null},
+        "cache_write_total": {"origin": "reported", "presence": "measured", "value": 5},
+        "cache_write_unassigned": {"presence": "missing", "reason": "source-does-not-split-ttl", "value": null},
+        "input_fresh": {"origin": "reported", "presence": "measured", "value": 14},
+        "output": {"origin": "reported", "presence": "measured", "value": 6},
+        "reasoning": {"presence": "missing", "reason": "source-does-not-report", "value": null}
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-10-12", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": null, "lines_observed": null, "members": null, "members_complete": null, "sessions_observed": null},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "vendor-day", "iteration_count": null, "key": "2026-10-12", "request_id_present": null, "request_key": null},
+      "scope": "day",
+      "source": {"family": "vendor", "instance": "fab-ccusage-v04", "kind": "ccusage-daily", "tool_version": null},
+      "source_total": {"origin": "reported", "presence": "measured", "value": 51},
+      "time": null,
+      "total": {
+        "measured_subtotal": 51,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 51
+      }
+    },
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {"origin": "reported", "presence": "measured_zero", "value": 0},
+        "cache_write_1h": {"presence": "missing", "reason": "source-does-not-split-ttl", "value": null},
+        "cache_write_5m": {"presence": "missing", "reason": "source-does-not-split-ttl", "value": null},
+        "cache_write_total": {"origin": "reported", "presence": "measured_zero", "value": 0},
+        "cache_write_unassigned": {"presence": "missing", "reason": "source-does-not-split-ttl", "value": null},
+        "input_fresh": {"origin": "reported", "presence": "measured", "value": 1},
+        "output": {"origin": "reported", "presence": "measured", "value": 1},
+        "reasoning": {"presence": "missing", "reason": "source-does-not-report", "value": null}
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-10-13", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": null, "lines_observed": null, "members": null, "members_complete": null, "sessions_observed": null},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "vendor-day", "iteration_count": null, "key": "2026-10-13", "request_id_present": null, "request_key": null},
+      "scope": "day",
+      "source": {"family": "vendor", "instance": "fab-ccusage-v04", "kind": "ccusage-daily", "tool_version": null},
+      "source_total": {"origin": "reported", "presence": "measured", "value": 2},
+      "time": null,
+      "total": {
+        "measured_subtotal": 2,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 2
+      }
+    }
+  ],
+  "scope": "day",
+  "source": {"family": "vendor", "instance": "fab-ccusage-v04", "kind": "ccusage-daily", "tool_version": null},
+  "timezone": "-06:00"
+}

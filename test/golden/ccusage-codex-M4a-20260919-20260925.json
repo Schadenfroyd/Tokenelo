@@ -1,0 +1,60 @@
+{
+  "daily": [
+    {
+      "cacheCreationTokens": 0,
+      "cacheReadTokens": 97280,
+      "costUSD": 0,
+      "date": "2026-09-22",
+      "inputTokens": 38654,
+      "models": {
+        "gpt-6-luna": {
+          "cacheCreationTokens": 0,
+          "cacheReadTokens": 97280,
+          "inputTokens": 38654,
+          "isFallback": false,
+          "missingPricing": true,
+          "outputTokens": 307,
+          "reasoningOutputTokens": 29,
+          "totalTokens": 136241
+        }
+      },
+      "outputTokens": 307,
+      "reasoningOutputTokens": 29,
+      "totalTokens": 136241
+    },
+    {
+      "cacheCreationTokens": 0,
+      "cacheReadTokens": 50688,
+      "costUSD": 0,
+      "date": "2026-09-23",
+      "inputTokens": 40582,
+      "models": {
+        "gpt-6-luna": {
+          "cacheCreationTokens": 0,
+          "cacheReadTokens": 50688,
+          "inputTokens": 40582,
+          "isFallback": false,
+          "missingPricing": true,
+          "outputTokens": 171,
+          "reasoningOutputTokens": 0,
+          "totalTokens": 91441
+        }
+      },
+      "outputTokens": 171,
+      "reasoningOutputTokens": 0,
+      "totalTokens": 91441
+    }
+  ],
+  "totals": {
+    "cacheCreationTokens": 0,
+    "cacheReadTokens": 147968,
+    "costUSD": 0,
+    "inputTokens": 79236,
+    "outputTokens": 478,
+    "reasoningOutputTokens": 29,
+    "totalTokens": 227682,
+    "unpricedModels": [
+      "gpt-6-luna"
+    ]
+  }
+}

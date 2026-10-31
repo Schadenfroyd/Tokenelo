@@ -1,0 +1,19 @@
+import fs from'node:fs';import os from'node:os';import path from'node:path';import{afterEach,expect,it,vi}from'vitest';import{acquireLock,LockHeldError,type LockHandle}from '../../src/daemon/lock.js';import{getPaths}from '../../src/daemon/paths.js';
+import {spawn}from'node:child_process';import{once}from'node:events';import{DatabaseSync}from'node:sqlite';
+const roots:string[]=[],handles:LockHandle[]=[];afterEach(()=>{vi.restoreAllMocks();for(const h of handles)h.release();for(const r of roots)fs.rmSync(r,{recursive:true,force:true});roots.length=handles.length=0;});
+function paths(){const r=fs.mkdtempSync(path.join(os.tmpdir(),'tokenelo-owned-lock-interleaving-'));roots.push(r);return getPaths({env:{TOKENELO_HOME:r}});}
+it('stale cleanup cannot admit two live handles at the removal boundary',()=>{const p=paths();fs.mkdirSync(p.dataDir,{recursive:true});fs.writeFileSync(p.lockFile,JSON.stringify({pid:2147483647,port:47821,startedAt:1}));const remove=fs.rmSync;let interleaved=false;vi.spyOn(fs,'rmSync').mockImplementation((file:any,...args:any[])=>{if(String(file)===p.lockFile&&!interleaved){interleaved=true;try{handles.push(acquireLock(p,47821,{pid:process.pid,now:()=>20}));}catch(error){expect(error).toBeInstanceOf(LockHeldError);}}return(remove as any)(file,...args);});handles.push(acquireLock(p,47821,{pid:process.pid,now:()=>30}));expect(handles).toHaveLength(1);expect(JSON.parse(fs.readFileSync(p.lockFile,'utf8'))).toEqual(handles[0].info);});
+it('a former handle cannot release a different generation of the live lock',()=>{const p=paths(),first=acquireLock(p,47821,{now:()=>10});handles.push(first);const newer={pid:process.pid,port:47821,startedAt:20};fs.writeFileSync(p.lockFile,JSON.stringify(newer));first.release();expect(fs.existsSync(p.lockFile)).toBe(true);expect(JSON.parse(fs.readFileSync(p.lockFile,'utf8'))).toEqual(newer);});
+it('a failed initial lock write leaves no apparently live owned lock behind',()=>{const p=paths(),write=fs.writeFileSync;vi.spyOn(fs,'writeFileSync').mockImplementationOnce((file:any,...args:any[])=>{(write as any)(file,...args);throw Object.assign(new Error('OWNED lock write EIO after bytes'),{code:'EIO'});});expect(()=>acquireLock(p,47821)).toThrow(/OWNED lock write EIO/);expect(fs.existsSync(p.lockFile)).toBe(false);});
+it('the production lease excludes another process and releases after an actual owned crash',async()=>{
+ const p=paths(),module=new URL('../../dist/daemon/lock.js',import.meta.url).href;
+ const code=`const {acquireLock}=await import(process.argv[1]);const dataDir=process.argv[2],lockFile=process.argv[3];globalThis.ownedLock=acquireLock({dataDir,lockFile},47821);globalThis.gc();console.log(JSON.stringify({pid:process.pid}));setInterval(()=>{},1000);`;
+ const child=spawn(process.execPath,['--expose-gc','--input-type=module','-e',code,module,p.dataDir,p.lockFile],{windowsHide:true,stdio:['ignore','pipe','pipe']});const exited=once(child,'exit');let output='';
+ try {
+  await new Promise<void>((resolve,reject)=>{const timeout=setTimeout(()=>reject(new Error('Owned lease child did not become ready within original 2s')),2000);child.once('error',error=>{clearTimeout(timeout);reject(error);});child.stdout.on('data',bytes=>{output+=bytes; if(output.includes('\n')){clearTimeout(timeout);resolve();}});});
+  expect(JSON.parse(output).pid).toBe(child.pid);expect(fs.existsSync(p.lockFile+'.lease.sqlite')).toBe(true);
+  expect(()=>acquireLock(p,47821)).toThrow(LockHeldError);
+  let other:DatabaseSync|undefined;try{expect(()=>{other=new DatabaseSync(p.lockFile+'.lease.sqlite',{timeout:0});other.exec('BEGIN EXCLUSIVE;');}).toThrow(/locked|busy/i);}finally{other?.close();}
+  child.kill('SIGKILL');await exited;const recovered=acquireLock(p,47821);handles.push(recovered);expect(recovered.info.pid).toBe(process.pid);
+ } finally {if(child.exitCode===null&&child.signalCode===null){child.kill('SIGKILL');await exited;}}
+});

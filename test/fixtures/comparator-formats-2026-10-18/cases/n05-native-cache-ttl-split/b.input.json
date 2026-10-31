@@ -1,0 +1,93 @@
+{
+  "kind": "claude-native-lines",
+  "lines": [
+    {
+      "message": {
+        "id": "fab-msg-n05a",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {"cache_creation_input_tokens": 100, "cache_read_input_tokens": 0, "input_tokens": 1, "output_tokens": 1}
+      },
+      "requestId": "fab-req-51",
+      "sessionId": "fab-sess-5",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-51"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n05b",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {
+          "cache_creation": {"ephemeral_1h_input_tokens": 40, "ephemeral_5m_input_tokens": 60},
+          "cache_creation_input_tokens": 100,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 1,
+          "output_tokens": 1
+        }
+      },
+      "requestId": "fab-req-52",
+      "sessionId": "fab-sess-5",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-52"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n05c",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {
+          "cache_creation": {"ephemeral_5m_input_tokens": 60},
+          "cache_creation_input_tokens": 100,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 1,
+          "output_tokens": 1
+        }
+      },
+      "requestId": "fab-req-53",
+      "sessionId": "fab-sess-5",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-53"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n05d",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {
+          "cache_creation": {"ephemeral_1h_input_tokens": 40, "ephemeral_5m_input_tokens": 60},
+          "cache_read_input_tokens": 0,
+          "input_tokens": 1,
+          "output_tokens": 1
+        }
+      },
+      "requestId": "fab-req-54",
+      "sessionId": "fab-sess-5",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-54"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n05e",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {
+          "cache_creation": {"ephemeral_1h_input_tokens": 40, "ephemeral_5m_input_tokens": 30},
+          "cache_creation_input_tokens": 50,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 1,
+          "output_tokens": 1
+        }
+      },
+      "requestId": "fab-req-55",
+      "sessionId": "fab-sess-5",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-55"
+    }
+  ]
+}

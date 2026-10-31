@@ -1,0 +1,14 @@
+{
+  "kind": "tokenelo-event-projection",
+  "projection_policy": 7,
+  "rows": [
+    {"cache_read": 0, "cache_write_1h": 0, "cache_write_5m": 0, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-n06a", "input_fresh": 3, "output": 4, "reasoning": 0, "source": "claude", "ts": 1791806400000},
+    {"cache_read": 0, "cache_write_1h": 0, "cache_write_5m": 0, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-n06b", "input_fresh": 3, "output": 4, "reasoning": 0, "source": "claude", "ts": 1791806400000},
+    {"cache_read": 0, "cache_write_1h": 0, "cache_write_5m": 0, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-n06c", "input_fresh": 3, "output": 4, "reasoning": 0, "source": "claude", "ts": 1791806400000},
+    {"cache_read": 0, "cache_write_1h": 0, "cache_write_5m": 0, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-n06d", "input_fresh": 3, "output": 4, "reasoning": 0, "source": "claude", "ts": 1791806400000},
+    {"cache_read": 0, "cache_write_1h": 0, "cache_write_5m": 0, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-n06e", "input_fresh": 3, "output": 4, "reasoning": 0, "source": "claude", "ts": 1791806400000},
+    {"cache_read": 0, "cache_write_1h": 0, "cache_write_5m": 0, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-n06r1", "input_fresh": 1, "output": 10, "reasoning": 10, "source": "claude", "ts": 1791806400000},
+    {"cache_read": 0, "cache_write_1h": 0, "cache_write_5m": 0, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-n06r2", "input_fresh": 1, "output": 10, "reasoning": 4, "source": "claude", "ts": 1791806400000}
+  ],
+  "schema_version": 10
+}

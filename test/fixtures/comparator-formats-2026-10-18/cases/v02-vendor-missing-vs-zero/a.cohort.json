@@ -1,0 +1,96 @@
+{
+  "completeness": "complete",
+  "dropped": [],
+  "format": "tokenelo/comparator-cohort@v1",
+  "label": "fab-ledger-v02",
+  "range": null,
+  "records": [
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "cache_write_1h": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "cache_write_5m": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "cache_write_total": {"origin": "derived", "presence": "measured_zero", "value": 0},
+        "cache_write_unassigned": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "input_fresh": {"origin": "normalized", "presence": "measured", "value": 5},
+        "output": {"origin": "normalized", "presence": "measured", "value": 7},
+        "reasoning": {"presence": "missing", "reason": "ledger-zero-ambiguous", "value": null}
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-10-10", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": null, "lines_observed": null, "members": 1, "members_complete": 1, "sessions_observed": null},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "day-rollup", "iteration_count": null, "key": "2026-10-10", "request_id_present": null, "request_key": null},
+      "scope": "day",
+      "source": {"family": "product", "instance": "fab-ledger-v02", "kind": "tokenelo-event-projection", "tool_version": null},
+      "time": null,
+      "total": {
+        "measured_subtotal": 12,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 12
+      }
+    },
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "cache_write_1h": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "cache_write_5m": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "cache_write_total": {"origin": "derived", "presence": "measured_zero", "value": 0},
+        "cache_write_unassigned": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "input_fresh": {"origin": "normalized", "presence": "measured", "value": 5},
+        "output": {"origin": "normalized", "presence": "measured", "value": 7},
+        "reasoning": {"presence": "missing", "reason": "ledger-zero-ambiguous", "value": null}
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-10-11", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": null, "lines_observed": null, "members": 1, "members_complete": 1, "sessions_observed": null},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "day-rollup", "iteration_count": null, "key": "2026-10-11", "request_id_present": null, "request_key": null},
+      "scope": "day",
+      "source": {"family": "product", "instance": "fab-ledger-v02", "kind": "tokenelo-event-projection", "tool_version": null},
+      "time": null,
+      "total": {
+        "measured_subtotal": 12,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 12
+      }
+    },
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "cache_write_1h": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "cache_write_5m": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "cache_write_total": {"origin": "derived", "presence": "measured_zero", "value": 0},
+        "cache_write_unassigned": {"origin": "normalized", "presence": "measured_zero", "value": 0},
+        "input_fresh": {"origin": "normalized", "presence": "measured", "value": 1},
+        "output": {"origin": "normalized", "presence": "measured", "value": 1},
+        "reasoning": {"presence": "missing", "reason": "ledger-zero-ambiguous", "value": null}
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-10-12", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": null, "lines_observed": null, "members": 1, "members_complete": 1, "sessions_observed": null},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "day-rollup", "iteration_count": null, "key": "2026-10-12", "request_id_present": null, "request_key": null},
+      "scope": "day",
+      "source": {"family": "product", "instance": "fab-ledger-v02", "kind": "tokenelo-event-projection", "tool_version": null},
+      "time": null,
+      "total": {
+        "measured_subtotal": 2,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 2
+      }
+    }
+  ],
+  "scope": "day",
+  "source": {"family": "product", "instance": "fab-ledger-v02", "kind": "tokenelo-event-projection", "tool_version": null},
+  "timezone": "-06:00"
+}

@@ -1,5 +1,13 @@
 # Changelog
 
+## October 31, 2026 — source release
+
+- Published the tracker application source under Apache 2.0: `src/`, `test/`, `rates/`, `packaging/`, `native/`, the build scripts, `LICENSE`, `NOTICE`, and candidate third-party notices for the development dependency tree.
+- Extended the public-scope checker to cover the source tree and to require the license files.
+- Added a source CI workflow for Ubuntu, Windows and macOS; the Windows job does not pass yet.
+
+This is a source release of an internal-alpha product, not a supported release: there are no installers or signed builds, platform support is not claimed, and acceptance work remains open (see the [status page](docs/status.md)). The version in `package.json` is not an announced release.
+
 ## October 13, 2026 — Claude cloud documentation workflow
 
 - Added public repository instructions, a cloud environment runbook, and setup tooling.
@@ -24,4 +32,4 @@ This is a documentation update, not a product release.
 - Added public data-interpretation, privacy, security, contribution and roadmap documentation.
 - Prepared the repository for issue triage and future source-release checks.
 
-No public source or binary version has been released. Internal engineering history is not represented as a public release history.
+No binary version has been released. Internal engineering history is not represented as a public release history.

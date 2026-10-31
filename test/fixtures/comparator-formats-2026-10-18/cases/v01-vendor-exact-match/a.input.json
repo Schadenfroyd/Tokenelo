@@ -1,0 +1,8 @@
+{
+  "kind": "tokenelo-event-projection",
+  "projection_policy": 7,
+  "rows": [
+    {"cache_read": 30, "cache_write_1h": 5, "cache_write_5m": 3, "cache_write_assumed_1h": null, "cache_write_unassigned": 2, "count_quality": "complete", "id": "claude:fab-msg-v01a", "input_fresh": 2, "output": 11, "reasoning": 0, "source": "claude", "ts": 1791806400000}
+  ],
+  "schema_version": 10
+}

@@ -1,0 +1,474 @@
+{
+  "a": {
+    "completeness": "partial",
+    "label": "fab-ledger-n05",
+    "records": 5,
+    "sha256": "1b74462d10d0e2105100062d94f3fc7371e10f48778dac40c635398ccbda2fc3",
+    "source": {"family": "product", "instance": "fab-ledger-n05", "kind": "tokenelo-event-projection", "tool_version": null}
+  },
+  "b": {
+    "completeness": "partial",
+    "label": "fab-native-n05",
+    "records": 5,
+    "sha256": "247ada005b2ca2c9187041ef963358182ae1951294aad26db44e227b6917d31a",
+    "source": {"family": "native", "instance": "fab-native-n05", "kind": "claude-native-lines", "tool_version": null}
+  },
+  "format": "tokenelo/comparator-result@v1",
+  "pairs": [
+    {
+      "a": {"completeness": "complete", "count_quality": "complete"},
+      "b": {"completeness": "complete", "count_quality": "complete"},
+      "flags": [],
+      "key": "claude:fab-msg-n05a",
+      "outcome": "identical",
+      "units": {
+        "cache_read": {
+          "a": {"presence": "measured_zero", "value": 0},
+          "b": {"presence": "measured_zero", "value": 0},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "cache_write_1h": {
+          "a": {"presence": "measured", "value": 100},
+          "b": {"presence": "missing", "reason": "ttl-not-reported", "value": null},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "cache-ttl-assumed",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "cache_write_5m": {
+          "a": {"presence": "measured_zero", "value": 0},
+          "b": {"presence": "missing", "reason": "ttl-not-reported", "value": null},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "cache-ttl-assumed",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "cache_write_total": {
+          "a": {"presence": "measured", "value": 100},
+          "b": {"presence": "measured", "value": 100},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "cache_write_unassigned": {
+          "a": {"presence": "measured_zero", "value": 0},
+          "b": {"presence": "measured", "value": 100},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "cache-ttl-assumed",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "input_fresh": {
+          "a": {"presence": "measured", "value": 1},
+          "b": {"presence": "measured", "value": 1},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "output": {
+          "a": {"presence": "measured", "value": 1},
+          "b": {"presence": "measured", "value": 1},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "reasoning": {
+          "a": {"presence": "missing", "reason": "ledger-zero-ambiguous", "value": null},
+          "b": {"presence": "missing", "reason": "source-does-not-report", "value": null},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-both",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "total": {
+          "a": {"presence": "measured", "value": 102},
+          "b": {"presence": "measured", "value": 102},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        }
+      }
+    },
+    {
+      "a": {"completeness": "complete", "count_quality": "complete"},
+      "b": {"completeness": "complete", "count_quality": "complete"},
+      "flags": [],
+      "key": "claude:fab-msg-n05b",
+      "outcome": "identical",
+      "units": {
+        "cache_read": {
+          "a": {"presence": "measured_zero", "value": 0},
+          "b": {"presence": "measured_zero", "value": 0},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "cache_write_1h": {
+          "a": {"presence": "measured", "value": 40},
+          "b": {"presence": "measured", "value": 40},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "cache_write_5m": {
+          "a": {"presence": "measured", "value": 60},
+          "b": {"presence": "measured", "value": 60},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "cache_write_total": {
+          "a": {"presence": "measured", "value": 100},
+          "b": {"presence": "measured", "value": 100},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "cache_write_unassigned": {
+          "a": {"presence": "measured_zero", "value": 0},
+          "b": {"presence": "measured_zero", "value": 0},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "input_fresh": {
+          "a": {"presence": "measured", "value": 1},
+          "b": {"presence": "measured", "value": 1},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "output": {
+          "a": {"presence": "measured", "value": 1},
+          "b": {"presence": "measured", "value": 1},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "reasoning": {
+          "a": {"presence": "missing", "reason": "ledger-zero-ambiguous", "value": null},
+          "b": {"presence": "missing", "reason": "source-does-not-report", "value": null},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-both",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "total": {
+          "a": {"presence": "measured", "value": 102},
+          "b": {"presence": "measured", "value": 102},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        }
+      }
+    },
+    {
+      "a": {"completeness": "complete", "count_quality": "complete"},
+      "b": {"completeness": "complete", "count_quality": "complete"},
+      "flags": [],
+      "key": "claude:fab-msg-n05c",
+      "outcome": "identical",
+      "units": {
+        "cache_read": {
+          "a": {"presence": "measured_zero", "value": 0},
+          "b": {"presence": "measured_zero", "value": 0},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "cache_write_1h": {
+          "a": {"presence": "measured_zero", "value": 0},
+          "b": {"presence": "missing", "reason": "ttl-not-reported", "value": null},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-b",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "cache_write_5m": {
+          "a": {"presence": "measured", "value": 60},
+          "b": {"presence": "measured", "value": 60},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "cache_write_total": {
+          "a": {"presence": "measured", "value": 100},
+          "b": {"presence": "measured", "value": 100},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "cache_write_unassigned": {
+          "a": {"presence": "measured", "value": 40},
+          "b": {"presence": "measured", "value": 40},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "input_fresh": {
+          "a": {"presence": "measured", "value": 1},
+          "b": {"presence": "measured", "value": 1},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "output": {
+          "a": {"presence": "measured", "value": 1},
+          "b": {"presence": "measured", "value": 1},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        },
+        "reasoning": {
+          "a": {"presence": "missing", "reason": "ledger-zero-ambiguous", "value": null},
+          "b": {"presence": "missing", "reason": "source-does-not-report", "value": null},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-both",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "total": {
+          "a": {"presence": "measured", "value": 102},
+          "b": {"presence": "measured", "value": 102},
+          "delta": 0,
+          "percent_micro": 0,
+          "reason": "exact-match",
+          "relation": "equal",
+          "within_tolerance": null
+        }
+      }
+    },
+    {
+      "a": {"completeness": "partial", "count_quality": "incomplete"},
+      "b": {"completeness": "partial", "count_quality": "incomplete"},
+      "flags": [],
+      "key": "claude:fab-msg-n05d",
+      "outcome": "unresolved",
+      "units": {
+        "cache_read": {
+          "a": {"inspection_value": 0, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "measured_zero", "value": 0},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-a",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "cache_write_1h": {
+          "a": {"inspection_value": 40, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "measured", "value": 40},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-a",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "cache_write_5m": {
+          "a": {"inspection_value": 60, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "measured", "value": 60},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-a",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "cache_write_total": {
+          "a": {"presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "missing", "reason": "absent-in-source", "value": null},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-both",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "cache_write_unassigned": {
+          "a": {"inspection_value": 0, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "missing", "reason": "flat-total-unresolved", "value": null},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-both",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "input_fresh": {
+          "a": {"inspection_value": 1, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "measured", "value": 1},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-a",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "output": {
+          "a": {"inspection_value": 1, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "measured", "value": 1},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-a",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "reasoning": {
+          "a": {"inspection_value": 0, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "missing", "reason": "source-does-not-report", "value": null},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-both",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "total": {
+          "a": {"presence": "missing", "reason": "component-unresolved", "value": null},
+          "b": {"presence": "missing", "reason": "component-unresolved", "value": null},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-both",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        }
+      }
+    },
+    {
+      "a": {"completeness": "partial", "count_quality": "conflict"},
+      "b": {"completeness": "partial", "count_quality": "conflict"},
+      "flags": [],
+      "key": "claude:fab-msg-n05e",
+      "outcome": "unresolved",
+      "units": {
+        "cache_read": {
+          "a": {"inspection_value": 0, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "measured_zero", "value": 0},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-a",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "cache_write_1h": {
+          "a": {"inspection_value": 40, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "measured", "value": 40},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-a",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "cache_write_5m": {
+          "a": {"inspection_value": 30, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "measured", "value": 30},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-a",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "cache_write_total": {
+          "a": {"presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "missing", "reason": "cache-split-exceeds-total", "value": null},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-both",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "cache_write_unassigned": {
+          "a": {"inspection_value": 0, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "missing", "reason": "cache-split-exceeds-total", "value": null},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-both",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "input_fresh": {
+          "a": {"inspection_value": 1, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "measured", "value": 1},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-a",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "output": {
+          "a": {"inspection_value": 1, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "measured", "value": 1},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-a",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "reasoning": {
+          "a": {"inspection_value": 0, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+          "b": {"presence": "missing", "reason": "source-does-not-report", "value": null},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-both",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        },
+        "total": {
+          "a": {"presence": "missing", "reason": "component-unresolved", "value": null},
+          "b": {"presence": "missing", "reason": "component-unresolved", "value": null},
+          "delta": null,
+          "percent_micro": null,
+          "reason": "missing-in-both",
+          "relation": "not_comparable",
+          "within_tolerance": null
+        }
+      }
+    }
+  ],
+  "reference_side": "b",
+  "scope": "message",
+  "summary": {"differs": 0, "identical": 3, "matched": 5, "only_in_a": 0, "only_in_b": 0, "partial_in_a": 2, "partial_in_b": 2, "totals_equal_components_differ": 0, "unresolved": 2},
+  "timezone": "-06:00",
+  "tolerance_percent_micro": null
+}
