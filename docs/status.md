@@ -1,6 +1,6 @@
 # Project status
 
-**Availability reviewed October 28, 2026 · internal alpha · source available under Apache 2.0 · no public app download yet.**
+**Availability reviewed October 31, 2026 · internal alpha · source available under Apache 2.0 · no public app download yet.**
 
 Tokenelo's primary purpose is free token tracking, reporting, and useful local evidence for vendor accountability. This page reports engineering progress; it is not a supported-release announcement.
 
@@ -15,7 +15,13 @@ Tokenelo's primary purpose is free token tracking, reporting, and useful local e
 
 The tracker source is published here under [Apache 2.0](../LICENSE) as of October 28, 2026. Private operational history, captured records, databases, and installers are excluded. Installer and binary distribution remain pending clearance of their exact release scope.
 
-## Internal UI fixture review — October 25, 2026
+## Internal staged UI review — October 26, 2026
+
+An uninstalled candidate passed 11 hidden, offscreen fixture cohorts on each of Windows, macOS, and Linux. The cohorts reviewed all nine screens, both color themes, supported range controls, and selected session, local-model, and host drill-downs using fabricated `FILED-EXAMPLE` records. The renderer blocked network requests during these reviews.
+
+This verifies staged interface behavior against fabricated records only. It does not establish live vendor capture or accuracy, an installed application, physical interaction, authenticated cross-host reports, invoice reconciliation, public platform support, or release acceptance.
+
+## Earlier scoped UI review — October 25, 2026
 
 A private, uninstalled source candidate completed a fixture-only review of Today in Sessions and Local in both color themes. The review checked separate query-time labels, an unavailable recorded-time cutoff, a local-model session join, and the session detail against fabricated `FILED-EXAMPLE` records. It captured 20 hidden/offscreen UI states with no network requests.
 
@@ -23,7 +29,7 @@ This verifies only a bounded UI candidate against fabricated records. It does no
 
 ## Current qualification work
 
-Work continues on installation and recovery, count quality and data provenance, and interface and drill-down verification across the three target platforms. The release gates below remain open. This is ongoing internal work, not a new release or platform-support announcement.
+Exact-candidate staged packages bound to the same internal source identity have passed all 11 hidden fixture cohorts on Windows, macOS, and Linux. All reviews are uninstalled and use fabricated FILED-EXAMPLE records. They do not establish live data accuracy, physical interaction, authenticated cross-host reports, public platform support, or release acceptance. Work remains on live data accuracy, installed and physical behavior, authentication, storage recovery, and lifecycle. This is ongoing internal work, not a release or platform-support announcement.
 
 ## Historical engineering snapshot — October 12, 2026
 
@@ -45,7 +51,7 @@ The source was released under Apache 2.0 on October 28, 2026. The items below co
 1. Complete lifecycle and storage recovery checks, then qualify controlled candidate rollout.
 2. Establish independent vendor-count and baseline accuracy, pricing provenance, and count-quality evidence.
 3. Finish authenticated fleet, proxy, API, and security acceptance.
-4. Review all nine screens, ranges, selectors, controls, modals, and data drill-downs across supported platforms and themes, including physical interaction.
+4. Complete installed and physical review of all nine screens, ranges, selectors, controls, modals, and data drill-downs across supported platforms and themes. The staged fixture review above does not close this gate.
 5. Verify three-platform install, upgrade, uninstall, rollback, reboot, and export behavior.
 6. Complete mutation testing, required independent reviews, release inventory, dependency notices, and signing/notarization preparation.
 7. Obtain clearance for binary and installer distribution, then publish a tested, supported release.
@@ -59,3 +65,4 @@ The source was released under Apache 2.0 on October 28, 2026. The items below co
 **Proposed improvement:** a local shutdown/recovery receipt could make incomplete draining or recovery visible to an operator. This was also unimplemented in that snapshot; retention and cleanup qualification are required.
 
 [Roadmap](roadmap.md) · [Data interpretation](data-accuracy.md) · [License plan](licensing.md)
+
