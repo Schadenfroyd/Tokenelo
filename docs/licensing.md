@@ -1,6 +1,6 @@
 # Release and licensing status
 
-The tracker source in this repository is released under the [Apache License 2.0](../LICENSE), and [NOTICE](../NOTICE) names the copyright holder. As of October 28, 2026 this covers the source files, tests, build scripts, original documentation and synthetic examples published here. It does not cover any future installers, signed builds or hosted services, which are not published and would carry their own terms.
+The tracker source in this repository is released under the [Apache License 2.0](../LICENSE), and [NOTICE](../NOTICE) names the copyright holder. As of October 31, 2026 this covers the source files, tests, build scripts, original documentation and synthetic examples published here. It does not cover any future installers, signed builds or hosted services, which are not published and would carry their own terms.
 
 The price tables in `rates/` record third-party vendor list prices and their sources; the [support matrix](support-matrix.md) describes the review caveat for that data. The tree also includes one prebuilt Windows helper executable in `native/`, with a manifest recording its source, binary and compiler hashes; the build checks its exact bytes and copies it without running it.
 

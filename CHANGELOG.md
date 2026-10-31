@@ -1,6 +1,6 @@
 # Changelog
 
-## October 28, 2026 — source release
+## October 31, 2026 — source release
 
 - Published the tracker application source under Apache 2.0: `src/`, `test/`, `rates/`, `packaging/`, `native/`, the build scripts, `LICENSE`, `NOTICE`, and candidate third-party notices for the development dependency tree.
 - Extended the public-scope checker to cover the source tree and to require the license files.

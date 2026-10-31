@@ -4,7 +4,7 @@ The free tracker and dependable reports are the priority. This is a plan, not a 
 
 ## Public alpha
 
-- [x] Publish the reviewed source inventory and adopted license (October 28, 2026).
+- [x] Publish the reviewed source inventory and adopted license (October 31, 2026).
 - [ ] Verify a clean build and test workflow on every advertised platform.
 - [ ] Document supported adapters and coverage limitations.
 - [ ] Verify session/model drill-downs, parent/subagent inclusion and unknown-data states.

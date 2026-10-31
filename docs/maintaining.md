@@ -29,7 +29,7 @@ The main-branch GitHub Pages workflow verifies the public source and site, then 
 
 ## Release transition
 
-Source was released under Apache 2.0 on October 28, 2026; the inventory guard, license, notices and draft installation and support-matrix pages were added then. Binaries and installers need their own clearance of the exact release scope. At that point, publish signed, tested artifacts with a tested support matrix and installation path, and replace any remaining preparation copy with the actual release's status.
+Source was released under Apache 2.0 on October 31, 2026; the inventory guard, license, notices and draft installation and support-matrix pages were added then. Binaries and installers need their own clearance of the exact release scope. At that point, publish signed, tested artifacts with a tested support matrix and installation path, and replace any remaining preparation copy with the actual release's status.
 
 Do not label an internal candidate a public release or treat finite test runs as complete acceptance. Update the [status snapshot](status.md) with an actual observation date rather than silently changing historical claims.
 

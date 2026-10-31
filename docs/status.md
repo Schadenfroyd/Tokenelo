@@ -13,7 +13,7 @@ Tokenelo's primary purpose is free token tracking, reporting, and useful local e
 - Roadmap, contributor guidance, and structured issue forms.
 - Repository artwork and automated documentation checks.
 
-The tracker source is published here under [Apache 2.0](../LICENSE) as of October 28, 2026. Private operational history, captured records, databases, and installers are excluded. Installer and binary distribution remain pending clearance of their exact release scope.
+The tracker source is published here under [Apache 2.0](../LICENSE) as of October 31, 2026. Private operational history, captured records, databases, and installers are excluded. Installer and binary distribution remain pending clearance of their exact release scope.
 
 ## Internal staged UI review — October 26, 2026
 
@@ -46,7 +46,7 @@ The original internal alpha criteria remain unaccepted. Full release readiness h
 
 ## Work needed before a supported release
 
-The source was released under Apache 2.0 on October 28, 2026. The items below concern a supported release with installers.
+The source was released under Apache 2.0 on October 31, 2026. The items below concern a supported release with installers.
 
 1. Complete lifecycle and storage recovery checks, then qualify controlled candidate rollout.
 2. Establish independent vendor-count and baseline accuracy, pricing provenance, and count-quality evidence.
@@ -64,5 +64,5 @@ The source was released under Apache 2.0 on October 28, 2026. The items below co
 
 **Proposed improvement:** a local shutdown/recovery receipt could make incomplete draining or recovery visible to an operator. This was also unimplemented in that snapshot; retention and cleanup qualification are required.
 
-[Roadmap](roadmap.md) · [Data interpretation](data-accuracy.md) · [License plan](licensing.md)
+[Roadmap](roadmap.md) · [Data interpretation](data-accuracy.md) · [Licensing](licensing.md)
 

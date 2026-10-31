@@ -2,7 +2,7 @@
 
 ## Supported releases
 
-The source is published as an unsupported internal-alpha snapshot (October 28, 2026); no version receives security fixes, and no binary release exists. A version support matrix will be added with the first supported release.
+The source is published as an unsupported internal-alpha snapshot (October 31, 2026); no version receives security fixes, and no binary release exists. A version support matrix will be added with the first supported release.
 
 ## Report a vulnerability privately
 
