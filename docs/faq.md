@@ -22,7 +22,7 @@ Windows, macOS, and Linux are under internal verification. Internal adapters inc
 
 ## Are my prompts uploaded or stored?
 
-Prompt/response bodies are not part of the normalized local event contract. Configured metering proxies can process request/response traffic in memory to obtain counters. Metadata, session titles, identifiers, and paths can still be sensitive. Optional fleet configuration and any future upload policy must be explicit. [Read the privacy model](privacy.md)
+Prompt/response bodies are not part of the normalized local event contract. The local metering proxy, which starts by default with the daemon and listens on loopback only, can process request/response traffic in memory to obtain counters when a client is pointed at it. Metadata, session titles, identifiers, and paths can still be sensitive. Optional fleet configuration and any future upload policy must be explicit. [Read the privacy model](privacy.md)
 
 ## How can I help now?
 

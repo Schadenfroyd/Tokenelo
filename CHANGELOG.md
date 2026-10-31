@@ -4,7 +4,8 @@
 
 - Published the tracker application source under Apache 2.0: `src/`, `test/`, `rates/`, `packaging/`, `native/`, the build scripts, `LICENSE`, `NOTICE`, and candidate third-party notices for the development dependency tree.
 - Extended the public-scope checker to cover the source tree and to require the license files.
-- Added a source CI workflow for Ubuntu, Windows and macOS; the Windows job does not pass yet.
+- Added a source CI workflow for Ubuntu, Windows and macOS. All three jobs pass on `main` as of October 31, 2026; the Windows job needed a fix to the token-directory ACL helper, which no longer uses a PowerShell module cmdlet (#18).
+- Corrected public statements that the code does not fully support: the local metering proxy listener starts by default (`local.capture: off` disables it), the `fleet.sharePaths` setting is not read, an absent core counter from some collectors is stored and exported as `0`, and `fieldEvidence` is filled only for Ollama proxy events.
 
 This is a source release of an internal-alpha product, not a supported release: there are no installers or signed builds, platform support is not claimed, and acceptance work remains open (see the [status page](docs/status.md)). The version in `package.json` is not an announced release.
 

@@ -18,7 +18,7 @@ These are acceptance requirements for a supported release. See the [current stat
 
 ## Local use and optional sharing
 
-The tracker is intended to work without an account, payment, wallet, or central upload. Supported local source records are normalized into a local ledger. A deliberately configured proxy can process traffic to obtain usage counters. Optional fleet sharing needs separate configuration, authentication, and a documented aggregate-data boundary.
+The tracker is intended to work without an account, payment, wallet, or central upload. Supported local source records are normalized into a local ledger. The local metering proxy, which starts by default with the daemon and listens on loopback only, can process traffic to obtain usage counters when a client is pointed at it; `local.capture: off` disables it. Optional fleet sharing needs separate configuration, authentication, and a documented aggregate-data boundary.
 
 [Privacy and network boundaries](privacy.md)
 

@@ -11,7 +11,7 @@
 | Source context | `tsSource`, `engine`, `thinking`, `speed`, `effort`, `serviceTier`, `inferenceGeo` | Recorded source/model context, not inferred completeness |
 | Evidence structure | `flags`, `components` | JSON arrays inside properly quoted CSV cells; component details preserve mixed-model events |
 | Export contract | `costBasis`, `exportSchemaVersion` | `api-equivalent-not-billed` and `3` |
-| Field evidence | `fieldEvidence` | JSON object with read-side field presence and assumptions for the token fields; blank on legacy rows |
+| Field evidence | `fieldEvidence` | JSON object with read-side field presence and assumptions for the token fields; filled only for events captured by the Ollama proxy and blank for every other source |
 
 Strings starting with spreadsheet formula indicators (including leading whitespace) or tab/CR/LF are prefixed with an apostrophe in CSV presentation. Commas, quotes, CR and LF are escaped as CSV text. JSON and stored event identities remain unchanged. Consumers that need byte-identical identifiers should use JSON rather than removing the protection and opening an untrusted spreadsheet.
 
