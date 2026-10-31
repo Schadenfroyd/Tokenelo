@@ -1,0 +1,60 @@
+{
+  "a": {"input": "a.input.json", "instance": "fab-ledger-v02", "rollup_days": true},
+  "b": {"input": "b.input.json", "instance": "fab-ccusage-v02"},
+  "case": "v02-vendor-missing-vs-zero",
+  "description": "Vendor day 10-10 omits the cache-read key (missing); vendor day 10-11 reports it as an explicit 0 (measured zero); vendor has no 10-12 row at all. Subject is a ledger with complete rows reporting cache read 0 on every day.",
+  "does_not_show": ["That ccusage actually omits keys or days in this way."],
+  "expect": {
+    "pairs": {
+      "2026-10-10": {
+        "outcome": "unresolved",
+        "units": {
+          "cache_read": ["not_comparable", null, null, "missing-in-b"],
+          "cache_write_total": ["equal", 0, null, "equal-quality-not-complete"],
+          "input_fresh": ["equal", 0, null, "equal-quality-not-complete"],
+          "output": ["equal", 0, null, "equal-quality-not-complete"],
+          "total": ["not_comparable", null, null, "missing-in-b"]
+        }
+      },
+      "2026-10-11": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "cache_write_total": ["equal", 0, 0, "exact-match"],
+          "input_fresh": ["equal", 0, 0, "exact-match"],
+          "output": ["equal", 0, 0, "exact-match"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      },
+      "2026-10-12": {"outcome": "only_in_a"}
+    },
+    "records": {
+      "b": {
+        "2026-10-10": {
+          "completeness": "partial",
+          "components": {
+            "cache_read": ["missing", null],
+            "cache_write_total": ["measured_zero", 0],
+            "input_fresh": ["measured", 5]
+          },
+          "count_quality": "incomplete",
+          "measured_subtotal": 12,
+          "total": null,
+          "unresolved": ["cache_read"]
+        },
+        "2026-10-11": {
+          "completeness": "complete",
+          "components": {
+            "cache_read": ["measured_zero", 0]
+          },
+          "count_quality": "complete",
+          "total": 12
+        }
+      }
+    },
+    "summary": {"differs": 0, "identical": 1, "matched": 2, "only_in_a": 1, "only_in_b": 0, "unresolved": 1}
+  },
+  "shows": ["An absent vendor key is missing, an explicit 0 is measured zero, and an absent vendor day is only-in-subject, not a zero day."],
+  "timezone": "-06:00",
+  "tolerance_percent_micro": null
+}

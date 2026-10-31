@@ -1,0 +1,14 @@
+{
+  "description": "Inputs that must be refused, each with the fixed code the reference implementation reports. Every value is fabricated.",
+  "refusals": [
+    {"code": "duplicate-identity", "file": "ledger-duplicate-id.json", "via": "normalize"},
+    {"code": "unsupported-schema-version", "file": "ledger-unsupported-schema.json", "via": "normalize"},
+    {"code": "unsupported-projection-policy", "file": "ledger-unsupported-policy.json", "via": "normalize"},
+    {"code": "invalid-count-quality", "file": "ledger-unknown-count-quality.json", "via": "normalize"},
+    {"code": "duplicate-identity", "file": "ccusage-duplicate-date.json", "via": "normalize"},
+    {"code": "invalid-date", "file": "ccusage-impossible-date.json", "via": "normalize"},
+    {"code": "duplicate-identity", "file": "local-duplicate-event-id.json", "via": "normalize"},
+    {"code": "invalid-line", "file": "native-line-not-an-object.json", "via": "normalize"},
+    {"code": "/records: duplicate-identity", "file": "cohort-duplicate-identity.json", "via": "validate-cohort"}
+  ]
+}

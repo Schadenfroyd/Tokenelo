@@ -1,0 +1,7 @@
+{
+  "name": "tokenelo-icon-offscreen-renderer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "render.cjs"
+}

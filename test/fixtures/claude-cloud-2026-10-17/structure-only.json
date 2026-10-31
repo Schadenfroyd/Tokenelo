@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "fixtureKind": "fabricated-structure-only",
+  "allValuesFabricated": true,
+  "containsPromptOrResponseText": false,
+  "containsFilesystemPaths": false,
+  "containsHostnamesOrCredentials": false,
+  "containsRealMessageIds": false,
+  "nativeCounterShapes": [
+    {
+      "case": "reported-zero-is-present",
+      "rawFields": {
+        "prompt_eval_count": 17,
+        "prompt_eval_cached_count": 0,
+        "eval_count": 0
+      },
+      "expectedObservationStates": {
+        "prompt_eval_count": "reported",
+        "prompt_eval_cached_count": "reported",
+        "eval_count": "reported"
+      }
+    },
+    {
+      "case": "missing-cache-counter-is-distinct-from-zero",
+      "rawFields": {
+        "prompt_eval_count": 21,
+        "eval_count": 4
+      },
+      "expectedObservationStates": {
+        "prompt_eval_count": "reported",
+        "prompt_eval_cached_count": "missing",
+        "eval_count": "reported"
+      },
+      "policyNameOnly": "assume-zero"
+    },
+    {
+      "case": "invalid-negative-counter-remains-invalid",
+      "rawFields": {
+        "prompt_eval_count": 21,
+        "prompt_eval_cached_count": -1,
+        "eval_count": 4
+      },
+      "expectedObservationStates": {
+        "prompt_eval_count": "reported",
+        "prompt_eval_cached_count": "invalid",
+        "eval_count": "reported"
+      }
+    },
+    {
+      "case": "same-native-snapshot-replayed",
+      "rawSnapshots": [
+        {
+          "prompt_eval_count": 30,
+          "prompt_eval_cached_count": 8,
+          "eval_count": 6
+        },
+        {
+          "prompt_eval_count": 30,
+          "prompt_eval_cached_count": 8,
+          "eval_count": 6
+        }
+      ],
+      "questionForRegression": "Does replay keep one unique native snapshot without changing retained totals?"
+    },
+    {
+      "case": "cache-exceeds-gross-prompt",
+      "rawFields": {
+        "prompt_eval_count": 10,
+        "prompt_eval_cached_count": 15,
+        "eval_count": 2
+      },
+      "questionForRegression": "Does the counter projection withhold completeness when the reported cache exceeds the gross prompt?"
+    },
+    {
+      "case": "separate-native-observations-are-not-collapsed",
+      "rawSnapshots": [
+        {
+          "prompt_eval_count": 10,
+          "prompt_eval_cached_count": 0,
+          "eval_count": 2
+        },
+        {
+          "prompt_eval_count": 19,
+          "prompt_eval_cached_count": 7,
+          "eval_count": 5
+        }
+      ],
+      "expectedSnapshotCount": 2
+    }
+  ],
+  "collectorContinuityShapes": [
+    {
+      "case": "claude-usage-iterations",
+      "sourceInstanceOrdinal": 1,
+      "sessionOrdinal": 1,
+      "messageIdentity": "fabricated-message-01",
+      "topLevelUsagePresent": true,
+      "iterations": [
+        { "modelOrdinal": 1, "input_tokens": 3, "output_tokens": 2 },
+        { "modelOrdinal": 2, "input_tokens": 5, "output_tokens": 4 }
+      ],
+      "questionForRegression": "Are both iterations represented once, with the final iteration selected as the event's primary model?"
+    },
+    {
+      "case": "requestless-message-fallback-identity",
+      "sourceInstanceOrdinal": 1,
+      "sessionOrdinal": 2,
+      "messageIdPresent": false,
+      "requestIdPresent": false,
+      "lineUuid": "fabricated-line-02",
+      "usageIterationCount": 1,
+      "questionForRegression": "Does the collector explicitly label its UUID fallback identity and deduplicate a replay of the same fabricated line?"
+    },
+    {
+      "case": "resumed-codex-session-with-emitted-ahead-records",
+      "sessionOrdinal": 3,
+      "priorState": {
+        "nextLineOrdinal": 4,
+        "openTurnCount": 1,
+        "pendingRecordCount": 1,
+        "emittedAheadComponents": { "input": 6, "output": 3 }
+      },
+      "resumedCountersIncludeEarlierEmission": true,
+      "questionForRegression": "Does resume subtract the already emitted components or retain the original event identity without double counting?"
+    },
+    {
+      "case": "same-fabricated-event-observed-at-two-source-instances",
+      "sourceInstanceOrdinals": [1, 2],
+      "messageIdentity": "fabricated-message-03",
+      "timestampsEqual": true,
+      "questionForRegression": "Does ingestion apply the documented event dedup rule across two source instances while retaining the original ownership and time semantics?"
+    }
+  ]
+}

@@ -1,0 +1,261 @@
+{
+ "schemaVersion": 1,
+ "label": "TARGET (PROPOSAL FOR OWNER REVIEW) - NOT ASSERTED BY ANY TEST",
+ "status": "proposal-only; no test reads this file; today's code does not behave this way",
+ "derivedFrom": "docs/cloud/CLAUDE-INBOX-2026-10-17.md decision D4 (new ambiguous or unrecorded routes stay provider-unknown/unpriced until supported affirmative local-serving evidence; historical stored valuations untouched; any historical refresh explicit and reviewed)",
+ "purpose": "So that a later implementation can be proven against falsifiable cases: when D4 is implemented, the owner may add an asserting test that compares the implementation to the cases below. The only entries that differ from CURRENT BEHAVIOR are the ones marked changesFromCurrent=true.",
+ "historicalRows": {
+  "rule": "A row already stored keeps its recorded provider, amount and price version on ordinary replay, exactly as today (see test/store/recorded-valuation.test.ts and test/store/route-less-provider-retention.test.ts). Re-attribution of an existing unrecorded row only happens through an explicit, reviewed reprice, and is out of scope for this file.",
+  "changesFromCurrent": false
+ },
+ "cases": {
+  "local-reported": {
+   "providerOf": "local",
+   "priceComponent": {
+    "usd": 0,
+    "status": "LIST",
+    "flags": []
+   },
+   "storedByLedgerForANewObservation": {
+    "provider": "local",
+    "apiEquivUsd": 0,
+    "priceStatus": "LIST",
+    "routeFlags": []
+   },
+   "changesFromCurrent": false,
+   "why": "Affirmative reported local-serving evidence keeps the local rate policy (see openQuestions: what counts as supported evidence)."
+  },
+  "hosted-reported": {
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedgerForANewObservation": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "changesFromCurrent": false,
+   "why": "Already unpriced as a local rate; unchanged."
+  },
+  "unrecorded-weights-name": {
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedgerForANewObservation": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "changesFromCurrent": true,
+   "why": "D4: a weights or model-name match alone is not route evidence; a new unrecorded route stays provider-unknown and unpriced."
+  },
+  "unrecorded-hosted-looking-weights-name": {
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedgerForANewObservation": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "changesFromCurrent": true,
+   "why": "D4: a weights or model-name match alone is not route evidence; a new unrecorded route stays provider-unknown and unpriced."
+  },
+  "unknown-openai-compatible": {
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedgerForANewObservation": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "changesFromCurrent": false,
+   "why": "Already unpriced as a local rate; unchanged."
+  },
+  "unknown-unrecorded-evidence": {
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedgerForANewObservation": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "changesFromCurrent": false,
+   "why": "Already unpriced as a local rate; unchanged."
+  },
+  "invalid-kind-evidence-mismatch": {
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedgerForANewObservation": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteInvalid",
+     "servingRouteUnpriced"
+    ]
+   },
+   "changesFromCurrent": false,
+   "why": "Already unpriced and flagged; unchanged."
+  },
+  "invalid-missing-evidence": {
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedgerForANewObservation": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteInvalid",
+     "servingRouteUnpriced"
+    ]
+   },
+   "changesFromCurrent": false,
+   "why": "Already unpriced and flagged; unchanged."
+  },
+  "invalid-extra-key": {
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedgerForANewObservation": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteInvalid",
+     "servingRouteUnpriced"
+    ]
+   },
+   "changesFromCurrent": false,
+   "why": "Already unpriced and flagged; unchanged."
+  },
+  "invalid-null": {
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedgerForANewObservation": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteInvalid",
+     "servingRouteUnpriced"
+    ]
+   },
+   "changesFromCurrent": false,
+   "why": "Already unpriced and flagged; unchanged."
+  },
+  "invalid-canonical-marker": {
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedgerForANewObservation": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteInvalid",
+     "servingRouteUnpriced"
+    ]
+   },
+   "changesFromCurrent": false,
+   "why": "Already unpriced and flagged; unchanged."
+  },
+  "conflict-reports": {
+   "providerOf": "unknown",
+   "priceComponent": {
+    "usd": null,
+    "status": "UNPRICED",
+    "flags": [
+     "servingRouteUnpriced"
+    ]
+   },
+   "storedByLedgerForANewObservation": {
+    "provider": "unknown",
+    "apiEquivUsd": null,
+    "priceStatus": "UNPRICED",
+    "routeFlags": [
+     "servingRouteConflict",
+     "servingRouteUnpriced"
+    ]
+   },
+   "changesFromCurrent": false,
+   "why": "Already unpriced and flagged; unchanged."
+  }
+ },
+ "openQuestions": [
+  "Ollama-proxy events carry NO servingRoute key today (they are 'unrecorded' and are priced as local $0 because the model name matches a local weights family). If D4 is implemented as 'unrecorded stays unpriced', every NEW proxy-metered local event would become provider-unknown and unpriced unless the proxy stamps affirmative evidence such as {kind:'local',evidence:'metered-engine'}. The owner must decide whether the proxy is 'supported affirmative local-serving evidence' before implementation. The current-behavior test pins today's proxy event shape so this question stays visible.",
+  "src/core/types.ts says metered-engine is 'a policy slot, not an attestation or proof of an installed engine'. Whether a self-reported local route is enough for D4, or whether stronger evidence is required, is an owner decision.",
+  "Which other collectors (claude-desktop with a local model, codex with a local provider) would need to stamp a route, and how their historical rows are labelled, is not decided here.",
+  "Whether the user interface should present provider-unknown/unpriced local-looking work as 'route not recorded' rather than as zero value is a presentation decision outside this fixture."
+ ]
+}

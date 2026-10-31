@@ -1,0 +1,228 @@
+{
+  "snapshots": [
+    {
+      "source": "claude-block-estimate",
+      "host": "HOST-A",
+      "capturedAt": 1792337400000,
+      "windows": [
+        {
+          "id": "block_estimate",
+          "usedPercent": null,
+          "windowMinutes": 300,
+          "resetsAt": 1792339200000,
+          "startedAt": 1792321200000,
+          "tokens": 35364,
+          "countQuality": "complete",
+          "apiEquivUsd": 0.12219000000000001,
+          "priceEvidence": {
+            "version": 1,
+            "events": 5,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          },
+          "burnTokensPerMin": 130.9777777777778,
+          "projectedTokens": 39293.333333333336,
+          "projectedUsd": 0.13576666666666667
+        }
+      ],
+      "estimate": true,
+      "contributors": [
+        {
+          "host": "HOST-A",
+          "model": "oracle-haiku",
+          "provider": "anthropic",
+          "servingRoutes": [
+            {
+              "kind": "unrecorded"
+            }
+          ],
+          "priceVersion": "cc5c02e0cbc44af92b4c0081d7dbd3e7ff6110bde8f42cde0007d5b574581277",
+          "tsSource": "line",
+          "firstEventAt": 1792337220000,
+          "lastEventAt": 1792337220000,
+          "events": 1,
+          "tokens": {
+            "inputFresh": 800,
+            "cacheWrite5m": 0,
+            "cacheWrite1h": 2000,
+            "cacheRead": 0,
+            "output": 200,
+            "reasoning": 0,
+            "countQuality": "complete"
+          },
+          "knownApiEquivUsd": 0.0116,
+          "priceStatusCounts": {
+            "LIST": 0,
+            "ESTIMATE": 1,
+            "UNPRICED": 0,
+            "unknown": 0
+          },
+          "priceEvidence": {
+            "version": 1,
+            "events": 1,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          }
+        },
+        {
+          "host": "HOST-A",
+          "model": "oracle-opus",
+          "provider": "anthropic",
+          "servingRoutes": [
+            {
+              "kind": "unrecorded"
+            }
+          ],
+          "priceVersion": "cc5c02e0cbc44af92b4c0081d7dbd3e7ff6110bde8f42cde0007d5b574581277",
+          "tsSource": "line",
+          "firstEventAt": 1792335000000,
+          "lastEventAt": 1792337400000,
+          "events": 3,
+          "tokens": {
+            "inputFresh": 3609,
+            "cacheWrite5m": 1000,
+            "cacheWrite1h": 0,
+            "cacheRead": 27000,
+            "output": 700,
+            "reasoning": 0,
+            "countQuality": "complete"
+          },
+          "knownApiEquivUsd": 0.11059000000000001,
+          "priceStatusCounts": {
+            "LIST": 3,
+            "ESTIMATE": 0,
+            "UNPRICED": 0,
+            "unknown": 0
+          },
+          "priceEvidence": {
+            "version": 1,
+            "events": 3,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          }
+        },
+        {
+          "host": "HOST-A",
+          "model": "oracle-unlisted",
+          "provider": "anthropic",
+          "servingRoutes": [
+            {
+              "kind": "unrecorded"
+            }
+          ],
+          "priceVersion": "cc5c02e0cbc44af92b4c0081d7dbd3e7ff6110bde8f42cde0007d5b574581277",
+          "tsSource": "line",
+          "firstEventAt": 1792337160000,
+          "lastEventAt": 1792337160000,
+          "events": 1,
+          "tokens": {
+            "inputFresh": 50,
+            "cacheWrite5m": 0,
+            "cacheWrite1h": 0,
+            "cacheRead": 0,
+            "output": 5,
+            "reasoning": 0,
+            "countQuality": "complete"
+          },
+          "knownApiEquivUsd": null,
+          "priceStatusCounts": {
+            "LIST": 0,
+            "ESTIMATE": 0,
+            "UNPRICED": 1,
+            "unknown": 0
+          },
+          "priceEvidence": {
+            "version": 1,
+            "events": 1,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          }
+        }
+      ]
+    },
+    {
+      "source": "claude-block-estimate",
+      "host": "HOST-B",
+      "capturedAt": 1792337400000,
+      "windows": [
+        {
+          "id": "block_estimate",
+          "usedPercent": null,
+          "windowMinutes": 300,
+          "resetsAt": 1792335600000,
+          "startedAt": 1792317600000,
+          "tokens": 1210,
+          "countQuality": "complete",
+          "apiEquivUsd": 0.0165,
+          "priceEvidence": {
+            "version": 1,
+            "events": 1,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          },
+          "burnTokensPerMin": 4.033333333333333,
+          "projectedTokens": 1210,
+          "projectedUsd": 0.0165
+        }
+      ],
+      "estimate": true,
+      "contributors": [
+        {
+          "host": "HOST-B",
+          "model": "oracle-opus",
+          "provider": "anthropic",
+          "servingRoutes": [
+            {
+              "kind": "unrecorded"
+            }
+          ],
+          "priceVersion": "cc5c02e0cbc44af92b4c0081d7dbd3e7ff6110bde8f42cde0007d5b574581277",
+          "tsSource": "line",
+          "firstEventAt": 1792317600000,
+          "lastEventAt": 1792317600000,
+          "events": 1,
+          "tokens": {
+            "inputFresh": 1100,
+            "cacheWrite5m": 0,
+            "cacheWrite1h": 0,
+            "cacheRead": 0,
+            "output": 110,
+            "reasoning": 0,
+            "countQuality": "complete"
+          },
+          "knownApiEquivUsd": 0.0165,
+          "priceStatusCounts": {
+            "LIST": 1,
+            "ESTIMATE": 0,
+            "UNPRICED": 0,
+            "unknown": 0
+          },
+          "priceEvidence": {
+            "version": 1,
+            "events": 1,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          }
+        }
+      ]
+    }
+  ]
+}

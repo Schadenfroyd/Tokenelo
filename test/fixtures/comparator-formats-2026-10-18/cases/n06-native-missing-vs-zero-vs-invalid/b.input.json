@@ -1,0 +1,173 @@
+{
+  "kind": "claude-native-lines",
+  "lines": [
+    {
+      "message": {
+        "id": "fab-msg-n06a",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {"cache_creation_input_tokens": 0, "input_tokens": 3, "output_tokens": 4}
+      },
+      "requestId": "fab-req-61",
+      "sessionId": "fab-sess-6",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-61"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n06b",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {"cache_creation_input_tokens": 0, "cache_read_input_tokens": 0, "input_tokens": 3, "output_tokens": 4}
+      },
+      "requestId": "fab-req-62",
+      "sessionId": "fab-sess-6",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-62"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n06c",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {"cache_creation_input_tokens": 0, "cache_read_input_tokens": null, "input_tokens": 3, "output_tokens": 4}
+      },
+      "requestId": "fab-req-63",
+      "sessionId": "fab-sess-6",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-63"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n06d",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {"cache_creation_input_tokens": 0, "cache_read_input_tokens": 0, "input_tokens": 3, "output_tokens": -1}
+      },
+      "requestId": "fab-req-64",
+      "sessionId": "fab-sess-6",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-64"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n06e",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {"cache_creation_input_tokens": 0, "cache_read_input_tokens": 0, "input_tokens": 2.5, "output_tokens": 4}
+      },
+      "requestId": "fab-req-65",
+      "sessionId": "fab-sess-6",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-65"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n06r1",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 1,
+          "output_tokens": 10,
+          "output_tokens_details": {"thinking_tokens": 25}
+        }
+      },
+      "requestId": "fab-req-66",
+      "sessionId": "fab-sess-6",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-66"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n06r2",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 1,
+          "output_tokens": 10,
+          "output_tokens_details": {"thinking_tokens": 4}
+        }
+      },
+      "requestId": "fab-req-67",
+      "sessionId": "fab-sess-6",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-67"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n06d1",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {"cache_creation_input_tokens": 0, "cache_read_input_tokens": 0, "input_tokens": 0, "output_tokens": 0}
+      },
+      "requestId": "fab-req-68",
+      "sessionId": "fab-sess-6",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-68"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n06d2",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {}
+      },
+      "requestId": "fab-req-69",
+      "sessionId": "fab-sess-6",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-69"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n06d3",
+        "model": "<synthetic>",
+        "role": "assistant",
+        "usage": {"cache_creation_input_tokens": 0, "cache_read_input_tokens": 0, "input_tokens": 5, "output_tokens": 5}
+      },
+      "requestId": "fab-req-70",
+      "sessionId": "fab-sess-6",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-70"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n06d4",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {"cache_creation_input_tokens": 0, "cache_read_input_tokens": 0, "input_tokens": 5, "output_tokens": 5}
+      },
+      "requestId": "fab-req-71",
+      "sessionId": "fab-sess-6",
+      "timestamp": "2026-10-12T12:00:00.000Z",
+      "type": "user",
+      "uuid": "fab-uuid-71"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n06d5",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {"cache_creation_input_tokens": 0, "cache_read_input_tokens": 0, "input_tokens": 5, "output_tokens": 5}
+      },
+      "requestId": "fab-req-72",
+      "sessionId": "fab-sess-6",
+      "timestamp": "not-a-timestamp",
+      "type": "assistant",
+      "uuid": "fab-uuid-72"
+    }
+  ]
+}

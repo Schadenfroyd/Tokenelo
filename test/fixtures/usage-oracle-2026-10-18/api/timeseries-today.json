@@ -1,0 +1,192 @@
+{
+  "bucket": "hour",
+  "range": "today",
+  "generatedAt": 1792337400000,
+  "timeBasis": {
+    "startMs": 1792281600000,
+    "asOfMs": 1792337400000,
+    "endInclusive": true,
+    "timestampBasis": "recorded-timestamps",
+    "excludedFutureEvents": 1,
+    "excludedFutureActivity": 1
+  },
+  "priceQualityCounts": true,
+  "points": [
+    {
+      "t": 1792281600000,
+      "apiEquivUsd": 0.00108,
+      "tokens": 108,
+      "totalTokens": 108,
+      "bySource": {
+        "claude": 0.00108
+      },
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "priceEvidence": {
+        "version": 1,
+        "events": 1,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "countQuality": "complete"
+    },
+    {
+      "t": 1792303200000,
+      "apiEquivUsd": 0,
+      "tokens": 44,
+      "totalTokens": 44,
+      "bySource": {
+        "claude": 0
+      },
+      "unpricedEvents": 1,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "UNPRICED",
+      "priceEvidence": {
+        "version": 1,
+        "events": 1,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "countQuality": "complete"
+    },
+    {
+      "t": 1792314000000,
+      "apiEquivUsd": 0.0185,
+      "tokens": 2760,
+      "totalTokens": 2760,
+      "bySource": {
+        "claude": 0.0185
+      },
+      "unpricedEvents": 2,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "UNPRICED",
+      "priceEvidence": {
+        "version": 1,
+        "events": 5,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "countQuality": "incomplete"
+    },
+    {
+      "t": 1792317600000,
+      "apiEquivUsd": 0.0165,
+      "tokens": 1210,
+      "totalTokens": 1210,
+      "bySource": {
+        "claude": 0.0165
+      },
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "priceEvidence": {
+        "version": 1,
+        "events": 1,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "countQuality": "complete"
+    },
+    {
+      "t": 1792324800000,
+      "apiEquivUsd": 0.0205,
+      "tokens": 2800,
+      "totalTokens": 6800,
+      "bySource": {
+        "codex": 0.0205
+      },
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "priceEvidence": {
+        "version": 1,
+        "events": 1,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "countQuality": "complete"
+    },
+    {
+      "t": 1792328400000,
+      "apiEquivUsd": 0,
+      "tokens": 1500,
+      "totalTokens": 1500,
+      "bySource": {
+        "ollama-proxy": 0
+      },
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "priceEvidence": {
+        "version": 1,
+        "events": 1,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "countQuality": "complete"
+    },
+    {
+      "t": 1792332000000,
+      "apiEquivUsd": 0.0675,
+      "tokens": 3400,
+      "totalTokens": 18400,
+      "bySource": {
+        "claude": 0.0675
+      },
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "priceEvidence": {
+        "version": 1,
+        "events": 1,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "countQuality": "complete"
+    },
+    {
+      "t": 1792335600000,
+      "apiEquivUsd": 0.05469,
+      "tokens": 4964,
+      "totalTokens": 16964,
+      "bySource": {
+        "claude": 0.05469
+      },
+      "unpricedEvents": 1,
+      "estimatedPriceEvents": 1,
+      "priceStatus": "UNPRICED",
+      "priceEvidence": {
+        "version": 1,
+        "events": 4,
+        "invalidAmountEvents": 0,
+        "unknownStatusEvents": 0,
+        "statusAmountConflictEvents": 0,
+        "issuesEvents": 0,
+        "aggregateAmountInvalid": false
+      },
+      "countQuality": "complete"
+    }
+  ]
+}

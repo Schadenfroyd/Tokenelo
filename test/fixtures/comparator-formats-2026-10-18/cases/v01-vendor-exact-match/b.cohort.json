@@ -1,0 +1,41 @@
+{
+  "completeness": "complete",
+  "dropped": [],
+  "format": "tokenelo/comparator-cohort@v1",
+  "label": "fab-ccusage-v01",
+  "range": null,
+  "records": [
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {"origin": "reported", "presence": "measured", "value": 30},
+        "cache_write_1h": {"presence": "missing", "reason": "source-does-not-split-ttl", "value": null},
+        "cache_write_5m": {"presence": "missing", "reason": "source-does-not-split-ttl", "value": null},
+        "cache_write_total": {"origin": "reported", "presence": "measured", "value": 10},
+        "cache_write_unassigned": {"presence": "missing", "reason": "source-does-not-split-ttl", "value": null},
+        "input_fresh": {"origin": "reported", "presence": "measured", "value": 2},
+        "output": {"origin": "reported", "presence": "measured", "value": 11},
+        "reasoning": {"presence": "missing", "reason": "source-does-not-report", "value": null}
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-10-12", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": null, "lines_observed": null, "members": null, "members_complete": null, "sessions_observed": null},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "vendor-day", "iteration_count": null, "key": "2026-10-12", "request_id_present": null, "request_key": null},
+      "scope": "day",
+      "source": {"family": "vendor", "instance": "fab-ccusage-v01", "kind": "ccusage-daily", "tool_version": null},
+      "source_total": {"origin": "reported", "presence": "measured", "value": 53},
+      "time": null,
+      "total": {
+        "measured_subtotal": 53,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 53
+      }
+    }
+  ],
+  "scope": "day",
+  "source": {"family": "vendor", "instance": "fab-ccusage-v01", "kind": "ccusage-daily", "tool_version": null},
+  "timezone": "-06:00"
+}

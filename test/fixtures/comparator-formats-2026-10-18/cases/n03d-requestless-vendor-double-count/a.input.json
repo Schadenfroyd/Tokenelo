@@ -1,0 +1,75 @@
+{
+  "kind": "claude-native-lines",
+  "lines": [
+    {
+      "message": {
+        "id": "fab-msg-n03a",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {
+          "cache_creation": {"ephemeral_1h_input_tokens": 0, "ephemeral_5m_input_tokens": 3},
+          "cache_creation_input_tokens": 3,
+          "cache_read_input_tokens": 5,
+          "input_tokens": 2,
+          "output_tokens": 7
+        }
+      },
+      "sessionId": "fab-sess-3",
+      "timestamp": "2026-07-21T05:59:59.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-31"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n03a",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {
+          "cache_creation": {"ephemeral_1h_input_tokens": 0, "ephemeral_5m_input_tokens": 3},
+          "cache_creation_input_tokens": 3,
+          "cache_read_input_tokens": 5,
+          "input_tokens": 2,
+          "output_tokens": 7
+        }
+      },
+      "sessionId": "fab-sess-3",
+      "timestamp": "2026-07-21T06:00:01.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-32"
+    },
+    {
+      "message": {
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {
+          "cache_creation": {"ephemeral_1h_input_tokens": 0, "ephemeral_5m_input_tokens": 0},
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 1,
+          "output_tokens": 1
+        }
+      },
+      "sessionId": "fab-sess-3",
+      "timestamp": "2026-07-21T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-33"
+    },
+    {
+      "message": {
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {
+          "cache_creation": {"ephemeral_1h_input_tokens": 0, "ephemeral_5m_input_tokens": 0},
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 1,
+          "output_tokens": 1
+        }
+      },
+      "sessionId": "fab-sess-3",
+      "timestamp": "2026-07-21T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-33"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"id": "msg_82ab076defa6ddbaefb22f48", "type": "message", "role": "assistant", "model": "gemma4:26b", "content": [{"type": "thinking", "thinking": "[redacted]"}], "stop_reason": "max_tokens", "usage": {"input_tokens": 5, "cache_read_input_tokens": 13, "output_tokens": 8}}

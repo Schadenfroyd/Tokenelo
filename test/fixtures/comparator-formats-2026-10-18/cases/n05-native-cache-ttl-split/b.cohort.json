@@ -1,0 +1,154 @@
+{
+  "completeness": "partial",
+  "dropped": [],
+  "format": "tokenelo/comparator-cohort@v1",
+  "label": "fab-native-n05",
+  "range": null,
+  "records": [
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {"origin": "reported", "presence": "measured_zero", "value": 0},
+        "cache_write_1h": {"presence": "missing", "reason": "ttl-not-reported", "value": null},
+        "cache_write_5m": {"presence": "missing", "reason": "ttl-not-reported", "value": null},
+        "cache_write_total": {"origin": "reported", "presence": "measured", "value": 100},
+        "cache_write_unassigned": {"origin": "derived", "presence": "measured", "value": 100},
+        "input_fresh": {"origin": "reported", "presence": "measured", "value": 1},
+        "output": {"origin": "reported", "presence": "measured", "value": 1},
+        "reasoning": {"presence": "missing", "reason": "source-does-not-report", "value": null}
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-10-12", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": 1, "lines_observed": 1, "members": null, "members_complete": null, "sessions_observed": 1},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "message-id", "iteration_count": 1, "key": "claude:fab-msg-n05a", "request_id_present": true, "request_key": "fab-req-51"},
+      "scope": "message",
+      "source": {"family": "native", "instance": "fab-native-n05", "kind": "claude-native-lines", "tool_version": null},
+      "time": {"basis": "winning-snapshot", "utc_ms": 1791806400000},
+      "total": {
+        "measured_subtotal": 102,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 102
+      }
+    },
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {"origin": "reported", "presence": "measured_zero", "value": 0},
+        "cache_write_1h": {"origin": "reported", "presence": "measured", "value": 40},
+        "cache_write_5m": {"origin": "reported", "presence": "measured", "value": 60},
+        "cache_write_total": {"origin": "reported", "presence": "measured", "value": 100},
+        "cache_write_unassigned": {"origin": "derived", "presence": "measured_zero", "value": 0},
+        "input_fresh": {"origin": "reported", "presence": "measured", "value": 1},
+        "output": {"origin": "reported", "presence": "measured", "value": 1},
+        "reasoning": {"presence": "missing", "reason": "source-does-not-report", "value": null}
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-10-12", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": 1, "lines_observed": 1, "members": null, "members_complete": null, "sessions_observed": 1},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "message-id", "iteration_count": 1, "key": "claude:fab-msg-n05b", "request_id_present": true, "request_key": "fab-req-52"},
+      "scope": "message",
+      "source": {"family": "native", "instance": "fab-native-n05", "kind": "claude-native-lines", "tool_version": null},
+      "time": {"basis": "winning-snapshot", "utc_ms": 1791806400000},
+      "total": {
+        "measured_subtotal": 102,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 102
+      }
+    },
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {"origin": "reported", "presence": "measured_zero", "value": 0},
+        "cache_write_1h": {"presence": "missing", "reason": "ttl-not-reported", "value": null},
+        "cache_write_5m": {"origin": "reported", "presence": "measured", "value": 60},
+        "cache_write_total": {"origin": "reported", "presence": "measured", "value": 100},
+        "cache_write_unassigned": {"origin": "derived", "presence": "measured", "value": 40},
+        "input_fresh": {"origin": "reported", "presence": "measured", "value": 1},
+        "output": {"origin": "reported", "presence": "measured", "value": 1},
+        "reasoning": {"presence": "missing", "reason": "source-does-not-report", "value": null}
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-10-12", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": 1, "lines_observed": 1, "members": null, "members_complete": null, "sessions_observed": 1},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "message-id", "iteration_count": 1, "key": "claude:fab-msg-n05c", "request_id_present": true, "request_key": "fab-req-53"},
+      "scope": "message",
+      "source": {"family": "native", "instance": "fab-native-n05", "kind": "claude-native-lines", "tool_version": null},
+      "time": {"basis": "winning-snapshot", "utc_ms": 1791806400000},
+      "total": {
+        "measured_subtotal": 102,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 102
+      }
+    },
+    {
+      "completeness": "partial",
+      "components": {
+        "cache_read": {"origin": "reported", "presence": "measured_zero", "value": 0},
+        "cache_write_1h": {"origin": "reported", "presence": "measured", "value": 40},
+        "cache_write_5m": {"origin": "reported", "presence": "measured", "value": 60},
+        "cache_write_total": {"presence": "missing", "reason": "absent-in-source", "value": null},
+        "cache_write_unassigned": {"presence": "missing", "reason": "flat-total-unresolved", "value": null},
+        "input_fresh": {"origin": "reported", "presence": "measured", "value": 1},
+        "output": {"origin": "reported", "presence": "measured", "value": 1},
+        "reasoning": {"presence": "missing", "reason": "source-does-not-report", "value": null}
+      },
+      "count_quality": "incomplete",
+      "day": {"date": "2026-10-12", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": 1, "lines_observed": 1, "members": null, "members_complete": null, "sessions_observed": 1},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "message-id", "iteration_count": 1, "key": "claude:fab-msg-n05d", "request_id_present": true, "request_key": "fab-req-54"},
+      "scope": "message",
+      "source": {"family": "native", "instance": "fab-native-n05", "kind": "claude-native-lines", "tool_version": null},
+      "time": {"basis": "winning-snapshot", "utc_ms": 1791806400000},
+      "total": {
+        "measured_subtotal": 102,
+        "presence": "missing",
+        "reason": "component-unresolved",
+        "unresolved": ["cache_write_total"],
+        "value": null
+      }
+    },
+    {
+      "completeness": "partial",
+      "components": {
+        "cache_read": {"origin": "reported", "presence": "measured_zero", "value": 0},
+        "cache_write_1h": {"origin": "reported", "presence": "measured", "value": 40},
+        "cache_write_5m": {"origin": "reported", "presence": "measured", "value": 30},
+        "cache_write_total": {"presence": "missing", "reason": "cache-split-exceeds-total", "value": null},
+        "cache_write_unassigned": {"presence": "missing", "reason": "cache-split-exceeds-total", "value": null},
+        "input_fresh": {"origin": "reported", "presence": "measured", "value": 1},
+        "output": {"origin": "reported", "presence": "measured", "value": 1},
+        "reasoning": {"presence": "missing", "reason": "source-does-not-report", "value": null}
+      },
+      "count_quality": "conflict",
+      "day": {"date": "2026-10-12", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": 1, "lines_observed": 1, "members": null, "members_complete": null, "sessions_observed": 1},
+      "flags": ["cache-split-exceeds-total"],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "message-id", "iteration_count": 1, "key": "claude:fab-msg-n05e", "request_id_present": true, "request_key": "fab-req-55"},
+      "scope": "message",
+      "source": {"family": "native", "instance": "fab-native-n05", "kind": "claude-native-lines", "tool_version": null},
+      "time": {"basis": "winning-snapshot", "utc_ms": 1791806400000},
+      "total": {
+        "measured_subtotal": 72,
+        "presence": "missing",
+        "reason": "component-unresolved",
+        "unresolved": ["cache_write_total"],
+        "value": null
+      }
+    }
+  ],
+  "scope": "message",
+  "source": {"family": "native", "instance": "fab-native-n05", "kind": "claude-native-lines", "tool_version": null},
+  "timezone": "-06:00"
+}

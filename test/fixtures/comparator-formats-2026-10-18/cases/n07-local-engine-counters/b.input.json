@@ -1,0 +1,49 @@
+{
+  "events": [
+    {
+      "id": "fab-ollama-01",
+      "snapshots": [
+        {"eval_count": 0, "prompt_eval_cached_count": 0, "prompt_eval_count": 17}
+      ],
+      "ts": 1791806400000
+    },
+    {
+      "id": "fab-ollama-02",
+      "snapshots": [
+        {"eval_count": 4, "prompt_eval_count": 21}
+      ],
+      "ts": 1791806400000
+    },
+    {
+      "id": "fab-ollama-03",
+      "snapshots": [
+        {"eval_count": 4, "prompt_eval_cached_count": -1, "prompt_eval_count": 21}
+      ],
+      "ts": 1791806400000
+    },
+    {
+      "id": "fab-ollama-04",
+      "snapshots": [
+        {"eval_count": 6, "prompt_eval_cached_count": 8, "prompt_eval_count": 30},
+        {"eval_count": 6, "prompt_eval_cached_count": 8, "prompt_eval_count": 30}
+      ],
+      "ts": 1791806400000
+    },
+    {
+      "id": "fab-ollama-05",
+      "snapshots": [
+        {"eval_count": 2, "prompt_eval_cached_count": 15, "prompt_eval_count": 10}
+      ],
+      "ts": 1791806400000
+    },
+    {
+      "id": "fab-ollama-06",
+      "snapshots": [
+        {"eval_count": 2, "prompt_eval_cached_count": 0, "prompt_eval_count": 10},
+        {"eval_count": 5, "prompt_eval_cached_count": 7, "prompt_eval_count": 19}
+      ],
+      "ts": 1791806400000
+    }
+  ],
+  "kind": "local-engine-counters"
+}

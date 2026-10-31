@@ -1,0 +1,17 @@
+{
+  "$comment": "Typecheck-only project for the tray renderer (src/tray/renderer/**), which runs inside Chromium and needs the DOM lib — deliberately excluded from tsconfig.json so the DOM globals never leak into the Node/Electron-main-process code (src/daemon, src/core, src/tray/main.ts, src/tray/preload.ts, etc). This project has noEmit: true because esbuild does the actual bundling (see scripts/build-tray.mjs, package.json's build:tray script) — run `tsc -p tsconfig.tray.json` (or add it to a combined typecheck script) purely to catch type errors in the renderer.",
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "rootDir": "src/tray/renderer",
+    "noEmit": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src/tray/renderer/**/*"]
+}
