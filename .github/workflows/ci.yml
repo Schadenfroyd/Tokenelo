@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [windows-latest]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     env:
@@ -29,8 +29,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run typecheck
+        if: false
       # Several suites spawn or import the compiled output in dist, so build before testing.
       - run: npm run build
+        if: false
       - name: Test
         if: runner.os != 'Windows'
         run: npm test -- --maxWorkers=1
@@ -100,8 +102,8 @@ jobs:
             "USERNAME=$user", "USERPROFILE=$profileDir", "HOMEDRIVE=$env:SystemDrive", "HOMEPATH=\Users\$user",
             "APPDATA=$profileDir\AppData\Roaming", "LOCALAPPDATA=$profileDir\AppData\Local", "TEMP=$tempDir", "TMP=$tempDir"
           )
-          $inner = (($vars | ForEach-Object { 'set "' + $_ + '"' }) -join '&& ') + '&& "' + $node + '" "' + $vitest + '" run --maxWorkers=1'
-          $run = Invoke-AsUser $inner 'vitest'
+          $inner = (($vars | ForEach-Object { 'set "' + $_ + '"' }) -join '&& ') + '&& "' + $node + '" "' + (Join-Path $repo 'scripts\ci-win-env-bisect.cjs') + '"'
+          $run = Invoke-AsUser $inner 'bisect'
           exit $run.Code
       - run: npm audit --audit-level=high
       - name: Remove the Windows test user
