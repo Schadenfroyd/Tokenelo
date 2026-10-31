@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -62,6 +63,13 @@ function syntheticExecutor(output: string, fail = false) {
   return { calls, execFile };
 }
 
+/** The fixed PowerShell script the helper passes with -EncodedCommand, decoded. */
+function decodedAclScript(): string {
+  const { calls, execFile } = syntheticExecutor(aclReadback());
+  expect(restrictToCurrentUserWindows(FILE, { platform: 'win32', systemRoot: 'C:\\Windows', execFile })).toBe(true);
+  return Buffer.from(calls[0]!.args[4]!, 'base64').toString('utf16le');
+}
+
 describe('Windows token ACL verification (synthetic only)', () => {
   it('checks parent privacy before staging and accepts only current-owned, safe directory readback', () => {
     const { calls, execFile } = syntheticExecutor(directoryReadback());
@@ -107,19 +115,22 @@ describe('Windows token ACL verification (synthetic only)', () => {
     expect(script).not.toContain('/reset');
   });
 
-  it('uses no module cmdlets, so the helper never waits on PowerShell module analysis', () => {
-    // Resolving a module cmdlet (a JSON converter, for example) makes PowerShell analyze every module on the machine's
-    // module path. With many modules and no analysis cache, as for a fresh standard user on a hosted CI image, that takes
-    // far longer than the helper's deadline, so the token writer fails closed and never writes the token.
-    const { calls, execFile } = syntheticExecutor(aclReadback());
-    expect(restrictToCurrentUserWindows(FILE, { platform: 'win32', systemRoot: 'C:\\Windows', execFile })).toBe(true);
-    const script = Buffer.from(calls[0]!.args[4]!, 'base64').toString('utf16le');
-    const cmdletLike = script.match(
-      /\b(?:Get|Set|New|Remove|Add|Clear|Copy|Move|Rename|Read|Write|Out|Select|Where|ForEach|Sort|Group|Measure|Compare|Format|Convert|ConvertTo|ConvertFrom|Import|Export|Invoke|Test|Join|Split|Start|Stop|Tee|Update)-[A-Z][A-Za-z]*\b/g,
-    ) ?? [];
+  it('uses no cmdlet-style commands and no pipelines', () => {
+    // A tripwire for the regression that mattered: a module cmdlet in this script ran far past the helper's deadline for a
+    // fresh standard user on a hosted Windows image with no module analysis cache (most likely PowerShell analyzing the
+    // many modules on the machine's module path), so the token writer failed closed and never wrote the token.
+    // It looks at the decoded script with comments and quoted strings removed, for any Verb-Noun name in any letter case
+    // (PowerShell is case-insensitive) and for pipelines. Bare aliases such as `iex` or `dir` cannot be told apart from
+    // other words this way; the Windows-only test below parses the script with PowerShell itself and covers them.
+    const script = decodedAclScript();
+    const code = script.replace(/^\s*#.*$/gm, '').replace(/'(?:[^']|'')*'/g, "''");
+    expect(code).not.toContain('|');
+    const cmdletLike = code.match(/\b[A-Za-z]+-[A-Za-z][A-Za-z0-9]*\b/g) ?? [];
     // The only Verb-Noun name is the function the script defines itself, which resolves without loading a module.
     expect([...new Set(cmdletLike)]).toEqual(['Get-CheckedPrivateDirectory']);
-    expect(script).toContain('function Get-CheckedPrivateDirectory');
+    // Every helper the script calls is defined in it (a typo would otherwise become a command-not-found lookup).
+    const defined = new Set([...script.matchAll(/\bfunction\s+([A-Za-z][\w-]*)/g)].map((match) => match[1]));
+    for (const helper of new Set(code.match(/\bJson[A-Za-z]+\b/g) ?? [])) expect(defined.has(helper), helper).toBe(true);
   });
 
   it('rejects untrusted parent access, owner mismatch, reparse files, extra ACEs, and rights drift', () => {
@@ -237,5 +248,40 @@ describe('Windows token ACL verification (synthetic only)', () => {
     } finally {
       fs.rmSync(home, { recursive: true, force: true });
     }
+  });
+});
+
+describe.skipIf(process.platform !== 'win32')('Windows ACL script command resolution (real Windows PowerShell parser)', () => {
+  it('invokes only functions that the script defines itself', () => {
+    // Parses the decoded script with Windows PowerShell and lists every command it invokes. Anything not defined in the
+    // script (a cmdlet, an alias, a typo) would be resolved at run time and could load or search modules. The probe itself
+    // uses no cmdlets, so it does not depend on module analysis either.
+    const probe = [
+      '$tokens = $null; $errors = $null',
+      '$ast = [System.Management.Automation.Language.Parser]::ParseInput($env:TOKENELO_TEST_SCRIPT, [ref]$tokens, [ref]$errors)',
+      "if ($errors.Count -ne 0) { throw 'the script does not parse' }",
+      '$defined = @{}',
+      'foreach ($node in $ast.FindAll({ param($n) $n -is [System.Management.Automation.Language.FunctionDefinitionAst] }, $true)) { $defined[$node.Name] = $true }',
+      '$invoked = @{}',
+      'foreach ($node in $ast.FindAll({ param($n) $n -is [System.Management.Automation.Language.CommandAst] }, $true)) { $invoked[[string]$node.GetCommandName()] = $true }',
+      "'defined=' + [string]::Join(',', [string[]]$defined.Keys)",
+      "'invoked=' + [string]::Join(',', [string[]]$invoked.Keys)",
+    ].join('\n');
+    const stdout = execFileSync('powershell.exe', [
+      '-NoLogo', '-NoProfile', '-NonInteractive', '-EncodedCommand', Buffer.from(probe, 'utf16le').toString('base64'),
+    ], {
+      env: { ...process.env, TOKENELO_TEST_SCRIPT: decodedAclScript() },
+      encoding: 'utf8',
+      timeout: 20_000,
+      windowsHide: true,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    const names = (key: string): string[] =>
+      (stdout.split(/\r?\n/).find((line) => line.startsWith(`${key}=`)) ?? '').slice(key.length + 1).split(',').filter(Boolean);
+    const defined = names('defined');
+    const invoked = names('invoked');
+    expect(defined).toContain('Get-CheckedPrivateDirectory');
+    expect(invoked.length).toBeGreaterThan(0);
+    expect(invoked.filter((name) => !defined.includes(name))).toEqual([]);
   });
 });
