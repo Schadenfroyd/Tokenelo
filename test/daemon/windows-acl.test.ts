@@ -107,6 +107,21 @@ describe('Windows token ACL verification (synthetic only)', () => {
     expect(script).not.toContain('/reset');
   });
 
+  it('uses no module cmdlets, so the helper never waits on PowerShell module analysis', () => {
+    // Resolving a module cmdlet (a JSON converter, for example) makes PowerShell analyze every module on the machine's
+    // module path. With many modules and no analysis cache, as for a fresh standard user on a hosted CI image, that takes
+    // far longer than the helper's deadline, so the token writer fails closed and never writes the token.
+    const { calls, execFile } = syntheticExecutor(aclReadback());
+    expect(restrictToCurrentUserWindows(FILE, { platform: 'win32', systemRoot: 'C:\\Windows', execFile })).toBe(true);
+    const script = Buffer.from(calls[0]!.args[4]!, 'base64').toString('utf16le');
+    const cmdletLike = script.match(
+      /\b(?:Get|Set|New|Remove|Add|Clear|Copy|Move|Rename|Read|Write|Out|Select|Where|ForEach|Sort|Group|Measure|Compare|Format|Convert|ConvertTo|ConvertFrom|Import|Export|Invoke|Test|Join|Split|Start|Stop|Tee|Update)-[A-Z][A-Za-z]*\b/g,
+    ) ?? [];
+    // The only Verb-Noun name is the function the script defines itself, which resolves without loading a module.
+    expect([...new Set(cmdletLike)]).toEqual(['Get-CheckedPrivateDirectory']);
+    expect(script).toContain('function Get-CheckedPrivateDirectory');
+  });
+
   it('rejects untrusted parent access, owner mismatch, reparse files, extra ACEs, and rights drift', () => {
     const invalidReadbacks = [
       { operation: 'directory' },
