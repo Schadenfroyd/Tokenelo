@@ -1,0 +1,169 @@
+[
+  {
+    "id": "synth-hosted",
+    "match": "^synth-hosted$",
+    "displayName": "synth-hosted (fabricated)",
+    "provider": "anthropic",
+    "local": false,
+    "rates": {
+      "in": 2,
+      "cacheWrite5m": 2.5,
+      "cacheWrite1h": 4,
+      "cacheRead": 0.2,
+      "out": 10
+    },
+    "status": "LIST",
+    "geoMultiplierUs": 1.1,
+    "fast": {
+      "in": 4,
+      "cacheWrite5m": 5,
+      "cacheWrite1h": 8,
+      "cacheRead": 0.4,
+      "out": 20,
+      "status": "LIST"
+    },
+    "ultrafast": {
+      "in": 6,
+      "cacheWrite5m": 7.5,
+      "cacheWrite1h": 12,
+      "cacheRead": 0.6,
+      "out": 30,
+      "status": "ESTIMATE"
+    },
+    "source": "FABRICATED synthetic fixture row; not a vendor price list, not an invoice",
+    "verifiedAt": "2026-09-01"
+  },
+  {
+    "id": "synth-derived",
+    "match": "^synth-derived$",
+    "displayName": "synth-derived (fabricated)",
+    "provider": "openai",
+    "local": false,
+    "rates": {
+      "in": 1,
+      "cacheWrite5m": 1.25,
+      "cacheWrite1h": 2,
+      "cacheRead": 0.1,
+      "out": 5
+    },
+    "status": "LIST",
+    "derivedColumns": [
+      "cacheWrite1h"
+    ],
+    "source": "FABRICATED synthetic fixture row; not a vendor price list, not an invoice",
+    "verifiedAt": "2026-09-01"
+  },
+  {
+    "id": "synth-estimate-row",
+    "match": "^synth-estimate-row$",
+    "displayName": "synth-estimate-row (fabricated)",
+    "provider": "anthropic",
+    "local": false,
+    "rates": {
+      "in": 1,
+      "cacheWrite5m": 1.25,
+      "cacheWrite1h": 2,
+      "cacheRead": 0.1,
+      "out": 5
+    },
+    "status": "ESTIMATE",
+    "source": "FABRICATED synthetic fixture row; not a vendor price list, not an invoice",
+    "verifiedAt": "2026-09-01"
+  },
+  {
+    "id": "synth-long",
+    "match": "^synth-long$",
+    "displayName": "synth-long (fabricated)",
+    "provider": "openai",
+    "local": false,
+    "rates": {
+      "in": 2,
+      "cacheWrite5m": 2.5,
+      "cacheWrite1h": 2.5,
+      "cacheRead": 0.2,
+      "out": 10
+    },
+    "status": "LIST",
+    "derivedColumns": [
+      "cacheWrite1h"
+    ],
+    "longContext": {
+      "in": 4,
+      "cacheWrite5m": 5,
+      "cacheWrite1h": 5,
+      "cacheRead": 0.4,
+      "out": 15,
+      "thresholdInput": 100000
+    },
+    "source": "FABRICATED synthetic fixture row; not a vendor price list, not an invoice",
+    "verifiedAt": "2026-09-01"
+  },
+  {
+    "id": "synth-local-a",
+    "match": "^synth-local-a$",
+    "displayName": "synth-local-a (fabricated)",
+    "provider": "local",
+    "local": true,
+    "rates": {
+      "in": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 0,
+      "out": 0
+    },
+    "status": "LIST",
+    "source": "FABRICATED synthetic fixture row; not a vendor price list, not an invoice",
+    "verifiedAt": "2026-09-01"
+  },
+  {
+    "id": "synth-local-b",
+    "match": "^synth-local-b$",
+    "displayName": "synth-local-b (fabricated)",
+    "provider": "local",
+    "local": true,
+    "rates": {
+      "in": 0,
+      "cacheWrite5m": 0,
+      "cacheWrite1h": 0,
+      "cacheRead": 0,
+      "out": 0
+    },
+    "status": "LIST",
+    "source": "FABRICATED synthetic fixture row; not a vendor price list, not an invoice",
+    "verifiedAt": "2026-09-01"
+  },
+  {
+    "id": "synth-cmp-a",
+    "match": "^synth-cmp-a$",
+    "displayName": "synth-cmp-a (fabricated)",
+    "provider": "anthropic",
+    "local": false,
+    "rates": {
+      "in": 2,
+      "cacheWrite5m": 2.5,
+      "cacheWrite1h": 4,
+      "cacheRead": 0.2,
+      "out": 10
+    },
+    "status": "LIST",
+    "source": "FABRICATED synthetic fixture row; not a vendor price list, not an invoice",
+    "verifiedAt": "2026-09-01"
+  },
+  {
+    "id": "synth-cmp-b",
+    "match": "^synth-cmp-b$",
+    "displayName": "synth-cmp-b (fabricated)",
+    "provider": "openai",
+    "local": false,
+    "rates": {
+      "in": 4,
+      "cacheWrite5m": 5,
+      "cacheWrite1h": 5,
+      "cacheRead": 0.4,
+      "out": 20
+    },
+    "status": "LIST",
+    "source": "FABRICATED synthetic fixture row; not a vendor price list, not an invoice",
+    "verifiedAt": "2026-09-01"
+  }
+]

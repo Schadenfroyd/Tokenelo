@@ -1,0 +1,43 @@
+{
+  "kind": "claude-native-lines",
+  "lines": [
+    {
+      "message": {
+        "id": "fab-msg-n02",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {
+          "cache_creation": {"ephemeral_1h_input_tokens": 0, "ephemeral_5m_input_tokens": 2},
+          "cache_creation_input_tokens": 2,
+          "cache_read_input_tokens": 3,
+          "input_tokens": 100,
+          "output_tokens": 1
+        }
+      },
+      "requestId": "fab-req-3",
+      "sessionId": "fab-sess-1",
+      "timestamp": "2026-07-21T12:00:00.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-3"
+    },
+    {
+      "message": {
+        "id": "fab-msg-n02",
+        "model": "model-b",
+        "role": "assistant",
+        "usage": {
+          "cache_creation": {"ephemeral_1h_input_tokens": 0, "ephemeral_5m_input_tokens": 5},
+          "cache_creation_input_tokens": 5,
+          "cache_read_input_tokens": 2,
+          "input_tokens": 1,
+          "output_tokens": 10
+        }
+      },
+      "requestId": "fab-req-3",
+      "sessionId": "fab-sess-1",
+      "timestamp": "2026-07-21T12:00:05.000Z",
+      "type": "assistant",
+      "uuid": "fab-uuid-4"
+    }
+  ]
+}

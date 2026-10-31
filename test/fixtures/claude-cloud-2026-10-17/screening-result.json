@@ -1,0 +1,17 @@
+{
+  "scope": "fabricated structure-only F1 fixture files; no production or captured records",
+  "publicLeakCheck": {
+    "files": 2,
+    "failures": 0,
+    "publicationAuthorized": false
+  },
+  "gitleaks": {
+    "findings": 0,
+    "redacted": true
+  },
+  "screenedAtUtc": "2026-10-17T23:15:52.310548+00:00",
+  "limitations": [
+    "A clean private-marker scan is not publication approval.",
+    "The fixtures are fabricated schema scenarios, not regression test execution or alpha acceptance."
+  ]
+}

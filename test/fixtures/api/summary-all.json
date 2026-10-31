@@ -1,0 +1,275 @@
+{
+  "host": "M4a",
+  "range": "all",
+  "generatedAt": 1790466276688,
+  "totals": {
+    "events": 15156,
+    "tokens": {
+      "inputFresh": 9261720,
+      "cacheWrite5m": 216000,
+      "cacheWrite1h": 6120000,
+      "cacheRead": 39600000,
+      "output": 1773000,
+      "reasoning": 270000
+    },
+    "apiEquivUsd": 3317.76,
+    "unpricedEvents": 54,
+    "estimatedPriceEvents": 0,
+    "priceStatus": "UNPRICED"
+  },
+  "bySource": {
+    "claude": {
+      "events": 12600,
+      "tokens": {
+        "inputFresh": 7200000,
+        "cacheWrite5m": 216000,
+        "cacheWrite1h": 6120000,
+        "cacheRead": 37800000,
+        "output": 1440000,
+        "reasoning": 270000
+      },
+      "apiEquivUsd": 2700
+    },
+    "codex": {
+      "events": 2160,
+      "tokens": {
+        "inputFresh": 1839600,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 1800000,
+        "output": 277200,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 540
+    },
+    "ollama-proxy": {
+      "events": 324,
+      "tokens": {
+        "inputFresh": 216000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 54000,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 0
+    },
+    "ollama-log": {
+      "events": 0,
+      "tokens": {
+        "inputFresh": 0,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 0,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 0
+    },
+    "qwen-code": {
+      "events": 0,
+      "tokens": {
+        "inputFresh": 0,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 0,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 0
+    },
+    "bench": {
+      "events": 72,
+      "tokens": {
+        "inputFresh": 6120,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 1800,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 77.76
+    }
+  },
+  "byModel": [
+    {
+      "model": "claude-sonnet-5",
+      "displayName": "Claude Sonnet 5",
+      "provider": "anthropic",
+      "source": "claude",
+      "thinking": "thinking",
+      "events": 9000,
+      "tokens": {
+        "inputFresh": 5400000,
+        "cacheWrite5m": 216000,
+        "cacheWrite1h": 5400000,
+        "cacheRead": 34200000,
+        "output": 1080000,
+        "reasoning": 270000
+      },
+      "apiEquivUsd": 2161.7999999999997,
+      "priceStatus": "LIST"
+    },
+    {
+      "model": "claude-opus-5-5",
+      "displayName": "Claude Opus 5.5",
+      "provider": "anthropic",
+      "source": "claude",
+      "thinking": "non-thinking",
+      "events": 3600,
+      "tokens": {
+        "inputFresh": 1800000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 720000,
+        "cacheRead": 3600000,
+        "output": 360000,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 538.1999999999999,
+      "priceStatus": "ESTIMATE"
+    },
+    {
+      "model": "gpt-6-sol",
+      "displayName": "GPT-6 Sol",
+      "provider": "openai",
+      "source": "codex",
+      "thinking": "thinking",
+      "events": 2106,
+      "tokens": {
+        "inputFresh": 1800000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 1800000,
+        "output": 270000,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 540,
+      "priceStatus": "LIST"
+    },
+    {
+      "model": "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL",
+      "displayName": "Qwen3.8 27B (local)",
+      "provider": "local",
+      "source": "ollama-proxy",
+      "thinking": "unknown",
+      "events": 324,
+      "tokens": {
+        "inputFresh": 216000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 54000,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 0,
+      "priceStatus": "LIST"
+    },
+    {
+      "model": "codex-auto-review",
+      "displayName": "codex-auto-review",
+      "provider": "unknown",
+      "source": "codex",
+      "thinking": "unknown",
+      "events": 54,
+      "tokens": {
+        "inputFresh": 39600,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 7200,
+        "reasoning": 0
+      },
+      "apiEquivUsd": null,
+      "priceStatus": "UNPRICED"
+    },
+    {
+      "model": "benchmark-fixture",
+      "displayName": "Benchmark fixture",
+      "provider": "unknown",
+      "source": "bench",
+      "thinking": "unknown",
+      "events": 72,
+      "tokens": {
+        "inputFresh": 6120,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 1800,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 77.76,
+      "priceStatus": "LIST"
+    }
+  ],
+  "local": {
+    "captured": true,
+    "valueVsClaude": {
+      "usd": null,
+      "comparator": "claude-sonnet-5",
+      "status": "NONE",
+      "unratedEvents": 0
+    },
+    "valueVsGpt": {
+      "usd": null,
+      "comparator": "gpt-6-sol",
+      "status": "NONE",
+      "unratedEvents": 0
+    },
+    "energy": {
+      "kwh": 7.56,
+      "usd": 2.34,
+      "status": "ESTIMATE"
+    },
+    "netSavingsVsClaude": null,
+    "netSavingsVsClaudeStatus": "NONE",
+    "netSavingsVsGpt": null,
+    "netSavingsVsGptStatus": "NONE",
+    "decodeTokPerSec": 38.4
+  },
+  "subscriptions": [
+    {
+      "account": "founder@example.com (Claude Max)",
+      "kind": "claude",
+      "planName": "Max",
+      "billedUsd": null,
+      "apiEquivUsd": 2700,
+      "leverage": null,
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "partial": false,
+      "costBasis": {
+        "state": "period-unavailable",
+        "monthlyUsd": 200,
+        "rangeStartMs": null,
+        "rangeEndMs": 1790466276688,
+        "prorationDays": 30,
+        "origin": "configured-plan-price",
+        "invoiceVerified": false
+      }
+    },
+    {
+      "account": "founder@example.com (Codex Plus)",
+      "kind": "codex",
+      "billedUsd": null,
+      "apiEquivUsd": 540,
+      "leverage": null,
+      "unpricedEvents": null,
+      "estimatedPriceEvents": null,
+      "priceStatus": null,
+      "partial": null
+    }
+  ],
+  "activeTime": {
+    "agentMs": 97200000,
+    "wallMs": 129600000
+  },
+  "timeBasis": {
+    "startMs": null,
+    "asOfMs": 1790466276688,
+    "endInclusive": true,
+    "timestampBasis": "recorded-timestamps",
+    "excludedFutureEvents": 0,
+    "excludedFutureActivity": 0
+  }
+}

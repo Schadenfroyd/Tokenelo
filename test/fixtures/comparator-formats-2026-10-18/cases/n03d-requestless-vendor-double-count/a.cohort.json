@@ -1,0 +1,80 @@
+{
+  "completeness": "complete",
+  "dropped": [],
+  "format": "tokenelo/comparator-cohort@v1",
+  "label": "fab-native-n03d",
+  "range": null,
+  "records": [
+    {
+      "completeness": "complete",
+      "components": {
+        "cache_read": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 5},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 5
+        },
+        "cache_write_1h": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 0},
+          "origin": "aggregated",
+          "presence": "measured_zero",
+          "value": 0
+        },
+        "cache_write_5m": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 3},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 3
+        },
+        "cache_write_total": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 3},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 3
+        },
+        "cache_write_unassigned": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 0},
+          "origin": "aggregated",
+          "presence": "measured_zero",
+          "value": 0
+        },
+        "input_fresh": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 3},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 3
+        },
+        "output": {
+          "coverage": {"parts": 2, "resolved": 2, "resolved_subtotal": 8},
+          "origin": "aggregated",
+          "presence": "measured",
+          "value": 8
+        },
+        "reasoning": {
+          "coverage": {"parts": 2, "resolved": 0, "resolved_subtotal": 0},
+          "presence": "missing",
+          "reason": "partial-members",
+          "value": null
+        }
+      },
+      "count_quality": "complete",
+      "day": {"date": "2026-07-21", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": null, "lines_observed": null, "members": 2, "members_complete": 2, "sessions_observed": null},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "day-rollup", "iteration_count": null, "key": "2026-07-21", "request_id_present": null, "request_key": null},
+      "scope": "day",
+      "source": {"family": "native", "instance": "fab-native-n03d", "kind": "claude-native-lines", "tool_version": null},
+      "time": null,
+      "total": {
+        "measured_subtotal": 19,
+        "presence": "measured",
+        "unresolved": [],
+        "value": 19
+      }
+    }
+  ],
+  "scope": "day",
+  "source": {"family": "native", "instance": "fab-native-n03d", "kind": "claude-native-lines", "tool_version": null},
+  "timezone": "-06:00"
+}

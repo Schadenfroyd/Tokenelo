@@ -1,0 +1,11 @@
+{
+  "kind": "tokenelo-event-projection",
+  "projection_policy": 7,
+  "rows": [
+    {"cache_read": 20, "cache_write_1h": 3, "cache_write_5m": 2, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-v04a", "input_fresh": 10, "output": 5, "reasoning": 0, "source": "claude", "ts": 1791806400000},
+    {"cache_read": 6, "cache_write_1h": 0, "cache_write_5m": 0, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-v04b", "input_fresh": 4, "output": 1, "reasoning": 0, "source": "claude", "ts": 1791810000000},
+    {"cache_read": 0, "cache_write_1h": 0, "cache_write_5m": 50, "cache_write_assumed_1h": null, "cache_write_unassigned": null, "count_quality": null, "id": "claude:fab-msg-v04c", "input_fresh": 100, "output": 9, "reasoning": 0, "source": "claude", "ts": 1791813600000},
+    {"cache_read": 0, "cache_write_1h": 0, "cache_write_5m": 0, "cache_write_assumed_1h": null, "cache_write_unassigned": 0, "count_quality": "complete", "id": "claude:fab-msg-v04d", "input_fresh": 1, "output": 1, "reasoning": 0, "source": "claude", "ts": 1791892800000}
+  ],
+  "schema_version": 10
+}

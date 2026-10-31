@@ -1,0 +1,41 @@
+{
+  "completeness": "partial",
+  "dropped": [],
+  "format": "tokenelo/comparator-cohort@v1",
+  "label": "fab-ledger-n02",
+  "range": null,
+  "records": [
+    {
+      "completeness": "partial",
+      "components": {
+        "cache_read": {"inspection_value": 3, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+        "cache_write_1h": {"inspection_value": 0, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+        "cache_write_5m": {"inspection_value": 5, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+        "cache_write_total": {"presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+        "cache_write_unassigned": {"inspection_value": 0, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+        "input_fresh": {"inspection_value": 100, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+        "output": {"inspection_value": 10, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null},
+        "reasoning": {"inspection_value": 0, "presence": "missing", "reason": "row-count-quality-not-complete", "value": null}
+      },
+      "count_quality": "conflict",
+      "day": {"date": "2026-07-21", "timezone": "-06:00"},
+      "evidence": {"distinct_snapshots": null, "lines_observed": null, "members": null, "members_complete": null, "sessions_observed": null},
+      "flags": [],
+      "format": "tokenelo/comparator-count-record@v1",
+      "identity": {"basis": "ledger-id", "iteration_count": null, "key": "claude:fab-msg-n02", "request_id_present": null, "request_key": null},
+      "scope": "message",
+      "source": {"family": "product", "instance": "fab-ledger-n02", "kind": "tokenelo-event-projection", "tool_version": null},
+      "time": {"basis": "ledger-ts", "utc_ms": 1784635205000},
+      "total": {
+        "measured_subtotal": 0,
+        "presence": "missing",
+        "reason": "component-unresolved",
+        "unresolved": ["input_fresh", "cache_write_total", "cache_read", "output"],
+        "value": null
+      }
+    }
+  ],
+  "scope": "message",
+  "source": {"family": "product", "instance": "fab-ledger-n02", "kind": "tokenelo-event-projection", "tool_version": null},
+  "timezone": "-06:00"
+}

@@ -1,0 +1,34 @@
+{
+  "host": "M4a",
+  "generatedAt": 1790466276688,
+  "processes": [
+    {
+      "pid": 4821,
+      "ppid": 1,
+      "startedAt": 1790463876688,
+      "exe": "/opt/homebrew/bin/claude",
+      "host": "M4a",
+      "tool": "claude-code-cli",
+      "subcommand": "-p"
+    },
+    {
+      "pid": 9012,
+      "ppid": 1,
+      "startedAt": 1790465556688,
+      "exe": "/Users/example/.local/bin/codex",
+      "host": "M4a",
+      "tool": "codex-cli",
+      "subcommand": "exec"
+    },
+    {
+      "pid": 501,
+      "ppid": 1,
+      "startedAt": 1790437476688,
+      "exe": "/opt/homebrew/bin/ollama",
+      "host": "M4a",
+      "tool": "ollama",
+      "subcommand": "serve",
+      "cwd": "/Users/example"
+    }
+  ]
+}

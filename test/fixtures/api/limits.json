@@ -1,0 +1,159 @@
+{
+  "snapshots": [
+    {
+      "source": "codex",
+      "limitId": "codex",
+      "host": "A2000",
+      "account": "example (Codex Plus)",
+      "capturedAt": 1790465976688,
+      "planType": "plus",
+      "windows": [
+        {
+          "id": "primary",
+          "usedPercent": 42.5,
+          "windowMinutes": 300,
+          "resetsAt": 1790477076688
+        },
+        {
+          "id": "secondary",
+          "usedPercent": 71.2,
+          "windowMinutes": 10080,
+          "resetsAt": 1790811876688
+        }
+      ],
+      "credits": {
+        "hasCredits": true,
+        "unlimited": false,
+        "balance": "12.40"
+      },
+      "estimate": false
+    },
+    {
+      "source": "claude-desktop",
+      "host": "M4a",
+      "account": "a1b2c3d4e5f60718",
+      "capturedAt": 1790466186688,
+      "windows": [
+        {
+          "id": "five_hour",
+          "usedPercent": 58
+        },
+        {
+          "id": "seven_day",
+          "usedPercent": 61
+        }
+      ],
+      "estimate": false
+    },
+    {
+      "source": "claude-block-estimate",
+      "host": "M4a",
+      "account": "founder@example.com (Claude Max)",
+      "capturedAt": 1790466216688,
+      "windows": [
+        {
+          "id": "five_hour",
+          "usedPercent": 63.8,
+          "windowMinutes": 300,
+          "resetsAt": 1790472036688
+        },
+        {
+          "id": "block_estimate",
+          "usedPercent": null,
+          "startedAt": 1790454756688,
+          "tokens": 182400,
+          "apiEquivUsd": 34.2,
+          "burnTokensPerMin": 950,
+          "projectedTokens": 251000,
+          "projectedUsd": 47.05
+        }
+      ],
+      "estimate": true,
+      "contributors": [
+        {
+          "host": "M4a",
+          "model": "claude-sonnet-5",
+          "provider": "anthropic",
+          "servingRoutes": [
+            {
+              "kind": "unrecorded"
+            }
+          ],
+          "priceVersion": "FILED-EXAMPLE-v1",
+          "tsSource": "line",
+          "firstEventAt": 1790460000000,
+          "lastEventAt": 1790460000000,
+          "events": 1,
+          "tokens": {
+            "inputFresh": 150000,
+            "cacheWrite5m": 5000,
+            "cacheWrite1h": 0,
+            "cacheWriteUnassigned": 0,
+            "cacheRead": 20000,
+            "output": 4000,
+            "reasoning": 0,
+            "countQuality": "unrecorded"
+          },
+          "knownApiEquivUsd": 34.2,
+          "priceStatusCounts": {
+            "LIST": 1,
+            "ESTIMATE": 0,
+            "UNPRICED": 0,
+            "unknown": 0
+          },
+          "priceEvidence": {
+            "version": 1,
+            "events": 1,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          }
+        },
+        {
+          "host": "M4a",
+          "model": "unspecified",
+          "provider": "unknown",
+          "servingRoutes": [
+            {
+              "kind": "unknown",
+              "evidence": "unrecorded"
+            }
+          ],
+          "priceVersion": "FILED-EXAMPLE-unrecorded",
+          "tsSource": "activity",
+          "firstEventAt": 1790466000000,
+          "lastEventAt": 1790466000000,
+          "events": 1,
+          "tokens": {
+            "inputFresh": 3000,
+            "cacheWrite5m": 0,
+            "cacheWrite1h": 0,
+            "cacheWriteUnassigned": 0,
+            "cacheRead": 0,
+            "output": 400,
+            "reasoning": 0,
+            "countQuality": "unrecorded"
+          },
+          "knownApiEquivUsd": null,
+          "priceStatusCounts": {
+            "LIST": 0,
+            "ESTIMATE": 0,
+            "UNPRICED": 1,
+            "unknown": 0
+          },
+          "priceEvidence": {
+            "version": 1,
+            "events": 1,
+            "invalidAmountEvents": 0,
+            "unknownStatusEvents": 0,
+            "statusAmountConflictEvents": 0,
+            "issuesEvents": 0,
+            "aggregateAmountInvalid": false
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "a": {"input": "a.input.json", "instance": "fab-ledger-v01", "rollup_days": true},
+  "b": {"input": "b.input.json", "instance": "fab-ccusage-v01"},
+  "case": "v01-vendor-exact-match",
+  "description": "Subject: one product ledger row rolled to its day. Reference: a vendor daily row with the same numbers as the existing comparator unit-test fixture (2, 3+5+2, 30, 11).",
+  "does_not_show": ["Real vendor behavior: the numbers are the unit-test fixture of the existing comparator."],
+  "expect": {
+    "pairs": {
+      "2026-10-12": {
+        "outcome": "identical",
+        "units": {
+          "cache_read": ["equal", 0, 0, "exact-match"],
+          "cache_write_1h": ["not_comparable", null, null, "missing-in-b"],
+          "cache_write_5m": ["not_comparable", null, null, "missing-in-b"],
+          "cache_write_total": ["equal", 0, 0, "exact-match"],
+          "cache_write_unassigned": ["not_comparable", null, null, "missing-in-b"],
+          "input_fresh": ["equal", 0, 0, "exact-match"],
+          "output": ["equal", 0, 0, "exact-match"],
+          "reasoning": ["not_comparable", null, null, "missing-in-both"],
+          "total": ["equal", 0, 0, "exact-match"]
+        }
+      }
+    },
+    "records": {
+      "a": {
+        "2026-10-12": {
+          "completeness": "complete",
+          "components": {
+            "cache_write_1h": ["measured", 5],
+            "cache_write_5m": ["measured", 3],
+            "cache_write_total": ["measured", 10],
+            "cache_write_unassigned": ["measured", 2],
+            "reasoning": ["missing", null]
+          },
+          "count_quality": "complete",
+          "total": 53
+        }
+      },
+      "b": {
+        "2026-10-12": {
+          "completeness": "complete",
+          "components": {
+            "cache_read": ["measured", 30],
+            "cache_write_1h": ["missing", null],
+            "cache_write_5m": ["missing", null],
+            "cache_write_total": ["measured", 10],
+            "cache_write_unassigned": ["missing", null],
+            "input_fresh": ["measured", 2],
+            "output": ["measured", 11],
+            "reasoning": ["missing", null]
+          },
+          "count_quality": "complete",
+          "total": 53
+        }
+      }
+    },
+    "summary": {"differs": 0, "identical": 1, "matched": 1, "only_in_a": 0, "only_in_b": 0, "unresolved": 0}
+  },
+  "shows": ["Vendor cache creation is a flat total; the product side keeps the 3/5/2 split. The split is compared only where both sides report it.", "The vendor cost and model fields are present in the input and are never read."],
+  "timezone": "-06:00",
+  "tolerance_percent_micro": null
+}

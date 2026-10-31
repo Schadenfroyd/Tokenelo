@@ -4,17 +4,17 @@ The free tracker and dependable reports are the priority. This is a plan, not a 
 
 ## Public alpha
 
-- [ ] Publish the reviewed source inventory and adopted license.
+- [x] Publish the reviewed source inventory and adopted license (October 31, 2026).
 - [ ] Verify a clean build and test workflow on every advertised platform.
 - [ ] Document supported adapters and coverage limitations.
 - [ ] Verify session/model drill-downs, parent/subagent inclusion and unknown-data states.
-- [ ] Ship a documented CSV/JSON field dictionary and synthetic examples.
+- [ ] Add synthetic examples for the documented CSV/JSON field dictionary ([field dictionary](export-format.md)).
 - [ ] Complete privacy, dependency notices and confidential vulnerability reporting.
 - [ ] Document database migration, backup and rollback behavior.
 
 ## Reporting depth
 
-- [ ] Add a share-safe report with explicit redaction and coverage evidence.
+- [ ] Qualify the `report --share` aggregate with explicit redaction and coverage evidence.
 - [ ] Explore vendor invoice/rate-card comparison for the same captured scope.
 - [ ] Make source freshness and adapter-format compatibility easier to inspect.
 - [ ] Improve explanations for incomplete counts and mixed-model sessions.

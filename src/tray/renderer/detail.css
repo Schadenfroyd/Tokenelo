@@ -1,0 +1,288 @@
+/* Session-detail window layout. Loaded AFTER styles.css (detail.html), so these rules override
+   that file's popover-specific fixed 400x600 body sizing — everything else (color tokens, .card,
+   .badge, .data-table, chart/legend/tooltip rules) is reused as-is from styles.css so
+   the detail window matches the popover's palette/theme rules exactly (founder spec item 2). */
+
+html.detail-html,
+body.detail-body {
+  width: 100%;
+  height: 100vh;
+  min-width: 480px;
+  overflow: hidden;
+}
+
+.detail-app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+/* Back control (R45): outside the header and panel so it stays put through loading and errors.
+   Explicit [hidden] rule so the flex display below can never override the attribute. */
+.detail-nav {
+  flex: 0 0 auto;
+  display: flex;
+  padding: var(--space-2) var(--space-4) 0;
+}
+
+.detail-nav[hidden] {
+  display: none;
+}
+
+.detail-back {
+  font: inherit;
+  font-size: 12px;
+  color: var(--fg);
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: var(--space-1) var(--space-2);
+  cursor: pointer;
+}
+
+.detail-back:hover {
+  background: var(--bg-hover);
+}
+
+.detail-back:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.detail-header {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-header .source-dot {
+  width: 12px;
+  height: 12px;
+}
+
+.detail-title-block {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.detail-title {
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail-subtitle {
+  color: var(--fg-muted);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.detail-header-metrics {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 0 0 auto;
+  font-size: 12px;
+  color: var(--fg-muted);
+}
+
+.detail-panel {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.detail-scope-note {
+  margin-bottom: var(--space-3);
+  line-height: 1.4;
+}
+
+.detail-content {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Stat tiles row (task item 2: "summary stat tiles"). */
+.stat-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-2);
+}
+
+.stat-tile {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.stat-tile-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--fg-muted);
+}
+
+.stat-tile-value {
+  font-size: 18px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stat-tile-sub {
+  font-size: 11px;
+  color: var(--fg-muted);
+}
+
+/* Give the model table room for token totals and count qualifications. Short branch
+   lists share the wide window; normal and minimum windows stack both cards. */
+.detail-columns {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.detail-columns > .card {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.detail-columns > .card:first-child {
+  flex: 2 1 480px;
+}
+
+/* Long branches use the detail width instead of leaving an empty model column. */
+.detail-columns--many-branches {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.detail-columns--many-branches .subagent-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .detail-columns:not(.detail-columns--many-branches) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .detail-columns:not(.detail-columns--many-branches) > .card {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .detail-columns--many-branches .subagent-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.detail-panel .chart-wrap svg {
+  height: 200px;
+}
+
+/* The detail's per-model table shares space with the subagent card. Keep the model and its
+   thinking qualification readable within this column, including "mode unknown". */
+.detail-columns table.data-table.model-table col.col-model {
+  width: 48%;
+}
+.detail-columns table.data-table.model-table col.col-num {
+  width: 26%;
+}
+.detail-columns table.data-table.model-table td.model-name {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.model-provider-context {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+.subagent-row {
+  cursor: pointer;
+  align-items: flex-start;
+}
+
+.subagent-token-summary {
+  font-weight: 600;
+  margin-top: var(--space-1);
+}
+
+.subagent-count-basis,
+.subagent-start {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+.subagent-row:hover {
+  background: var(--bg-hover);
+}
+
+.flag-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+  font-size: 12px;
+}
+
+.flag-name {
+  color: var(--fg-muted);
+}
+
+.detail-empty {
+  color: var(--fg-muted);
+  font-size: 12px;
+  padding: var(--space-2) 0;
+}
+
+.telemetry-feed {
+  align-items: flex-start;
+}
+.telemetry-feed .label-note,
+.desktop-context .label-note {
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+.detail-burn {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+.session-identity,
+.session-span,
+.session-workspace {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}

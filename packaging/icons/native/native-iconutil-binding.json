@@ -1,0 +1,214 @@
+{
+  "converter": {
+    "commandTemplate": [
+      "/usr/bin/iconutil",
+      "-c",
+      "icns",
+      "-o",
+      "<output.icns>",
+      "<input.iconset>"
+    ],
+    "conversionCapSeconds": 20,
+    "conversionElapsedSeconds": 0.025,
+    "conversionReturnCode": 0,
+    "conversionStderrBytes": 0,
+    "evidenceReportPath": "C:\\Temp\\tokenelo-r3388-native-iconutil-v2b-20261022\\native-iconutil-v2-final.private.json",
+    "evidenceReportSha256": "9ecb161b6be21cd8eb623522f316fd44bd9392a9af0d750c8fd9d6949cc32fb8",
+    "host": "Elos-MacBook-Pro.local",
+    "macOSProductVersion": "26.5.2",
+    "note": "Native roundtrip PNG byte hashes differ due to encoding; name/dimension set validated. Independent decoded-pixel equality was not tested.",
+    "os": "Darwin",
+    "path": "/usr/bin/iconutil",
+    "roundtripCapSeconds": 20,
+    "roundtripCommandTemplate": [
+      "/usr/bin/iconutil",
+      "-c",
+      "iconset",
+      "-o",
+      "<roundtrip.iconset>",
+      "<output.icns>"
+    ],
+    "roundtripElapsedSeconds": 0.023,
+    "roundtripReturnCode": 0,
+    "sha256": "f3576c7e614fe5678775c20c863cc47a6572ff022527b7fa89b8c477edf604e5"
+  },
+  "inputIconset": {
+    "directory": "generated/tokenelo-macos.iconset",
+    "fileCount": 10,
+    "files": [
+      {
+        "bytes": 634,
+        "height": 16,
+        "name": "icon_16x16.png",
+        "sha256": "58d109307416dda9b786a4c8b56da890ec357ba60f871c0286ec8752cebaa039",
+        "sourceOrigin": "generated/tokenelo-windows.ico#16px PNG frame",
+        "width": 16
+      },
+      {
+        "bytes": 1211,
+        "height": 32,
+        "name": "icon_16x16@2x.png",
+        "sha256": "a6b1e23de85d2e67e7b4e58c091b1b5310ae8bcd217595b75810fb8a2cf14fc2",
+        "sourceOrigin": "generated/tokenelo-windows.ico#32px PNG frame",
+        "width": 32
+      },
+      {
+        "bytes": 1211,
+        "height": 32,
+        "name": "icon_32x32.png",
+        "sha256": "a6b1e23de85d2e67e7b4e58c091b1b5310ae8bcd217595b75810fb8a2cf14fc2",
+        "sourceOrigin": "generated/tokenelo-windows.ico#32px PNG frame",
+        "width": 32
+      },
+      {
+        "bytes": 2310,
+        "height": 64,
+        "name": "icon_32x32@2x.png",
+        "sha256": "350b256504b021d3b3c61242edad990fc8252b63798bb168213d7861c8b05fc8",
+        "sourceOrigin": "generated/tokenelo-windows.ico#64px PNG frame",
+        "width": 64
+      },
+      {
+        "bytes": 4837,
+        "height": 128,
+        "name": "icon_128x128.png",
+        "sha256": "8c4eb03ae813d674667b835268ccc42e8191d08ec603e8093b0df8f81c1402cc",
+        "sourceOrigin": "generated/tokenelo-windows.ico#128px PNG frame",
+        "width": 128
+      },
+      {
+        "bytes": 10023,
+        "height": 256,
+        "name": "icon_128x128@2x.png",
+        "sha256": "b172f921a6286842b3716c9b818d10e760676ba776582dc3b6fe3e6f1811b7a5",
+        "sourceOrigin": "generated/tokenelo-windows.ico#256px PNG frame",
+        "width": 256
+      },
+      {
+        "bytes": 10023,
+        "height": 256,
+        "name": "icon_256x256.png",
+        "sha256": "b172f921a6286842b3716c9b818d10e760676ba776582dc3b6fe3e6f1811b7a5",
+        "sourceOrigin": "generated/tokenelo-windows.ico#256px PNG frame",
+        "width": 256
+      },
+      {
+        "bytes": 20986,
+        "height": 512,
+        "name": "icon_256x256@2x.png",
+        "sha256": "43167ed560dddd82a1c56a820b659b01a014603160fac23fc4235c726fddaafc",
+        "sourceOrigin": "generated/tokenelo-linux-512.png",
+        "width": 512
+      },
+      {
+        "bytes": 20986,
+        "height": 512,
+        "name": "icon_512x512.png",
+        "sha256": "43167ed560dddd82a1c56a820b659b01a014603160fac23fc4235c726fddaafc",
+        "sourceOrigin": "generated/tokenelo-linux-512.png",
+        "width": 512
+      },
+      {
+        "bytes": 43564,
+        "height": 1024,
+        "name": "icon_512x512@2x.png",
+        "sha256": "c5797d82b26022e907e8095bdeb70c3af85f0fccbf61511e9b910a0786183cfe",
+        "sourceOrigin": "generated/tokenelo-1024.png",
+        "width": 1024
+      }
+    ],
+    "pixelProvenance": "Each PNG is byte-identical to a previously generated/pinned ICO or PNG source frame. No re-render, crop, resize, recolor or generated pixel replacement was used for the V2 input set.",
+    "standardNames": [
+      "icon_16x16.png",
+      "icon_16x16@2x.png",
+      "icon_32x32.png",
+      "icon_32x32@2x.png",
+      "icon_128x128.png",
+      "icon_128x128@2x.png",
+      "icon_256x256.png",
+      "icon_256x256@2x.png",
+      "icon_512x512.png",
+      "icon_512x512@2x.png"
+    ],
+    "unchangedSourceAssets": {
+      "tokenelo-1024.png": "c5797d82b26022e907e8095bdeb70c3af85f0fccbf61511e9b910a0786183cfe",
+      "tokenelo-linux-512.png": "43167ed560dddd82a1c56a820b659b01a014603160fac23fc4235c726fddaafc",
+      "tokenelo-windows.ico": "6e5a98b30a99b2e5293ebccccc3fda9696b314ae79a4dc2ae0c7274866a2614b"
+    }
+  },
+  "output": {
+    "bytes": 134191,
+    "file": "native/tokenelo-macos.icns",
+    "fileDescription": "Mac OS X icon, 134191 bytes, \"ic12\" type",
+    "sha256": "3a63e6d4676d395c0ea52eef888f7f39a1961954b9392a698bf9138329a9534c"
+  },
+  "releaseLimit": "Format-level native conversion only; no package, app, Finder/Dock, installed, signing or release acceptance.",
+  "roundtrip": {
+    "allExpectedDimensions": true,
+    "exactFilenameSet": true,
+    "expectedCount": 10,
+    "frames": [
+      {
+        "height": 128,
+        "name": "icon_128x128.png",
+        "width": 128
+      },
+      {
+        "height": 256,
+        "name": "icon_128x128@2x.png",
+        "width": 256
+      },
+      {
+        "height": 16,
+        "name": "icon_16x16.png",
+        "width": 16
+      },
+      {
+        "height": 32,
+        "name": "icon_16x16@2x.png",
+        "width": 32
+      },
+      {
+        "height": 256,
+        "name": "icon_256x256.png",
+        "width": 256
+      },
+      {
+        "height": 512,
+        "name": "icon_256x256@2x.png",
+        "width": 512
+      },
+      {
+        "height": 32,
+        "name": "icon_32x32.png",
+        "width": 32
+      },
+      {
+        "height": 64,
+        "name": "icon_32x32@2x.png",
+        "width": 64
+      },
+      {
+        "height": 512,
+        "name": "icon_512x512.png",
+        "width": 512
+      },
+      {
+        "height": 1024,
+        "name": "icon_512x512@2x.png",
+        "width": 1024
+      }
+    ]
+  },
+  "schema": "tokenelo.native-iconutil-binding.v1",
+  "source": {
+    "derivedMarkSvgSha256": "66b0857f938dc83a4af3e14538e672524e695983fad4644802493d9941aa32a2",
+    "publicAsset": "assets/tokenelo-banner.svg",
+    "publicAssetCommit": "0499020dcba673a0a3b42f3bcd9798aa73f4dd17",
+    "publicAssetSha256": "61a248aeeea598434384a824767c19db9f8874b2af36bf98a11e5a5949740619",
+    "rendererElectronSha256": "c61802364a1e34a5c39335a97c5cf2a8ab2ea04937e4d83378a65508a34cb826",
+    "rendererElectronVersion": "44.6.0",
+    "rendererSourceCommit": "d57225eb5b7e4ea692f4210ad1e1946840dec706"
+  },
+  "status": "PASS_FORMAT_ONLY"
+}

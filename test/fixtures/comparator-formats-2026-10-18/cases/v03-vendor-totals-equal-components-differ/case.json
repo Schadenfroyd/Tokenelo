@@ -1,0 +1,26 @@
+{
+  "a": {"input": "a.input.json", "instance": "fab-ledger-v03", "rollup_days": true},
+  "b": {"input": "b.input.json", "instance": "fab-ccusage-v03"},
+  "case": "v03-vendor-totals-equal-components-differ",
+  "description": "Both sides total 100 tokens for the day, but every category differs (subject input 20, cache write 10, cache read 40, output 30; reference 10, 20, 30, 40). Tolerance 1% is supplied only to show that within_tolerance is reported per unit.",
+  "does_not_show": ["That 1% is an acceptance threshold: the tolerance is a caller-supplied reporting convenience."],
+  "expect": {
+    "pairs": {
+      "2026-10-12": {
+        "flags": ["totals-equal-components-differ"],
+        "outcome": "differs",
+        "units": {
+          "cache_read": ["differ", 10, 33333333, "values-differ", false],
+          "cache_write_total": ["differ", -10, 50000000, "values-differ", false],
+          "input_fresh": ["differ", 10, 100000000, "values-differ", false],
+          "output": ["differ", -10, 25000000, "values-differ", false],
+          "total": ["equal", 0, 0, "exact-match", true]
+        }
+      }
+    },
+    "summary": {"differs": 1, "identical": 0, "matched": 1, "only_in_a": 0, "only_in_b": 0, "totals_equal_components_differ": 1, "unresolved": 0}
+  },
+  "shows": ["A matching total does not hide component differences; the pair is flagged and its outcome is differs."],
+  "timezone": "-06:00",
+  "tolerance_percent_micro": 1000000
+}

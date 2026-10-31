@@ -1,0 +1,19 @@
+{
+  "events": [
+    {
+      "id": "fab-ollama-dup",
+      "snapshots": [
+        {"eval_count": 1, "prompt_eval_cached_count": 0, "prompt_eval_count": 1}
+      ],
+      "ts": 1791806400000
+    },
+    {
+      "id": "fab-ollama-dup",
+      "snapshots": [
+        {"eval_count": 1, "prompt_eval_cached_count": 0, "prompt_eval_count": 2}
+      ],
+      "ts": 1791806401000
+    }
+  ],
+  "kind": "local-engine-counters"
+}

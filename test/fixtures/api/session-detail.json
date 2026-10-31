@@ -1,0 +1,280 @@
+{
+  "source": "claude",
+  "sessionId": "a1b2c3d4-1111-4a4a-8b8b-000000000001",
+  "host": "M4a",
+  "project": "/fixture/tokenelo",
+  "repoRoot": "/fixture/tokenelo",
+  "models": [
+    "claude-sonnet-5",
+    "claude-haiku-4-5"
+  ],
+  "start": 1790463756688,
+  "end": 1790466216688,
+  "activeMs": 2280000,
+  "live": true,
+  "subagents": 2,
+  "tokens": {
+    "inputFresh": 82000,
+    "cacheWrite5m": 0,
+    "cacheWrite1h": 40000,
+    "cacheRead": 610000,
+    "output": 21000,
+    "reasoning": 0
+  },
+  "apiEquivUsd": 18.42,
+  "burn": {
+    "tokensPerMin": 1850,
+    "usdPerHour": 26.3
+  },
+  "byModel": [
+    {
+      "model": "claude-sonnet-5",
+      "displayName": "Claude Sonnet 5",
+      "provider": "anthropic",
+      "source": "claude",
+      "thinking": "thinking",
+      "events": 26,
+      "tokens": {
+        "inputFresh": 60000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 40000,
+        "cacheRead": 500000,
+        "output": 15000,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 14.5,
+      "priceStatus": "LIST"
+    },
+    {
+      "model": "claude-sonnet-5",
+      "displayName": "Claude Sonnet 5",
+      "provider": "anthropic",
+      "source": "claude",
+      "thinking": "unknown",
+      "events": 4,
+      "tokens": {
+        "inputFresh": 10000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 90000,
+        "output": 3000,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 2.4,
+      "priceStatus": "LIST"
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "displayName": "Claude Haiku 4.5",
+      "provider": "anthropic",
+      "source": "claude",
+      "thinking": "non-thinking",
+      "events": 12,
+      "tokens": {
+        "inputFresh": 12000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 20000,
+        "output": 3000,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 1.52,
+      "priceStatus": "LIST"
+    }
+  ],
+  "timeseries": {
+    "bucketMs": 300000,
+    "points": [
+      {
+        "t": 1790463600000,
+        "apiEquivUsd": 1.25,
+        "tokens": 9698,
+        "totalTokens": 51069,
+        "bySource": {
+          "claude": 1.25
+        }
+      },
+      {
+        "t": 1790463900000,
+        "apiEquivUsd": 1.82,
+        "tokens": 14156,
+        "totalTokens": 74539,
+        "bySource": {
+          "claude": 1.82
+        }
+      },
+      {
+        "t": 1790464200000,
+        "apiEquivUsd": 2.29,
+        "tokens": 17758,
+        "totalTokens": 93512,
+        "bySource": {
+          "claude": 2.29
+        }
+      },
+      {
+        "t": 1790464500000,
+        "apiEquivUsd": 2.56,
+        "tokens": 19864,
+        "totalTokens": 104596,
+        "bySource": {
+          "claude": 2.56
+        }
+      },
+      {
+        "t": 1790464800000,
+        "apiEquivUsd": 2.6,
+        "tokens": 20192,
+        "totalTokens": 106324,
+        "bySource": {
+          "claude": 2.6
+        }
+      },
+      {
+        "t": 1790465100000,
+        "apiEquivUsd": 2.43,
+        "tokens": 18900,
+        "totalTokens": 99526,
+        "bySource": {
+          "claude": 2.43
+        }
+      },
+      {
+        "t": 1790465400000,
+        "apiEquivUsd": 2.14,
+        "tokens": 16544,
+        "totalTokens": 87115,
+        "bySource": {
+          "claude": 2.14
+        }
+      },
+      {
+        "t": 1790465700000,
+        "apiEquivUsd": 1.79,
+        "tokens": 13936,
+        "totalTokens": 73382,
+        "bySource": {
+          "claude": 1.79
+        }
+      },
+      {
+        "t": 1790466000000,
+        "apiEquivUsd": 1.54,
+        "tokens": 11952,
+        "totalTokens": 62937,
+        "bySource": {
+          "claude": 1.54
+        }
+      }
+    ]
+  },
+  "subagentSessions": [
+    {
+      "sessionId": "a1b2c3d4-1111-4a4a-8b8b-000000000001-sub-1",
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "models": [
+        "claude-haiku-4-5"
+      ],
+      "start": 1790463996688,
+      "end": 1790464296688,
+      "activeMs": 240000,
+      "live": false,
+      "tokens": {
+        "inputFresh": 6000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 9000,
+        "output": 1400,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 0.71
+    },
+    {
+      "sessionId": "a1b2c3d4-1111-4a4a-8b8b-000000000001-sub-2",
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "models": [
+        "claude-haiku-4-5"
+      ],
+      "start": 1790464956688,
+      "end": 1790465196688,
+      "activeMs": 180000,
+      "live": false,
+      "tokens": {
+        "inputFresh": 6000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 11000,
+        "output": 1600,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 0.81
+    }
+  ],
+  "cacheReadShare": 0.8333333333333334,
+  "thinkingShare": 0.6842105263157895,
+  "thinkingUnknownEvents": 4,
+  "events": 42,
+  "firstEventTs": 1790463786688,
+  "lastEventTs": 1790466201688,
+  "wallMs": 2460000,
+  "flags": {
+    "speedAssumed": 5,
+    "cacheSplitAssumed": 2,
+    "thinkingUnknown": 4
+  },
+  "gitBranch": "main",
+  "entrypoint": "cli",
+  "telemetry": [
+    {
+      "host": "M4a",
+      "source": "claude",
+      "provider": "anthropic",
+      "models": [
+        "claude-sonnet-5",
+        "claude-haiku-4-5"
+      ],
+      "events": 42,
+      "tokens": {
+        "inputFresh": 82000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 40000,
+        "cacheRead": 610000,
+        "output": 21000,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 18.42,
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "firstEventAt": 1790463786688,
+      "lastEventAt": 1790466201688,
+      "flags": {
+        "speedAssumed": 5,
+        "cacheSplitAssumed": 2,
+        "thinkingUnknown": 4
+      }
+    }
+  ],
+  "desktopMeta": {
+    "cliSessionId": "a1b2c3d4-1111-4a4a-8b8b-000000000001",
+    "title": "Review Tokenelo telemetry drill-downs",
+    "cwd": "/fixture/tokenelo/.worktrees/ui",
+    "originCwd": "/fixture/tokenelo",
+    "model": "claude-sonnet-5",
+    "effort": "high",
+    "isArchived": false,
+    "createdAt": 1790463756688,
+    "lastActivityAt": 1790466216688,
+    "prNumber": 77,
+    "prRepository": "example-org/tokenelo",
+    "prState": "OPEN",
+    "prUrl": "https://example.invalid/example-org/tokenelo/pull/77"
+  },
+  "unpricedEvents": 0,
+  "estimatedPriceEvents": 0,
+  "priceStatus": "LIST"
+}

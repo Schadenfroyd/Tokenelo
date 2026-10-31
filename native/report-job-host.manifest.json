@@ -1,0 +1,15 @@
+{
+  "recordedAt": "2026-10-10T16:27:30.899219+00:00",
+  "exitCode": 0,
+  "sourceSha256": "7d14d9d0cc1dd7b26b403525a184500ba3500f9eec0936dffa146b6c650005db",
+  "binarySha256": "72981f1487edc018d12becee7614244989b2883a39cd018885067a61a98501d0",
+  "compiler": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+  "compilerSha256": "46809206887326d2d24db1eff1f3064de972c3451abe766b49111450a5e08e00",
+  "GUIWindowsSubsystem": true,
+  "actualPeSubsystem": 2,
+  "source": "src/daemon/native/report-job-host.cs",
+  "binary": "native/report-job-host.exe",
+  "scope": "GUI native helper nonce-bound no-created receipt and12MiB envelope headroom for shared8MiB raw control, uninstalled",
+  "noNativeInstalledChanges": true,
+  "freeBytes": 200557363200
+}

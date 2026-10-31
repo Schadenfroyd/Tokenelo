@@ -1,0 +1,192 @@
+{
+  "range": "24h",
+  "generatedAt": 1790466276688,
+  "timeBasis": {
+    "startMs": 1790379876688,
+    "asOfMs": 1790466276688,
+    "endInclusive": true,
+    "timestampBasis": "recorded-timestamps",
+    "excludedFutureEvents": 0,
+    "excludedFutureActivity": 0
+  },
+  "sessions": [
+    {
+      "source": "claude",
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "sessionId": "a1b2c3d4-1111-4a4a-8b8b-000000000001",
+      "host": "M4a",
+      "project": "/fixture/tokenelo",
+      "repoRoot": "/fixture/tokenelo",
+      "models": [
+        "claude-sonnet-5",
+        "claude-haiku-4-5"
+      ],
+      "start": 1790463756688,
+      "end": 1790466216688,
+      "activeMs": 2280000,
+      "live": true,
+      "subagents": 2,
+      "tokens": {
+        "inputFresh": 82000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 40000,
+        "cacheRead": 610000,
+        "output": 21000,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 18.42,
+      "burn": {
+        "tokensPerMin": 1850,
+        "usdPerHour": 26.3
+      }
+    },
+    {
+      "source": "codex",
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "sessionId": "thread_9f8e7d6c5b4a3928",
+      "host": "A2000",
+      "project": "/fixture/kilnfall-rts",
+      "repoRoot": "/fixture/kilnfall-rts",
+      "models": [
+        "gpt-6-sol"
+      ],
+      "start": 1790458476688,
+      "end": 1790460576688,
+      "activeMs": 1320000,
+      "live": false,
+      "subagents": 0,
+      "tokens": {
+        "inputFresh": 41000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 12000,
+        "output": 9800,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 6.11,
+      "burn": null
+    },
+    {
+      "source": "ollama-proxy",
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "sessionId": "ollama:M4a:qwen3.8:27b:2026-09-26",
+      "host": "M4a",
+      "project": "/fixture/tokenelo-bench",
+      "models": [
+        "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL"
+      ],
+      "start": 1790465556688,
+      "end": 1790466156688,
+      "activeMs": 540000,
+      "live": true,
+      "subagents": 0,
+      "tokens": {
+        "inputFresh": 12000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 3000,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 0,
+      "burn": {
+        "tokensPerMin": 1000,
+        "usdPerHour": 0
+      },
+      "telemetry": [
+        {
+          "host": "M4a",
+          "source": "ollama-proxy",
+          "provider": "local",
+          "engine": "ollama",
+          "models": [
+            "hf.co/unsloth/Qwen3.8-27B-GGUF:UD-Q4_K_XL"
+          ],
+          "events": 18,
+          "tokens": {
+            "inputFresh": 12000,
+            "cacheWrite5m": 0,
+            "cacheWrite1h": 0,
+            "cacheRead": 0,
+            "output": 3000,
+            "reasoning": 0
+          },
+          "apiEquivUsd": 0,
+          "unpricedEvents": 0,
+          "estimatedPriceEvents": 0,
+          "priceStatus": "LIST",
+          "firstEventAt": 1790465556688,
+          "lastEventAt": 1790466156688,
+          "flags": {
+            "thinkingUnknown": 18
+          }
+        }
+      ]
+    },
+    {
+      "source": "claude",
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "sessionId": "a1b2c3d4-2222-4a4a-8b8b-000000000002",
+      "host": "M4a",
+      "project": "/fixture/tokenelo/subagents/triage",
+      "repoRoot": "/fixture/tokenelo",
+      "models": [
+        "claude-haiku-4-5"
+      ],
+      "start": 1790448276688,
+      "end": 1790449476688,
+      "activeMs": 840000,
+      "live": false,
+      "subagents": 0,
+      "tokens": {
+        "inputFresh": 9000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 0,
+        "output": 2100,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 0.14,
+      "burn": {
+        "tokensPerMin": 92,
+        "usdPerHour": 0.6
+      }
+    },
+    {
+      "source": "codex",
+      "unpricedEvents": 0,
+      "estimatedPriceEvents": 0,
+      "priceStatus": "LIST",
+      "sessionId": "a1b2c3d4-2222-4a4a-8b8b-000000000024",
+      "host": "A2000",
+      "project": "/fixture/kilnfall-rts/filed-24h",
+      "repoRoot": "/fixture/kilnfall-rts",
+      "models": [
+        "gpt-6-sol"
+      ],
+      "start": 1790393676688,
+      "end": 1790395776688,
+      "activeMs": 1320000,
+      "live": false,
+      "subagents": 0,
+      "tokens": {
+        "inputFresh": 41000,
+        "cacheWrite5m": 0,
+        "cacheWrite1h": 0,
+        "cacheRead": 12000,
+        "output": 9800,
+        "reasoning": 0
+      },
+      "apiEquivUsd": 6.11,
+      "burn": null
+    }
+  ]
+}
