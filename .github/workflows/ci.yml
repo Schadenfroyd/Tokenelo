@@ -100,6 +100,9 @@ jobs:
             "USERNAME=$user", "USERPROFILE=$profileDir", "HOMEDRIVE=$env:SystemDrive", "HOMEPATH=\Users\$user",
             "APPDATA=$profileDir\AppData\Roaming", "LOCALAPPDATA=$profileDir\AppData\Local", "TEMP=$tempDir", "TMP=$tempDir"
           )
+          # TEMPORARY: measure how long the ACL helper takes as this standard user (remove after the log is read).
+          $null = Invoke-AsUser ((($vars | ForEach-Object { 'set "' + $_ + '"' }) -join '&& ') + '&& "' + $node + '" "' + (Join-Path $repo 'scripts\ci-win-acl-timing.cjs') + '"') 'timing'
+
           $inner = (($vars | ForEach-Object { 'set "' + $_ + '"' }) -join '&& ') + '&& "' + $node + '" "' + $vitest + '" run --maxWorkers=1'
           $run = Invoke-AsUser $inner 'vitest'
           exit $run.Code
