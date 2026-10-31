@@ -100,68 +100,6 @@ jobs:
             "USERNAME=$user", "USERPROFILE=$profileDir", "HOMEDRIVE=$env:SystemDrive", "HOMEPATH=\Users\$user",
             "APPDATA=$profileDir\AppData\Roaming", "LOCALAPPDATA=$profileDir\AppData\Local", "TEMP=$tempDir", "TMP=$tempDir"
           )
-          # TEMPORARY DIAGNOSTIC PROBE: remove after the log is read. It runs the product's own ACL script, extracted from
-          # src/daemon/paths.ts, as this standard user and reports timing and stderr. It cannot fail the step.
-          try {
-            $probeSource = @'
-          const { spawnSync, execFileSync } = require('node:child_process');
-          const fs = require('node:fs');
-          const os = require('node:os');
-          const path = require('node:path');
-          try {
-            const sysRoot = process.env.SystemRoot;
-            if (!sysRoot) { console.log('PROBE no SystemRoot; not a Windows environment'); process.exit(0); }
-            const src = fs.readFileSync(path.join(process.env.PROBE_REPO, 'src', 'daemon', 'paths.ts'), 'utf8');
-            const open = 'const WINDOWS_ACL_SCRIPT = [';
-            const start = src.indexOf(open);
-            const end = src.indexOf("].join('\\n');", start);
-            if (start < 0 || end < 0) { console.log('PROBE could not extract the ACL script'); process.exit(0); }
-            const script = new Function('return [' + src.slice(start + open.length, end) + '].join("\\n")')();
-            console.log('PROBE extracted the ACL script: ' + script.split('\n').length + ' lines');
-            const psExe = path.win32.join(sysRoot, 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe');
-            const baseArgs = ['-NoLogo', '-NoProfile', '-NonInteractive'];
-            const enc = baseArgs.concat(['-EncodedCommand', Buffer.from(script, 'utf16le').toString('base64')]);
-            const minimal = { SystemRoot: sysRoot, windir: sysRoot };
-            for (const name of ['TEMP', 'TMP']) { if (process.env[name]) minimal[name] = process.env[name]; }
-            const withTarget = (env, mode, target) => Object.assign({}, env, { TOKENELO_ACL_TARGET: target, TOKENELO_ACL_MODE: mode });
-            const piped = ['ignore', 'pipe', 'pipe'];
-            const asProduct = ['ignore', 'pipe', 'ignore'];
-            function runPs(label, args, env, stdio, timeout) {
-              const t0 = process.hrtime.bigint();
-              const r = spawnSync(psExe, args, { encoding: 'utf8', windowsHide: true, timeout, env, stdio, maxBuffer: 1 << 20 });
-              const ms = Number((process.hrtime.bigint() - t0) / 1000000n);
-              console.log('PROBE ' + label + ': elapsedMs=' + ms + ' status=' + r.status + ' signal=' + r.signal + ' error=' + (r.error ? (r.error.code || r.error.message) : 'none'));
-              const out = (r.stdout || '').trim();
-              const err = (r.stderr || '').trim();
-              if (out) console.log('PROBE ' + label + ' stdout: ' + out.slice(0, 1200));
-              if (err) console.log('PROBE ' + label + ' stderr: ' + err.slice(0, 2000));
-            }
-            const home = fs.mkdtempSync(path.join(os.tmpdir(), 'tokenelo-probe-'));
-            const dataDir = path.join(home, 'data');
-            fs.mkdirSync(dataDir, { recursive: true, mode: 0o700 });
-            const files = ['1', '2', '3', '4'].map((n) => { const p = path.join(dataDir, 'api-token-' + n); fs.writeFileSync(p, 'synthetic-probe-token'); return p; });
-            console.log('PROBE identity: user=' + process.env.USERNAME + ' tmp=' + os.tmpdir() + ' node=' + process.version);
-            for (const p of [os.tmpdir(), home, dataDir]) {
-              try { console.log('PROBE icacls ' + p + '\n' + execFileSync('icacls', [p], { encoding: 'utf8', timeout: 20000 }).trim()); }
-              catch (e) { console.log('PROBE icacls failed for ' + p + ': ' + e.message); }
-            }
-            runPs('A1 trivial command, minimal env (cold)', baseArgs.concat(['-Command', "'ok'"]), minimal, piped, 20000);
-            runPs('A2 trivial command, minimal env (warm)', baseArgs.concat(['-Command', "'ok'"]), minimal, piped, 20000);
-            runPs('B1 directory mode, minimal env, stderr captured', enc, withTarget(minimal, 'directory', dataDir), piped, 20000);
-            runPs('B2 file mode, minimal env, stderr captured', enc, withTarget(minimal, 'file', files[0]), piped, 20000);
-            runPs('C1 directory mode, full env, stderr captured', enc, withTarget(process.env, 'directory', dataDir), piped, 20000);
-            runPs('C2 file mode, full env, stderr captured', enc, withTarget(process.env, 'file', files[1]), piped, 20000);
-            runPs('D1 directory mode, as the product runs it (5 s)', enc, withTarget(minimal, 'directory', dataDir), asProduct, 5000);
-            runPs('D2 file mode, as the product runs it (5 s)', enc, withTarget(minimal, 'file', files[2]), asProduct, 5000);
-            runPs('D3 file mode, product options but 20 s', enc, withTarget(minimal, 'file', files[3]), asProduct, 20000);
-            try { fs.rmSync(home, { recursive: true, force: true }); } catch (e) { console.log('PROBE cleanup: ' + e.message); }
-          } catch (e) { console.log('PROBE crashed: ' + (e && e.stack || e)); }
-          '@
-            [System.IO.File]::WriteAllText((Join-Path $logDir 'probe.cjs'), $probeSource, (New-Object System.Text.UTF8Encoding($false)))
-            $probeCmd = (($vars | ForEach-Object { 'set "' + $_ + '"' }) -join '&& ') + '&& set "PROBE_REPO=' + $repo + '"&& "' + $node + '" "' + (Join-Path $logDir 'probe.cjs') + '"'
-            $null = Invoke-AsUser $probeCmd 'probe'
-          } catch { Write-Host "probe could not run: $_" }
-
           $inner = (($vars | ForEach-Object { 'set "' + $_ + '"' }) -join '&& ') + '&& "' + $node + '" "' + $vitest + '" run --maxWorkers=1'
           $run = Invoke-AsUser $inner 'vitest'
           exit $run.Code
